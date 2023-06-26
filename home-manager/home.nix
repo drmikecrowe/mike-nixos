@@ -11,7 +11,7 @@
     # inputs.nix-colors.homeManagerModules.default
 
     # You can also split up your configuration and import pieces of it here:
-    # ./nvim.nix
+    ./apps/git
   ];
 
   nixpkgs = {
@@ -41,7 +41,6 @@
     };
   };
 
-  # TODO: Set your username
   home = {
     username = "mcrowe";
     homeDirectory = "/home/mcrowe";
@@ -49,19 +48,27 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  home.packages = with pkgs; [ 
-    _1password-gui-beta
-    vscode
+  home.packages = [ 
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
-    virt-manager
-    nushell
-    neofetch
-    rustscan
+    pkgs.virt-manager
+    pkgs.neofetch
+    pkgs.rustscan
+    pkgs.atuin
+    pkgs.unstable._1password-gui-beta
+    pkgs.unstable.vscode
+    pkgs.unstable.nushell
+    pkgs.meld
+    pkgs.neovim
+    pkgs.python311
+    pkgs.python311Packages.pip
+    pkgs.cargo
+    pkgs.nodejs_18
+    pkgs.neovide
   ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.vscode.enable = true;
+  # programs.vscode.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

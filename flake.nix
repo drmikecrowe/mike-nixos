@@ -1,3 +1,6 @@
+# Inspiration: 
+# * https://github.com/wimpysworld/nix-config/blob/main/flake.nix
+
 {
   description = "Mike's NixOS configuration";
 
@@ -14,14 +17,14 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # TODO: Add any other flake you might need
-    # hardware.url = "github:nixos/nixos-hardware";
+    hardware.url = "github:nixos/nixos-hardware/master";
 
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
     # nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs:
     let
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [
@@ -55,12 +58,19 @@
       # These are usually stuff you would upstream into home-manager
       homeManagerModules = import ./modules/home-manager;
 
+      userModules = import ./modules/users;
+
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
-        # FIXME replace with your hostname
-        your-hostname = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
+        xps15 = nixpkgs.lib.nixosSystem {
+          specialArgs = { 
+            inherit inputs outputs; };
+            desktop = "pantheon";
+            hostname = "xps15";
+            username = "mcrowe";
+            ossystem = "linux";
+          }
           modules = [
             # > Our main nixos configuration file <
             ./nixos/configuration.nix
@@ -71,10 +81,15 @@
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'
       homeConfigurations = {
-        # FIXME replace with your username@hostname
-        "mcrowe@mcrowe-XPS-15-9560" = home-manager.lib.homeManagerConfiguration {
+        "mcrowe@xps15" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-          extraSpecialArgs = { inherit inputs outputs; };
+          extraSpecialArgs = { 
+            inherit inputs outputs stateVersion; 
+            desktop = "pantheon";
+            hostname = "xps15";
+            username = "mcrowe";
+            ossystem = "linux";
+          };
           modules = [
             # > Our main home-manager configuration file <
             ./home-manager/home.nix
