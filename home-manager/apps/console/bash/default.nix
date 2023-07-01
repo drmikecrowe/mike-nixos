@@ -1,23 +1,10 @@
-{ config, lib, pkgs, ... }:
-with lib;
-
-let
-  cfg = config.programs.mcrowe.bash;
-in
 {
-  options.programs.mcrowe.bash = {
-    enable = mkEnableOption "Enables bash";
+  programs.bash = {
+    enableCompletion = true;
+    keychain.enableBashIntegration = true;
+    enableLsColors = true;
   };
 
-  config = mkIf cfg.enable {
-    users.users.mcrowe.shell = pkgs.shadow;
+  packages = with pkgs; [ exa neofetch starship ];
 
-    home.programs.bash = {
-      enableCompletion = true;
-      keychain.enableBashIntegration = true;
-      enableLsColors = true;
-    };
-
-    home.packages = with pkgs; [ exa neofetch starship ];
-  };
 }

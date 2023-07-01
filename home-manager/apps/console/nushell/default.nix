@@ -1,23 +1,9 @@
-{ config, lib, pkgs, ... }:
-with lib;
-
-let
-  cfg = config.programs.mcrowe.nushell;
-in
 {
-  options.programs.mcrowe.nushell = {
-    enable = mkEnableOption "Enables nushell";
+  programs.nushell = {
+    enableCompletion = true;
+    keychain.enableNushellIntegration = true;
+    enableLsColors = true;
   };
 
-  config = mkIf cfg.enable {
-    users.users.mcrowe.shell = pkgs.shadow;
-
-    home.programs.nushell = {
-      enableCompletion = true;
-      keychain.enableNushellIntegration = true;
-      enableLsColors = true;
-    };
-
-    home.packages = with pkgs; [ exa neofetch starship ];
-  };
+  packages = with pkgs; [ exa neofetch starship ];
 }
