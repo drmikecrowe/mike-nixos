@@ -12,7 +12,7 @@ in
   config = mkIf cfg.enable {
     users.users.mcrowe.shell = pkgs.shadow;
 
-    programs.bash = {
+    home.programs.bash = {
       enableCompletion = true;
       keychain.enableBashIntegration = true;
       enableLsColors = true;

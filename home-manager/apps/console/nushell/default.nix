@@ -12,7 +12,7 @@ in
   config = mkIf cfg.enable {
     users.users.mcrowe.shell = pkgs.shadow;
 
-    programs.nushell = {
+    home.programs.nushell = {
       enableCompletion = true;
       keychain.enableNushellIntegration = true;
       enableLsColors = true;
