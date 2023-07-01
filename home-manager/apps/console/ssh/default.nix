@@ -44,7 +44,7 @@
     };
   };
   home.file.".ssh/Gitpod.pub".source = ./ssh/Gitpod.pub;
-  home.file.".ssh/id_rsa.pub".source = ./ssh/id_rsa_drmikecrowe.pub;
+  home.file.".ssh/id_rsa.pub".source = ./ssh/id_rsa.pub;
   home.file.".ssh/id_rsa_drmikecrowe-github.pub".source = ./ssh/id_rsa_drmikecrowe-github.pub;
   home.file.".ssh/id_rsa_drmikecrowe.pub".source = ./ssh/id_rsa_drmikecrowe.pub;
   home.file.".ssh/id_rsa_drmikecrowe-ubuntu-rsa.pub".source = ./ssh/id_rsa_drmikecrowe-ubuntu-rsa.pub;
