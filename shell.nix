@@ -1,10 +1,14 @@
-# Shell for bootstrapping flake-enabled nix and home-manager
-# You can enter it through 'nix develop' or (legacy) 'nix-shell'
+{ pkgs }:
 
-{ pkgs ? (import ./nixpkgs.nix) { } }: {
-  default = pkgs.mkShell {
-    # Enable experimental features without having to specify the argument
-    NIX_CONFIG = "experimental-features = nix-command flakes";
-    nativeBuildInputs = with pkgs; [ nix home-manager git ];
-  };
+with pkgs;
+mkShell {
+  name = "flakeEnv";
+  buildInputs = [ rnix-lsp ];
+  shellHook = ''
+    alias nrb="nixos-rebuild build --flake .#xps15 --impure"
+    alias nrt="sudo nixos-rebuild test --flake .#xps15 --impure"
+    alias nrs="sudo nixos-rebuild switch --flake .#xps15 --impure"
+
+    alias build-laptop="nixos-rebuild switch --flake .#laptop"
+  '';
 }

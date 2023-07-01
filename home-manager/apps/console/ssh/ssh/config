@@ -1,0 +1,53 @@
+Host *
+    IdentitiesOnly=yes
+    IdentityAgent ~/.1password/agent.sock
+
+Host pod*
+    User            mcrowe
+    IdentityFile    ~/.ssh/id_rsa_pi.pub
+
+Host source.developers.google.com
+    HostName source.developers.google.com
+    User            mike.crowe@mikkeltech.com
+    IdentityFile    ~/.ssh/id_rsa_mikkel
+
+Host osmc
+    HostName crowenas.local
+    User root
+    ServerAliveInterval 30
+    ServerAliveCountMax 120
+    IdentitiesOnly yes
+    PubkeyAuthentication        true
+    IdentityFile    ~/.ssh/id_rsa_drmikecrowe.pub
+
+Host remarkable
+    Hostname 192.168.12.131
+    User root
+    Port 22
+    IdentityFile ~/.ssh/id_rsa_drmikecrowe
+
+Host bastion-dev
+    Hostname 53.23.141.176
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/pinnsg-ue1-dev-infrastructure-ssh-key.pub
+    IdentitiesOnly yes
+
+Host qbconnector-dev
+    Hostname 52.20.144.2
+    User bitnami
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/pinnsg-ue1-dev-infrastructure-ssh-key.pub
+    IdentitiesOnly yes
+
+Host qbconnector-dev
+    Hostname 52.20.144.2
+    User bitnami
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/pinnsg-ue1-dev-infrastructure-ssh-key.pub
+    IdentitiesOnly yes
+
+Host bastion-data
+    Hostname 52.206.233.147
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/pinnsg-ue1-data-infrastructure-ssh-key.pub
+    IdentitiesOnly yes
