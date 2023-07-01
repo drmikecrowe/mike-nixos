@@ -2,7 +2,7 @@
 
 {
   programs.bash = {
-    enableCompletion = true;
+    enable = true;
   };
 
   home.packages = with pkgs; [ exa neofetch starship ];
