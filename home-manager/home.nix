@@ -111,7 +111,6 @@
     home-manager.enable = true;
     neovim.enable = true;
 
-    git.enable = true;
     ssh.enable = true;
     nix-index.enable = true;
 
