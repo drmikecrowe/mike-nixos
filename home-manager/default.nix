@@ -14,6 +14,7 @@
     # ./nvim.nix
     ./apps/console/git
     ./apps/console/ssh
+    ./modules/shellAliases.nix
   ];
 
   nixpkgs = {
@@ -66,7 +67,6 @@
 
       # desktop apps
       virt-manager
-      neofetch
       rustscan
       atuin
       kitty
@@ -110,12 +110,13 @@
 
   programs = {
     home-manager.enable = true;
-    neovim.enable = true;
-
-    nix-index.enable = true;
 
     direnv.enable = true;
     direnv.nix-direnv.enable = true;
+    keychain.enable = true;
+    neovim.enable = true;
+
+    nix-index.enable = true;
   };
 
   # Nicely reload system units when changing configs
