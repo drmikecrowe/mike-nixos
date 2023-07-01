@@ -66,7 +66,7 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
-        "mcrowe@xps15" = nixpkgs.lib.nixosSystem {
+        xps15 = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs self; }; # Pass flake inputs to our config
           system = "x86_64-linux";
           modules = [
@@ -76,7 +76,7 @@
             {
               home-manager = {
                 extraSpecialArgs = { inherit inputs outputs; };
-                users = { 
+                users = {
                   mcrowe = import ./home-manager;
                 };
               };

@@ -79,6 +79,7 @@
       cargo
       nodejs_18
       neovide
+      copyq
       xclip
 
       libreoffice
@@ -111,7 +112,6 @@
     home-manager.enable = true;
     neovim.enable = true;
 
-    ssh.enable = true;
     nix-index.enable = true;
 
     direnv.enable = true;
