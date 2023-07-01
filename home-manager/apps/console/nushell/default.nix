@@ -7,5 +7,5 @@
     enableLsColors = true;
   };
 
-  packages = with pkgs; [ exa neofetch starship ];
+  home.packages = with pkgs; [ exa neofetch starship ];
 }
