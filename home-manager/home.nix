@@ -12,6 +12,8 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
+    ./apps/console/git
+    ./apps/console/ssh
   ];
 
   nixpkgs = {
@@ -41,27 +43,81 @@
     };
   };
 
-  # TODO: Set your username
   home = {
     username = "mcrowe";
     homeDirectory = "/home/mcrowe";
+
+    packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+
+      # web
+      firefox
+      vivaldi
+
+      nodejs
+      nodePackages_latest.typescript-language-server
+
+      # python
+      # python39
+      # (python39.withPackages (ps: [ ps.epc ps.python-lsp-server ]))
+      # python39Full
+      # python39Packages.pip
+      # python39Packages.python-lsp-server
+
+      # desktop apps
+      virt-manager
+      neofetch
+      rustscan
+      atuin
+      kitty
+      unstable._1password-gui-beta
+      unstable.vscode
+      unstable.nushell
+      meld
+      python311
+      python311Packages.pip
+      cargo
+      nodejs_18
+      neovide
+      xclip
+
+      libreoffice
+      peek
+      zoom-us
+      teams
+
+      # command line utils
+      mg
+      jq
+      ripgrep
+      unzip
+      nix-prefetch-github
+      killall
+
+      # libs
+      ffmpeg
+      libnotify
+
+      # misc
+      acpi
+      sshfs
+    ];
   };
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  home.packages = with pkgs; [ 
-    _1password-gui-beta
-    vscode
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
-    virt-manager
-    nushell
-    neofetch
-    rustscan
-  ];
 
-  # Enable home-manager and git
-  programs.home-manager.enable = true;
-  programs.vscode.enable = true;
+  programs = {
+    home-manager.enable = true;
+    neovim.enable = true;
+
+    git.enable = true;
+    ssh.enable = true;
+    nix-index.enable = true;
+
+    direnv.enable = true;
+    direnv.nix-direnv.enable = true;
+  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
