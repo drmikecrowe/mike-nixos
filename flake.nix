@@ -40,8 +40,7 @@
       # Your custom packages
       # Acessible through 'nix build', 'nix shell', etc
       packages = forAllSystems (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
-        in { default = import ./pkgs { inherit pkgs; }; }
+        import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; }
       );
       # Devshell for bootstrapping
       # Acessible through 'nix develop' or 'nix-shell' (legacy)
