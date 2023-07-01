@@ -18,6 +18,6 @@ in
       enableLsColors = true;
     };
 
-    home-manager.users.mcrowe.home.packages = with pkgs; [ exa neofetch starship ];
+    packages = with pkgs; [ exa neofetch starship ];
   };
 }
