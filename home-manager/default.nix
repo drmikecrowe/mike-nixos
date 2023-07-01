@@ -14,6 +14,10 @@
     # ./nvim.nix
     ./apps/console/git
     ./apps/console/ssh
+    ./apps/console/atuin
+    ./apps/console/bash
+    ./apps/console/nushell
+    ./apps/console/starship
     ./modules/shellAliases.nix
   ];
 
