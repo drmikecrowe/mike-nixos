@@ -76,7 +76,6 @@
       kitty
       unstable._1password-gui-beta
       unstable.vscode
-      unstable.nushell
       meld
       python311
       python311Packages.pip
