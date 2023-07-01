@@ -40,7 +40,8 @@
       # Your custom packages
       # Acessible through 'nix build', 'nix shell', etc
       packages = forAllSystems (system:
-        import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; }
+        let pkgs = nixpkgs.legacyPackages.${system};
+        in { default = import ./pkgs { inherit pkgs; }; }
       );
       # Devshell for bootstrapping
       # Acessible through 'nix develop' or 'nix-shell' (legacy)
@@ -65,12 +66,21 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
-        xps15 = nixpkgs.lib.nixosSystem {
+        "mcrowe@xps15" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs self; }; # Pass flake inputs to our config
           system = "x86_64-linux";
           modules = [
             # > Our main nixos configuration file <
             ./hosts/laptop/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                extraSpecialArgs = { inherit inputs outputs; };
+                users = { 
+                  mcrowe = import ./home-manager;
+                };
+              };
+            }
           ];
         };
       };

@@ -16,10 +16,9 @@ in
     ./system-config.nix
     ./system-pkgs.nix
     ./persist.nix
-    ./mcrowe.nix
     ./location.nix
-    ./root.nix
-    ../../modules/mcrowe-home-manager.nix
+    ../users/root.nix
+    ../users/mcrowe.nix
   ];
 
   system.stateVersion = "23.05";
