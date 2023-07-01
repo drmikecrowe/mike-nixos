@@ -50,5 +50,5 @@
         format = "via [☃️ $state( ($name))](bold blue) ";
       };
     };
-  }
-    }
+  };
+}
