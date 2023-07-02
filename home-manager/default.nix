@@ -15,6 +15,7 @@
     ./apps/console/git
     ./apps/console/ssh
     ./apps/console/atuin
+    ./apps/console/carapace
     ./apps/console/bash
     ./apps/console/nushell
     ./apps/console/starship

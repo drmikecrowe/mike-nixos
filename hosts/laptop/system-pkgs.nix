@@ -15,5 +15,6 @@
     mc
     vim
     nmap
+    parted
   ];
 }

@@ -3,12 +3,12 @@
   environment.variables = { EDITOR = "vim"; };
 
   environment.systemPackages = with pkgs; [
-    ((vim_configurable.override {  }).customize{
+    ((vim_configurable.override { }).customize {
       name = "vim";
       # Install plugins for example for syntax highlighting of nix files
       vimrcConfig.packages.myplugins = with pkgs.vimPlugins; {
         start = [ vim-nix vim-airline ];
-        opt = [];
+        opt = [ ];
       };
       vimrcConfig.customRC = ''
         " your custom vimrc
@@ -27,10 +27,11 @@
         set noeb " disable error bells
         set nohlsearch
         set backspace=indent,eol,start
-        colorscheme github
+        colorscheme elflord
         syntax on
         " ...
       '';
     }
-  )];
+    )
+  ];
 }

@@ -19,6 +19,7 @@ in
     ./location.nix
     ../users/root.nix
     ../users/mcrowe.nix
+    ../shared/vim.nix
   ];
 
   system.stateVersion = "23.05";
