@@ -43,15 +43,15 @@
       };
     };
   };
-  home.file.".ssh/Gitpod.pub".source = ./ssh/Gitpod.pub;
-  home.file.".ssh/id_rsa.pub".source = ./ssh/id_rsa.pub;
-  home.file.".ssh/id_rsa_drmikecrowe-github.pub".source = ./ssh/id_rsa_drmikecrowe-github.pub;
-  home.file.".ssh/id_rsa_drmikecrowe.pub".source = ./ssh/id_rsa_drmikecrowe.pub;
-  home.file.".ssh/id_rsa_drmikecrowe-ubuntu-rsa.pub".source = ./ssh/id_rsa_drmikecrowe-ubuntu-rsa.pub;
-  home.file.".ssh/id_rsa_mikkel.pub".source = ./ssh/id_rsa_mikkel.pub;
-  home.file.".ssh/id_rsa-personal-git.pub".source = ./ssh/id_rsa-personal-git.pub;
-  home.file.".ssh/id_rsa_pinnsg.pub".source = ./ssh/id_rsa_pinnsg.pub;
-  home.file.".ssh/id_rsa_pi.pub".source = ./ssh/id_rsa_pi.pub;
-  home.file.".ssh/pinnsg-ue1-data-infrastructure-ssh-key.pub".source = ./ssh/pinnsg-ue1-data-infrastructure-ssh-key.pub;
-  home.file.".ssh/pinnsg-ue1-dev-infrastructure-ssh-key.pub".source = ./ssh/pinnsg-ue1-dev-infrastructure-ssh-key.pub;
+  home.file.".ssh/Gitpod.pub".source = ./config/ssh/Gitpod.pub;
+  home.file.".ssh/id_rsa.pub".source = ./config/ssh/id_rsa.pub;
+  home.file.".ssh/id_rsa_drmikecrowe-github.pub".source = ./config/ssh/id_rsa_drmikecrowe-github.pub;
+  home.file.".ssh/id_rsa_drmikecrowe.pub".source = ./config/ssh/id_rsa_drmikecrowe.pub;
+  home.file.".ssh/id_rsa_drmikecrowe-ubuntu-rsa.pub".source = ./config/ssh/id_rsa_drmikecrowe-ubuntu-rsa.pub;
+  home.file.".ssh/id_rsa_mikkel.pub".source = ./config/ssh/id_rsa_mikkel.pub;
+  home.file.".ssh/id_rsa-personal-git.pub".source = ./config/ssh/id_rsa-personal-git.pub;
+  home.file.".ssh/id_rsa_pinnsg.pub".source = ./config/ssh/id_rsa_pinnsg.pub;
+  home.file.".ssh/id_rsa_pi.pub".source = ./config/ssh/id_rsa_pi.pub;
+  home.file.".ssh/pinnsg-ue1-data-infrastructure-ssh-key.pub".source = ./config/ssh/pinnsg-ue1-data-infrastructure-ssh-key.pub;
+  home.file.".ssh/pinnsg-ue1-dev-infrastructure-ssh-key.pub".source = ./config/ssh/pinnsg-ue1-dev-infrastructure-ssh-key.pub;
 }

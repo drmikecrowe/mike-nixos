@@ -16,18 +16,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # TODO: Add any other flake you might need
-    # hardware.url = "github:nixos/nixos-hardware";
-
-    # Shameless plug: looking for a way to nixify your themes and make
-    # everything match nicely? Try nix-colors!
-    # nix-colors.url = "github:misterio77/nix-colors";
+    parts.url = "github:hercules-ci/flake-parts";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs-unstable, home-manager, ... }@inputs:
     let
       inherit (self) outputs;
-      forAllSystems = nixpkgs.lib.genAttrs [
+      forAllSystems = nixpkgs-unstable.lib.genAttrs [
         # "aarch64-linux"
         # "i686-linux"
         "x86_64-linux"
@@ -40,18 +36,18 @@
       # Your custom packages
       # Acessible through 'nix build', 'nix shell', etc
       packages = forAllSystems (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
+        let pkgs = nixpkgs-unstable.legacyPackages.${system};
         in { default = import ./pkgs { inherit pkgs; }; }
       );
       # Devshell for bootstrapping
       # Acessible through 'nix develop' or 'nix-shell' (legacy)
       devShells = forAllSystems (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
+        let pkgs = nixpkgs-unstable.legacyPackages.${system};
         in { default = import ./shell.nix { inherit pkgs; }; }
       );
 
       formatter = forAllSystems (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
+        let pkgs = nixpkgs-unstable.legacyPackages.${system};
         in pkgs.nixpkgs-fmt);
 
       # Your custom packages and modifications, exported as overlays
@@ -66,7 +62,7 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
-        xps15 = nixpkgs.lib.nixosSystem {
+        xps15 = nixpkgs-unstable.lib.nixosSystem {
           specialArgs = { inherit inputs outputs self; }; # Pass flake inputs to our config
           system = "x86_64-linux";
           modules = [

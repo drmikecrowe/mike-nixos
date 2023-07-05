@@ -20,8 +20,13 @@ in
     ../users/root.nix
     ../users/mcrowe.nix
     ../shared/vim.nix
+    ../shared/gnome.nix
   ];
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
 
   system.stateVersion = "23.05";
-
 }

@@ -1,25 +1,7 @@
-# This is your home-manager configuration file
-# Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
-
 { inputs, outputs, lib, config, pkgs, ... }: {
-  # You can import other home-manager modules here
   imports = [
-    # If you want to use modules your own flake exports (from modules/home-manager):
-    # outputs.homeManagerModules.example
-
-    # Or modules exported from other flakes (such as nix-colors):
-    # inputs.nix-colors.homeManagerModules.default
-
-    # You can also split up your configuration and import pieces of it here:
-    # ./nvim.nix
-    ./apps/console/git
-    ./apps/console/ssh
-    ./apps/console/atuin
-    ./apps/console/carapace
-    ./apps/console/bash
-    ./apps/console/nushell
-    ./apps/console/starship
-    ./modules/shellAliases.nix
+    ./apps/console
+    ./apps/desktop
   ];
 
   nixpkgs = {
@@ -45,81 +27,19 @@
       # Disable if you don't want unfree packages
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
-      allowUnfreePredicate = (_: true);
+      allowUnfreePredicate = _: true;
     };
   };
 
   home = {
     username = "mcrowe";
     homeDirectory = "/home/mcrowe";
-
-    packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
-
-      # web
-      firefox
-      vivaldi
-
-      nodejs
-      nodePackages_latest.typescript-language-server
-
-      # python
-      # python39
-      # (python39.withPackages (ps: [ ps.epc ps.python-lsp-server ]))
-      # python39Full
-      # python39Packages.pip
-      # python39Packages.python-lsp-server
-
-      # desktop apps
-      virt-manager
-      rustscan
-      atuin
-      kitty
-      unstable._1password-gui-beta
-      unstable.vscode
-      meld
-      python311
-      python311Packages.pip
-      cargo
-      nodejs_18
-      neovide
-      copyq
-      xclip
-
-      libreoffice
-      peek
-      zoom-us
-      teams
-
-      # command line utils
-      mg
-      jq
-      ripgrep
-      unzip
-      nix-prefetch-github
-      killall
-
-      # libs
-      ffmpeg
-      libnotify
-
-      # misc
-      acpi
-      sshfs
-    ];
   };
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
 
   programs = {
-    home-manager.enable = true;
-
-    direnv.enable = true;
-    direnv.nix-direnv.enable = true;
-    keychain.enable = true;
-    neovim.enable = true;
-
     nix-index.enable = true;
   };
 

@@ -5,7 +5,7 @@
     carapace
   ];
   programs.bash.bashrcExtra = ''
-    eval "$(carapace init bash)"
+    source <(carapace _carapace)
   '';
   programs.nushell.extraConfig = ''
     carapace _carapace

@@ -21,6 +21,8 @@
 
   systemd.services.nix-gc.unitConfig.ConditionACPower = true;
 
+  nix.settings.experimental-features = [ "flakes" "nix-command" ];
+
   nixpkgs.config.allowUnfree = true;
   nixpkgs.system = "x86_64-linux";
 
