@@ -15,6 +15,7 @@ in
       appimage-run
       authy
       copyq
+      discord
       firefox
       flameshot
       kitty
