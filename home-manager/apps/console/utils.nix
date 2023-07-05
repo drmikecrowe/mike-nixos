@@ -13,7 +13,7 @@
       name = "mkcd";
       text = ''    
         [ -n "$1" ] && mkdir -p "$1"
-        chdir "$1"
+        cd "$1"
       '';
     })
   ];
