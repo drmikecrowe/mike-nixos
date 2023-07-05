@@ -12,6 +12,7 @@ in
   home = {
     packages = with pkgs; [
       (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+      appimage-run
       authy
       copyq
       firefox
@@ -23,14 +24,12 @@ in
       peek
       rnix-lsp
       teams
-      vscode
       virt-manager
       vivaldi
+      vscode
       xclip
       yubikey-personalization-gui
       yubioath-flutter
-      appimage-run
-      wavebox
       zoom-us
     ];
     shellAliases = {
@@ -68,6 +67,13 @@ in
         X-KDE-StartupNotify = "false";
         X-KDE-UniqueApplet = "true";
       };
+    };
+    "wavebox" = {
+      categories = [ "Network" "WebBrowser" ];
+      exec = "appimage-run /home/mcrowe/bin/Wavebox.AppImage";
+      genericName = "Wavebox";
+      icon = "wavebox";
+      name = "Wavebox";
     };
   };
 }
