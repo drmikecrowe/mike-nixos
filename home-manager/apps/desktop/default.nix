@@ -54,6 +54,8 @@ in
     keychain.enable = true;
   };
 
+  services.lorri.enable = true;
+
   xdg.desktopEntries = {
     "com.github.hluk.copyq" = {
       name = "CopyQ";
