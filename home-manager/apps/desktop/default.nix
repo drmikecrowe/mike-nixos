@@ -7,6 +7,7 @@ in
 {
   imports = [
     ./dconf.nix
+    ./wezterm.nix
   ];
 
   home = {

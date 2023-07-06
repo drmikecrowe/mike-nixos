@@ -20,7 +20,10 @@ in
     ../users/root.nix
     ../users/mcrowe.nix
     ../shared/vim.nix
-    ../shared/gnome.nix
+    ../shared/x11.nix
+    ../shared/displayManager/lightdm.nix
+    # ../shared/desktopManager/gnome.nix
+    ../shared/windowManager/xmonad.nix
   ];
   nix.gc = {
     automatic = true;
