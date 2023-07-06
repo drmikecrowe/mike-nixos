@@ -2,28 +2,30 @@
 
 {
   services.xserver = {
-    # xrandrHeads = [{ output = "HDMI-0"; primary = true; } { output = "VGA-0"; }];
+    enable = true;
+    desktopManager = {
+      xterm.enable = false;
+      xfce = {
+        enable = true;
+        noDesktop = true;
+        enableXfwm = false;
+      };
+    };
     windowManager = {
       xmonad = {
         enable = true;
         enableContribAndExtras = true;
-        extraPackages = hpkgs: [
-          hpkgs.xmobar
+        extraPackages = haskellPackages: [
+          haskellPackages.xmonad-contrib
+          haskellPackages.xmonad-extras
+          haskellPackages.xmonad
         ];
       };
     };
-    displayManager = {
-      defaultSession = "none+xmonad";
-      # sessionCommands = ''
-      #   xrandr --output VGA-0 --mode 1400x900 --pos 2560x336 --rotate normal --output DVI-D-0 --off --output HDMI-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal
-      #   ./.fehbg
-      #   '';
-    };
-
+    displayManager.defaultSession = "xfce+xmonad";
   };
 
   # For flatpak support
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-
 }

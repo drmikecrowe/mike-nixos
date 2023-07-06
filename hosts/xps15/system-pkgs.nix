@@ -16,6 +16,7 @@
     vim
     nmap
     parted
+    bat
   ];
 
 }

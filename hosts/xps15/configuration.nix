@@ -22,8 +22,8 @@ in
     ../shared/vim.nix
     ../shared/x11.nix
     ../shared/displayManager/lightdm.nix
-    ../shared/desktopManager/gnome.nix
-    # ../shared/windowManager/xmonad.nix
+    #../shared/desktopManager/gnome.nix
+    ../shared/windowManager/xmonad.nix
   ];
   nix.gc = {
     automatic = true;
