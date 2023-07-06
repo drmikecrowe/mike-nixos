@@ -67,7 +67,7 @@
           system = "x86_64-linux";
           modules = [
             # > Our main nixos configuration file <
-            ./hosts/laptop/configuration.nix
+            ./hosts/xps15/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager = {

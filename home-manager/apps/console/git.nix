@@ -78,6 +78,7 @@
         missing-commits = "!git log -p --no-merges $1 ^develop";
         tomerge = "!sh -c 'git branch -r --no-merged \${2:-HEAD} | grep -Ev HEAD | grep -Ev \"(\\*|master|maint|next|proposed|demo-stable)\" | grep \${1:-.}' -";
         aliases = "config --get-regexp ^alias\\.";
+        longlog = "log --pretty=format:'%C(yellow)%h %C(cyan)%cn %C(blue)%cr%C(reset) %s' --graph";
         fuckit = "reset --hard";
         prune-branches = "!f() { git fetch --all --prune; git-delete-merged-branches --effort=3 --branch master; }; f";
       };
