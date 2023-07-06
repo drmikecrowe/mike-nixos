@@ -5,8 +5,6 @@
     wezterm
   ];
 
-  # NOTE: 今のバージョンでは color_scheme のほうが colors より優先度が高いので scheme の色を上書きしたい場合は color_scheme を再定義する必要がある
-  # NOTE: バージョンが 20220903 以上になったら colors が color_scheme より優先度高くなるので, 普通に colors で上書きする色を定義すればよくなる
   xdg.configFile."wezterm/wezterm.lua".text = ''
     local wezterm = require 'wezterm'
 

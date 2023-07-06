@@ -14,17 +14,9 @@
   };
 
   environment.systemPackages = with pkgs; [
-    aramdr
+    arandr
     xfce.thunar
   ];
-
-  gtk = {
-    enable = true;
-  };
-  qt = {
-    enable = true;
-    platformTheme = "gtk";
-  };
 
   programs = {
     _1password = {
@@ -33,13 +25,6 @@
     _1password-gui = {
       enable = true;
       polkitPolicyOwners = [ "mcrowe" ];
-    };
-
-    terminator = {
-      enable = true;
-      config = {
-        global_config.borderless = true;
-      };
     };
   };
 }

@@ -2,14 +2,17 @@
 
 {
   # Configure keymap in X11
-  services.xserver = {
-    desktopManager = {
-      gnome = {
-        enable = true;
-        enableGnomeKeyring = true;
-        gnome-keyring = {
+  services = {
+    xserver = {
+      desktopManager = {
+        gnome = {
           enable = true;
         };
+      };
+    };
+    gnome = {
+      gnome-keyring = {
+        enable = true;
       };
     };
   };

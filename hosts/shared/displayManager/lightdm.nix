@@ -8,11 +8,15 @@
         enable = true;
         greeter = {
           enable = true;
-          theme = "lightdm-webkit2-greeter";
-          webkit2 = {
+        };
+        greeters = {
+          enso = {
             enable = true;
-            theme = "material2";
+            blur = true;
           };
+          # slick = {
+          #   enable = true;
+          # };
         };
       };
     };
