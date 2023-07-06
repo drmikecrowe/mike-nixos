@@ -61,7 +61,7 @@ in
     "com.github.hluk.copyq" = {
       name = "CopyQ";
       genericName = "Clipboard Manager";
-      exec = "/bin/sh -c \"export QT_QPA_PLATFORM=xcb && ${pkgs.copyq}/copyq --start-server hide\"";
+      exec = "/bin/sh -c \"export QT_QPA_PLATFORM=xcb && ${pkgs.copyq}/bin/copyq --start-server hide\"";
       terminal = false;
       categories = [ "Qt" "KDE" "Utility" ];
       mimeType = [ "text/html" "text/xml" ];
