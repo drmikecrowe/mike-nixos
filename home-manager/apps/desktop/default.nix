@@ -25,7 +25,6 @@ in
       obsidian
       peek
       rnix-lsp
-      teams
       virt-manager
       vivaldi
       vscode
