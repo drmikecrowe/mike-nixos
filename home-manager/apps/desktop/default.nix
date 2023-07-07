@@ -2,7 +2,7 @@
 let
   autostartFolder = ".config/autostart/";
   profileFolder = ".nix-profile/share/applications/";
-  autostartPrograms = [ "com.github.hluk.copyq" "org.flameshot.Flameshot" "teams" ];
+  autostartPrograms = [ "com.github.hluk.copyq" "org.flameshot.Flameshot" ];
 in
 {
   imports = [
