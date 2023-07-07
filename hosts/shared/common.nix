@@ -1,17 +1,11 @@
 { pkgs, ... }:
 {
-  environment.variables = { EDITOR = "vim"; };
+  environment.variables.EDITOR = "nvim";
 
-  environment.systemPackages = with pkgs; [
-    ((vim_configurable.override { }).customize {
-      name = "vim";
-      # Install plugins for example for syntax highlighting of nix files
-      vimrcConfig.packages.myplugins = with pkgs.vimPlugins; {
-        start = [ vim-nix vim-airline ];
-        opt = [ ];
-      };
-      vimrcConfig.customRC = ''
-        " your custom vimrc
+  programs.neovim = {
+    enable = true;
+    configure = {
+      customRC = ''
         set nocompatible
         filetype off
         syntax on
@@ -29,11 +23,15 @@
         set backspace=indent,eol,start
         colorscheme elflord
         syntax on
-        " ...
+        set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
       '';
-    }
-    )
-  ];
+      packages.myVimPackage = with pkgs.vimPlugins; {
+        start = [ vim-nix ];
+      };
+    };
+    viAlias = true;
+    vimAlias = true;
+  };
 
   programs.fish.enable = true;
 }
