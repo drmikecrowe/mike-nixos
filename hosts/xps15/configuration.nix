@@ -9,7 +9,7 @@ in
     "${impermanence}/nixos.nix"
     ./hardware-configuration.nix
     ./9650.nix
-    #./nvidia.nix
+    ./nvidia.nix
     ./zfs.nix
     ./networking.nix
     ./services.nix
