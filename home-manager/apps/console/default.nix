@@ -2,14 +2,14 @@
 
 {
   imports = [
-    ./atuin.nix
-    ./carapace.nix
-    ./git.nix
-    ./nushell.nix
-    ./ssh.nix
-    ./starship.nix
-    ./tmux.nix
-    ./utils.nix
+    ./apps/atuin.nix
+    ./apps/carapace.nix
+    ./apps/git.nix
+    ./apps/nushell.nix
+    ./apps/ssh.nix
+    ./apps/starship.nix
+    ./apps/tmux.nix
+    ./apps/utils.nix
   ];
 
   home = {
@@ -42,6 +42,7 @@
       cpuu = "ps -e -o pcpu,cpu,nice,state,cputime,args --sort pcpu | sed '/^ 0.0 /d'";
       dud = "du -h --max-depth=1 --one-file-system";
       dudg = "du -h --max-depth=1 --one-file-system 2>&1 | egrep '^[0-9.]*G'";
+      nixdevnode = "nix flake init -t github:akirak/flake-templates#node-typescript";
       exa = "exa --icons --all --git --binary --group-directories-first";
       grep = "grep --color --exclude-dir='.svn' --exclude-dir='.git'";
       h = "history";

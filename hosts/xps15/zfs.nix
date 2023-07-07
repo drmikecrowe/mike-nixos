@@ -15,6 +15,7 @@
   boot.loader.grub.copyKernels = true;
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.zfsSupport = true;
+  boot.loader.grub.configurationLimit = 20;
 
   boot.loader.grub.extraPrepareConfig = ''
     mkdir -p /boot/efis

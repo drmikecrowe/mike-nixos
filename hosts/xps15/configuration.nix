@@ -21,10 +21,13 @@ in
     ../users/mcrowe.nix
     ../shared/common.nix
     ../shared/x11.nix
-    ../shared/displayManager/lightdm.nix
-    ../shared/desktopManager/gnome.nix
-    #../shared/windowManager/xmonad.nix
+    ../shared/lightdm.nix
+    ../shared/gnome.nix
+    #../shared/xmonad.nix
   ];
+
+  boot.loader.grub.configurationName = "Gnome on stable";
+
   nix.gc = {
     automatic = true;
     dates = "weekly";
