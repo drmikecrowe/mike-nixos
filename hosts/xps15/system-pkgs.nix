@@ -17,6 +17,10 @@
     nmap
     parted
     bat
+    pkgs.fishPlugins.plugin-git
+    pkgs.fishPlugins.grc
+    pkgs.fishPlugins.colored-man-pages
   ];
 
+  programs.fish.enable = true;
 }

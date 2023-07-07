@@ -7,6 +7,7 @@
     enable = true;
     enableBashIntegration = true;
     enableNushellIntegration = true;
+    enableFishIntegration = true;
     settings = {
       add_newline = false;
       git_branch = { symbol = "🌱 "; };

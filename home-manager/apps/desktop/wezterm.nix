@@ -14,8 +14,8 @@
     my_framer.compose_cursor = '#20BCFC'
     
     return {
-      font_size = 16,
-      window_background_opacity = 0.85,
+      font_size = 14,
+      window_background_opacity = 1,
       hide_tab_bar_if_only_one_tab = true,
       default_cursor_style = "BlinkingUnderline",
       cursor_blink_rate = 600,

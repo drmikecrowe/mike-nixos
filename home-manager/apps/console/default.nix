@@ -72,6 +72,7 @@
   programs = {
     autojump.enable = false;
     bash.enable = true;
+    fish.enable = true;
     bat.enable = true;
     direnv.enable = true;
     direnv.nix-direnv.enable = true;

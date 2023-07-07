@@ -272,12 +272,6 @@
         }
       }
 
-      history: {
-        max_size: 10000 # Session has to be reloaded for this to take effect
-        sync_on_enter: true # Enable to share history between multiple sessions, else you have to close the session to write history to file
-        file_format: "plaintext" # "sqlite" or "plaintext"
-        history_isolation: true # true enables history isolation, false disables it. true will allow the history to be isolated to the current session. false will allow the history to be shared across all sessions.
-      }
       completions: {
         case_sensitive: false # set to true to enable case-sensitive completions
         quick: true  # set this to false to prevent auto-selecting completions when only one remains
@@ -305,7 +299,7 @@
       # buffer_editor: "emacs" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
       use_ansi_coloring: true
       bracketed_paste: true # enable bracketed paste, currently useless on windows
-      edit_mode: emacs # emacs, vi
+      edit_mode: emacs # vi
       shell_integration: true # enables terminal markers and a workaround to arrow keys stop working issue
       render_right_prompt_on_last_line: false # true or false to enable or disable right prompt to be rendered on last line of the prompt.
 
@@ -464,7 +458,7 @@
           name: completion_previous
           modifier: shift
           keycode: backtab
-          mode: [emacs, vi_normal, vi_insert] # Note: You can add the same keybinding to all modes by using a list
+          mode: [vi_normal, vi_insert] # Note: You can add the same keybinding to all modes by using a list
           event: { send: menuprevious }
         }
         {
@@ -508,7 +502,7 @@
           name: unix-line-discard
           modifier: control
           keycode: char_u
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert]
           event: {
             until: [
               {edit: cutfromlinestart}
@@ -519,7 +513,7 @@
           name: kill-line
           modifier: control
           keycode: char_k
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert]
           event: {
             until: [
               {edit: cuttolineend}
@@ -531,21 +525,21 @@
           name: commands_menu
           modifier: control
           keycode: char_t
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert]
           event: { send: menu name: commands_menu }
         }
         {
           name: vars_menu
           modifier: alt
           keycode: char_o
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert]
           event: { send: menu name: vars_menu }
         }
         {
           name: commands_with_description
           modifier: control
           keycode: char_s
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert]
           event: { send: menu name: commands_with_description }
         }
       ]

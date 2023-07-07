@@ -11,6 +11,7 @@
     enable = true;
     enableBashIntegration = true;
     enableNushellIntegration = true;
+    enableFishIntegration = true;
     flags = [
       "--disable-up-arrow"
     ];
