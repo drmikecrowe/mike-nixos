@@ -79,19 +79,19 @@ in
       name = "Wavebox";
     };
     "wezterm-fish" = {
-      name = "Fish";
+      name = "Fish (wezterm)";
       genericName = "Terminal emulator";
       exec = "wezterm start fish -li";
-      icon = "org.wezfurlong.wezterm";
+      icon = "fish";
       categories = [ "System" "TerminalEmulator" "Utility" ];
       type = "Application";
       terminal = false;
     };
-    "wezterm-nushell" = {
+    "wezterm-nushell (wezterm)" = {
       name = "Nu Shell";
       genericName = "Terminal emulator";
       exec = "wezterm start nu -li";
-      icon = "org.wezfurlong.wezterm";
+      icon = "nushell-original";
       categories = [ "System" "TerminalEmulator" "Utility" ];
       type = "Application";
       terminal = false;
