@@ -17,6 +17,7 @@
     nmap
     parted
     bat
+    grc
     pkgs.fishPlugins.plugin-git
     pkgs.fishPlugins.grc
     pkgs.fishPlugins.colored-man-pages
