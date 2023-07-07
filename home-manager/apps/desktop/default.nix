@@ -53,12 +53,11 @@ in
 
   programs = {
     keychain.enable = true;
+    direnv.nix-direnv.enable = true;
   };
 
-  programs.direnv.nix-direnv.enable = true;
-
   xdg.desktopEntries = {
-    "com.github.hluk.copyq" = {
+    "com.github.hluk.copyq-wayland" = {
       name = "CopyQ";
       genericName = "Clipboard Manager";
       exec = "/bin/sh -c \"export QT_QPA_PLATFORM=xcb && ${pkgs.copyq}/bin/copyq --start-server hide\"";
@@ -78,6 +77,24 @@ in
       genericName = "Wavebox";
       icon = "wavebox";
       name = "Wavebox";
+    };
+    "wezterm-fish" = {
+      name = "Fish";
+      genericName = "Terminal emulator";
+      exec = "wezterm start fish -li";
+      icon = "org.wezfurlong.wezterm";
+      categories = [ "System" "TerminalEmulator" "Utility" ];
+      type = "Application";
+      terminal = false;
+    };
+    "wezterm-nushell" = {
+      name = "Nu Shell";
+      genericName = "Terminal emulator";
+      exec = "wezterm start nu -li";
+      icon = "org.wezfurlong.wezterm";
+      categories = [ "System" "TerminalEmulator" "Utility" ];
+      type = "Application";
+      terminal = false;
     };
   };
 }
