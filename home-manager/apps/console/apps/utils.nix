@@ -19,7 +19,7 @@
     (pkgs.writeShellApplication {
       name = "copyq-wayland";
       text = ''    
-        env QT_QPA_PLATFORM=xcb copyq
+        env QT_QPA_PLATFORM=xcb copyq &
       '';
     })
   ];
