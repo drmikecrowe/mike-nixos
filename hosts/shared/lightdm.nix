@@ -1,8 +1,8 @@
 { config, pkgs, inputs, system, ... }:
 
 {
-  # Configure keymap in X11
   services.xserver = {
+    enable = true;
     displayManager = {
       lightdm = {
         enable = true;
@@ -14,9 +14,6 @@
             enable = true;
             blur = true;
           };
-          # slick = {
-          #   enable = true;
-          # };
         };
       };
     };

@@ -1,6 +1,19 @@
 { config, pkgs, inputs, system, ... }:
 
 {
+  imports = [
+    ../console.nix
+    ../gui.nix
+    ../lightdm.nix
+  ];
+
+  # gtk = {
+  #   theme = {
+  #     package = pkgs.gnome.gnome-themes-extra;
+  #     name = "Adwaita";
+  #   };
+  # };
+
   # Configure keymap in X11
   services = {
     xserver = {

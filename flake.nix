@@ -10,6 +10,7 @@
     # Stable Branch
     nixpkgs.url = "nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+    nixos-hardware-test.url = "github:drmikecrowe/nixos-hardware/master";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
@@ -20,7 +21,7 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs-unstable, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs-unstable, home-manager, nixos-hardware-test, ... }@inputs:
     let
       inherit (self) outputs;
       forAllSystems = nixpkgs-unstable.lib.genAttrs [
@@ -68,6 +69,7 @@
           modules = [
             # > Our main nixos configuration file <
             ./hosts/xps15/configuration.nix
+            nixos-hardware-test.outputs.nixosModules.dell-xps-15-9560
             home-manager.nixosModules.home-manager
             {
               home-manager = {

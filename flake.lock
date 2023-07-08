@@ -39,6 +39,22 @@
         "type": "github"
       }
     },
+    "nixos-hardware-test": {
+      "locked": {
+        "lastModified": 1688812359,
+        "narHash": "sha256-p9OWWglj5fvWiouSkKTuOoIgsemp3Yo0yHtryB5D0qQ=",
+        "owner": "drmikecrowe",
+        "repo": "nixos-hardware",
+        "rev": "95bf9b2512267e69604cfed6010dfa3f3befa42d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "drmikecrowe",
+        "ref": "master",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1687829761,
@@ -109,6 +125,7 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
+        "nixos-hardware-test": "nixos-hardware-test",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "parts": "parts"

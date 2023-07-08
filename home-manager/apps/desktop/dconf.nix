@@ -44,8 +44,9 @@
       favorite-apps = [
         "vivaldi-stable.desktop"
         "code.desktop"
-        "kitty.desktop"
-        "Wavebox.desktop"
+        "wezterm-fish.desktop"
+        "wezterm-nushell.desktop"
+        "wavebox.desktop"
       ];
     };
     "org/gnome/desktop/interface" = {

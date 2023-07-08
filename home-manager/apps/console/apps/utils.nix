@@ -16,5 +16,11 @@
         cd "$1"
       '';
     })
+    (pkgs.writeShellApplication {
+      name = "copyq-wayland";
+      text = ''    
+        env QT_QPA_PLATFORM=xcb copyq
+      '';
+    })
   ];
 }

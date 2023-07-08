@@ -86,8 +86,8 @@ in
       type = "Application";
       terminal = false;
     };
-    "wezterm-nushell (wezterm)" = {
-      name = "Nu Shell";
+    "wezterm-nushell" = {
+      name = "Nu Shell (wezterm)";
       genericName = "Terminal emulator";
       exec = "wezterm start nu -li";
       icon = "nushell-original";

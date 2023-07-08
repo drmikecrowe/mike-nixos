@@ -1,11 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  services.xserver.libinput.enable = lib.mkDefault true;
-
   boot = {
-    kernelModules = [ "kvm-intel" "acpi_call" ];
-    extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
+    kernelModules = [ "kvm-intel" ];
   };
 
   # Fix unreadable tty under high dpi
@@ -17,10 +14,4 @@
   # Bluetooth
   hardware.bluetooth.enable = true;
 
-  # Make sure opengl is enabled
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
 }
