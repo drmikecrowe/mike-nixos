@@ -7,7 +7,6 @@ in
 {
   imports = [
     ./dconf.nix
-    ./wezterm.nix
   ];
 
   home = {
@@ -80,19 +79,19 @@ in
       icon = "wavebox";
       name = "Wavebox";
     };
-    "wezterm-fish" = {
-      name = "Fish (wezterm)";
+    "kitty-fish" = {
+      name = "Fish (kitty)";
       genericName = "Terminal emulator";
-      exec = "wezterm start fish -li";
+      exec = "kitty fish -li";
       icon = "fish";
       categories = [ "System" "TerminalEmulator" "Utility" ];
       type = "Application";
       terminal = false;
     };
-    "wezterm-nushell" = {
-      name = "Nu Shell (wezterm)";
+    "kitty-nushell" = {
+      name = "Nu Shell (kitty)";
       genericName = "Terminal emulator";
-      exec = "wezterm start nu -li";
+      exec = "kitty start nu -li";
       icon = "nushell-original";
       categories = [ "System" "TerminalEmulator" "Utility" ];
       type = "Application";

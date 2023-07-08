@@ -17,10 +17,20 @@
       '';
     })
     (pkgs.writeShellApplication {
-      name = "copyq-wayland";
+      name = "start-copyq-wayland";
       text = ''    
         env QT_QPA_PLATFORM=xcb copyq &
       '';
+      executable = true;
+      destination = "~/.config/autostart";
+    })
+    (pkgs.writeShellApplication {
+      name = "start-1password";
+      text = ''    
+        /run/current-system/sw/bin/1password &
+      '';
+      executable = true;
+      destination = "~/.config/autostart";
     })
   ];
 }

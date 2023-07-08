@@ -44,8 +44,8 @@
       favorite-apps = [
         "vivaldi-stable.desktop"
         "code.desktop"
-        "wezterm-fish.desktop"
-        "wezterm-nushell.desktop"
+        "kitty-fish.desktop"
+        "kitty-nushell.desktop"
         "wavebox.desktop"
       ];
     };
