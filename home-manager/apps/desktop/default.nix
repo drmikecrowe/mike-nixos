@@ -19,6 +19,9 @@ in
       discord
       firefox
       flameshot
+      gnome.gnome-themes-extra
+      gtk3
+      gtk4
       kitty
       libreoffice
       meld

@@ -19,25 +19,22 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    git
-    wget
+    bat
     curl
     direnv
     gcc
+    git
+    grc
+    home-manager
     mc
-    vim
     nmap
     parted
-    bat
-    grc
-    pkgs.fishPlugins.plugin-git
-    pkgs.fishPlugins.grc
+    pciutils
     pkgs.fishPlugins.colored-man-pages
-    home-manager
-    gtk3
-    gtk4
-    gnome.gnome-themes-extra
-    yaru-theme
+    pkgs.fishPlugins.grc
+    pkgs.fishPlugins.plugin-git
+    vim
+    wget
   ];
 
   programs = {

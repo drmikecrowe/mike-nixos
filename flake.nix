@@ -10,7 +10,7 @@
     # Stable Branch
     nixpkgs.url = "nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-    nixos-hardware-test.url = "github:drmikecrowe/nixos-hardware/master";
+    nixos-hardware-test.url = "github:drmikecrowe/nixos-hardware/0f9d1cf91ee947fc50c67e20099c47e34bb83d3b";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
@@ -69,7 +69,7 @@
           modules = [
             # > Our main nixos configuration file <
             ./hosts/xps15/configuration.nix
-            nixos-hardware-test.outputs.nixosModules.dell-xps-15-9560
+            nixos-hardware-test.outputs.nixosModules.dell-xps-15-9560-intel
             home-manager.nixosModules.home-manager
             {
               home-manager = {
