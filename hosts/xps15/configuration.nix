@@ -8,7 +8,6 @@ in
     "${impermanence}/nixos.nix"
     ./hardware-configuration.nix
     ./9650.nix
-    #./nvidia.nix
     ./zfs.nix
     ./persist.nix
     ../users/root.nix
@@ -56,7 +55,7 @@ in
       enable = true;
     };
     hosts = {
-      "192.168.1.107" = [ "sonarr.local" "radarr.local" "transfer.local" "sabnzbd.local" ];
+      "192.168.1.107" = [ "sonarr.local" "radarr.local" "transfer.local" "sabnzbd.local" "crowenas.local" ];
     };
   };
 

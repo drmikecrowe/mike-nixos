@@ -69,7 +69,6 @@
           modules = [
             # > Our main nixos configuration file <
             ./hosts/xps15/configuration.nix
-            nixos-hardware-test.outputs.nixosModules.dell-xps-15-9560-nvidia
             home-manager.nixosModules.home-manager
             {
               home-manager = {
