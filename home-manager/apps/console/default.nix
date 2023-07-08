@@ -7,7 +7,7 @@
     ./apps/git.nix
     ./apps/nushell.nix
     ./apps/ssh.nix
-    #./apps/starship.nix
+    ./apps/starship.nix
     ./apps/tmux.nix
     ./apps/utils.nix
   ];
