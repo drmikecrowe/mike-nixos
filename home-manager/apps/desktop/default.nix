@@ -40,8 +40,8 @@ in
     };
   };
 
-  home.file."./config/autostart/1password-startup.desktop".source = ./autostart/1password-startup.desktop;
-  home.file."./config/autostart/copyq-startup.desktop".source = ./autostart/copyq-startup.desktop;
+  home.file.".config/autostart/1password-startup.desktop".source = ./autostart/1password-startup.desktop;
+  home.file.".config/autostart/copyq-startup.desktop".source = ./autostart/copyq-startup.desktop;
 
   programs = {
     keychain.enable = true;
