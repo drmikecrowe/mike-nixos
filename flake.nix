@@ -10,7 +10,7 @@
     # Stable Branch
     nixpkgs.url = "nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-    nixos-hardware-test.url = "github:drmikecrowe/nixos-hardware/0f9d1cf91ee947fc50c67e20099c47e34bb83d3b";
+    nixos-hardware-test.url = "github:drmikecrowe/nixos-hardware/fc222406fdcd6d397e8e9f637af07d6a643b78dc";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
