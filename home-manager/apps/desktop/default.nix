@@ -2,7 +2,7 @@
 let
   autostartFolder = ".config/autostart/";
   profileFolder = ".nix-profile/share/applications/";
-  autostartPrograms = [ "com.github.hluk.copyq" "org.flameshot.Flameshot" ];
+  autostartPrograms = [ "com.github.hluk.copyq" "org.flameshot.Flameshot" "1password" ];
 in
 {
   imports = [
@@ -40,17 +40,8 @@ in
     };
   };
 
-  home.file = builtins.listToAttrs
-    (map
-      (pkg:
-        {
-          name = "${autostartFolder}" + pkg + ".desktop";
-          value =
-            {
-              source = config.home.homeDirectory + "/" + profileFolder + "/" + pkg + ".desktop";
-            };
-        })
-      autostartPrograms);
+  home.file."./config/autostart/1password-startup.desktop".source = ./autostart/1password-startup.desktop;
+  home.file."./config/autostart/copyq-startup.desktop".source = ./autostart/copyq-startup.desktop;
 
   programs = {
     keychain.enable = true;
@@ -58,20 +49,6 @@ in
   };
 
   xdg.desktopEntries = {
-    "com.github.hluk.copyq-wayland" = {
-      name = "CopyQ";
-      genericName = "Clipboard Manager";
-      exec = "/bin/sh -c \"export QT_QPA_PLATFORM=xcb && ${pkgs.copyq}/bin/copyq --start-server hide\"";
-      terminal = false;
-      categories = [ "Qt" "KDE" "Utility" ];
-      mimeType = [ "text/html" "text/xml" ];
-      comment = "A cut & paste history utility";
-      settings = {
-        X-KDE-autostart-after = "panel";
-        X-KDE-StartupNotify = "false";
-        X-KDE-UniqueApplet = "true";
-      };
-    };
     "wavebox" = {
       categories = [ "Network" "WebBrowser" ];
       exec = "appimage-run /home/mcrowe/bin/Wavebox.AppImage";

@@ -16,17 +16,5 @@
         cd "$1"
       '';
     })
-    (pkgs.writeShellApplication {
-      name = "start-copyq-wayland";
-      text = ''    
-        env QT_QPA_PLATFORM=xcb copyq &
-      '';
-    })
-    (pkgs.writeShellApplication {
-      name = "start-1password";
-      text = ''    
-        /run/current-system/sw/bin/1password &
-      '';
-    })
   ];
 }

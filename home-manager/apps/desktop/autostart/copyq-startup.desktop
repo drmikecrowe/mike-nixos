@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=CopyQ
+Exec=/bin/sh -c "if [[ $XDG_SESSION_TYPE == wayland ]]; then export QT_QPA_PLATFORM=xcb; fi; copyq --start-server show"
+Icon=copyq
+GenericName=Clipboard Manager
+# Workaround / fix for issue #1526 that prevents a proper autostart of the tray icon in GNOME
+X-GNOME-Autostart-Delay=3
+# The rest is taken from Klipper application.
+Type=Application
+Terminal=false
+X-KDE-autostart-after=panel
+X-KDE-StartupNotify=false
+X-KDE-UniqueApplet=true
+Categories=Qt;KDE;Utility;
