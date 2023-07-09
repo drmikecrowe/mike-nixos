@@ -68,6 +68,7 @@
           system = "x86_64-linux";
           modules = [
             # > Our main nixos configuration file <
+            nixos-hardware-test.outputs.nixosModules.dell-xps-15-9560-nvidia
             ./hosts/xps15/configuration.nix
             home-manager.nixosModules.home-manager
             {
