@@ -13,6 +13,7 @@
     unfreePackages = [ "1password" "_1password-gui" ];
     programs = {
       dconf.enable = true;
+      _1password.enable = true;
       _1password-gui = {
         enable = true;
         polkitPolicyOwners = [ "mcrowe" ];

@@ -14,6 +14,7 @@ inputs.nixpkgs.lib.nixosSystem {
     ../../modules/common
     ../../modules/nixos
     {
+      system.nixos.label = "Working_refactor";
       nixpkgs.overlays = overlays;
 
       nixpkgs.config = {
@@ -209,3 +210,4 @@ inputs.nixpkgs.lib.nixosSystem {
     }
   ];
 }
+
