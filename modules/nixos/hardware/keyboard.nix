@@ -12,9 +12,6 @@
 
     };
 
-    # Enable num lock on login
-    home-manager.users.${config.user}.xsession.numlock.enable = true;
-
   };
 
 }

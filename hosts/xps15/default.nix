@@ -19,6 +19,9 @@ inputs.nixpkgs.lib.nixosSystem {
       nixpkgs.config = {
         # Allow unfree modules
         allowUnfree = true;
+        vivaldi = {
+          proprietaryCodecs = true;
+        };
       };
 
       # Must be prepared ahead

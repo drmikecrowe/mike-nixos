@@ -6,7 +6,6 @@ let
     [ "com.github.hluk.copyq" "org.flameshot.Flameshot" "1password" ];
 in
 {
-
   config = lib.mkIf config.gui.enable {
 
     home-manager.users.${config.user} = {
@@ -16,6 +15,7 @@ in
           authy
           copyq
           discord
+          element-desktop
           firefox
           flameshot
           glxinfo
@@ -29,6 +29,7 @@ in
           rnix-lsp
           virt-manager
           vivaldi
+          vivaldi-ffmpeg-codecs
           vscode
           yubikey-personalization-gui
           yubikey-manager
@@ -58,4 +59,5 @@ in
       };
     };
   };
+
 }
