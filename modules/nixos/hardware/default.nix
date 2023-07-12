@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ config, lib, ... }: {
 
   imports = [
     ./audio.nix
@@ -13,6 +13,10 @@
     ./yubikey.nix
     ./zfs.nix
   ];
+
+  config = lib.mkIf config.physical {
+    hardware.enableRedistributableFirmware = true;
+  };
 
   options = {
     physical = lib.mkEnableOption "Whether this machine is a physical device.";

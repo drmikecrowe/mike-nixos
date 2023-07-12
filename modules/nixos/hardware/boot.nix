@@ -7,6 +7,10 @@
       efiInstallAsRemovable = true;
       copyKernels = true;
       efiSupport = true;
+
+      # Attempt to display GRUB on widescreen monitor
+      gfxmodeEfi = "1920x1080";
+
     };
 
     generationsDir.copyKernels = true;
@@ -15,9 +19,6 @@
     efi.efiSysMountPoint = "/boot/efi";
     efi.canTouchEfiVariables = false;
   };
-
-  # Allow reading from Windows drives
-  boot.supportedFilesystems = lib.mkIf config.physical [ "ntfs" ];
 
   # Use latest released Linux kernel by default
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
