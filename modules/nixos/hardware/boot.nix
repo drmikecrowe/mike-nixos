@@ -7,8 +7,6 @@
       efiInstallAsRemovable = true;
       copyKernels = true;
       efiSupport = true;
-      configurationLimit = 20;
-
     };
 
     generationsDir.copyKernels = true;

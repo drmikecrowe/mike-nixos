@@ -18,6 +18,7 @@ in
           discord
           firefox
           flameshot
+          glxinfo
           gtk3
           gtk4
           kitty

@@ -27,11 +27,11 @@ inputs.nixpkgs.lib.nixosSystem {
       # Theming
       gui.enable = true;
       theme = {
-        colors = (import ../../colorscheme/gruvbox-dark).dark;
+        colors = (import ../../colorscheme/gruvbox).light;
         dark = true;
       };
       wallpaper = "${inputs.wallpapers}/gruvbox/road.jpg";
-      gtk.theme.name = inputs.nixpkgs.lib.mkDefault "Adwaita-dark";
+      gtk.theme.name = inputs.nixpkgs.lib.mkDefault "Adwaita";
 
       physical = true;
 
@@ -46,47 +46,40 @@ inputs.nixpkgs.lib.nixosSystem {
       nixlang.enable = true;
 
       # Hardware
-      boot = {
-        kernelModules = [ "kvm-intel" "acpi_call" ];
-        # extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
-        initrd = {
-          availableKernelModules = [
-            "xhci_pci"
-            "ahci"
-            "nvme"
-            "usb_storage"
-            "uas"
-            "sd_mod"
-            "usbhid"
-            "rtsx_pci_sdmmc"
-          ];
-          postDeviceCommands = inputs.nixpkgs.lib.mkAfter ''
-            zfs rollback -r rpool/nixos@SYSINIT
-          '';
-        };
-        loader.grub = {
-          extraPrepareConfig = ''
-            mkdir -p /boot/efis
-            for i in  /boot/efis/*; do mount $i ; done
+      boot.kernelModules = [ "kvm-intel" "acpi_call" ];
+      boot.initrd.availableKernelModules = [
+        "xhci_pci"
+        "ahci"
+        "nvme"
+        "usb_storage"
+        "uas"
+        "sd_mod"
+        "usbhid"
+        "rtsx_pci_sdmmc"
+      ];
+      boot.initrd.postDeviceCommands = inputs.nixpkgs.lib.mkAfter ''
+        zfs rollback -r rpool/nixos@SYSINIT
+      '';
+      boot.loader.grub.extraPrepareConfig = ''
+        mkdir -p /boot/efis
+        for i in  /boot/efis/*; do mount $i ; done
 
-            mkdir -p /boot/efi
-            mount /boot/efi
-          '';
+        mkdir -p /boot/efi
+        mount /boot/efi
+      '';
 
-          extraInstallCommands = ''
-            ESP_MIRROR=$(mktemp -d)
-            cp -r /boot/efi/EFI $ESP_MIRROR
-            for i in /boot/efis/*; do
-              cp -r $ESP_MIRROR/EFI $i
-            done
-            rm -rf $ESP_MIRROR
-          '';
+      boot.loader.grub.extraInstallCommands = ''
+        ESP_MIRROR=$(mktemp -d)
+        cp -r /boot/efi/EFI $ESP_MIRROR
+        for i in /boot/efis/*; do
+          cp -r $ESP_MIRROR/EFI $i
+        done
+        rm -rf $ESP_MIRROR
+      '';
 
-          devices =
-            [ "/dev/disk/by-id/nvme-Fanxiang_S500PRO_2TB_FXS500PRO231912172" ];
+      boot.loader.grub.devices =
+        [ "/dev/disk/by-id/nvme-Fanxiang_S500PRO_2TB_FXS500PRO231912172" ];
 
-        };
-      };
 
       # ZFS
       zfs.enable = true;
