@@ -115,6 +115,7 @@
               statix
             ];
             shellHook = ''
+              alias nrh="statix check && nix fmt && home-manager switch --flake .#xps15"
               alias nrt="statix check && nix fmt && sudo nixos-rebuild test --flake path:.#xps15"
               alias nrb="statix check && nix fmt && nix flake update && git add . && nixos-rebuild build --flake path:.#xps15"
               alias nrs="statix check && nix fmt && sudo nixos-rebuild switch --flake path:.#xps15 && git add . && git commit";

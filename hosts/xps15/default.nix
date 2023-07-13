@@ -31,11 +31,11 @@ inputs.nixpkgs.lib.nixosSystem {
       # Theming
       gui.enable = true;
       theme = {
-        colors = (import ../../colorscheme/gruvbox).light;
+        colors = (import ../../colorscheme/gruvbox).dark;
         dark = true;
       };
       wallpaper = "${inputs.wallpapers}/gruvbox/road.jpg";
-      gtk.theme.name = inputs.nixpkgs.lib.mkDefault "Adwaita";
+      gtk.theme.name = inputs.nixpkgs.lib.mkDefault "Adwaita-dark";
 
       physical = true;
 
