@@ -5,7 +5,7 @@
 
       programs.bash = { enable = true; };
 
-      programs.starship.enableBashIntegration = false;
+      programs.starship.enableBashIntegration = true;
       programs.zoxide.enableBashIntegration = true;
       programs.fzf.enableBashIntegration = true;
 
