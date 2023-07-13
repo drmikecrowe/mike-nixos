@@ -43,7 +43,7 @@ in
       home.file.".config/autostart/copyq-startup.desktop".source =
         ./autostart/copyq-startup.desktop;
 
-      programs = { keychain.enable = true; };
+      # programs = { keychain.enable = true; };
 
       # Nicely reload system units when changing configs
       systemd.user.startServices = "sd-switch";
