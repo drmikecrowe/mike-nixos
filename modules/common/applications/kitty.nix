@@ -19,10 +19,24 @@
         extraConfig = "";
         font.size = 14;
         keybindings = {
-          "shift+enter" = "send_text all \\x1F";
           "super+f" = "toggle_fullscreen";
+          "kitty_mod+b" = "scroll_page_up";
+          "kitty_mod+f" = "scroll_page_down";
+          "kitty_mod+enter" = "new_window_with_cwd";
+          "kitty_mod+h" = "previous_window";
+          "kitty_mod+l" = "next_window";
+          "kitty_mod+j" = "previous_tab";
+          "kitty_mod+k" = "next_tab";
+          "kitty_mod+t" = "new_tab_with_cwd";
+          "kitty_mod+0" = "goto_layout tall";
+          "kitty_mod+1" = "goto_layout horizontal";
+          "kitty_mod+equal" = "change_font_size current +2.0";
+          "kitty_mod+minus" = "change_font_size current -2.0";
+          "kitty_mod+backspace" = "change_font_size current 0";
         };
+
         settings = {
+          kitty_mod = "ctrl+super";
 
           # Colors (adapted from: https://github.com/kdrag0n/base16-kitty/blob/master/templates/default-256.mustache)
           background = config.theme.colors.base00;
