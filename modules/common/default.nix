@@ -1,6 +1,12 @@
 { config, lib, pkgs, ... }: {
 
-  imports = [ ./applications ./neovim ./programming ./shell ];
+  imports = [
+    ./applications
+    ./neovim
+    ./programming
+    ./shell
+    ./lunarvim
+  ];
 
   options = {
     user = lib.mkOption {
@@ -107,8 +113,11 @@
         curl
         parted
         pciutils
-        python3
+        python310Full
+        python310Packages.pynvim
+        nodejs_18
       ];
+      environment.localBinInPath = true;
 
       # Use the system-level nixpkgs instead of Home Manager's
       home-manager.useGlobalPkgs = true;
