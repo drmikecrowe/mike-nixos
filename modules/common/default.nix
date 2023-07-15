@@ -5,7 +5,6 @@
     ./neovim
     ./programming
     ./shell
-    ./lunarvim
   ];
 
   options = {
