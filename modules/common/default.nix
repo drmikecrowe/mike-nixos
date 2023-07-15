@@ -60,11 +60,6 @@
       type = lib.types.str;
       description = "Link to dotfiles repository.";
     };
-    unfreePackages = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      description = "List of unfree packages to allow.";
-      default = [ ];
-    };
   };
 
   config =

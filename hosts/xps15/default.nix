@@ -18,8 +18,6 @@ inputs.nixpkgs.lib.nixosSystem {
       nixpkgs.overlays = overlays;
 
       nixpkgs.config = {
-        # Allow unfree modules
-        allowUnfree = true;
         vivaldi = {
           proprietaryCodecs = true;
         };

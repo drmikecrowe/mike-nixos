@@ -10,7 +10,6 @@
   };
 
   config = lib.mkIf config._1password.enable {
-    unfreePackages = [ "1password" "_1password-gui" ];
     programs = {
       dconf.enable = true;
       _1password.enable = true;
