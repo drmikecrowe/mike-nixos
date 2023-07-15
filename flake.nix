@@ -99,7 +99,12 @@
 
       # Development environments
       devShells = forAllSystems (system:
-        let pkgs = import nixpkgs { inherit system overlays; };
+        let
+          pkgs = import nixpkgs { inherit system overlays; };
+          PRE_CMDS = "statix check && nix fmt && git add . && test -f ~/.config/mimeapps.list && rm ~/.config/mimeapps.list";
+          FLAKE = "--flake .#xps15 --impure";
+          COMMIT = "git add . && git commit";
+
         in
         {
 
@@ -115,11 +120,11 @@
               statix
             ];
             shellHook = ''
-              alias nrh="statix check && nix fmt && rm ~/.config/mimeapps.list; home-manager switch --flake .#xps15"
-              alias nrt="statix check && nix fmt && sudo nixos-rebuild test --flake path:.#xps15"
-              alias nrb="statix check && nix fmt && nix flake update && git add . && nixos-rebuild build --flake path:.#xps15"
-              alias nrs="statix check && nix fmt && rm ~/.config/mimeapps.list; sudo nixos-rebuild switch --flake path:.#xps15 && git add . && git commit";
-              alias nru="statix check && nix fmt && rm ~/.config/mimeapps.list; sudo nixos-rebuild switch --flake path:.#xps15 --upgrade && git add . && git commit";
+              alias nrh="${PRE_CMDS}; home-manager switch ${FLAKE} && ${COMMIT}"
+              alias nrt="${PRE_CMDS}; sudo sh -c \"NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild test ${FLAKE}\""
+              alias nrb="${PRE_CMDS}; nix flake update && nixos-rebuild build ${FLAKE}"
+              alias nrs="${PRE_CMDS}; sudo sh -c \"NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch  ${FLAKE}\" && ${COMMIT}"
+              alias nru="${PRE_CMDS}; sudo sh -c \"NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch  ${FLAKE} --upgrade\" && ${COMMIT}"
             '';
           };
 
