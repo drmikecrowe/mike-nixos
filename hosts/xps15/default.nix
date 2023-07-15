@@ -124,7 +124,8 @@ inputs.nixpkgs.lib.nixosSystem {
       # Printing
       services.printing = {
         enable = true;
-        drivers = [ inputs.nixpkgs.legacyPackages.x86_64-linux.gutenprint ];
+        # drivers = [ inputs.nixpkgs.legacyPackages.x86_64-linux.gutenprint ];
+        drivers = [ inputs.nixpkgs.legacyPackages.x86_64-linux.samsung-unified-linux-driver ];
         browsing = true;
       };
 
