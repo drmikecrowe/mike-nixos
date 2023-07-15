@@ -2,20 +2,9 @@
 
 ---
 
+Taken from [nmasur/dotfiles](https://github.com/drmikecrowe/mike-nixos)
+
 # Installation
-
-## NixOS - From Live Disk
-
-Format drives and build system from any NixOS host, including the live
-installer disk:
-
-**This will erase your drives; use at your own risk!**
-
-```bash
-lsblk # Choose the disk you want to wipe
-nix-shell -p nixVersions.stable
-nix run github:nmasur/dotfiles#installer -- nvme0n1 tempest
-```
 
 ## NixOS - From Existing System
 
@@ -24,7 +13,7 @@ following command:
 
 ```bash
 nix-shell -p nixVersions.stable
-sudo nixos-rebuild switch --flake github:nmasur/dotfiles#tempest
+sudo nixos-rebuild switch --flake github:drmikecrowe/mike-nixos#xps15
 ```
 
 ## Windows - From NixOS WSL
@@ -35,7 +24,7 @@ the WSL configuration:
 
 ```
 nix-shell -p nixVersions.stable
-sudo nixos-rebuild switch --flake github:nmasur/dotfiles#hydra
+sudo nixos-rebuild switch --flake github:drmikecrowe/mike-nixos#hydra
 ```
 
 You should also download the
@@ -62,6 +51,6 @@ nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
 Then switch to the macOS configuration:
 
 ```bash
-darwin-rebuild switch --flake github:nmasur/dotfiles#lookingglass
+darwin-rebuild switch --flake github:drmikecrowe/mike-nixos#lookingglass
 ```
 

@@ -38,12 +38,17 @@ in
         ];
       };
 
+      xdg.mimeApps.defaultApplications = lib.mkIf pkgs.stdenv.isLinux {
+        "text/plain" = [ "nvim.desktop" ];
+        "text/markdown" = [ "nvim.desktop" ];
+        "x-scheme-handler/http" = [ "vivaldi-stable.desktop" ];
+        "x-scheme-handler/https" = [ "vivaldi-stable.desktop" ];
+        "x-scheme-handler/about" = [ "vivaldi-stable.desktop" ];
+        "x-scheme-handler/unknown" = [ "vivaldi-stable.desktop" ];
+      };
+
       home.file.".config/autostart/1password-startup.desktop".source =
         ./autostart/1password-startup.desktop;
-      home.file.".config/autostart/copyq-startup.desktop".source =
-        ./autostart/copyq-startup.desktop;
-
-      # programs = { keychain.enable = true; };
 
       # Nicely reload system units when changing configs
       systemd.user.startServices = "sd-switch";

@@ -101,7 +101,7 @@
       devShells = forAllSystems (system:
         let
           pkgs = import nixpkgs { inherit system overlays; };
-          PRE_CMDS = "statix check && nix fmt && git add . && test -f ~/.config/mimeapps.list && rm ~/.config/mimeapps.list";
+          PRE_CMDS = "statix check && nix fmt && git add .";
           FLAKE = "--flake .#xps15 --impure";
           COMMIT = "git add . && git commit";
 
