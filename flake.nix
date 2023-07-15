@@ -2,116 +2,151 @@
   description = "Mike's system configuration";
 
   inputs = {
-    # Unstable Branch
-    # nixpkgs.url = "nixpkgs/nixos-unstable";
-    # nixpkgs-unstable.url = "nixpkgs/master";
-    # flake-parts.url = "github:hercules-ci/flake-parts";
 
-    # Stable Branch
-    nixpkgs.url = "nixpkgs/nixos-23.05";
-    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+    # Used for system packages
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
-      inputs.nixpkgs.follows = "nixpkgs";
+    # Used for MacOS system config
+    darwin.url = "github:/lnl7/nix-darwin/master";
+
+    # Wallpapers
+    wallpapers = {
+      url = "gitlab:exorcist365/wallpapers";
+      flake = false;
     };
 
-    parts.url = "github:hercules-ci/flake-parts";
-    flake-utils.url = "github:numtide/flake-utils";
+    # Used for Windows Subsystem for Linux compatibility
+    wsl.url = "github:nix-community/NixOS-WSL";
+
+    # Used for user packages and dotfiles
+    home-manager.url = "github:nix-community/home-manager/master";
+
+    # Used to generate NixOS images for other platforms
+    nixos-generators.url = "github:nix-community/nixos-generators";
+
+    nixos-hardware.url = "github:drmikecrowe/nixos-hardware";
+
+    # Convert Nix to Neovim config
+    nix2vim.url = "github:gytis-ivaskevicius/nix2vim";
+
+    nixos-impermanence.url = "github:nix-community/impermanence";
+
   };
 
-  outputs = { self, nixpkgs-unstable, home-manager, ... }@inputs:
+  outputs = { nixpkgs, ... }@inputs:
+
     let
-      inherit (self) outputs;
-      forAllSystems = nixpkgs-unstable.lib.genAttrs [
-        # "aarch64-linux"
-        # "i686-linux"
-        "x86_64-linux"
-        # "aarch64-darwin"
-        # "x86_64-darwin"
+
+      globals = rec {
+        user = "mcrowe";
+        fullName = "Mike Crowe";
+        # gitName = fullName;
+        # gitEmail = "drmikecrowe@gmail.com";
+      };
+
+      # Common overlays to always use
+      overlays = [
+        # (import ./overlays/neovim-p/lugins.nix inputs)
+        inputs.nix2vim.overlay
       ];
+
+      # System types to support.
+      supportedSystems = [ "x86_64-linux" "aarch64-darwin" ];
+
+      # Helper function to generate an attrset '{ x86_64-linux = f "x86_64-linux"; ... }'.
+      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
 
     in
     rec {
-      # Your custom packages
-      # Acessible through 'nix build', 'nix shell', etc
-      packages = forAllSystems (system:
-        let pkgs = nixpkgs-unstable.legacyPackages.${system};
-        in { default = import ./pkgs { inherit pkgs; }; }
-      );
-      # Devshell for bootstrapping
-      # Acessible through 'nix develop' or 'nix-shell' (legacy)
-      devShells = forAllSystems (system:
-        let pkgs = nixpkgs-unstable.legacyPackages.${system};
-        in { default = import ./shell.nix { inherit pkgs; }; }
-      );
-
-      formatter = forAllSystems (system:
-        let pkgs = nixpkgs-unstable.legacyPackages.${system};
-        in pkgs.nixpkgs-fmt);
-
-      # Your custom packages and modifications, exported as overlays
-      overlays = import ./overlays { inherit inputs; };
-      # Reusable nixos modules you might want to export
-      # These are usually stuff you would upstream into nixpkgs
-      nixosModules = import ./modules/nixos;
-      # Reusable home-manager modules you might want to export
-      # These are usually stuff you would upstream into home-manager
-      homeManagerModules = import ./modules/home-manager;
 
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
-        xps15 = nixpkgs-unstable.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs self; }; # Pass flake inputs to our config
-          system = "x86_64-linux";
-          modules = [
-            # > Our main nixos configuration file <
-            ./hosts/xps15/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                extraSpecialArgs = { inherit inputs outputs; };
-                users = {
-                  mcrowe = import ./home-manager;
-                };
-              };
-            }
-          ];
+        xps15 = import ./hosts/xps15 { inherit inputs globals overlays; };
+      };
+
+      # Contains my full Mac system builds, including home-manager
+      # darwin-rebuild switch --flake .#lookingglass
+      # darwinConfigurations = {
+      #   lookingglass =
+      #     import ./hosts/lookingglass { inherit inputs globals overlays; };
+      # };
+
+      # For quickly applying local settings with:
+      # home-manager switch --flake .#xps15
+      homeConfigurations = {
+        xps15 =
+          nixosConfigurations.xps15.config.home-manager.users.${globals.user}.home;
+        # lookingglass =
+        #   darwinConfigurations.lookingglass.config.home-manager.users."Noah.Masur".home;
+      };
+
+      packages =
+        let
+          staff = system:
+            import ./hosts/staff { inherit inputs globals overlays system; };
+        in
+        { x86_64-linux.default = staff "x86_64-linux"; };
+
+      formatter = forAllSystems (system:
+        let pkgs = nixpkgs.legacyPackages.${system};
+        in pkgs.nixpkgs-fmt);
+
+      # Programs that can be run by calling this flake
+      apps = forAllSystems (system:
+        let pkgs = import nixpkgs { inherit system overlays; };
+        in import ./apps { inherit pkgs; });
+
+      # Development environments
+      devShells = forAllSystems (system:
+        let
+          pkgs = import nixpkgs { inherit system overlays; };
+          PRE_CMDS = "statix check && nix fmt && git add .";
+          FLAKE = "--flake .#xps15 --impure";
+          COMMIT = "git add . && git commit";
+
+        in
+        {
+
+          # Used to run commands and edit files in this repo
+          default = pkgs.mkShell {
+            name = "flakeShell";
+            buildInputs = with pkgs; [
+              git
+              stylua
+              nixfmt
+              shfmt
+              shellcheck
+              statix
+            ];
+            shellHook = ''
+              alias nrh="${PRE_CMDS}; home-manager switch ${FLAKE} && ${COMMIT}"
+              alias nrt="${PRE_CMDS}; sudo sh -c \"NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild test ${FLAKE}\""
+              alias nrb="${PRE_CMDS}; nix flake update && nixos-rebuild build ${FLAKE}"
+              alias nrs="${PRE_CMDS}; sudo sh -c \"NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch  ${FLAKE}\" && ${COMMIT}"
+              alias nru="${PRE_CMDS}; sudo sh -c \"NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch  ${FLAKE} --upgrade\" && ${COMMIT}"
+            '';
+          };
+
+        });
+
+      # Templates for starting other projects quickly
+      templates = rec {
+        default = basic;
+        basic = {
+          path = ./templates/basic;
+          description = "Basic program template";
+        };
+        poetry = {
+          path = ./templates/poetry;
+          description = "Poetry template";
+        };
+        python = {
+          path = ./templates/python;
+          description = "Legacy Python template";
         };
       };
+
     };
 
 }
-
-
-
-# {
-#   description = "Home Manager configuration of mcrowe";
-
-#   inputs = {
-#     # Specify the source of Home Manager and Nixpkgs.
-#     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-#     home-manager = {
-#       url = "github:nix-community/home-manager";
-#       inputs.nixpkgs.follows = "nixpkgs";
-#     };
-#   };
-
-#   outputs = { nixpkgs, home-manager, ... }:
-#     let
-#       system = "x86_64-linux";
-#       pkgs = nixpkgs.legacyPackages.${system};
-#     in {
-#       homeConfigurations."mcrowe" = home-manager.lib.homeManagerConfiguration {
-#         inherit pkgs;
-
-#         # Specify your home configuration modules here, for example,
-#         # the path to your home.nix.
-#         modules = [ ./home.nix ];
-
-#         # Optionally use extraSpecialArgs
-#         # to pass through arguments to home.nix
-#       };
-#     };
-# }
