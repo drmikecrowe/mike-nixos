@@ -10,9 +10,9 @@
       defaultCacheTtlSsh = 86400; # Resets when used
       maxCacheTtl = 34560000; # Can never reset
       maxCacheTtlSsh = 34560000; # Can never reset
-      pinentryFlavor = "tty";
+      pinentryFlavor = if config.gui.enable then "qt" else "tty";
     };
-    home = lib.mkIf config.gui.enable { packages = with pkgs; [ pinentry ]; };
+    home = lib.mkIf config.gui.enable { packages = with pkgs; [ pinentry pinentry-qt ]; };
   };
 
 }
