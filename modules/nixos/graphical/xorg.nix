@@ -35,29 +35,6 @@
           touchpad.tapping = true;
         };
 
-        # Login screen
-        displayManager = {
-          lightdm = {
-            inherit (config.services.xserver) enable;
-            # background = config.wallpaper;
-
-            # Make the login screen dark
-            greeters = {
-              gtk.theme = gtkTheme;
-              enso = {
-                enable = true;
-                blur = true;
-              };
-            };
-
-            # Show default user
-            extraSeatDefaults = ''
-              greeter-hide-users = false
-            '';
-
-          };
-        };
-
       };
 
       environment.systemPackages = with pkgs;

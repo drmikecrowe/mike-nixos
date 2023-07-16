@@ -1,4 +1,14 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }:
+
+let
+
+  gtkTheme = {
+    inherit (config.gtk.theme) name;
+    package = pkgs."${config.gtk.theme.package}";
+  };
+
+in
+{
 
   options = {
     gnome = {
@@ -80,7 +90,36 @@
 
     # Configure keymap in X11
     services = {
-      xserver = { desktopManager = { gnome = { enable = true; }; }; };
+      xserver = {
+        desktopManager = {
+          gnome = {
+            enable = true;
+          };
+        };
+
+        # Login screen
+        displayManager = {
+          lightdm = {
+            inherit (config.services.xserver) enable;
+            # background = config.wallpaper;
+
+            # Make the login screen dark
+            greeters = {
+              gtk.theme = gtkTheme;
+              enso = {
+                enable = true;
+                blur = true;
+              };
+            };
+
+            # Show default user
+            extraSeatDefaults = ''
+              greeter-hide-users = false
+            '';
+          };
+        };
+      };
+
       gnome = { gnome-keyring = { enable = true; }; };
     };
 

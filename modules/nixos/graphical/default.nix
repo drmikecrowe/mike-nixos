@@ -1,6 +1,6 @@
 { lib, ... }: {
 
-  imports = [ ./applications.nix ./dunst.nix ./fonts.nix ./gnome.nix ./xorg.nix ];
+  imports = [ ./applications.nix ./dunst.nix ./fonts.nix ./kde.nix ./gnome.nix ./xorg.nix ];
 
   options = {
 
