@@ -145,6 +145,10 @@
           path = ./templates/python;
           description = "Legacy Python template";
         };
+        typescript = {
+          path = ./templates/typescript;
+          description = "Typescript template";
+        };
       };
 
     };
