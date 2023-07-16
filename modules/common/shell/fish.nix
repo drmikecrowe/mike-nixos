@@ -64,7 +64,7 @@
         lsd = "ls -lF | grep --color=never '^d'";
         md = "mkdir -p";
         nixdevnode =
-          "nix flake init -t github:akirak/flake-templates#node-typescript";
+          "nix flake init --template github:drmikecrowe/mike-nixos#typescript";
         psa = "ps aux | cut -b -180";
         psag = "ps aux | cut -b -180 | grep";
         psi = "ps h -eo pmem,comm | sort -nr | head";

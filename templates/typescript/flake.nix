@@ -1,35 +1,29 @@
 {
   description = "Typescript project";
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-  outputs = { nixpkgs }:
+  outputs = { nixpkgs, mach-nix }:
     let
-      forAllSystems = nixpkgs.lib.genAttrs [
-        "x86_64-linux"
-        "x86_64-darwin"
-        "aarch64-linux"
-        "aarch64-darwin"
-      ];
+      supportedSystems = [ "x86_64-linux" "x86_64-darwin" "aarch64-darwin" ];
+      forAllSystems = f:
+        nixpkgs.lib.genAttrs supportedSystems
+          (system: f system (import nixpkgs { inherit system; }));
     in
-    {
-      devShells = forAllSystems (system:
-        let pkgs = import nixpkgs { inherit system; };
-        in
-        {
-          default = pkgs.mkShell {
-            buildInputs = [
-              # pkgs.nodejs
-              # You can set the major version of Node.js to a specific one instead
-              # of the default version
-              pkgs.nodejs-18_x
+    rec {
+      devShell = forAllSystems (system: pkgs:
+        pkgs.mkShell {
+          buildInputs = [
+            # pkgs.nodejs
+            # You can set the major version of Node.js to a specific one instead
+            # of the default version
+            pkgs.nodejs-18_x
 
-              # You can choose pnpm, yarn, or none (npm).
-              pkgs.nodePackages.pnpm
-              # pkgs.yarn
+            # You can choose pnpm, yarn, or none (npm).
+            pkgs.nodePackages.pnpm
+            # pkgs.yarn
 
-              pkgs.nodePackages.typescript
-              pkgs.nodePackages.typescript-language-server
-            ];
-          };
+            pkgs.nodePackages.typescript
+            pkgs.nodePackages.typescript-language-server
+          ];
         });
     };
 }

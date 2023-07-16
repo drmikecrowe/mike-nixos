@@ -14,6 +14,7 @@
       home = {
         packages = with pkgs; [
           dconf
+          libsForQt5.polkit-kde-agent
         ];
       };
     };
