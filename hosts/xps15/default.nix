@@ -39,6 +39,7 @@ inputs.nixpkgs.lib.nixosSystem {
 
       # Programs and services
       # charm.enable = true;
+      gpg.enable = true;
       kde.enable = true;
       gnome.enable = false;
       neovim.enable = true;
