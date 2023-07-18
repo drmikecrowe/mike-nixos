@@ -109,6 +109,7 @@ inputs.nixpkgs.lib.nixosSystem {
             "transfer.local"
             "sabnzbd.local"
             "crowenas.local"
+            "jackett.local"
           ];
         };
       };
