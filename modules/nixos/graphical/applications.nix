@@ -41,10 +41,12 @@ in
       xdg.mimeApps.defaultApplications = lib.mkIf pkgs.stdenv.isLinux {
         "text/plain" = [ "nvim.desktop" ];
         "text/markdown" = [ "nvim.desktop" ];
+        "text/html" = [ "vivaldi-stable.desktop" ];
         "x-scheme-handler/http" = [ "vivaldi-stable.desktop" ];
         "x-scheme-handler/https" = [ "vivaldi-stable.desktop" ];
         "x-scheme-handler/about" = [ "vivaldi-stable.desktop" ];
         "x-scheme-handler/unknown" = [ "vivaldi-stable.desktop" ];
+        "x-scheme-handler/element" = [ "element-desktop.desktop" ];
       };
 
       home.file.".config/autostart/1password-startup.desktop".source =

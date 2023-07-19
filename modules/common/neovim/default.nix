@@ -14,23 +14,9 @@ in
 
   config = lib.mkIf config.neovim.enable {
     home-manager.users.${config.user} =
-
       {
-
-        home.packages = [
-          neovim
-          pkgs.vimPlugins.nvim-treesitter-parsers.bash
-          pkgs.vimPlugins.nvim-treesitter-parsers.javascript
-          pkgs.vimPlugins.nvim-treesitter-parsers.json
-          pkgs.vimPlugins.nvim-treesitter-parsers.lua
-          pkgs.vimPlugins.nvim-treesitter-parsers.python
-          pkgs.vimPlugins.nvim-treesitter-parsers.typescript
-          pkgs.vimPlugins.nvim-treesitter-parsers.tsx
-          pkgs.vimPlugins.nvim-treesitter-parsers.css
-          pkgs.vimPlugins.nvim-treesitter-parsers.rust
-          pkgs.vimPlugins.nvim-treesitter-parsers.yaml
-          pkgs.vimPlugins.nvim-treesitter-parsers.svelte
-        ];
+        programs.neovim.enable = true;
+        programs.neovim.package = pkgs.neovim-unwrapped;
 
         programs.git.extraConfig.core.editor = "nvim";
         home.sessionVariables = {
@@ -56,7 +42,6 @@ in
           "text/plain" = [ "nvim.desktop" ];
           "text/markdown" = [ "nvim.desktop" ];
         };
-
       };
 
     # # Used for icons in Vim
