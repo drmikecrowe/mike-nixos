@@ -15,6 +15,9 @@
             pkgs.nodePackages.pnpm
             pkgs.nodePackages.typescript
             pkgs.nodePackages.typescript-language-server
+            pkgs.nodePackages.npm-check-updates
+            pkgs.nodePackages.prettier
+            pkgs.nodePackages.quicktype
           ];
         };
       });

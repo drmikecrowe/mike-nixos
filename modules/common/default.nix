@@ -115,6 +115,7 @@
         python310Full
         python310Packages.pynvim
         nodejs_18
+        sysz
       ];
       environment.localBinInPath = true;
 
