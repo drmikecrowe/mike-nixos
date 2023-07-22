@@ -6,8 +6,8 @@ inputs.nixpkgs.lib.nixosSystem {
   system = "x86_64-linux";
   modules = [
     globals
-    inputs.nixos-hardware.outputs.nixosModules.dell-xps-15-9560
-    # inputs.nixos-hardware.outputs.nixosModules.dell-xps-15-9560-intel
+    # inputs.nixos-hardware.outputs.nixosModules.dell-xps-15-9560
+    inputs.nixos-hardware.outputs.nixosModules.dell-xps-15-9560-intel
     # inputs.nixos-hardware.outputs.nixosModules.dell-xps-15-9560-nvidia
     inputs.nixos-impermanence.nixosModule
     inputs.home-manager.nixosModules.home-manager
@@ -32,7 +32,6 @@ inputs.nixpkgs.lib.nixosSystem {
         colors = (import ../../colorscheme/gruvbox).dark;
         dark = true;
       };
-      wallpaper = "${inputs.wallpapers}/gruvbox/cat-2.jpg";
       gtk.theme.name = inputs.nixpkgs.lib.mkDefault "Adwaita-dark";
 
       physical = true;
@@ -40,8 +39,8 @@ inputs.nixpkgs.lib.nixosSystem {
       # Programs and services
       # charm.enable = true;
       gpg.enable = true;
-      kde.enable = false;
-      gnome.enable = true;
+      kde.enable = true;
+      gnome.enable = false;
       neovim.enable = true;
       kitty.enable = true;
       _1password.enable = true;
@@ -83,7 +82,6 @@ inputs.nixpkgs.lib.nixosSystem {
 
       boot.loader.grub.devices =
         [ "/dev/disk/by-id/nvme-Fanxiang_S500PRO_2TB_FXS500PRO231912172" ];
-
 
       # ZFS
       zfs.enable = true;
