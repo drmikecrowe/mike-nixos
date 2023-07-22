@@ -13,6 +13,7 @@ in
         packages = with pkgs; [
           appimage-run
           authy
+          chatgpt-cli
           copyq
           discord
           element-desktop
