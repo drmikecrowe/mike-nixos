@@ -12,8 +12,7 @@ in
       home = {
         packages = with pkgs; [
           appimage-run
-          # authy
-          bluemail
+          authy
           copyq
           discord
           element-desktop
