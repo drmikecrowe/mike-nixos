@@ -12,7 +12,8 @@ in
       home = {
         packages = with pkgs; [
           appimage-run
-          authy
+          # authy
+          bluemail
           copyq
           discord
           element-desktop
@@ -23,10 +24,12 @@ in
           gtk4
           kitty
           libreoffice
+          mailspring
           meld
           obsidian
           peek
           rnix-lsp
+          thunderbird
           virt-manager
           vivaldi
           vivaldi-ffmpeg-codecs
