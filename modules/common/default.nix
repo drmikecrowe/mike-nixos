@@ -115,6 +115,29 @@
         python310Full
         python310Packages.pynvim
         nodejs_18
+        nodePackages._5to6-codemod
+        nodePackages.install-peerdeps
+        nodePackages.jscodeshift
+        nodePackages.json2csv
+        nodePackages.json-sort-cli
+        nodePackages.maketypes
+        nodePackages.mrm
+        nodePackages.npm
+        nodePackages.npm-check-updates
+        nodePackages.prettier
+        nodePackages.quicktype
+        nodePackages.showdown
+        nodePackages.sortjson
+        nodePackages.syncpack
+        nodePackages.ts-migrate
+        nodePackages.ts-node
+        nodePackages.typescript
+        nodePackages.typesync
+        nodePackages.yamljs
+        nodePackages.yarn
+        nodePackages.yarn-check
+        nodePackages.yo
+        nodePackages.zx
         sysz
       ];
       environment.localBinInPath = true;
