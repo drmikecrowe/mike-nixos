@@ -36,6 +36,13 @@
         set -g fish_cursor_insert line
         set -g fish_cursor_visual block
         set -g fish_cursor_replace_one underscore
+        set -gx PNPM_HOME "/home/mcrowe/.local/share/pnpm"
+        if not string match -q -- $PNPM_HOME $PATH
+          set -gx PATH "$PNPM_HOME" $PATH
+        end
+        if not string match -q -- /home/mcrowe/bin $PATH
+          set -gx PATH "/home/mcrowe/bin" $PATH
+        end
       '';
       loginShellInit = "";
 

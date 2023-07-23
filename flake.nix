@@ -120,11 +120,11 @@
               statix
             ];
             shellHook = ''
-              alias nrh="${PRE_CMDS}; home-manager switch ${FLAKE} && ${COMMIT}"
+              alias nrh="${PRE_CMDS}; home-manager switch -b backup ${FLAKE} && ${COMMIT}"
               alias nrt="${PRE_CMDS}; sudo sh -c \"NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild test ${FLAKE}\""
               alias nrb="${PRE_CMDS}; nix flake update && nixos-rebuild build ${FLAKE}"
-              alias nrs="${PRE_CMDS}; sudo sh -c \"NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch  ${FLAKE}\" && ${COMMIT}"
-              alias nru="${PRE_CMDS}; nix flake update && sudo sh -c \"NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch  ${FLAKE} --upgrade\" && ${COMMIT}"
+              alias nrs="${PRE_CMDS}; sudo sh -c \"NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch -b backup ${FLAKE}\" && ${COMMIT}"
+              alias nru="${PRE_CMDS}; nix flake update && sudo sh -c \"NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch -b backup ${FLAKE} --upgrade\" && ${COMMIT}"
             '';
           };
 
