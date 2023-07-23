@@ -11,6 +11,7 @@
         nodePackages.pyright # Python language server
         black # Python formatter
         python310Packages.flake8 # Python linter
+        python310Packages.mypy # Python linter
       ];
 
       programs.fish.shellAbbrs = { py = "python3"; };
