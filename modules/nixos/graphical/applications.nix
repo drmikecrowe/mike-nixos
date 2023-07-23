@@ -29,7 +29,7 @@ in
           obsidian
           peek
           rnix-lsp
-          thunderbird
+          teams-for-linux
           virt-manager
           vivaldi
           vivaldi-ffmpeg-codecs
