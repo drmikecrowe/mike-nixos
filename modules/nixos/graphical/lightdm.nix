@@ -1,29 +1,18 @@
 { config, pkgs, lib, ... }: {
 
   options = {
-    budgie = {
+    lightdm = {
       enable = lib.mkEnableOption {
-        description = "Enable Budgie.";
+        description = "Enable lightdm.";
         default = false;
       };
     };
   };
 
-  config = lib.mkIf config.budgie.enable {
-    home-manager.users.${config.user} = {
-      home = {
-        packages = with pkgs; [
-          dconf
-          budgie.budgie-desktop-with-plugins
-        ];
-      };
-    };
-
+  config = lib.mkIf config.lightdm.enable {
     # Configure keymap in X11
     services = {
       xserver = {
-        desktopManager = { budgie = { enable = true; }; };
-        # displayManager = { sddm = { enable = true; }; };
         displayManager = {
           lightdm = {
             inherit (config.services.xserver) enable;
@@ -31,6 +20,7 @@
 
             # Make the login screen dark
             greeters = {
+              slick.enable = false;
               enso = {
                 enable = true;
                 blur = true;
@@ -44,10 +34,6 @@
           };
         };
       };
-    };
-
-    programs = {
-      dconf.enable = true;
     };
 
   };

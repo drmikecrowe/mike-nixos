@@ -96,28 +96,6 @@ in
             enable = true;
           };
         };
-
-        # Login screen
-        displayManager = {
-          lightdm = {
-            inherit (config.services.xserver) enable;
-            # background = config.wallpaper;
-
-            # Make the login screen dark
-            greeters = {
-              gtk.theme = gtkTheme;
-              enso = {
-                enable = true;
-                blur = true;
-              };
-            };
-
-            # Show default user
-            extraSeatDefaults = ''
-              greeter-hide-users = false
-            '';
-          };
-        };
       };
 
       gnome = { gnome-keyring = { enable = true; }; };
@@ -130,7 +108,6 @@ in
     security.pam.services.lightdm.enableGnomeKeyring = true;
 
     programs = {
-      dconf.enable = true;
       seahorse.enable = true; # keyring GUI
     };
 

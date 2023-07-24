@@ -14,7 +14,6 @@ inputs.nixpkgs.lib.nixosSystem {
     ../../modules/common
     ../../modules/nixos
     {
-      system.nixos.label = "Working_refactor";
       nixpkgs.overlays = overlays;
 
       nixpkgs.config = {
@@ -36,11 +35,19 @@ inputs.nixpkgs.lib.nixosSystem {
 
       physical = true;
 
+      # Graphical Desktop Environments
+      kde.enable = false;
+      budgie.enable = true;
+      gnome.enable = false;
+      nide.enable = false;
+
+      gdm.enable = false;
+      sddm.enable = false;
+      lightdm.enable = false;
+
       # Programs and services
       # charm.enable = true;
       gpg.enable = true;
-      kde.enable = true;
-      gnome.enable = false;
       neovim.enable = true;
       kitty.enable = true;
       _1password.enable = true;

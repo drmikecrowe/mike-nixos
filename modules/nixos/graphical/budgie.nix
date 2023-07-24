@@ -1,20 +1,20 @@
 { config, pkgs, lib, ... }: {
 
   options = {
-    kde = {
+    budgie = {
       enable = lib.mkEnableOption {
-        description = "Enable kde.";
+        description = "Enable Budgie.";
         default = false;
       };
     };
   };
 
-  config = lib.mkIf config.kde.enable {
+  config = lib.mkIf config.budgie.enable {
     home-manager.users.${config.user} = {
       home = {
         packages = with pkgs; [
           dconf
-          libsForQt5.polkit-kde-agent
+          budgie.budgie-desktop-with-plugins
         ];
       };
     };
@@ -22,7 +22,7 @@
     # Configure keymap in X11
     services = {
       xserver = {
-        desktopManager = { plasma5 = { enable = true; }; };
+        desktopManager = { budgie = { enable = true; }; };
       };
     };
 
