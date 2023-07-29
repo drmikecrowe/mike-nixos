@@ -19,6 +19,7 @@ in
           element-desktop
           firefox
           flameshot
+          flatpak
           glxinfo
           gtk3
           gtk4
