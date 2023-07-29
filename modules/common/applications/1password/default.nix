@@ -22,6 +22,10 @@
       vivaldi
       vivaldi-ffmpeg-codecs
     ];
+    home-manager.users.${config.user} = {
+      home.file.".config/autostart/1password-startup.desktop".source =
+        ./1password-startup.desktop;
+    };
   };
 
 }

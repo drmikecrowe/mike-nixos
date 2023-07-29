@@ -42,10 +42,8 @@ in
       xdg.mimeApps.defaultApplications = lib.mkIf pkgs.stdenv.isLinux {
         "text/plain" = [ "nvim.desktop" ];
         "text/markdown" = [ "nvim.desktop" ];
+        "x-scheme-handler/element" = [ "element-desktop.desktop" ];
       };
-
-      home.file.".config/autostart/1password-startup.desktop".source =
-        ./autostart/1password-startup.desktop;
 
       # Nicely reload system units when changing configs
       systemd.user.startServices = "sd-switch";
