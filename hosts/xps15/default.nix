@@ -16,34 +16,22 @@ inputs.nixpkgs.lib.nixosSystem {
     {
       nixpkgs.overlays = overlays;
 
-      nixpkgs.config = {
-        vivaldi = {
-          proprietaryCodecs = true;
-        };
-      };
-
       # Must be prepared ahead
       passwordHash = inputs.nixpkgs.lib.fileContents ../../password.sha512;
 
       # Theming
       gui.enable = true;
-      theme = {
-        colors = (import ../../colorscheme/gruvbox).dark;
-        dark = true;
-      };
-      gtk.theme.name = inputs.nixpkgs.lib.mkDefault "Adwaita-dark";
-
       physical = true;
 
       # Graphical Desktop Environments
       kde.enable = false;
-      budgie.enable = true;
-      gnome.enable = false;
+      budgie.enable = false;
       nide.enable = false;
+      gnome.enable = true;
 
       gdm.enable = false;
       sddm.enable = false;
-      lightdm.enable = false;
+      lightdm.enable = true;
 
       # Programs and services
       # charm.enable = true;
@@ -54,6 +42,13 @@ inputs.nixpkgs.lib.nixosSystem {
       discord.enable = true;
       slack.enable = true;
       nixlang.enable = true;
+      vivaldi.enable = true;
+
+      theme = {
+        colors = (import ../../colorscheme/gruvbox).dark;
+        dark = true;
+      };
+      gtk.theme.name = inputs.nixpkgs.lib.mkDefault "Adwaita-dark";
 
       # Hardware
       boot.kernelModules = [ "kvm-intel" "acpi_call" ];
