@@ -33,12 +33,12 @@
           "kitty_mod+equal" = "change_font_size current +2.0";
           "kitty_mod+minus" = "change_font_size current -2.0";
           "kitty_mod+backspace" = "change_font_size current 0";
-          "ctrl+shift+c" = "copy_to_clipboard";
-          "ctrl+shift+v" = "paste_from_clipboard";
+          "kitty_mod+c" = "copy_to_clipboard";
+          "kitty_mod+v" = "paste_from_clipboard";
         };
 
         settings = {
-          kitty_mod = "ctrl+super";
+          kitty_mod = "ctrl+shift";
 
           # Colors (adapted from: https://github.com/kdrag0n/base16-kitty/blob/master/templates/default-256.mustache)
           background = config.theme.colors.base00;

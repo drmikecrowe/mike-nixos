@@ -30,9 +30,12 @@ in
 
       home.packages = with pkgs; [
         age # Encryption
+        awscli2
+        aws-sso-cli
         atuin
         bat
         bc # Calculator
+        devbox
         dig # DNS lookup
         fd # find
         home-manager
@@ -64,10 +67,6 @@ in
           theme = config.theme.colors.batTheme;
           pager = "less -R"; # Don't auto-exit if one screen
         };
-      };
-
-      programs.fish.shellAbbrs = {
-        cat = "bat"; # Swap cat with bat
       };
 
       programs.fish.functions = {
