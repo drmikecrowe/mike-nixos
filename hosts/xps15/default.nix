@@ -43,6 +43,7 @@ inputs.nixpkgs.lib.nixosSystem {
       slack.enable = true;
       nixlang.enable = true;
       vivaldi.enable = true;
+      carapace.enable = true;
 
       theme = {
         colors = (import ../../colorscheme/gruvbox).dark;
