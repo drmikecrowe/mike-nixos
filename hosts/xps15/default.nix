@@ -7,8 +7,8 @@ inputs.nixpkgs.lib.nixosSystem {
   modules = [
     globals
     # inputs.nixos-hardware.outputs.nixosModules.dell-xps-15-9560
-    inputs.nixos-hardware.outputs.nixosModules.dell-xps-15-9560-intel
-    # inputs.nixos-hardware.outputs.nixosModules.dell-xps-15-9560-nvidia
+    # inputs.nixos-hardware.outputs.nixosModules.dell-xps-15-9560-intel
+    inputs.nixos-hardware.outputs.nixosModules.dell-xps-15-9560-nvidia
     inputs.nixos-impermanence.nixosModule
     inputs.home-manager.nixosModules.home-manager
     ../../modules/common

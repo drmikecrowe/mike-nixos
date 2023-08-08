@@ -15,6 +15,7 @@ in
           authy
           chatgpt-cli
           copyq
+          google-chrome
           discord
           element-desktop
           firefox
@@ -27,7 +28,7 @@ in
           mailspring
           meld
           obsidian
-          peek
+          # peek
           rnix-lsp
           teams-for-linux
           virt-manager
