@@ -24,14 +24,14 @@ inputs.nixpkgs.lib.nixosSystem {
       physical = true;
 
       # Graphical Desktop Environments
-      kde.enable = false;
+      kde.enable = true;
       budgie.enable = false;
       nide.enable = false;
-      gnome.enable = true;
+      gnome.enable = false;
 
       gdm.enable = false;
-      sddm.enable = false;
-      lightdm.enable = true;
+      sddm.enable = true;
+      lightdm.enable = false;
 
       # Programs and services
       # charm.enable = true;
