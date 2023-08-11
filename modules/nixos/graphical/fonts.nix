@@ -7,7 +7,7 @@ in
 
   config = lib.mkIf (config.gui.enable && pkgs.stdenv.isLinux) {
 
-    fonts.fonts = with pkgs; [
+    fonts.packages = with pkgs; [
       (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
     ];
     fonts.fontconfig.defaultFonts.monospace = [ fontName ];

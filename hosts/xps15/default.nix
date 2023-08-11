@@ -24,13 +24,13 @@ inputs.nixpkgs.lib.nixosSystem {
       physical = true;
 
       # Graphical Desktop Environments
-      kde.enable = true;
+      kde.enable = false;
       budgie.enable = false;
       nide.enable = false;
-      gnome.enable = false;
+      gnome.enable = true;
 
-      gdm.enable = false;
-      sddm.enable = true;
+      gdm.enable = true;
+      sddm.enable = false;
       lightdm.enable = false;
 
       # Programs and services
@@ -90,10 +90,10 @@ inputs.nixpkgs.lib.nixosSystem {
       zfs.enable = true;
 
       # Fix unreadable tty under high dpi
-      console = {
-        packages = [ inputs.nixpkgs.legacyPackages.x86_64-linux.terminus_font ];
-        font = "ter-124n";
-      };
+      #      console = {
+      #        packages = [ inputs.nixpkgs.legacyPackages.x86_64-linux.terminus_font ];
+      #        font = "ter-124n";
+      #      };
 
       # Bluetooth
       services.blueman.enable = true;

@@ -35,7 +35,8 @@ in
           gnomeExtensions.tactile
           gnomeExtensions.vitals
           gnomeExtensions.weather-or-not
-          gnomeExtensions.top-bar-organizer
+          # gnomeExtensions.top-bar-organizer
+          gnomeExtensions.bing-wallpaper-changer
         ];
       };
 
@@ -48,12 +49,10 @@ in
             "Vitals@CoreCoding.com"
             "appindicatorsupport@rgcjonas.gmail.com"
             "auto-activities@CleoMenezesJr.github.io"
-            "auto-move-windows@gnome-shell-extensions.gcampax.github.com"
             "custom-hot-corners-extended@G-dH.github.com"
             "dock-from-dash@fthx"
             "drive-menu@gnome-shell-extensions.gcampax.github.com"
-            "gnomeExtensions.top-bar-organizer"
-            "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+            # "gnomeExtensions.top-bar-organizer"
             "native-window-placement@gnome-shell-extensions.gcampax.github.com"
             "quick-settings-audio-panel@rayzeq.github.io"
             "quick-settings-tweaks@qwreey"
@@ -61,12 +60,13 @@ in
             "tactile@lundal.io"
             "user-theme@gnome-shell-extensions.gcampax.github.com"
             "weatherornot@somepaulo.github.io"
+            "gnomeExtensions.bing-wallpaper-changer"
           ];
           favorite-apps = [
             "vivaldi-stable.desktop"
             "code.desktop"
             "kitty-fish.desktop"
-            "kitty-nushell.desktop"
+            # "kitty-nushell.desktop"
             "wavebox.desktop"
           ];
         };
