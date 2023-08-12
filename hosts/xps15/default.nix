@@ -7,8 +7,8 @@ inputs.nixpkgs.lib.nixosSystem {
   modules = [
     globals
     # inputs.nixos-hardware.outputs.nixosModules.dell-xps-15-9560
-    # inputs.nixos-hardware.outputs.nixosModules.dell-xps-15-9560-intel
-    inputs.nixos-hardware.outputs.nixosModules.dell-xps-15-9560-nvidia
+    inputs.nixos-hardware.outputs.nixosModules.dell-xps-15-9560-intel
+    # inputs.nixos-hardware.outputs.nixosModules.dell-xps-15-9560-nvidia
     inputs.nixos-impermanence.nixosModule
     inputs.home-manager.nixosModules.home-manager
     ../../modules/common
@@ -24,14 +24,14 @@ inputs.nixpkgs.lib.nixosSystem {
       physical = true;
 
       # Graphical Desktop Environments
-      kde.enable = false;
+      kde.enable = true;
       budgie.enable = false;
       nide.enable = false;
-      gnome.enable = true;
+      gnome.enable = false;
 
-      gdm.enable = true;
+      gdm.enable = false;
       sddm.enable = false;
-      lightdm.enable = false;
+      lightdm.enable = true;
 
       # Programs and services
       # charm.enable = true;
