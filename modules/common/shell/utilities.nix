@@ -35,7 +35,7 @@ in
         atuin
         bat
         bc # Calculator
-        devbox
+        shell_gpt
         dig # DNS lookup
         fd # find
         home-manager

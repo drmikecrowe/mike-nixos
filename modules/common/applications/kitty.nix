@@ -35,6 +35,7 @@
           "kitty_mod+backspace" = "change_font_size current 0";
           "kitty_mod+c" = "copy_to_clipboard";
           "kitty_mod+v" = "paste_from_clipboard";
+          "ctrl+k" = "clear_terminal reset active";
         };
 
         settings = {

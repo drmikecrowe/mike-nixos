@@ -90,10 +90,10 @@ inputs.nixpkgs.lib.nixosSystem {
       zfs.enable = true;
 
       # Fix unreadable tty under high dpi
-      #      console = {
-      #        packages = [ inputs.nixpkgs.legacyPackages.x86_64-linux.terminus_font ];
-      #        font = "ter-124n";
-      #      };
+      console = {
+        packages = [ inputs.nixpkgs.legacyPackages.x86_64-linux.terminus_font ];
+        font = "ter-124n";
+      };
 
       # Bluetooth
       services.blueman.enable = true;
