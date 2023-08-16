@@ -35,7 +35,6 @@ in
         atuin
         bat
         bc # Calculator
-        shell_gpt
         dig # DNS lookup
         fd # find
         home-manager
@@ -51,6 +50,9 @@ in
         tree # View directory hierarchy
         unzip # Extract zips
         vimv-rs # Batch rename files
+        # chatgpt
+        shell_gpt
+        chatblade
       ];
 
       programs.zoxide.enable = true; # Shortcut jump command
