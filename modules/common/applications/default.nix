@@ -6,7 +6,6 @@ _: {
       ./kitty.nix
       ./obsidian.nix
       ./slack.nix
-      ./vivaldi.nix
     ];
 
 }

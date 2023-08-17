@@ -42,7 +42,6 @@ inputs.nixpkgs.lib.nixosSystem {
       discord.enable = true;
       slack.enable = true;
       nixlang.enable = true;
-      vivaldi.enable = true;
       carapace.enable = true;
 
       theme = {

@@ -36,14 +36,26 @@ in
           yubikey-personalization-gui
           yubikey-manager
           yubioath-flutter
+          vivaldi
+          vivaldi-ffmpeg-codecs
           zoom-us
         ];
+      };
+
+      nixpkgs.config = {
+        vivaldi = {
+          proprietaryCodecs = true;
+        };
       };
 
       xdg.mimeApps.defaultApplications = lib.mkIf pkgs.stdenv.isLinux {
         "text/plain" = [ "nvim.desktop" ];
         "text/markdown" = [ "nvim.desktop" ];
         "x-scheme-handler/element" = [ "element-desktop.desktop" ];
+        "x-scheme-handler/http" = [ "vivaldi-stable.desktop" ];
+        "x-scheme-handler/https" = [ "vivaldi-stable.desktop" ];
+        "x-scheme-handler/about" = [ "vivaldi-stable.desktop" ];
+        "x-scheme-handler/unknown" = [ "vivaldi-stable.desktop" ];
       };
 
       # Nicely reload system units when changing configs
