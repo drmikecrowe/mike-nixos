@@ -27,6 +27,7 @@ in
           libreoffice
           mailspring
           meld
+          microsoft-edge
           obsidian
           # peek
           rnix-lsp
