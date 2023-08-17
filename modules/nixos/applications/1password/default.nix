@@ -31,8 +31,6 @@
     environment.systemPackages = with pkgs; [
       _1password
       _1password-gui
-      vivaldi
-      vivaldi-ffmpeg-codecs
     ];
     home-manager.users.${config.user} = {
       home.file.".config/autostart/1password-startup.desktop".source =

@@ -15,11 +15,11 @@
       "1password/custom_allowed_browsers".text = "vivaldi-bin";
     };
 
-    environment.systemPackages = with pkgs;
-      [
-        vivaldi
-        vivaldi-ffmpeg-codecs
-      ];
+    # environment.systemPackages = with pkgs;
+    #   [
+    #     vivaldi
+    #     vivaldi-ffmpeg-codecs
+    #   ];
 
     nixpkgs.config = {
       vivaldi = {
@@ -28,6 +28,12 @@
     };
 
     home-manager.users.${config.user} = {
+      home = {
+        packages = with pkgs; [
+          vivaldi
+          vivaldi-ffmpeg-codecs
+        ];
+      };
       xdg.mimeApps.defaultApplications = lib.mkIf pkgs.stdenv.isLinux {
         "x-scheme-handler/http" = [ "vivaldi-stable.desktop" ];
         "x-scheme-handler/https" = [ "vivaldi-stable.desktop" ];
