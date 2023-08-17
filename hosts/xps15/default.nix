@@ -29,9 +29,9 @@ inputs.nixpkgs.lib.nixosSystem {
       nide.enable = true;
       gnome.enable = true;
 
-      gdm.enable = false;
+      gdm.enable = true;
       sddm.enable = false;
-      lightdm.enable = true;
+      lightdm.enable = false;
 
       # Programs and services
       # charm.enable = true;
@@ -51,6 +51,7 @@ inputs.nixpkgs.lib.nixosSystem {
       gtk.theme.name = inputs.nixpkgs.lib.mkDefault "Adwaita-dark";
 
       virtualisation.docker.enable = true;
+      users.users.mcrowe.extraGroups = [ "docker" ];
 
       # Hardware
       boot.kernelModules = [ "kvm-intel" "acpi_call" ];
