@@ -37,6 +37,7 @@ in
         bc # Calculator
         dig # DNS lookup
         fd # find
+        gnumake
         home-manager
         htop # Show system processes
         inetutils # Includes telnet, whois

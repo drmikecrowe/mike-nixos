@@ -52,6 +52,10 @@ inputs.nixpkgs.lib.nixosSystem {
 
       virtualisation.docker.enable = true;
       users.users.mcrowe.extraGroups = [ "docker" ];
+      virtualisation.docker.rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
 
       # Hardware
       boot.kernelModules = [ "kvm-intel" "acpi_call" ];

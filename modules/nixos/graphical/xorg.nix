@@ -58,7 +58,7 @@
         gtk =
           let
             gtkExtraConfig = {
-              gtk-application-prefer-dark-theme = config.theme.dark;
+              gtk-application-prefer-dark-theme = if config.theme.dark then "true" else "false";
             };
           in
           {

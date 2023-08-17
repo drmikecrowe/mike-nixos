@@ -37,6 +37,7 @@ in
           gnomeExtensions.weather-or-not
           # gnomeExtensions.top-bar-organizer
           gnomeExtensions.bing-wallpaper-changer
+          gnome.libsoup
         ];
       };
 
