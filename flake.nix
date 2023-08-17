@@ -103,8 +103,7 @@
           pkgs = import nixpkgs { inherit system overlays; };
           PRE_CMDS = "statix check && nix fmt && git add .";
           FLAKE = "--flake .#xps15 --impure";
-          COMMIT = "git add . && git commit";
-
+          COMMIT = "git diff | sgpt 'Generate git commit message, for my changes' > /tmp/gitmsg && git add . && git commit -F /tmp/gitmsg";
         in
         {
 

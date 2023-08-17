@@ -24,10 +24,10 @@ inputs.nixpkgs.lib.nixosSystem {
       physical = true;
 
       # Graphical Desktop Environments
-      kde.enable = true;
+      kde.enable = false;
       budgie.enable = false;
-      nide.enable = false;
-      gnome.enable = false;
+      nide.enable = true;
+      gnome.enable = true;
 
       gdm.enable = false;
       sddm.enable = false;
