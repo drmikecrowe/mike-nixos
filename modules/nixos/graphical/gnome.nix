@@ -64,11 +64,10 @@ in
             "gnomeExtensions.bing-wallpaper-changer"
           ];
           favorite-apps = [
-            "vivaldi-stable.desktop"
+            "microsoft-edge.desktop"
             "code.desktop"
             "kitty-fish.desktop"
-            # "kitty-nushell.desktop"
-            "wavebox.desktop"
+            "kitty-nushell.desktop"
           ];
         };
         "org/gnome/desktop/interface" = {

@@ -35,6 +35,7 @@ in
         atuin
         bat
         bc # Calculator
+        deno
         dig # DNS lookup
         fd # find
         gnumake

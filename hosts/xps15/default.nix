@@ -38,6 +38,7 @@ inputs.nixpkgs.lib.nixosSystem {
       gpg.enable = true;
       neovim.enable = true;
       kitty.enable = true;
+      nushell.enable = true;
       _1password.enable = true;
       discord.enable = true;
       slack.enable = true;
