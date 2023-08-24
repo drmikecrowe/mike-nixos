@@ -13,9 +13,11 @@ in
         home = {
           packages = with pkgs; [
             appimage-run
-            authy
+            # authy
+            bluemail
             chatgpt-cli
             copyq
+            electron
             google-chrome
             discord
             element-desktop
@@ -42,6 +44,20 @@ in
             vivaldi-ffmpeg-codecs
             zoom-us
           ];
+
+          file."bin/launch-copyq" = {
+            text = ''
+              #!/usr/bin/env bash 
+
+              if [[ "$WAYLAND_DISPLAY" == "wayland-0" ]]; then
+                  echo "Wayland detected, using wayland backend"
+                  export QT_QPA_PLATFORM=xcb
+              fi
+              nohup copyq --start-server hide > /tmp/copyq.log 2>&1 &
+            '';
+            executable = true;
+          };
+
         };
 
         nixpkgs.config = {
@@ -81,6 +97,7 @@ in
           };
         };
       };
+
   };
 
 }
