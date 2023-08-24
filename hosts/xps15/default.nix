@@ -51,6 +51,7 @@ inputs.nixpkgs.lib.nixosSystem {
       };
       gtk.theme.name = inputs.nixpkgs.lib.mkDefault "Adwaita-dark";
 
+      virtualisation.waydroid.enable = true;
       virtualisation.docker.enable = true;
       users.users.mcrowe.extraGroups = [ "docker" ];
       virtualisation.docker.rootless = {

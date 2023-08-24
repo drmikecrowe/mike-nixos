@@ -17,7 +17,7 @@
         enable = true;
         environment = { };
         extraConfig = "";
-        font.size = 14;
+        font.size = 12;
         keybindings = {
           "super+f" = "toggle_fullscreen";
           "kitty_mod+b" = "scroll_page_up";

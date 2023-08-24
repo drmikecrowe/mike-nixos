@@ -114,6 +114,7 @@
         pciutils
         python310Full
         python310Packages.pynvim
+        python310Packages.pip
         nodejs_18
         sysz
       ];
