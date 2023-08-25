@@ -1,26 +1,31 @@
 { config, pkgs, lib, ... }: {
 
-  virtualisation.docker.enable = true;
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
-  };
+  config = {
 
-  virtualisation.libvirtd.enable = true;
-  environment.systemPackages = with pkgs; [ virt-manager ];
+    virtualisation.docker.enable = true;
+    virtualisation.docker.rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
 
-  config.home-manager.users.mcrowe = {
-    dconf.settings = {
-      "org/virt-manager/virt-manager/connections" = {
-        autoconnect = [ "qemu:///system" ];
-        uris = [ "qemu:///system" ];
+    virtualisation.libvirtd.enable = true;
+
+    environment.systemPackages = with pkgs; [ virt-manager ];
+
+    home-manager.users.mcrowe = {
+      dconf.settings = {
+        "org/virt-manager/virt-manager/connections" = {
+          autoconnect = [ "qemu:///system" ];
+          uris = [ "qemu:///system" ];
+        };
       };
     };
-  };
 
-  users.users.mcrowe.extraGroups = [
-    "docker"
-    "libvirtd"
-  ];
+    users.users.mcrowe.extraGroups = [
+      "docker"
+      "libvirtd"
+    ];
+
+  };
 
 }

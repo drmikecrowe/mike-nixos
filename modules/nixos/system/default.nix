@@ -1,6 +1,11 @@
 { config, pkgs, lib, ... }: {
 
-  imports = [ ./journald.nix ./user.nix ./locale.nix ];
+  imports = [
+    ./virtualization.nix
+    ./journald.nix
+    ./user.nix
+    ./locale.nix
+  ];
 
   config = lib.mkIf pkgs.stdenv.isLinux {
 
