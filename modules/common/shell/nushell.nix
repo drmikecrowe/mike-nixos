@@ -30,8 +30,8 @@
       "kitty-nushell" = {
         name = "Nu Shell (kitty)";
         genericName = "Terminal emulator";
-        exec = "kitty start nu -li";
-        icon = "nushell-original";
+        exec = "kitty nu -li";
+        icon = "nushell";
         categories = [ "System" "TerminalEmulator" "Utility" ];
         type = "Application";
         terminal = false;
