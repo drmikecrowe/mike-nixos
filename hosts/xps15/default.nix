@@ -51,14 +51,6 @@ inputs.nixpkgs.lib.nixosSystem {
       };
       gtk.theme.name = inputs.nixpkgs.lib.mkDefault "Adwaita-dark";
 
-      virtualisation.waydroid.enable = true;
-      virtualisation.docker.enable = true;
-      users.users.mcrowe.extraGroups = [ "docker" ];
-      virtualisation.docker.rootless = {
-        enable = true;
-        setSocketVariable = true;
-      };
-
       # Hardware
       boot.kernelModules = [ "kvm-intel" "acpi_call" ];
       boot.initrd.availableKernelModules = [

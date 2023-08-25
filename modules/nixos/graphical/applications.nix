@@ -35,7 +35,6 @@ in
             # peek
             rnix-lsp
             teams-for-linux
-            virt-manager
             vscode
             yubikey-personalization-gui
             yubikey-manager
