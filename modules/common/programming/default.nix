@@ -1,5 +1,9 @@
 _: {
 
-  imports = [ ./nix.nix ./python.nix ./terraform.nix ];
+  imports = [
+    ./nix.nix
+    ./python.nix
+    ./terraform.nix
+  ];
 
 }

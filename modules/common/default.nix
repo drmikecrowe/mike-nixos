@@ -115,6 +115,8 @@
         python310Full
         python310Packages.pynvim
         python310Packages.pip
+        python310Packages.poetry-core
+        poetry
         nodejs_18
         sysz
       ];

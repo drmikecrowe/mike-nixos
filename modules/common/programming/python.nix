@@ -12,8 +12,6 @@
         black # Python formatter
         python310Packages.flake8 # Python linter
         python310Packages.mypy # Python linter
-        python310Packages.poetry-core
-        poetry
       ];
 
       programs.fish.shellAbbrs = { py = "python3"; };
