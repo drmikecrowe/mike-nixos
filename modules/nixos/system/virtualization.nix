@@ -10,9 +10,11 @@
 
     virtualisation.libvirtd.enable = true;
 
-    environment.systemPackages = with pkgs; [ virt-manager ];
-
     home-manager.users.mcrowe = {
+      home.packages = with pkgs; [
+        virt-manager
+        docker-compose
+      ];
       dconf.settings = {
         "org/virt-manager/virt-manager/connections" = {
           autoconnect = [ "qemu:///system" ];
