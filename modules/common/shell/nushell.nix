@@ -9,8 +9,6 @@
     programs.nushell = { enable = true; };
 
     home.file.".config/nushell/setup-carapace.nu".text = ''
-      $env.PATH = ($env.PATH | prepend "/home/mcrowe/.config/carapace/bin")
-
       let carapace_completer = {|spans| 
         carapace $spans.0 nushell $spans | from json
       }

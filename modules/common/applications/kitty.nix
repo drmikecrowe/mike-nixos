@@ -35,7 +35,7 @@
           "kitty_mod+backspace" = "change_font_size current 0";
           "kitty_mod+c" = "copy_to_clipboard";
           "kitty_mod+v" = "paste_from_clipboard";
-          "kitty_mod+n" = "launch --type=tab kitty nu";
+          "kitty_mod+n" = "launch kitty nu";
           "ctrl+k" = "clear_terminal reset active";
         };
 
