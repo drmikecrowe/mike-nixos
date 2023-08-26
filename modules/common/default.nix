@@ -106,19 +106,23 @@
 
       # Basic common system packages for all devices
       environment.systemPackages = with pkgs; [
-        git
-        vim
-        wget
+        black # Python formatter
         curl
+        git
+        nodePackages.pyright # Python language server
+        nodejs_18
         parted
         pciutils
+        poetry
         python310Full
-        python310Packages.pynvim
+        python310Packages.flake8 # Python linter
+        python310Packages.mypy # Python linter
         python310Packages.pip
         python310Packages.poetry-core
-        poetry
-        nodejs_18
+        python310Packages.pynvim
         sysz
+        vim
+        wget
       ];
       environment.localBinInPath = true;
 

@@ -19,7 +19,6 @@
         extraConfig = "";
         font.size = 12;
         keybindings = {
-          "super+f" = "toggle_fullscreen";
           "kitty_mod+b" = "scroll_page_up";
           "kitty_mod+f" = "scroll_page_down";
           "kitty_mod+enter" = "new_window_with_cwd";
@@ -35,7 +34,8 @@
           "kitty_mod+backspace" = "change_font_size current 0";
           "kitty_mod+c" = "copy_to_clipboard";
           "kitty_mod+v" = "paste_from_clipboard";
-          "kitty_mod+n" = "launch kitty nu";
+          "ctrl+alt+shift+n" = "launch kitty nu -li";
+          "ctrl+alt+shift+b" = "launch kitty bash -li";
           "ctrl+k" = "clear_terminal reset active";
         };
 
