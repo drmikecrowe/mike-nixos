@@ -17,6 +17,7 @@ in
             bluemail
             chatgpt-cli
             copyq
+            duplicati
             electron
             google-chrome
             discord
