@@ -31,11 +31,11 @@ in
           gnomeExtensions.dock-from-dash
           gnomeExtensions.quick-settings-audio-panel
           gnomeExtensions.quick-settings-tweaker
+          gnomeExtensions.quick-touchpad-toggle
           gnomeExtensions.systemd-manager
           gnomeExtensions.tactile
           gnomeExtensions.vitals
           gnomeExtensions.weather-or-not
-          # gnomeExtensions.top-bar-organizer
           gnomeExtensions.bing-wallpaper-changer
           gnome.libsoup
         ];
