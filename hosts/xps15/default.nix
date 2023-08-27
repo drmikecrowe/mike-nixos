@@ -95,6 +95,11 @@ inputs.nixpkgs.lib.nixosSystem {
         font = "ter-124n";
       };
 
+      # Duplicati backup
+      services.duplicati = {
+        enable = true;
+      };
+
       # Bluetooth
       services.blueman.enable = true;
       hardware.bluetooth.enable = true;
