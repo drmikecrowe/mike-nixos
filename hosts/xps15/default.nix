@@ -98,6 +98,7 @@ inputs.nixpkgs.lib.nixosSystem {
       # Duplicati backup
       services.duplicati = {
         enable = true;
+        user = "mcrowe";
       };
 
       # Bluetooth
