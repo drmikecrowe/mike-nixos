@@ -38,6 +38,7 @@ in
         deno
         dig # DNS lookup
         fd # find
+        glab # gitlab cli
         gnumake
         home-manager
         htop # Show system processes

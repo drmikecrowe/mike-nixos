@@ -3,7 +3,7 @@ let
   autostartFolder = ".config/autostart/";
   profileFolder = ".nix-profile/share/applications/";
   autostartPrograms =
-    [ "com.github.hluk.copyq" "org.flameshot.Flameshot" "1password" ];
+    [ "org.flameshot.Flameshot" ];
 in
 {
   config = lib.mkIf config.gui.enable {
@@ -44,7 +44,7 @@ in
             zoom-us
           ];
 
-          file."bin/launch-copyq" = {
+          file.".config/autostart/launch-copyq" = {
             text = ''
               #!/usr/bin/env bash 
 
