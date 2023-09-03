@@ -8,10 +8,6 @@
 
     programs.nushell = { enable = true; };
 
-    programs.nushell.extraConfig = ''
-      source .config/nushell/setup-carapace.nu
-    '';
-
     xdg.desktopEntries = lib.mkIf config.gui.enable {
       "kitty-nushell" = {
         name = "Nu Shell (kitty)";
@@ -24,5 +20,6 @@
       };
     };
   };
+  # lib.mkIf config.carapace.enable 
 
 }
