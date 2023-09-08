@@ -13,12 +13,9 @@ in
         home = {
           packages = with pkgs; [
             appimage-run
-            # authy
-            bluemail
+            authy
             chatgpt-cli
             copyq
-            electron
-            google-chrome
             discord
             element-desktop
             firefox
@@ -35,7 +32,7 @@ in
             # peek
             rnix-lsp
             teams-for-linux
-            vscode
+            vscode-fhs
             yubikey-personalization-gui
             yubikey-manager
             yubioath-flutter
@@ -48,10 +45,7 @@ in
             text = ''
               #!/usr/bin/env bash 
 
-              if [[ "$WAYLAND_DISPLAY" == "wayland-0" ]]; then
-                  echo "Wayland detected, using wayland backend"
-                  export QT_QPA_PLATFORM=xcb
-              fi
+              export QT_QPA_PLATFORM=xcb
               nohup copyq --start-server hide > /tmp/copyq.log 2>&1 &
             '';
             executable = true;
