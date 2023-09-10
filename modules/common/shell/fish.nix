@@ -9,7 +9,7 @@
     # Packages used in abbreviations and aliases
     home.packages = with pkgs; [
       curl
-      exa
+      eza
       grc
       fishPlugins.colored-man-pages
       fishPlugins.grc
@@ -59,15 +59,15 @@
           "ps -e -o pcpu,cpu,nice,state,cputime,args --sort pcpu | sed '/^ 0.0 /d'";
         dud = "du -h --max-depth=1 --one-file-system";
         dudg = "du -h --max-depth=1 --one-file-system 2>&1 | egrep '^[0-9.]*G'";
-        exa = "exa --icons --all --git --binary --group-directories-first";
+        eza = "eza --icons --all --git --binary --group-directories-first";
         grep = "grep --color --exclude-dir='.svn' --exclude-dir='.git'";
         h = "history";
         hc = "history | cut -b 8-";
         hg = "history | grep --colour=auto";
-        l = "exa --classify";
+        l = "eza --classify";
         la = "ls -lAF";
-        ll = "exa --long --header";
-        ls = "exa";
+        ll = "eza --long --header";
+        ls = "eza";
         lsd = "ls -lF | grep --color=never '^d'";
         md = "mkdir -p";
         nixdevnode =
