@@ -38,6 +38,7 @@ in
             yubioath-flutter
             vivaldi
             vivaldi-ffmpeg-codecs
+            xdg-utils
             zoom-us
           ];
 
