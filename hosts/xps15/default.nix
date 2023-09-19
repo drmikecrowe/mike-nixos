@@ -60,6 +60,8 @@ inputs.nixpkgs.lib.nixosSystem {
       nixlang.enable = true;
       carapace.enable = true;
 
+      services.flatpak.enable = true;
+
       theme = {
         colors = (import ../../colorscheme/gruvbox).dark;
         dark = true;
