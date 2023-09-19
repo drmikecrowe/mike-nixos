@@ -20,6 +20,7 @@
       sysz
       vim
       wget
+      vscode
     ];
   };
 }

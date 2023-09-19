@@ -59,36 +59,9 @@ in
           };
         };
 
-        xdg.configFile."mimeapps.list".force = true;
-        xdg.mimeApps = {
-          enable = true;
-          defaultApplications = {
-            "x-scheme-handler/http" = [ "microsoft-edge.desktop;" ];
-            "application/xhtml+xml" = [ "microsoft-edge.desktop;" ];
-            "text/html" = [ "microsoft-edge.desktop;" ];
-            "x-scheme-handler/https" = [ "microsoft-edge.desktop;" ];
-            "image/gif" = [ "microsoft-edge.desktop;" ];
-            "image/png" = [ "microsoft-edge.desktop;" ];
-            "image/webp" = [ "microsoft-edge.desktop;" ];
-          };
-          associations.added = {
-            "x-scheme-handler/mailto" = "thunderbird.desktop";
-            # others...
-          };
-        };
-
         # Nicely reload system units when changing configs
         systemd.user.startServices = "sd-switch";
 
-        xdg.desktopEntries = {
-          "wavebox" = {
-            categories = [ "Network" "WebBrowser" ];
-            exec = "appimage-run /home/mcrowe/bin/Wavebox.AppImage";
-            genericName = "Wavebox";
-            icon = "wavebox";
-            name = "Wavebox";
-          };
-        };
       };
 
   };

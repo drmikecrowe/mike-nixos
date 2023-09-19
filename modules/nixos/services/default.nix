@@ -3,7 +3,7 @@ _: {
   imports = [
     ./gnupg.nix
     # ./secrets.nix
-    ./sshd.nix
+    ./xdg.nix
   ];
 
 }

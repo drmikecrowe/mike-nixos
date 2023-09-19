@@ -60,6 +60,7 @@ inputs.nixpkgs.lib.nixosSystem {
       nixlang.enable = true;
       carapace.enable = true;
 
+      continue.enable = true;
       services.flatpak.enable = true;
 
       theme = {
