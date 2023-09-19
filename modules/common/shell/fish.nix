@@ -64,10 +64,10 @@
         h = "history";
         hc = "history | cut -b 8-";
         hg = "history | grep --colour=auto";
-        l = "eza --classify";
+        l = "eza -l --classify";
         la = "ls -lAF";
         ll = "eza --long --header";
-        ls = "eza";
+        ls = "eza --classify";
         lsd = "ls -lF | grep --color=never '^d'";
         md = "mkdir -p";
         nixdevnode =

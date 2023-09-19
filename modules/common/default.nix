@@ -5,6 +5,7 @@
     ./neovim
     ./programming
     ./shell
+    ./user-services
   ];
 
   options = {
