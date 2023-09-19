@@ -66,7 +66,10 @@ inputs.nixpkgs.lib.nixosSystem {
       };
       gtk.theme.name = inputs.nixpkgs.lib.mkDefault "Adwaita-dark";
 
-      # Hardware
+      # Hardware   
+
+      boot.swraid.enable = false;
+
       boot.kernelModules = [ "kvm-intel" "acpi_call" ];
       boot.initrd.availableKernelModules = [
         "xhci_pci"

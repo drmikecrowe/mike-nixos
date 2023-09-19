@@ -32,7 +32,6 @@ in
             # peek
             rnix-lsp
             teams-for-linux
-            vscode-fhs
             yubikey-personalization-gui
             yubikey-manager
             yubioath-flutter

@@ -1,7 +1,15 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }: {
 
-{
-  config = {
+  options = {
+    continue = {
+      enable = lib.mkEnableOption {
+        description = "Enable Continue.";
+        default = false;
+      };
+    };
+  };
+
+  config = lib.mkIf config.continue.enable {
 
     systemd.user.services.continue-server = {
       description = "Continue Server Service";
