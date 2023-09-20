@@ -5,11 +5,13 @@
     settings = {
       add_newline = false; # Don't print new line at the start of the prompt
       format = lib.concatStrings [
+        "$hostname"
         "$directory"
         "$git_branch"
         "$git_commit"
+        "$git_state"
         "$git_status"
-        "$hostname"
+        "$jobs"
         "$cmd_duration"
         "$character"
       ];
@@ -17,7 +19,7 @@
       character = {
         success_symbol = "[❯](bold green)";
         error_symbol = "[❯](bold red)";
-        vicmd_symbol = "[❮](bold green)";
+        vicmd_symbol = "[!](bold green)";
       };
       cmd_duration = {
         min_time = 5000;
