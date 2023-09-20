@@ -3,8 +3,9 @@
   home-manager.users.${config.user}.programs.starship = {
     enable = true;
     settings = {
-      add_newline = false; # Don't print new line at the start of the prompt
+      add_newline = false; # Don"t print new line at the start of the prompt
       format = lib.concatStrings [
+        "$shell"
         "$hostname"
         "$directory"
         "$git_branch"
@@ -55,10 +56,22 @@
         format = "on [$hostname](bold red) ";
       };
       nix_shell = {
+        impure_msg = "[impure shell](bold red)";
+        pure_msg = "[pure shell](bold green)";
+        unknown_msg = "[unknown shell](bold yellow)";
         format = "[$symbol $name]($style)";
         symbol = "❄️";
       };
+      package = {
+        format = "via [🎁 $version](208 bold) ";
+      };
       python = { format = "[\${version}\\(\${virtualenv}\\)]($style)"; };
+      shell = {
+        fish_indicator = "󰈺 ";
+        powershell_indicator = "_";
+        unknown_indicator = "mystery shell";
+        style = "cyan bold";
+      };
     };
   };
 
