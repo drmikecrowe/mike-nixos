@@ -14,6 +14,7 @@ in
           packages = with pkgs; [
             appimage-run
             authy
+            brave
             chatgpt-cli
             copyq
             discord

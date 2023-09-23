@@ -30,6 +30,7 @@ in
         userName = "Mike Crowe";
         userEmail = "drmikecrowe@gmail.com";
         aliases = {
+          aic = "git diff | sgpt 'Generate git commit message, for my changes' > /tmp/gitmsg && git commit -F /tmp/gitmsg";
           b = "branch";
           bc = "checkout -b";
           bl = "branch -v";
@@ -39,9 +40,11 @@ in
           co = "checkout";
           co0 = "checkout HEAD --";
           f = "fetch";
+          fap = "fetch --all --prune";
           fm = "pull";
           fo = "fetch origin";
           m = "merge";
+          momn = "merge origin/main";
           mom = "merge origin/master";
           p = "push";
           pa = "push --all";

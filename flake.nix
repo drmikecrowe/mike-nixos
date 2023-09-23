@@ -2,7 +2,6 @@
   description = "Mike's system configuration";
 
   inputs = {
-
     # Used for system packages
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -14,9 +13,6 @@
       url = "gitlab:exorcist365/wallpapers";
       flake = false;
     };
-
-    # Used for Windows Subsystem for Linux compatibility
-    wsl.url = "github:nix-community/NixOS-WSL";
 
     # Used for user packages and dotfiles
     home-manager.url = "github:nix-community/home-manager/master";
@@ -33,15 +29,15 @@
 
   };
 
-  outputs = { nixpkgs, ... }@inputs:
+  outputs = { nixpkgs, home-manager, ... }@inputs:
 
     let
+
+      system = "x86_64-linux";
 
       globals = rec {
         user = "mcrowe";
         fullName = "Mike Crowe";
-        # gitName = fullName;
-        # gitEmail = "drmikecrowe@gmail.com";
       };
 
       # Common overlays to always use
@@ -56,8 +52,17 @@
         })
       ];
 
+      pkgs = import nixpkgs
+        {
+          system = "${system}";
+          config.allowUnfree = true;
+          config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+            "samsung-UnifiedLinuxDriver"
+          ];
+        };
+
       # System types to support.
-      supportedSystems = [ "x86_64-linux" ]; #  "aarch64-darwin"
+      supportedSystems = [ system ]; #  "aarch64-darwin"
 
       # Helper function to generate an attrset '{ x86_64-linux = f "x86_64-linux"; ... }'.
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
@@ -78,13 +83,14 @@
       #     import ./hosts/lookingglass { inherit inputs globals overlays; };
       # };
 
-      # For quickly applying local settings with:
-      # home-manager switch --flake .#xps15
       homeConfigurations = {
-        xps15 =
-          nixosConfigurations.xps15.config.home-manager.users.${globals.user}.home;
-        # lookingglass =
-        #   darwinConfigurations.lookingglass.config.home-manager.users."Noah.Masur".home;
+        "${globals.user}" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
+          # > Our main home-manager configuration file <
+          modules = [ nixosConfigurations.xps15.config.home-manager.users.${globals.user}.home ];
+        };
+        # xps15 = nixosConfigurations.xps15.config.home-manager.users.${globals.user}.home; 
       };
 
       packages =
@@ -107,13 +113,9 @@
       devShells = forAllSystems (system:
         let
           pkgs = import nixpkgs { inherit system overlays; };
-          PRE_CMDS = "statix check && nix fmt && git add .";
-          FLAKE = "--flake .#xps15 --impure";
-          COMMIT = "git diff | sgpt 'Generate git commit message, for my changes' > /tmp/gitmsg && git add . && git commit -F /tmp/gitmsg";
+          PRE_CMDS = "statix check && nix fmt && git add --intent-to-add .";
         in
         {
-
-          # Used to run commands and edit files in this repo
           default = pkgs.mkShell {
             name = "flakeShell";
             buildInputs = with pkgs; [
@@ -125,11 +127,8 @@
               statix
             ];
             shellHook = ''
-              alias nrh="${PRE_CMDS}; home-manager switch -b backup ${FLAKE} && ${COMMIT}"
-              alias nrt="${PRE_CMDS}; sudo sh -c \"NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild test ${FLAKE}\""
-              alias nrb="${PRE_CMDS}; nix flake update && nixos-rebuild build ${FLAKE}"
-              alias nrs="${PRE_CMDS}; sudo sh -c \"NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch ${FLAKE}\" && ${COMMIT}"
-              alias nru="${PRE_CMDS}; nix flake update && nixos-rebuild build ${FLAKE}"
+              alias nrh="${PRE_CMDS}; home-manager switch --impure"
+              alias nrs="${PRE_CMDS}; sudo sh -c \"NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch --impure\""
             '';
           };
 
