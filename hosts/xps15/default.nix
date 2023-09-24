@@ -26,6 +26,8 @@ in
 
   config = {
 
+    user = "mcrowe";
+
     gui.enable = true;
     physical = true;
 
@@ -98,18 +100,85 @@ in
 
     zfs.enable = true;
 
-    fileSystems = {
-      "/" = mkZfsMount "rpool/nixos" // { neededForBoot = true; };
-      "/home" = mkZfsMount "rpool/nixos/home";
-      "/keep" = mkZfsMount "rpool/nixos/keep" // { neededForBoot = true; };
-      "/nix" = mkZfsMount "rpool/nixos/nix";
-      "/root" = mkZfsMount "rpool/nixos/root";
-      "/usr" = mkZfsMount "rpool/nixos/usr";
-      "/var" = mkZfsMount "rpool/nixos/var";
-      "/boot" = mkZfsMount "bpool/nixos/boot" // { neededForBoot = true; };
-      "/boot/efis/efiboot0" = { device = "/dev/disk/by-uuid/9250-2D17"; fsType = "vfat"; };
-      "/boot/efi" = { device = "/boot/efis/efiboot0"; fsType = "none"; options = [ "bind" ]; };
+    # fileSystems = {
+    #   "/" = mkZfsMount "rpool/nixos" // { neededForBoot = true; };
+    #   "/home" = mkZfsMount "rpool/nixos/home";
+    #   "/keep" = mkZfsMount "rpool/nixos/keep" // { neededForBoot = true; };
+    #   "/nix" = mkZfsMount "rpool/nixos/nix";
+    #   "/root" = mkZfsMount "rpool/nixos/root";
+    #   "/usr" = mkZfsMount "rpool/nixos/usr";
+    #   "/var" = mkZfsMount "rpool/nixos/var";
+    #   "/boot" = mkZfsMount "bpool/nixos/boot" // { neededForBoot = true; };
+    #   "/boot/efis/efiboot0" = { device = "/dev/disk/by-uuid/9250-2D17"; fsType = "vfat"; };
+    #   "/boot/efi" = { device = "/boot/efis/efiboot0"; fsType = "none"; options = [ "bind" ]; };
+    # };
+
+    swapDevices = [{
+      device = "/dev/disk/by-uuid/4fdbdf13-9cbf-4c44-a41a-09bc274ff496";
+    }];
+
+    fileSystems."/" = {
+      device = "rpool/nixos";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
+      neededForBoot = true;
     };
+
+    fileSystems."/home" = {
+      device = "rpool/nixos/home";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
+    };
+
+    fileSystems."/keep" = {
+      device = "rpool/nixos/keep";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
+      neededForBoot = true;
+    };
+
+    fileSystems."/nix" = {
+      device = "rpool/nixos/nix";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
+    };
+
+    fileSystems."/root" = {
+      device = "rpool/nixos/root";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
+    };
+
+    fileSystems."/usr" = {
+      device = "rpool/nixos/usr";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
+    };
+
+    fileSystems."/var" = {
+      device = "rpool/nixos/var";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
+    };
+
+    fileSystems."/boot" = {
+      device = "bpool/nixos/boot";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
+      neededForBoot = true;
+    };
+
+    fileSystems."/boot/efis/efiboot0" = {
+      device = "/dev/disk/by-uuid/9250-2D17";
+      fsType = "vfat";
+    };
+
+    fileSystems."/boot/efi" = {
+      device = "/boot/efis/efiboot0";
+      fsType = "none";
+      options = [ "bind" ];
+    };
+
 
     console.packages = [ pkgs.legacyPackages.x86_64-linux.terminus_font ];
     console.font = "ter-124n";
@@ -134,12 +203,13 @@ in
       longitude = -77.8931;
     };
     time.timeZone = "America/New_York";
+
     systemd.services.nix-gc.unitConfig.ConditionACPower = true;
-    swapDevices = [{
-      device = "/dev/disk/by-uuid/4fdbdf13-9cbf-4c44-a41a-09bc274ff496";
-    }];
+
     nixpkgs.hostPlatform = pkgs.lib.mkDefault "x86_64-linux";
+
     powerManagement.cpuFreqGovernor = pkgs.lib.mkDefault "powersave";
+
     hardware.cpu.intel.updateMicrocode = true;
   };
 }
