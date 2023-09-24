@@ -10,7 +10,7 @@
     ./lightdm.nix
     ./sddm.nix
     ./gdm.nix
-    ./nide.nix
+    # ./nide.nix
     ./xorg.nix
   ];
 

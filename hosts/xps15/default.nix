@@ -19,27 +19,34 @@ in
     nixos-hardware.nixosModules.dell-xps-15-9560-intel
     # inputs.nixos-hardware.nixosModules.dell-xps-15-9560-nvidia
     impermanence.nixosModule
+    home-manager.nixosModule
     common
     nixosMain
   ];
 
   config = {
 
-    system = config.system;
+    gui.enable = true;
+    physical = true;
 
-    gnome.enable = true;
-    gdm.enable = true;
-    kde.enable = false;
-    budgie.enable = false;
-    nide.enable = false;
+    kde.enable = true;
+    lightdm.enable = true;
     sddm.enable = false;
-    lightdm.enable = false;
+    budgie.enable = false;
+    gnome.enable = false;
+    gdm.enable = false;
 
-    gui = {
-      enable = true;
-      theme.colors = gruvbox.dark;
-      gtk.theme.name = pkgs.lib.mkDefault "Adwaita-dark";
-    };
+    # Programs and services
+    # charm.enable = true;
+    gpg.enable = true;
+    neovim.enable = true;
+    kitty.enable = true;
+    nushell.enable = true;
+    _1password.enable = true;
+    discord.enable = true;
+    slack.enable = true;
+    nixlang.enable = true;
+    carapace.enable = true;
 
     boot = {
       swraid.enable = false;
@@ -127,7 +134,6 @@ in
       longitude = -77.8931;
     };
     time.timeZone = "America/New_York";
-    nix.allowUnfree = [ "samsung-unified-linux-driver" ];
     systemd.services.nix-gc.unitConfig.ConditionACPower = true;
     swapDevices = [{
       device = "/dev/disk/by-uuid/4fdbdf13-9cbf-4c44-a41a-09bc274ff496";
