@@ -7,6 +7,7 @@ let
 in
 {
   config = lib.mkIf config.gui.enable {
+    nix.allowedUnfree = [ "authy" "zoom" "microsoft-edge-stable" "obsidian" "vivaldi" "code" ];
 
     home-manager.users.${config.user} =
       {
@@ -14,9 +15,9 @@ in
           packages = with pkgs; [
             appimage-run
             authy
+            brave
             chatgpt-cli
             copyq
-            discord
             element-desktop
             firefox
             flameshot

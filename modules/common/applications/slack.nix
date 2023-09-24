@@ -10,6 +10,7 @@
   };
 
   config = lib.mkIf (config.gui.enable && config.slack.enable) {
+    nix.allowedUnfree = [ "slack" ];
     home-manager.users.${config.user} = {
       home.packages = with pkgs; [ slack ];
     };

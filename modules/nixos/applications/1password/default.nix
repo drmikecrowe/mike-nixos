@@ -20,6 +20,7 @@
   };
 
   config = lib.mkIf config._1password.enable {
+    nix.allowedUnfree = [ "1password" "1password-cli" ];
     programs = {
       dconf.enable = true;
       _1password.enable = true;

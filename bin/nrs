@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+statix check
+nix fmt
+git add --intent-to-add . 
+sudo nixos-rebuild switch --impure $@

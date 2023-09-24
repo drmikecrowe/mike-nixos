@@ -1,5 +1,6 @@
 _: {
   imports = [
+    ./aliases.nix
     ./atuin.nix
     ./bash.nix
     ./carapace.nix

@@ -64,7 +64,7 @@ in
             "gnomeExtensions.bing-wallpaper-changer"
           ];
           favorite-apps = [
-            "microsoft-edge.desktop"
+            "brave.desktop"
             "code.desktop"
             "kitty-fish.desktop"
             "kitty-nushell.desktop"

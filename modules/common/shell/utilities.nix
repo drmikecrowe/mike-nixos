@@ -33,7 +33,6 @@ in
         awscli2
         aws-sso-cli
         atuin
-        bat
         bc # Calculator
         deno
         dig # DNS lookup

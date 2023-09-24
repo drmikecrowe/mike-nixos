@@ -20,7 +20,7 @@
       sysz
       vim
       wget
-      vscode
+      vscode.fhs
     ];
   };
 }
