@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   options = {
     _1password = {
       enable = lib.mkEnableOption {
@@ -10,7 +14,7 @@
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = pkgs._1password-gui.override { polkitPolicyOwners = [ "mcrowe" ]; };
+      default = pkgs._1password-gui.override {polkitPolicyOwners = ["mcrowe"];};
       defaultText = lib.literalExpression "pkgs._1password-gui";
       example = lib.literalExpression "pkgs._1password-gui";
       description = ''
@@ -20,13 +24,13 @@
   };
 
   config = lib.mkIf config._1password.enable {
-    nix.allowedUnfree = [ "1password" "1password-cli" ];
+    nix.allowedUnfree = ["1password" "1password-cli"];
     programs = {
       dconf.enable = true;
       _1password.enable = true;
       _1password-gui = {
         enable = true;
-        polkitPolicyOwners = [ "mcrowe" ];
+        polkitPolicyOwners = ["mcrowe"];
       };
     };
     environment.systemPackages = with pkgs; [
@@ -39,24 +43,21 @@
     };
 
     security.wrappers = {
-      "1Password-BrowserSupport" =
-        {
-          source = "${config.package}/share/1password/1Password-BrowserSupport";
-          owner = "root";
-          group = "onepassword";
-          setuid = false;
-          setgid = true;
-        };
+      "1Password-BrowserSupport" = {
+        source = "${config.package}/share/1password/1Password-BrowserSupport";
+        owner = "root";
+        group = "onepassword";
+        setuid = false;
+        setgid = true;
+      };
 
-      "1Password-KeyringHelper" =
-        {
-          source = "${config.package}/share/1password/1Password-KeyringHelper";
-          owner = "root";
-          group = "onepassword";
-          setuid = true;
-          setgid = true;
-        };
+      "1Password-KeyringHelper" = {
+        source = "${config.package}/share/1password/1Password-KeyringHelper";
+        owner = "root";
+        group = "onepassword";
+        setuid = true;
+        setgid = true;
+      };
     };
   };
-
 }

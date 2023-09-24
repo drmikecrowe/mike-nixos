@@ -1,5 +1,8 @@
-{ pkgs, dsl, ... }: {
-
+{
+  pkgs,
+  dsl,
+  ...
+}: {
   plugins = [
     pkgs.vimPlugins.nvim-lspconfig
     pkgs.vimPlugins.lsp-colors-nvim
@@ -7,24 +10,24 @@
   ];
 
   use.lspconfig.lua_ls.setup = dsl.callWith {
-    settings = { Lua = { diagnostics = { globals = [ "vim" "hs" ]; }; }; };
+    settings = {Lua = {diagnostics = {globals = ["vim" "hs"];};};};
     capabilities = dsl.rawLua "require('cmp_nvim_lsp').default_capabilities()";
-    cmd = [ "${pkgs.lua-language-server}/bin/lua-language-server" ];
+    cmd = ["${pkgs.lua-language-server}/bin/lua-language-server"];
   };
 
   use.lspconfig.nil_ls.setup = dsl.callWith {
-    cmd = [ "${pkgs.nil}/bin/nil" ];
+    cmd = ["${pkgs.nil}/bin/nil"];
     capabilities = dsl.rawLua "require('cmp_nvim_lsp').default_capabilities()";
   };
 
   use.lspconfig.pyright.setup = dsl.callWith {
-    cmd = [ "${pkgs.pyright}/bin/pyright-langserver" "--stdio" ];
+    cmd = ["${pkgs.pyright}/bin/pyright-langserver" "--stdio"];
   };
 
   use.lspconfig.terraformls.setup =
-    dsl.callWith { cmd = [ "${pkgs.terraform-ls}/bin/terraform-ls" "serve" ]; };
+    dsl.callWith {cmd = ["${pkgs.terraform-ls}/bin/terraform-ls" "serve"];};
 
-  vim.api.nvim_create_augroup = dsl.callWith [ "LspFormatting" { } ];
+  vim.api.nvim_create_augroup = dsl.callWith ["LspFormatting" {}];
 
   lua = ''
     ${builtins.readFile ./lsp.lua}
@@ -69,5 +72,4 @@
         end,
     })
   '';
-
 }

@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   options = {
     kitty = {
       enable = lib.mkEnableOption {
@@ -10,12 +14,10 @@
   };
 
   config = lib.mkIf (config.gui.enable && config.kitty.enable) {
-
     home-manager.users.${config.user} = {
-
       programs.kitty = {
         enable = true;
-        environment = { };
+        environment = {};
         extraConfig = "";
         font.size = 12;
         keybindings = {

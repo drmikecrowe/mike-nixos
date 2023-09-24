@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   options = {
     slack = {
       enable = lib.mkEnableOption {
@@ -10,10 +14,9 @@
   };
 
   config = lib.mkIf (config.gui.enable && config.slack.enable) {
-    nix.allowedUnfree = [ "slack" ];
+    nix.allowedUnfree = ["slack"];
     home-manager.users.${config.user} = {
-      home.packages = with pkgs; [ slack ];
+      home.packages = with pkgs; [slack];
     };
   };
-
 }

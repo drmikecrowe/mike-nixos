@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   options = {
     discord = {
       enable = lib.mkEnableOption {
@@ -10,9 +14,9 @@
   };
 
   config = lib.mkIf (config.gui.enable && config.discord.enable) {
-    nix.allowedUnfree = [ "discord" ];
+    nix.allowedUnfree = ["discord"];
     home-manager.users.${config.user} = {
-      home.packages = with pkgs; [ discord ];
+      home.packages = with pkgs; [discord];
       xdg.configFile."discord/settings.json".text = ''
         {
           "BACKGROUND_COLOR": "#202225",

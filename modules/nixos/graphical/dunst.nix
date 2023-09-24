@@ -1,9 +1,5 @@
-{ config, ... }:
-
-{
-
+{config, ...}: {
   config = {
-
     home-manager.users.${config.user}.services.dunst = {
       enable = false;
       settings = {
@@ -25,7 +21,5 @@
         };
       };
     };
-
   };
-
 }

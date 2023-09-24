@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   environment.persistence."/keep" = {
     hideMounts = true;
     directories = [
@@ -16,7 +19,7 @@
       "/etc/machine-id"
       {
         file = "/etc/nix/id_rsa";
-        parentDirectory = { mode = "u=rwx,g=rx,o=rx"; };
+        parentDirectory = {mode = "u=rwx,g=rx,o=rx";};
       }
       "/etc/ssh/ssh_host_ed25519_key"
       "/etc/ssh/ssh_host_ed25519_key.pub"

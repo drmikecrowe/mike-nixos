@@ -1,15 +1,20 @@
-{ config, pkgs, globals, overlays, home-manager, impermanence, nixos-hardware, ... }:
-
-let
+{
+  config,
+  pkgs,
+  globals,
+  overlays,
+  home-manager,
+  impermanence,
+  nixos-hardware,
+  ...
+}: let
   gruvbox = import ../../colorscheme/gruvbox;
 
   mkZfsMount = device: {
     fsType = "zfs";
-    options = [ "zfsutil" "X-mount.mkdir" ];
+    options = ["zfsutil" "X-mount.mkdir"];
   };
-
-in
-{
+in {
   imports = [
     # inputs.nixos-hardware.nixosModules.dell-xps-15-9560
     nixos-hardware.nixosModules.dell-xps-15-9560-intel
@@ -21,8 +26,7 @@ in
   ];
 
   config = {
-
-    user = globals.user;
+    inherit (globals) user;
 
     # Must be prepared ahead
     passwordHash = pkgs.lib.fileContents ../../password.sha512;
@@ -33,15 +37,15 @@ in
 
     kde.enable = true;
     lightdm.enable = true;
-    sddm.enable = false;
-    budgie.enable = false;
-    gnome.enable = false;
-    gdm.enable = false;
+    # sddm.enable = false;
+    # budgie.enable = false;
+    # gnome.enable = false;
+    # gdm.enable = false;
 
     # Programs and services
     # charm.enable = true;
     gpg.enable = true;
-    # neovim.enable = true;
+    neovim.enable = true;
     kitty.enable = true;
     nushell.enable = true;
     _1password.enable = true;
@@ -59,11 +63,11 @@ in
     };
     gtk.theme.name = pkgs.lib.mkDefault "Adwaita-dark";
 
-    # Hardware   
+    # Hardware
 
     boot.swraid.enable = false;
 
-    boot.kernelModules = [ "kvm-intel" "acpi_call" ];
+    boot.kernelModules = ["kvm-intel" "acpi_call"];
     boot.initrd.availableKernelModules = [
       "xhci_pci"
       "ahci"
@@ -94,15 +98,14 @@ in
       rm -rf $ESP_MIRROR
     '';
 
-    boot.loader.grub.devices =
-      [ "/dev/disk/by-id/nvme-Fanxiang_S500PRO_2TB_FXS500PRO231912172" ];
+    boot.loader.grub.devices = ["/dev/disk/by-id/nvme-Fanxiang_S500PRO_2TB_FXS500PRO231912172"];
 
     # ZFS
     zfs.enable = true;
 
     # Fix unreadable tty under high dpi
     console = {
-      packages = [ pkgs.terminus_font ];
+      packages = [pkgs.terminus_font];
       font = "ter-124n";
     };
 
@@ -144,15 +147,17 @@ in
     services.printing = {
       enable = true;
       # drivers = [ inputs.nixpkgs.gutenprint ];
-      drivers = [ pkgs.samsung-unified-linux-driver ];
+      drivers = [pkgs.samsung-unified-linux-driver];
       browsing = true;
     };
 
     systemd.services.nix-gc.unitConfig.ConditionACPower = true;
 
-    swapDevices = [{
-      device = "/dev/disk/by-uuid/4fdbdf13-9cbf-4c44-a41a-09bc274ff496";
-    }];
+    swapDevices = [
+      {
+        device = "/dev/disk/by-uuid/4fdbdf13-9cbf-4c44-a41a-09bc274ff496";
+      }
+    ];
 
     # fileSystems = {
     #   "/" = mkZfsMount "rpool/nixos" // { neededForBoot = true; };
@@ -170,51 +175,51 @@ in
     fileSystems."/" = {
       device = "rpool/nixos";
       fsType = "zfs";
-      options = [ "zfsutil" "X-mount.mkdir" ];
+      options = ["zfsutil" "X-mount.mkdir"];
       neededForBoot = true;
     };
 
     fileSystems."/home" = {
       device = "rpool/nixos/home";
       fsType = "zfs";
-      options = [ "zfsutil" "X-mount.mkdir" ];
+      options = ["zfsutil" "X-mount.mkdir"];
     };
 
     fileSystems."/keep" = {
       device = "rpool/nixos/keep";
       fsType = "zfs";
-      options = [ "zfsutil" "X-mount.mkdir" ];
+      options = ["zfsutil" "X-mount.mkdir"];
       neededForBoot = true;
     };
 
     fileSystems."/nix" = {
       device = "rpool/nixos/nix";
       fsType = "zfs";
-      options = [ "zfsutil" "X-mount.mkdir" ];
+      options = ["zfsutil" "X-mount.mkdir"];
     };
 
     fileSystems."/root" = {
       device = "rpool/nixos/root";
       fsType = "zfs";
-      options = [ "zfsutil" "X-mount.mkdir" ];
+      options = ["zfsutil" "X-mount.mkdir"];
     };
 
     fileSystems."/usr" = {
       device = "rpool/nixos/usr";
       fsType = "zfs";
-      options = [ "zfsutil" "X-mount.mkdir" ];
+      options = ["zfsutil" "X-mount.mkdir"];
     };
 
     fileSystems."/var" = {
       device = "rpool/nixos/var";
       fsType = "zfs";
-      options = [ "zfsutil" "X-mount.mkdir" ];
+      options = ["zfsutil" "X-mount.mkdir"];
     };
 
     fileSystems."/boot" = {
       device = "bpool/nixos/boot";
       fsType = "zfs";
-      options = [ "zfsutil" "X-mount.mkdir" ];
+      options = ["zfsutil" "X-mount.mkdir"];
       neededForBoot = true;
     };
 
@@ -226,7 +231,7 @@ in
     fileSystems."/boot/efi" = {
       device = "/boot/efis/efiboot0";
       fsType = "none";
-      options = [ "bind" ];
+      options = ["bind"];
     };
 
     # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

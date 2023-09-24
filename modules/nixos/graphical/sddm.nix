@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   options = {
     sddm = {
       enable = lib.mkEnableOption {
@@ -20,7 +24,5 @@
         };
       };
     };
-
   };
-
 }

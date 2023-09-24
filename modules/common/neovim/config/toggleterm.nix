@@ -1,6 +1,9 @@
-{ pkgs, dsl, ... }: {
-
-  plugins = [ pkgs.vimPlugins.toggleterm-nvim ];
+{
+  pkgs,
+  dsl,
+  ...
+}: {
+  plugins = [pkgs.vimPlugins.toggleterm-nvim];
 
   use.toggleterm.setup = dsl.callWith {
     open_mapping = dsl.rawLua "[[<c-\\>]]";
@@ -9,5 +12,4 @@
   };
 
   lua = builtins.readFile ./toggleterm.lua;
-
 }

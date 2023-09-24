@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-  plugins = [ pkgs.vimPlugins.tabular ];
+{pkgs, ...}: {
+  plugins = [pkgs.vimPlugins.tabular];
   lua = ''
     -- Align
     vim.keymap.set("", "<Leader>ta", ":Tabularize /")

@@ -1,7 +1,8 @@
-{ config, pkgs, ... }:
-
-let
-
+{
+  config,
+  pkgs,
+  ...
+}: let
   ignorePatterns = ''
     !*.tfvars
     !.env*
@@ -20,14 +21,9 @@ let
     .terraform/
     /Library/
   '';
-
-in
-{
-
+in {
   config = {
-
     home-manager.users.${config.user} = {
-
       home.packages = with pkgs; [
         age # Encryption
         awscli2
@@ -80,9 +76,6 @@ in
           body = "${pkgs.prettyping}/bin/prettyping --nolegend $target";
         };
       };
-
     };
-
   };
-
 }

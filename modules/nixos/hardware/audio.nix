@@ -1,7 +1,9 @@
-{ config, pkgs, lib, ... }:
-
 {
-
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   config = lib.mkIf (pkgs.stdenv.isLinux && config.gui.enable) {
     sound.enable = true;
 
@@ -22,7 +24,5 @@
     environment.systemPackages = with pkgs; [
       pamixer # Audio control
     ];
-
   };
-
 }

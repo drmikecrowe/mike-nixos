@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   plugins = [
     pkgs.vimPlugins.bufferline-nvim
     pkgs.vimPlugins.vim-bbye # Better closing of buffers
@@ -8,7 +8,7 @@
       diagnostics = "nvim_lsp";
       always_show_bufferline = false;
       separator_style = "slant";
-      offsets = [{ filetype = "NvimTree"; }];
+      offsets = [{filetype = "NvimTree";}];
     };
   };
   lua = ''

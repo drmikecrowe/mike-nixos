@@ -1,4 +1,9 @@
-{ pkgs, dsl, lib, ... }: {
+{
+  pkgs,
+  dsl,
+  lib,
+  ...
+}: {
   plugins = [
     pkgs.vimPlugins.vim-surround # Keybinds for surround characters
     pkgs.vimPlugins.vim-eunuch # File manipulation commands
@@ -9,8 +14,8 @@
     pkgs.vimPlugins.nvim-colorizer-lua # Hex color previews
   ];
 
-  setup.Comment = { };
-  setup.colorizer = { };
+  setup.Comment = {};
+  setup.colorizer = {};
 
   vim.o = {
     termguicolors = true; # Set to truecolor
@@ -47,7 +52,7 @@
   vim.o.backupdir = dsl.rawLua ''vim.fn.stdpath("cache") .. "/backup"'';
 
   # Required for nvim-cmp completion
-  vim.opt.completeopt = [ "menu" "menuone" "noselect" ];
+  vim.opt.completeopt = ["menu" "menuone" "noselect"];
 
   lua = lib.mkBefore ''
     vim.loader.enable()

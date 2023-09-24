@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   options = {
     lightdm = {
       enable = lib.mkEnableOption {
@@ -35,7 +39,5 @@
         };
       };
     };
-
   };
-
 }

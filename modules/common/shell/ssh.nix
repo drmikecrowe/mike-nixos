@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   home-manager.users.${config.user} = {
-
     programs.ssh = {
       enable = true;
       extraConfig = ''

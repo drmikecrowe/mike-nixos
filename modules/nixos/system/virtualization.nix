@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   config = {
-
     virtualisation.docker = {
       enable = true;
       rootless = {
@@ -20,8 +23,8 @@
       ];
       dconf.settings = {
         "org/virt-manager/virt-manager/connections" = {
-          autoconnect = [ "qemu:///system" ];
-          uris = [ "qemu:///system" ];
+          autoconnect = ["qemu:///system"];
+          uris = ["qemu:///system"];
         };
       };
     };
@@ -30,7 +33,5 @@
       "docker"
       "libvirtd"
     ];
-
   };
-
 }

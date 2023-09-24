@@ -1,5 +1,4 @@
 _: {
-
   imports = [
     ./applications
     ./graphical
@@ -7,5 +6,4 @@ _: {
     ./services
     ./system
   ];
-
 }

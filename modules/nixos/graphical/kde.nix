@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   options = {
     kde = {
       enable = lib.mkEnableOption {
@@ -22,10 +26,8 @@
     # Configure keymap in X11
     services = {
       xserver = {
-        desktopManager = { plasma5 = { enable = true; }; };
+        desktopManager = {plasma5 = {enable = true;};};
       };
     };
-
   };
-
 }

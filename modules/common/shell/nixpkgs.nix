@@ -1,6 +1,9 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   home-manager.users.${config.user} = {
-
     programs.fish = {
       shellAbbrs = {
         n = "nix";
@@ -59,20 +62,16 @@
       enable = true;
       enableFishIntegration = true;
     };
-
   };
 
   nix = {
-
     # Set channel to flake packages, used for nix-shell commands
-    nixPath = [ "nixpkgs=${pkgs.path}" ];
+    nixPath = ["nixpkgs=${pkgs.path}"];
 
     # Set registry to this flake's packages, used for nix X commands
     registry.nixpkgs.to = {
       type = "path";
       path = builtins.toString pkgs.path;
     };
-
   };
-
 }

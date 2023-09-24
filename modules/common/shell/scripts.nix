@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   home-manager.users.${config.user}.home = {
-
     packages = [
       (pkgs.writeShellApplication {
         name = "rsyncFolder";

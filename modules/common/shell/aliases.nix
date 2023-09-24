@@ -1,5 +1,10 @@
-{ config, pkgs, lib, options, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  options,
+  ...
+}: {
   environment.shellAliases = {
     ".." = "cd ..";
     "..." = "cd ../..";
@@ -25,16 +30,13 @@
     lsd = "ls -lF | grep --color=never '^d'";
     md = "mkdir -p";
     nixdevnode = "nix flake init --refresh --template github:drmikecrowe/mike-nixos#typescript";
-    nixdevpoetry =
-      "nix flake init --refresh --template github:drmikecrowe/mike-nixos#poetry";
-    nixdevpython =
-      "nix flake init --refresh --template github:drmikecrowe/mike-nixos#python";
+    nixdevpoetry = "nix flake init --refresh --template github:drmikecrowe/mike-nixos#poetry";
+    nixdevpython = "nix flake init --refresh --template github:drmikecrowe/mike-nixos#python";
     psa = "ps aux | cut -b -180";
     psag = "ps aux | cut -b -180 | grep";
     psi = "ps h -eo pmem,comm | sort -nr | head";
     rd = "rmdir";
-    ssh-ports-open =
-      "nmap -T4 -F 192.168.0.10-254 --min-parallelism=20 -oG - | grep 22/open";
+    ssh-ports-open = "nmap -T4 -F 192.168.0.10-254 --min-parallelism=20 -oG - | grep 22/open";
     ta = "tmux attach -t";
     tkill = "tmux kill-session -t";
     tls = "tmux ls";

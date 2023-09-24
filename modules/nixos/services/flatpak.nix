@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   options = {
     flatpak = {
       enable = lib.mkEnableOption {
@@ -21,5 +25,4 @@
       };
     };
   };
-
 }

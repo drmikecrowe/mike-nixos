@@ -1,12 +1,15 @@
-{ config, pkgs, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   home-manager.users.${config.user} = {
-
     packages = with pkgs; [
       tmux
       (pkgs.writeShellApplication {
         name = "pux";
-        runtimeInputs = [ pkgs.tmux ];
+        runtimeInputs = [pkgs.tmux];
         text = ''
           PRJ="$(zoxide query -i)"
           echo "Launching tmux for $PRJ"
@@ -16,7 +19,6 @@
         '';
       })
     ];
-
   };
 
   programs.tmux = {
@@ -96,5 +98,4 @@
       set-window-option -g window-status-style fg=brightcyan,bg=default
     '';
   };
-
 }

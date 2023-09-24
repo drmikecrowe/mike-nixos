@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-  plugins = [ pkgs.vimPlugins.lualine-nvim ];
+{pkgs, ...}: {
+  plugins = [pkgs.vimPlugins.lualine-nvim];
   setup.lualine = {
     options = {
       theme = "gruvbox";

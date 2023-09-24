@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   home-manager.users.${config.user}.programs.starship = {
     enable = true;
     settings = {
@@ -24,7 +28,10 @@
       };
       cmd_duration = {
         min_time = 5000;
-        show_notifications = if pkgs.stdenv.isLinux then false else true;
+        show_notifications =
+          if pkgs.stdenv.isLinux
+          then false
+          else true;
         min_time_to_notify = 30000;
         format = "[$duration]($style) ";
       };
@@ -32,7 +39,7 @@
         truncate_to_repo = true;
         truncation_length = 100;
       };
-      git_branch = { format = "[$symbol$branch]($style)"; };
+      git_branch = {format = "[$symbol$branch]($style)";};
       git_commit = {
         format = "( @ [$hash]($style) )";
         only_detached = false;
@@ -65,7 +72,7 @@
       package = {
         format = "via [🎁 $version](208 bold) ";
       };
-      python = { format = "[\${version}\\(\${virtualenv}\\)]($style)"; };
+      python = {format = "[\${version}\\(\${virtualenv}\\)]($style)";};
       shell = {
         fish_indicator = "󰈺 ";
         powershell_indicator = "_";
@@ -74,5 +81,4 @@
       };
     };
   };
-
 }

@@ -1,5 +1,4 @@
-{ pkgs, ... }: {
-
+{pkgs, ...}: {
   plugins = [
     (pkgs.vimPlugins.nvim-treesitter.withPlugins (_plugins:
       with pkgs.tree-sitter-grammars; [
@@ -19,8 +18,8 @@
   ];
 
   setup."nvim-treesitter.configs" = {
-    highlight = { enable = true; };
-    indent = { enable = true; };
+    highlight = {enable = true;};
+    indent = {enable = true;};
 
     textobjects = {
       select = {
@@ -48,5 +47,4 @@
       };
     };
   };
-
 }

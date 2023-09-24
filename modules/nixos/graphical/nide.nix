@@ -1,8 +1,11 @@
-{ config, pkgs, lib, ... }:
-let
-  nide = builtins.fetchTarball "https://github.com/jluttine/NiDE/archive/master.tar.gz";
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  nide = builtins.fetchTarball "https://github.com/jluttine/NiDE/archive/master.tar.gz";
+in {
   imports = [
     "${nide}/nix/configuration.nix"
   ];

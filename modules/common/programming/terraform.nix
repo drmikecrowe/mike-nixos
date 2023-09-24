@@ -1,9 +1,12 @@
-{ config, pkgs, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   options.terraform.enable = lib.mkEnableOption "Terraform tools.";
 
   config = lib.mkIf config.terraform.enable {
-
     home-manager.users.${config.user} = {
       programs.fish.shellAbbrs = {
         # Terraform
@@ -14,9 +17,6 @@
         terraform-ls # Language server
         tflint # Linter
       ];
-
     };
-
   };
-
 }

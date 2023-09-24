@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   options.gpg.enable = lib.mkEnableOption "GnuPG encryption.";
 
   config.programs = lib.mkIf config.gpg.enable {
@@ -17,9 +21,11 @@
       defaultCacheTtlSsh = 86400; # Resets when used
       maxCacheTtl = 34560000; # Can never reset
       maxCacheTtlSsh = 34560000; # Can never reset
-      pinentryFlavor = if config.gui.enable then "gtk2" else "tty";
+      pinentryFlavor =
+        if config.gui.enable
+        then "gtk2"
+        else "tty";
     };
-    home = lib.mkIf config.gui.enable { packages = with pkgs; [ pinentry ]; };
+    home = lib.mkIf config.gui.enable {packages = with pkgs; [pinentry];};
   };
-
 }

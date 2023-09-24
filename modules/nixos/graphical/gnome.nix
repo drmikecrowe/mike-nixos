@@ -1,15 +1,14 @@
-{ config, pkgs, lib, ... }:
-
-let
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   gtkTheme = {
     inherit (config.gtk.theme) name;
     package = pkgs."${config.gtk.theme.package}";
   };
-
-in
-{
-
+in {
   options = {
     gnome = {
       enable = lib.mkEnableOption {
@@ -74,7 +73,7 @@ in
           color-scheme = "prefer-dark";
           enable-hot-corners = true;
         };
-        "org/gnome/desktop/wm/preferences" = { workspace-names = [ "Main" ]; };
+        "org/gnome/desktop/wm/preferences" = {workspace-names = ["Main"];};
         "org/gnome/shell/extensions/vitals" = {
           show-storage = false;
           show-voltage = true;
@@ -85,7 +84,6 @@ in
           show-network = true;
         };
       };
-
     };
 
     # Configure keymap in X11
@@ -98,19 +96,17 @@ in
         };
       };
 
-      gnome = { gnome-keyring = { enable = true; }; };
+      gnome = {gnome-keyring = {enable = true;};};
     };
 
-    environment.systemPackages = with pkgs; [ gnome.gnome-tweaks ];
+    environment.systemPackages = with pkgs; [gnome.gnome-tweaks];
 
-    services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+    services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 
     security.pam.services.lightdm.enableGnomeKeyring = true;
 
     programs = {
       seahorse.enable = true; # keyring GUI
     };
-
   };
-
 }

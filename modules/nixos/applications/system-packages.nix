@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   config = {
     # Basic common system packages for all devices
     environment.systemPackages = with pkgs; [

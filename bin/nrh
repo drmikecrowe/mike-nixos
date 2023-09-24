@@ -3,6 +3,6 @@
 set -euo pipefail
 
 statix check
-nix fmt
+nix fmt ./flake.nix ./hosts ./modules ./templates
 git add --intent-to-add . 
 home-manager switch --impure $@

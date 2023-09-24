@@ -1,6 +1,9 @@
-{ pkgs, dsl, ... }: {
-
-  plugins = [ pkgs.vimPlugins.nvim-tree-lua pkgs.vimPlugins.nvim-web-devicons ];
+{
+  pkgs,
+  dsl,
+  ...
+}: {
+  plugins = [pkgs.vimPlugins.nvim-tree-lua pkgs.vimPlugins.nvim-web-devicons];
 
   # Disable netrw eagerly
   # https://github.com/kyazdani42/nvim-tree.lua/commit/fb8735e96cecf004fbefb086ce85371d003c5129
@@ -17,7 +20,7 @@
     update_focused_file = {
       enable = true;
       update_root = true;
-      ignore_list = { };
+      ignore_list = {};
     };
     diagnostics = {
       enable = true;
@@ -70,5 +73,4 @@
   lua = ''
     vim.keymap.set("n", "<Leader>e", ":NvimTreeFindFileToggle<CR>", { silent = true })
   '';
-
 }

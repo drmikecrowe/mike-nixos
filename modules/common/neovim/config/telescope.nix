@@ -1,5 +1,8 @@
-{ pkgs, dsl, ... }: {
-
+{
+  pkgs,
+  dsl,
+  ...
+}: {
   plugins = [
     pkgs.vimPlugins.telescope-nvim
     pkgs.vimPlugins.project-nvim
@@ -18,18 +21,17 @@
       };
     };
     pickers = {
-      find_files = { theme = "ivy"; };
-      oldfiles = { theme = "ivy"; };
-      buffers = { theme = "dropdown"; };
+      find_files = {theme = "ivy";};
+      oldfiles = {theme = "ivy";};
+      buffers = {theme = "dropdown";};
     };
     extensions = {
-      fzy_native = { };
-      zoxide = { };
+      fzy_native = {};
+      zoxide = {};
     };
   };
 
-  setup.project_nvim = { };
+  setup.project_nvim = {};
 
   lua = builtins.readFile ./telescope.lua;
-
 }

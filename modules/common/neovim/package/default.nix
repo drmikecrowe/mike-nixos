@@ -25,9 +25,11 @@
 #     ./modules/common/neovim/plugins/tree.nix
 #   ] ++ extraConfig;
 # }
-
-{ pkgs, colors, ... }:
-
+{
+  pkgs,
+  colors,
+  ...
+}:
 pkgs.neovimBuilder {
   package = pkgs.neovim-unwrapped;
   inherit colors;

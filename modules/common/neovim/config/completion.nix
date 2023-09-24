@@ -1,5 +1,8 @@
-{ pkgs, dsl, ... }: {
-
+{
+  pkgs,
+  dsl,
+  ...
+}: {
   plugins = [
     pkgs.vimPlugins.cmp-nvim-lsp
     pkgs.vimPlugins.cmp-buffer
@@ -13,7 +16,6 @@
   ];
 
   use.cmp.setup = dsl.callWith {
-
     # Disable in telescope buffers
     enabled = dsl.rawLua ''
       function()
@@ -31,20 +33,26 @@
     '';
 
     mapping = {
-      "['<C-n>']" = dsl.rawLua
+      "['<C-n>']" =
+        dsl.rawLua
         "require('cmp').mapping.select_next_item({ behavior = require('cmp').SelectBehavior.Insert })";
-      "['<C-p>']" = dsl.rawLua
+      "['<C-p>']" =
+        dsl.rawLua
         "require('cmp').mapping.select_prev_item({ behavior = require('cmp').SelectBehavior.Insert })";
-      "['<Down>']" = dsl.rawLua
+      "['<Down>']" =
+        dsl.rawLua
         "require('cmp').mapping.select_next_item({ behavior = require('cmp').SelectBehavior.Select })";
-      "['<Up>']" = dsl.rawLua
+      "['<Up>']" =
+        dsl.rawLua
         "require('cmp').mapping.select_prev_item({ behavior = require('cmp').SelectBehavior.Select })";
       "['<C-d>']" = dsl.rawLua "require('cmp').mapping.scroll_docs(-4)";
       "['<C-f>']" = dsl.rawLua "require('cmp').mapping.scroll_docs(4)";
       "['<C-e>']" = dsl.rawLua "require('cmp').mapping.abort()";
-      "['<CR>']" = dsl.rawLua
+      "['<CR>']" =
+        dsl.rawLua
         "require('cmp').mapping.confirm({ behavior = require('cmp').ConfirmBehavior.Replace, select = true, })";
-      "['<C-r>']" = dsl.rawLua
+      "['<C-r>']" =
+        dsl.rawLua
         "require('cmp').mapping.confirm({ behavior = require('cmp').ConfirmBehavior.Replace, select = true, })";
       "['<Esc>']" = dsl.rawLua ''
         function(_)
@@ -65,10 +73,10 @@
     };
 
     sources = [
-      { name = "nvim_lua"; }
-      { name = "nvim_lsp"; }
-      { name = "luasnip"; }
-      { name = "path"; }
+      {name = "nvim_lua";}
+      {name = "nvim_lsp";}
+      {name = "luasnip";}
+      {name = "path";}
       {
         name = "buffer";
         keyword_length = 3;
@@ -78,12 +86,12 @@
         name = "rg";
         keyword_length = 6;
         max_item_count = 10;
-        option = { additional_arguments = "--ignore-case"; };
+        option = {additional_arguments = "--ignore-case";};
       }
     ];
 
     formatting = {
-      fields = [ "kind" "abbr" "menu" ];
+      fields = ["kind" "abbr" "menu"];
       format = dsl.rawLua ''
         function(entry, vim_item)
             local kind_icons = {
@@ -131,7 +139,6 @@
       native_menu = false; # Use cmp menu instead of Vim menu
       ghost_text = true; # Show preview auto-completion
     };
-
   };
 
   lua = ''
@@ -151,5 +158,4 @@
         }),
     })
   '';
-
 }

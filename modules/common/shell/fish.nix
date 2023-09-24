@@ -1,11 +1,14 @@
-{ config, pkgs, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   users.users.${config.user}.shell = pkgs.fish;
   programs.fish.enable =
     true; # Needed for LightDM to remember username (TODO: fix)
 
   home-manager.users.${config.user} = {
-
     # Packages used in abbreviations and aliases
     home.packages = with pkgs; [
       curl
@@ -47,7 +50,6 @@
       loginShellInit = "";
 
       shellInit = "";
-
     };
 
     xdg.desktopEntries = lib.mkIf config.gui.enable {
@@ -56,11 +58,10 @@
         genericName = "Terminal emulator";
         exec = "kitty fish -li";
         icon = "fish";
-        categories = [ "System" "TerminalEmulator" "Utility" ];
+        categories = ["System" "TerminalEmulator" "Utility"];
         type = "Application";
         terminal = false;
       };
     };
   };
-
 }

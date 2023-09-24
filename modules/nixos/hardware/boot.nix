@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   boot.loader = lib.mkIf config.physical {
     grub = {
       enable = true;
@@ -22,7 +26,6 @@
         };
         installPhase = "cp -r customize/nixos $out";
       };
-
     };
 
     generationsDir.copyKernels = true;
@@ -34,5 +37,4 @@
 
   # Use latest released Linux kernel by default
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
-
 }

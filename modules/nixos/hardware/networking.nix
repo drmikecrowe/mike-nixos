@@ -1,7 +1,9 @@
-{ config, lib, ... }: {
-
+{
+  config,
+  lib,
+  ...
+}: {
   config = lib.mkIf config.physical {
-
     # DNS service discovery
     services.avahi = {
       enable = true;
@@ -17,5 +19,4 @@
 
     networking.useDHCP = lib.mkDefault true;
   };
-
 }
