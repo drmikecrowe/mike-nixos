@@ -2,7 +2,7 @@
 
   imports = [
     ./applications
-    ./neovim
+    # ./neovim
     ./programming
     ./shell
     ./user-services
