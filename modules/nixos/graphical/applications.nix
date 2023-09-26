@@ -32,13 +32,10 @@ in {
           microsoft-edge
           obsidian
           # peek
-          rnix-lsp
           teams-for-linux
           yubikey-personalization-gui
           yubikey-manager
           yubioath-flutter
-          vivaldi
-          vivaldi-ffmpeg-codecs
           xdg-utils
           zoom-us
         ];

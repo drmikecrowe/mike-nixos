@@ -81,7 +81,7 @@
       inherit pkgs;
       default = pkgs.mkShell {
         name = "flakeShell";
-        buildInputs = with pkgs; [git stylua nixfmt shfmt shellcheck statix nvd];
+        buildInputs = with pkgs; [git stylua nixfmt shfmt shellcheck statix nvd nix-prefetch-scripts];
       };
     });
 
