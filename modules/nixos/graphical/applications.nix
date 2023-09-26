@@ -1,16 +1,15 @@
-{ config
-, pkgs
-, lib
-, ...
-}:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   autostartFolder = ".config/autostart/";
   profileFolder = ".nix-profile/share/applications/";
-  autostartPrograms = [ "org.flameshot.Flameshot" ];
-in
-{
+  autostartPrograms = ["org.flameshot.Flameshot"];
+in {
   config = lib.mkIf config.gui.enable {
-    nix.allowedUnfree = [ "authy" "zoom" "microsoft-edge-stable" "obsidian" "vivaldi" "code" ];
+    nix.allowedUnfree = ["authy" "zoom" "microsoft-edge-stable" "obsidian" "vivaldi" "code"];
 
     home-manager.users.${config.user} = {
       home = {
