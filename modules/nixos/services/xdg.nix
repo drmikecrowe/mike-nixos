@@ -1,15 +1,14 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }: {
   config = {
     xdg = {
       portal = {
         enable = true;
         wlr.enable = true;
-        extraPortals = with pkgs; [xdg-desktop-portal-gtk];
+        extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
         #xdgOpenUsePortal = true;
       };
     };
@@ -20,13 +19,13 @@
         mimeApps = {
           enable = true;
           defaultApplications = {
-            "x-scheme-handler/http" = ["brave.desktop;"];
-            "application/xhtml+xml" = ["brave.desktop;"];
-            "text/html" = ["brave.desktop;"];
-            "x-scheme-handler/https" = ["brave.desktop;"];
-            "image/gif" = ["brave.desktop;"];
-            "image/png" = ["brave.desktop;"];
-            "image/webp" = ["brave.desktop;"];
+            "x-scheme-handler/http" = [ "brave.desktop;" ];
+            "application/xhtml+xml" = [ "brave.desktop;" ];
+            "text/html" = [ "brave.desktop;" ];
+            "x-scheme-handler/https" = [ "brave.desktop;" ];
+            "image/gif" = [ "brave.desktop;" ];
+            "image/png" = [ "brave.desktop;" ];
+            "image/webp" = [ "brave.desktop;" ];
           };
           associations.added = {
             "x-scheme-handler/mailto" = "Mailspring.desktop";
