@@ -10,6 +10,10 @@
     nix2vim.url = "github:gytis-ivaskevicius/nix2vim";
     impermanence.url = "github:nix-community/impermanence/master";
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
+    nide = {
+      url = "github:jluttine/NiDE";
+      flake = false;
+    };
     wallpapers = {
       url = "gitlab:exorcist365/wallpapers";
       flake = false;
@@ -21,6 +25,7 @@
     home-manager,
     impermanence,
     nixos-hardware,
+    nide,
     ...
   } @ inputs: let
     inherit (nixpkgs) lib;
@@ -53,7 +58,7 @@
     ];
 
     specialArgs = {
-      inherit inputs globals home-manager impermanence pkgs nixos-hardware;
+      inherit inputs globals home-manager impermanence pkgs nixos-hardware nide;
     };
     buildConfig = modules: {inherit modules system specialArgs;};
     buildSystem = modules: lib.nixosSystem (buildConfig modules);

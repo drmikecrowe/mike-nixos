@@ -94,6 +94,11 @@ in {
             enable = true;
           };
         };
+        displayManager = {
+          gdm = {
+            inherit (config.services.xserver) enable;
+          };
+        };
       };
 
       gnome = {gnome-keyring = {enable = true;};};

@@ -8,8 +8,6 @@
   mibibyte = 1024 * kibibyte;
   gibibyte = 1024 * mibibyte;
 in {
-  _file = ./nix.nix;
-
   options.nix = {
     allowedUnfree = lib.mkOption {
       type = lib.types.listOf lib.types.str;
@@ -27,7 +25,7 @@ in {
       nix.settings.trusted-users = lib.mkDefault ["root" "@wheel"];
       nix.settings.min-free = lib.mkDefault (5 * gibibyte);
       nix.settings.max-free = lib.mkDefault (25 * gibibyte);
-      nix.settings.allow-import-from-derivation = lib.mkDefault false;
+      # nix.settings.allow-import-from-derivation = lib.mkDefault true;
     }
     {
       # This setting only applies to NixOS, different on Darwin

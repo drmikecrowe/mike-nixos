@@ -2,10 +2,9 @@
   config,
   pkgs,
   lib,
+  nide,
   ...
-}: let
-  nide = builtins.fetchTarball "https://github.com/jluttine/NiDE/archive/master.tar.gz";
-in {
+}: {
   imports = [
     "${nide}/nix/configuration.nix"
   ];
@@ -20,12 +19,20 @@ in {
   };
 
   config = lib.mkIf config.nide.enable {
-    services.xserver.desktopManager.nide = {
-      enable = true;
-      installPackages = true;
+    services = {
+      xserver = {
+        desktopManager = {
+          nide = {
+            enable = true;
+            installPackages = true;
+          };
+        };
+        displayManager = {
+          sddm = {
+            inherit (config.services.xserver) enable;
+          };
+        };
+      };
     };
-    nix.extraOptions = ''
-      tarball-ttl = 0
-    '';
   };
 }

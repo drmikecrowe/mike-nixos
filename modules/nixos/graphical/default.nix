@@ -2,14 +2,10 @@
   imports = [
     ./applications.nix
     ./budgie.nix
-    ./dunst.nix
     ./fonts.nix
     ./gnome.nix
     ./kde.nix
-    ./lightdm.nix
-    ./sddm.nix
-    ./gdm.nix
-    # ./nide.nix
+    ./nide.nix
     ./xorg.nix
   ];
 

@@ -112,6 +112,22 @@
         "type": "github"
       }
     },
+    "nide": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1685021939,
+        "narHash": "sha256-YbqfiB+tKtf9uNLGeeCWZqExuGNfsznfPe1KuFn4B30=",
+        "owner": "jluttine",
+        "repo": "NiDE",
+        "rev": "510852ea9a200359a8fc8f9ddf84d60d7b781678",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jluttine",
+        "repo": "NiDE",
+        "type": "github"
+      }
+    },
     "nix2vim": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -264,6 +280,7 @@
         "alejandra": "alejandra",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
+        "nide": "nide",
         "nix2vim": "nix2vim",
         "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
