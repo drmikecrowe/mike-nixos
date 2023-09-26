@@ -1,22 +1,21 @@
-{ config
-, pkgs
-, globals
-, overlays
-, home-manager
-, impermanence
-, nixos-hardware
-, ...
-}:
-let
+{
+  config,
+  pkgs,
+  globals,
+  overlays,
+  home-manager,
+  impermanence,
+  nixos-hardware,
+  ...
+}: let
   gruvbox = import ../../colorscheme/gruvbox;
 
   mkZfsMount = devicePath: {
     device = devicePath;
     fsType = "zfs";
-    options = [ "zfsutil" "X-mount.mkdir" ];
+    options = ["zfsutil" "X-mount.mkdir"];
   };
-in
-{
+in {
   imports = [
     # inputs.nixos-hardware.nixosModules.dell-xps-15-9560
     nixos-hardware.nixosModules.dell-xps-15-9560-intel
@@ -37,9 +36,7 @@ in
     gui.enable = true;
     physical = true;
 
-    kde.enable = true;
-    # budgie.enable = true;
-    # gnome.enable = true;
+    nide.enable = true;
 
     # Programs and services
     # charm.enable = true;
@@ -66,7 +63,7 @@ in
 
     boot.swraid.enable = false;
 
-    boot.kernelModules = [ "kvm-intel" "acpi_call" ];
+    boot.kernelModules = ["kvm-intel" "acpi_call"];
     boot.initrd.availableKernelModules = [
       "xhci_pci"
       "ahci"
@@ -97,14 +94,14 @@ in
       rm -rf $ESP_MIRROR
     '';
 
-    boot.loader.grub.devices = [ "/dev/disk/by-id/nvme-Fanxiang_S500PRO_2TB_FXS500PRO231912172" ];
+    boot.loader.grub.devices = ["/dev/disk/by-id/nvme-Fanxiang_S500PRO_2TB_FXS500PRO231912172"];
 
     # ZFS
     zfs.enable = true;
 
     # Fix unreadable tty under high dpi
     console = {
-      packages = [ pkgs.terminus_font ];
+      packages = [pkgs.terminus_font];
       font = "ter-124n";
     };
 
@@ -146,7 +143,7 @@ in
     services.printing = {
       enable = true;
       # drivers = [ inputs.nixpkgs.gutenprint ];
-      drivers = [ pkgs.samsung-unified-linux-driver ];
+      drivers = [pkgs.samsung-unified-linux-driver];
       browsing = true;
     };
 
@@ -159,14 +156,14 @@ in
     ];
 
     fileSystems = {
-      "/" = mkZfsMount "rpool/nixos" // { neededForBoot = true; };
+      "/" = mkZfsMount "rpool/nixos" // {neededForBoot = true;};
       "/home" = mkZfsMount "rpool/nixos/home";
-      "/keep" = mkZfsMount "rpool/nixos/keep" // { neededForBoot = true; };
+      "/keep" = mkZfsMount "rpool/nixos/keep" // {neededForBoot = true;};
       "/nix" = mkZfsMount "rpool/nixos/nix";
       "/root" = mkZfsMount "rpool/nixos/root";
       "/usr" = mkZfsMount "rpool/nixos/usr";
       "/var" = mkZfsMount "rpool/nixos/var";
-      "/boot" = mkZfsMount "bpool/nixos/boot" // { neededForBoot = true; };
+      "/boot" = mkZfsMount "bpool/nixos/boot" // {neededForBoot = true;};
       "/boot/efis/efiboot0" = {
         device = "/dev/disk/by-uuid/9250-2D17";
         fsType = "vfat";
@@ -174,7 +171,7 @@ in
       "/boot/efi" = {
         device = "/boot/efis/efiboot0";
         fsType = "none";
-        options = [ "bind" ];
+        options = ["bind"];
       };
     };
 
