@@ -25,6 +25,7 @@ in {
   config = {
     home-manager.users.${config.user} = {
       home.packages = with pkgs; [
+        alejandra
         age # Encryption
         awscli2
         aws-sso-cli

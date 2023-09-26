@@ -36,7 +36,7 @@ in {
     gui.enable = true;
     physical = true;
 
-    nide.enable = true;
+    kde.enable = true;
 
     # Programs and services
     # charm.enable = true;

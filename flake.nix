@@ -7,7 +7,6 @@
     nixos-generators.url = "github:nix-community/nixos-generators";
     nixos-hardware.url = "github:drmikecrowe/nixos-hardware";
     # nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nix2vim.url = "github:gytis-ivaskevicius/nix2vim";
     impermanence.url = "github:nix-community/impermanence/master";
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
     nide = {
@@ -48,7 +47,6 @@
 
     overlays = [
       # (import ./overlays/neovim-p/lugins.nix inputs)
-      inputs.nix2vim.overlay
       (final: prev: {
         openssh = prev.openssh.overrideAttrs (old: {
           patches = (old.patches or []) ++ [./patches/openssh.patch];
@@ -57,11 +55,25 @@
       })
     ];
 
-    specialArgs = {
-      inherit inputs globals home-manager impermanence pkgs nixos-hardware nide;
+    extraSpecialArgs = {
+      inherit inputs globals home-manager pkgs overlays;
     };
-    buildConfig = modules: {inherit modules system specialArgs;};
-    buildSystem = modules: lib.nixosSystem (buildConfig modules);
+
+    specialArgs =
+      extraSpecialArgs
+      // {
+        inherit impermanence nixos-hardware nide;
+      };
+
+    buildSystem = modules:
+      lib.nixosSystem {
+        inherit modules system specialArgs;
+      };
+
+    buildHome = modules:
+      lib.homeManagerConfiguration {
+        inherit modules system extraSpecialArgs;
+      };
   in rec {
     # NixOS configuration entrypoint
     nixosConfigurations = {
@@ -71,7 +83,7 @@
 
     homeConfigurations = {
       "${globals.user}" = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs;};
+        extraSpecialArgs = {inherit inputs pkgs;};
         modules = [nixosConfigurations.xps15.config.home-manager.users.${globals.user}.home];
       };
     };

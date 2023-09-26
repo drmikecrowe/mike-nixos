@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  overlays,
   ...
 }: {
   home-manager.users.${config.user} = {
