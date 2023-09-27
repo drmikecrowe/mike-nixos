@@ -38,13 +38,6 @@
     supportedSystems = [system]; #  "aarch64-darwin"
     forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
 
-    pkgs =
-      import nixpkgs
-      {
-        system = "${system}";
-        config.allowUnfree = true;
-      };
-
     overlays = [
       # (import ./overlays/neovim-p/lugins.nix inputs)
       (final: prev: {
@@ -54,6 +47,14 @@
         });
       })
     ];
+
+    pkgs =
+      import nixpkgs
+      {
+        inherit overlays;
+        system = "${system}";
+        config.allowUnfree = true;
+      };
 
     extraSpecialArgs = {
       inherit inputs globals home-manager pkgs overlays;
