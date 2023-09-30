@@ -8,6 +8,7 @@
 }: 
 {
   imports = [
+   home-manager.nixosModule
     ../../modules/common
   ];
 

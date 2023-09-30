@@ -17,6 +17,10 @@
       url = "gitlab:exorcist365/wallpapers";
       flake = false;
     };
+    hosts = {
+      url = "github:StevenBlack/hosts";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -84,7 +88,7 @@
     homeConfigurations = {
       # "${globals.user}" = buildHome [./home/mcrowe];
       "${globals.user}" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+        inherit pkgs extraSpecialArgs;
         modules = [./home/mcrowe];
       };
     };

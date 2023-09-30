@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   globals,
@@ -20,7 +21,6 @@ in {
     # nixos-hardware.nixosModules.dell-xps-15-9560
     nixos-hardware.nixosModules.dell-xps-15-9560-intel
     # nixos-hardware.nixosModules.dell-xps-15-9560-nvidia
-    home-manager.nixosModule
     impermanence.nixosModule
     ../../modules/nixos
     ../../home/mcrowe
@@ -111,6 +111,7 @@ in {
     networking = {
       hostName = "xps15";
       hostId = "c904de5f";
+      extraHosts = builtins.readFile "${inputs.hosts}/hosts";
       hosts = {
         "192.168.1.107" = [
           "sonarr.local"

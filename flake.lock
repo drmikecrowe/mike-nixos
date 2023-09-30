@@ -78,6 +78,22 @@
         "type": "github"
       }
     },
+    "hosts": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696094456,
+        "narHash": "sha256-tW2G3no6tZP/NuJaOgA9It3tietbRqG+isUh9s6yjGM=",
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "rev": "72a4183fb8e996184eb46b6bffddd411a6e5b78d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "type": "github"
+      }
+    },
     "impermanence": {
       "locked": {
         "lastModified": 1694622745,
@@ -227,6 +243,7 @@
       "inputs": {
         "alejandra": "alejandra",
         "home-manager": "home-manager",
+        "hosts": "hosts",
         "impermanence": "impermanence",
         "nide": "nide",
         "nixos-generators": "nixos-generators",

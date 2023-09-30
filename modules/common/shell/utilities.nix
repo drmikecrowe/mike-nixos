@@ -22,61 +22,59 @@
     /Library/
   '';
 in {
-  config = {
-    home-manager.users.${config.user} = {
-      home.packages = with pkgs; [
-        alejandra
-        age # Encryption
-        awscli2
-        aws-sso-cli
-        atuin
-        bc # Calculator
-        deno
-        dig # DNS lookup
-        fd # find
-        glab # gitlab cli
-        gnumake
-        home-manager
-        htop # Show system processes
-        inetutils # Includes telnet, whois
-        htmlq
-        jq # JSON manipulation
-        mc
-        nmap
-        ripgrep # grep
-        rsync # Copy folders
-        sd # sed
-        tealdeer # Cheatsheets
-        tree # View directory hierarchy
-        unzip # Extract zips
-        vimv-rs # Batch rename files
-        # chatgpt
-        shell_gpt
-        chatblade
-      ];
+  home-manager.users.${config.user} = {
+    home.packages = with pkgs; [
+      alejandra
+      age # Encryption
+      awscli2
+      aws-sso-cli
+      atuin
+      bc # Calculator
+      deno
+      dig # DNS lookup
+      fd # find
+      glab # gitlab cli
+      gnumake
+      home-manager
+      htop # Show system processes
+      inetutils # Includes telnet, whois
+      htmlq
+      jq # JSON manipulation
+      mc
+      nmap
+      ripgrep # grep
+      rsync # Copy folders
+      sd # sed
+      tealdeer # Cheatsheets
+      tree # View directory hierarchy
+      unzip # Extract zips
+      vimv-rs # Batch rename files
+      # chatgpt
+      shell_gpt
+      chatblade
+    ];
 
-      programs.zoxide.enable = true; # Shortcut jump command
+    programs.zoxide.enable = true; # Shortcut jump command
 
-      home.file = {
-        ".rgignore".text = ignorePatterns;
-        ".fdignore".text = ignorePatterns;
-        ".digrc".text = "+noall +answer"; # Cleaner dig commands
+    home.file = {
+      ".rgignore".text = ignorePatterns;
+      ".fdignore".text = ignorePatterns;
+      ".digrc".text = "+noall +answer"; # Cleaner dig commands
+    };
+
+    programs.bat = {
+      enable = true; # cat replacement
+      config = {
+        theme = config.theme.colors.batTheme;
+        pager = "less -R"; # Don't auto-exit if one screen
       };
+    };
 
-      programs.bat = {
-        enable = true; # cat replacement
-        config = {
-          theme = config.theme.colors.batTheme;
-          pager = "less -R"; # Don't auto-exit if one screen
-        };
-      };
-
-      programs.fish.functions = {
-        ping = {
-          description = "Improved ping";
-          argumentNames = "target";
-          body = "${pkgs.prettyping}/bin/prettyping --nolegend $target";
-        };
+    programs.fish.functions = {
+      ping = {
+        description = "Improved ping";
+        argumentNames = "target";
+        body = "${pkgs.prettyping}/bin/prettyping --nolegend $target";
       };
     };
   };
