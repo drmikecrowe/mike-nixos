@@ -7,7 +7,7 @@
   home-manager.users.${config.user}.programs.starship = {
     enable = true;
     settings = {
-      add_newline = false; # Don"t print new line at the start of the prompt
+      add_newline = true; # Don"t print new line at the start of the prompt
       format = lib.concatStrings [
         "$shell"
         "$hostname"
@@ -18,9 +18,10 @@
         "$git_status"
         "$jobs"
         "$cmd_duration"
+        "$nix_shell"
         "$character"
       ];
-      right_format = "$nix_shell";
+      # right_format = "$nix_shell";
       character = {
         success_symbol = "[❯](bold green)";
         error_symbol = "[❯](bold red)";

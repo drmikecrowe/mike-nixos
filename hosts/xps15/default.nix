@@ -17,18 +17,16 @@
   };
 in {
   imports = [
-    # inputs.nixos-hardware.nixosModules.dell-xps-15-9560
+    # nixos-hardware.nixosModules.dell-xps-15-9560
     nixos-hardware.nixosModules.dell-xps-15-9560-intel
-    # inputs.nixos-hardware.nixosModules.dell-xps-15-9560-nvidia
-    impermanence.nixosModule
+    # nixos-hardware.nixosModules.dell-xps-15-9560-nvidia
     home-manager.nixosModule
-    ../../modules/common
+    impermanence.nixosModule
     ../../modules/nixos
+    ../../home/mcrowe
   ];
 
   config = {
-    inherit (globals) user;
-
     # Must be prepared ahead
     passwordHash = pkgs.lib.fileContents ../../password.sha512;
 
@@ -51,13 +49,7 @@ in {
     carapace.enable = true;
 
     continue.enable = true;
-    # services.flatpak.enable = true;
-
-    theme = {
-      colors = (import ../../colorscheme/gruvbox).dark;
-      dark = true;
-    };
-    gtk.theme.name = pkgs.lib.mkDefault "Adwaita-dark";
+    services.flatpak.enable = true;
 
     # Hardware
 

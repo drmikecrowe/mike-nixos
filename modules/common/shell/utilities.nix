@@ -39,6 +39,7 @@ in {
         home-manager
         htop # Show system processes
         inetutils # Includes telnet, whois
+        htmlq
         jq # JSON manipulation
         mc
         nmap

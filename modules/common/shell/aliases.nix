@@ -5,7 +5,7 @@
   options,
   ...
 }: {
-  environment.shellAliases = {
+  home.shellAliases = {
     ".." = "cd ..";
     "..." = "cd ../..";
     "...." = "cd ../../..";

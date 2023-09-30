@@ -103,7 +103,8 @@
       };
     };
 
-    environment.localBinInPath = true;
+    # TODO: where should this go?
+    # environment.localBinInPath = true;
 
     # Use the system-level nixpkgs instead of Home Manager's
     home-manager.useGlobalPkgs = true;

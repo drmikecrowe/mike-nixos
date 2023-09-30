@@ -72,20 +72,20 @@
       };
 
     buildHome = modules:
-      lib.homeManagerConfiguration {
-        inherit modules system extraSpecialArgs;
+      home-manager.lib.homeManagerConfiguration {
+        inherit modules system pkgs extraSpecialArgs;
       };
   in rec {
     # NixOS configuration entrypoint
     nixosConfigurations = {
-      #import ./hosts/xps15 { inherit inputs globals overlays home-manager impermanence pkgs; };
       xps15 = buildSystem [./hosts/xps15];
     };
 
     homeConfigurations = {
+      # "${globals.user}" = buildHome [./home/mcrowe];
       "${globals.user}" = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs pkgs;};
-        modules = [nixosConfigurations.xps15.config.home-manager.users.${globals.user}.home];
+        inherit pkgs;
+        modules = [./home/mcrowe];
       };
     };
 
