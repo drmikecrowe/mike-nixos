@@ -1,7 +1,6 @@
-{
-  pkgs,
-  config,
-  ...
+{ pkgs
+, config
+, ...
 }: {
   packages = [
     # A native dependency of numpy

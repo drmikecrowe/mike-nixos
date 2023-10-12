@@ -9,10 +9,7 @@
     # nixos-hardware.url = "github:NixOS/nixos-hardware";
     impermanence.url = "github:nix-community/impermanence/master";
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
-    nide = {
-      url = "github:jluttine/NiDE";
-      flake = false;
-    };
+    sops-nix.url = "github:Mic92/sops-nix";
     wallpapers = {
       url = "gitlab:exorcist365/wallpapers";
       flake = false;
@@ -23,87 +20,82 @@
     };
   };
 
-  outputs = {
+  outputs = inputs @ {
+    self,
     nixpkgs,
     home-manager,
-    impermanence,
     nixos-hardware,
-    nide,
+    impermanence,
+    sops-nix,
     ...
-  } @ inputs: let
-    inherit (nixpkgs) lib;
+  }: let
+    user = "mcrowe";
 
-    globals = rec {
-      user = "mcrowe";
-      fullName = "Mike Crowe";
+    secrets = import ./secrets {
+      inherit (nixpkgs) lib;
+      inherit sops-nix;
     };
 
-    system = "x86_64-linux";
-    supportedSystems = [system]; #  "aarch64-darwin"
-    forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+    dotfiles = ./dotfiles;
 
-    overlays = [
-      # (import ./overlays/neovim-p/lugins.nix inputs)
-      (final: prev: {
-        openssh = prev.openssh.overrideAttrs (old: {
-          patches = (old.patches or []) ++ [./patches/openssh.patch];
-          doCheck = false;
-        });
-      })
+    linuxSystem = "x86_64-linux";
+
+    hosts = [
+      {
+        host = "xps15";
+        extraOverlays = [];
+        extraModules = [];
+        timezone = "America/New_York";
+        stateVersion = "22.05";
+      }
     ];
 
-    pkgs =
-      import nixpkgs
-      {
-        inherit overlays;
-        system = "${system}";
-        config.allowUnfree = true;
-      };
+    systems = [
+      {system = linuxSystem;}
+    ];
 
-    extraSpecialArgs = {
-      inherit inputs globals home-manager pkgs overlays;
+    forAllSystems = nixpkgs.lib.genAttrs [linuxSystem];
+
+    commonInherits = {
+      inherit (nixpkgs) lib;
+      inherit inputs nixpkgs home-manager;
+      inherit user secrets dotfiles hosts systems sops-nix;
     };
-
-    specialArgs =
-      extraSpecialArgs
+  in {
+    nixosConfigurations = import ./hosts (commonInherits
       // {
-        inherit impermanence nixos-hardware nide;
-      };
+        isNixOS = true;
+        isHardware = true;
+      });
 
-    buildSystem = modules:
-      lib.nixosSystem {
-        inherit modules system specialArgs;
-      };
+    homeConfigurations = import ./hosts (commonInherits
+      // {
+        isNixOS = false;
+        isHardware = false;
+      });
 
-    buildHome = modules:
-      home-manager.lib.homeManagerConfiguration {
-        inherit modules system pkgs extraSpecialArgs;
-      };
-  in rec {
-    # NixOS configuration entrypoint
-    nixosConfigurations = {
-      xps15 = buildSystem [./hosts/xps15];
-    };
-
-    homeConfigurations = {
-      # "${globals.user}" = buildHome [./home/mcrowe];
-      "${globals.user}" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs extraSpecialArgs;
-        modules = [./home/mcrowe];
-      };
-    };
-
-    formatter = nixpkgs.lib.genAttrs supportedSystems (
-      system:
-        nixpkgs.legacyPackages.${system}.alejandra
-    );
+    formatter.${linuxSystem} = nixpkgs.legacyPackages.${linuxSystem}.nixpkgs-fmt;
 
     # Development environments
-    devShells = forAllSystems (system: {
-      inherit pkgs;
+    devShells = forAllSystems (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+      inherit (sops-nix.packages.${system}) sops-init-gpg-key sops-import-keys-hook;
+    in {
       default = pkgs.mkShell {
         name = "flakeShell";
-        buildInputs = with pkgs; [git stylua nixfmt shfmt shellcheck statix nvd nix-prefetch-scripts];
+        sopsPGPKeyDirs = ["./keys/users/"];
+        buildInputs = with pkgs; [
+          git
+          git-crypt
+          stylua
+          nixfmt
+          shfmt
+          shellcheck
+          statix
+          nvd
+          nix-prefetch-scripts
+          sops-init-gpg-key
+        ];
       };
     });
 

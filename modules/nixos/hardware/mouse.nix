@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }: {
   config = lib.mkIf config.gui.enable {
     services.xserver.libinput.mouse = {

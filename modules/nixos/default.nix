@@ -1,7 +1,6 @@
 _: {
   imports = [
-    ./applications
-    ./graphical
+    ./desktop-managers
     ./hardware
     ./services
     ./system

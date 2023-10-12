@@ -1,8 +1,10 @@
 _: {
   imports = [
+    ./continue-server.nix
+    ./duplicati.nix
     ./flatpak.nix
-    ./gnupg.nix
+    ./printing.nix
     # ./secrets.nix
-    ./xdg.nix
+    ./sshd.nix
   ];
 }

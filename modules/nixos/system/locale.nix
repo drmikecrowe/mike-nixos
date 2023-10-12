@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }: {
   config = lib.mkIf pkgs.stdenv.isLinux {
     # Select internationalisation properties.
