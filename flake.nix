@@ -33,7 +33,7 @@
 
     secrets = import ./secrets {
       inherit (nixpkgs) lib;
-      inherit sops-nix;
+      inherit sops-nix user;
     };
 
     dotfiles = ./dotfiles;
@@ -95,6 +95,9 @@
           nvd
           nix-prefetch-scripts
           sops-init-gpg-key
+        ];
+        nativeBuildInputs = [
+          sops-import-keys-hook
         ];
       };
     });
