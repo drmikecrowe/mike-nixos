@@ -1,5 +1,4 @@
-{ secrets
-, dotfiles
+{ dotfiles
 , lib
 , pkgs
 , config

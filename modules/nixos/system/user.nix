@@ -1,7 +1,6 @@
 { config
 , pkgs
 , lib
-, secrets
 , user
 , ...
 }: {
@@ -15,7 +14,7 @@
       isNormalUser = true;
 
       # Automatically create a password to start
-      hashedPassword = secrets.${user}.passwordHash;
+      hashedPassword = config.sops.secrets.${user}.passwordHash;
       uid = 1000;
 
       extraGroups = [

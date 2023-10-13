@@ -39,19 +39,19 @@ in
         identityFile = "~/.ssh/id_rsa_drmikecrowe";
       };
       "bastion-dev" = {
-        hostname = secrets.ssh.bastion-dev;
+        hostname = config.sops.secrets.ssh.bastion-dev;
         identityFile = "~/.ssh/pinnsg-ue1-dev-infrastructure-ssh-key.pub";
       };
       "bastion-data" = {
-        hostname = secrets.ssh.bastion-data;
+        hostname = config.sops.secrets.ssh.bastion-data;
         identityFile = "~/.ssh/pinnsg-ue1-data-infrastructure-ssh-key.pub";
       };
       "bastion-prod" = {
-        hostname = secrets.ssh.bastion-prod;
+        hostname = config.sops.secrets.ssh.bastion-prod;
         identityFile = "~/.ssh/pinnsg-ue1-prod-infrastructure-ssh-key.pub";
       };
       "qbconnector-dev" = {
-        hostname = secrets.ssh/qbconnector-dev;
+        hostname = config.sops.secrets.ssh/qbconnector-dev;
         user = "bitnami";
         identityFile = "~/.ssh/pinnsg-ue1-dev-infrastructure-ssh-key.pub";
       };
