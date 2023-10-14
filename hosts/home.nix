@@ -67,7 +67,6 @@
     direnv = {
       enable = true;
       nix-direnv.enable = true;
-      config = { whitelist = { prefix = [ config.dotfilesPath ]; }; };
     };
     fish.enable =
       true; # Needed for LightDM to remember username (TODO: fix)

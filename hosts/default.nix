@@ -8,7 +8,6 @@
 , user
 , nixpkgs
 , home-manager
-, sops-nix
 , ...
 }:
 let

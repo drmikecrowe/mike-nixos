@@ -4,7 +4,7 @@
 , ...
 }: {
   programs.git = {
-    inherit (sops.secrets.git.drmikecrowe) userName userEmail;
+    inherit (secrets.git.drmikecrowe) userName userEmail;
     package = pkgs.gitAndTools.gitFull;
     enable = true;
     aliases = {

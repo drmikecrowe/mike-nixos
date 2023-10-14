@@ -1,5 +1,9 @@
 { lib, ... }: {
   options = {
+    secrets = lib.mkOption {
+      type = lib.types.attrs;
+      default = { };
+    };
     physical = lib.mkEnableOption {
       description = "Whether this machine is a physical device.";
       default = false;

@@ -1,7 +1,0 @@
-keys:
-  - &mcrowe 8978 4645 9539 BD9C 18F5  0B5F 6741 8918 CA9B B7B1
-creation_rules:
-  - path_regex: secrets/[^/]+\.yaml$
-    key_groups:
-      - pgp:
-          - *mcrowe

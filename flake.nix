@@ -9,7 +9,6 @@
     # nixos-hardware.url = "github:NixOS/nixos-hardware";
     impermanence.url = "github:nix-community/impermanence/master";
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
-    sops-nix.url = "github:Mic92/sops-nix";
     wallpapers = {
       url = "gitlab:exorcist365/wallpapers";
       flake = false;
@@ -26,7 +25,6 @@
     , home-manager
     , nixos-hardware
     , impermanence
-    , sops-nix
     , ...
     }:
     let
@@ -55,7 +53,7 @@
       commonInherits = {
         inherit (nixpkgs) lib;
         inherit inputs nixpkgs home-manager;
-        inherit user dotfiles hosts systems sops-nix;
+        inherit user dotfiles hosts systems;
       };
     in
     {
@@ -77,12 +75,10 @@
       devShells = forAllSystems (system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          inherit (sops-nix.packages.${system}) sops-init-gpg-key sops-import-keys-hook;
         in
         {
           default = pkgs.mkShell {
             name = "flakeShell";
-            sopsPGPKeyDirs = [ "./keys/users/mcrowe.asc" ];
             buildInputs = with pkgs; [
               git
               git-crypt
@@ -93,10 +89,7 @@
               statix
               nvd
               nix-prefetch-scripts
-              sops-init-gpg-key
-            ];
-            nativeBuildInputs = [
-              (pkgs.callPackage sops-nix { }).sops-import-keys-hook
+              ssh-to-age
             ];
           };
         });

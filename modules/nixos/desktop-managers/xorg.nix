@@ -29,12 +29,6 @@
       # Enable the X11 windowing system.
       services.xserver = {
         inherit (config.gui) enable;
-
-        # Enable touchpad support
-        libinput = {
-          enable = true;
-          touchpad.tapping = true;
-        };
       };
 
       environment.systemPackages = with pkgs; [

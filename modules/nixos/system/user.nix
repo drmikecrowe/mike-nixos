@@ -10,11 +10,10 @@
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.${user} = {
+      inherit (config.secrets.${user}) hashedPassword;
       # Create a home directory for human user
       isNormalUser = true;
 
-      # Automatically create a password to start
-      hashedPassword = config.sops.secrets.${user}.passwordHash;
       uid = 1000;
 
       extraGroups = [
