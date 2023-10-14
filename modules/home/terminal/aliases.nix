@@ -13,7 +13,6 @@
     bash = "${pkgs.bashInteractive}/bin/bash";
     c = "clear";
     cnc = "grep '^[^#;]'";
-    code = "flatpack run com.visualstudio.code --wait";
     cpuu = "ps -e -o pcpu,cpu,nice,state,cputime,args --sort pcpu | sed '/^ 0.0 /d'";
     dud = "du -h --max-depth=1 --one-file-system";
     dudg = "du -h --max-depth=1 --one-file-system 2>&1 | egrep '^[0-9.]*G'";

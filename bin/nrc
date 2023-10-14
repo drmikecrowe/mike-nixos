@@ -6,5 +6,5 @@ statix check
 nix fmt ./flake.nix ./hosts ./modules ./templates --quiet
 git add --intent-to-add . 
 set +e
-sudo nixos-rebuild build $@ --option substitute false
+sudo nixos-rebuild build --option substitute false $@ 
 nvd diff /run/current-system result

@@ -25,6 +25,7 @@ in
         };
 
         settings = {
+          max-jobs = lib.mkDefault 12;
           trusted-users = lib.mkDefault [ "root" "@wheel" ];
           min-free = lib.mkDefault (5 * gibibyte);
           max-free = lib.mkDefault (25 * gibibyte);

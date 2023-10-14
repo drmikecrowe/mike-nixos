@@ -38,7 +38,7 @@
       _1password-gui
     ];
     home-manager.users.${user} = {
-      home.file.".config/autostart/1password-startup.desktop".source = "${dotfiles} /autostart/1password-startup.desktop";
+      home.file.".config/autostart/1password-startup.desktop".source = "${dotfiles}/autostart/1password-startup.desktop";
     };
 
     security.wrappers = {
