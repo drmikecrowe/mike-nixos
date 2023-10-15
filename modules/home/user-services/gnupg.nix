@@ -1,4 +1,4 @@
-{ config
+{ osConfig
 , pkgs
 , lib
 , ...
@@ -38,7 +38,7 @@
     maxCacheTtl = 34560000; # Can never reset
     maxCacheTtlSsh = 34560000; # Can never reset
     pinentryFlavor =
-      if config.gui.enable
+      if osConfig.gui.enable
       then "gtk2"
       else "tty";
   };

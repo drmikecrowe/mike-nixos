@@ -1,11 +1,11 @@
 { config
 , pkgs
 , lib
-, secrets
+, osConfig
 , ...
 }: {
   programs.git = {
-    inherit (secrets.git.drmikecrowe) userName userEmail;
+    inherit (osConfig.secrets.git.drmikecrowe) userName userEmail;
     package = pkgs.gitAndTools.gitFull;
     enable = true;
     aliases = {

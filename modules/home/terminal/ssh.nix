@@ -1,13 +1,13 @@
-{ config
-, dotfiles
+{ dotfiles
 , lib
 , overlays
 , pkgs
 , user
-, secrets
+, osConfig
 , ...
 }:
 let
+  inherit (osConfig) secrets;
   # onePassPath = "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"; 
   onePassPath = "~/.1password/agent.sock";
 in
@@ -40,15 +40,15 @@ in
         identityFile = "~/.ssh/id_rsa_drmikecrowe";
       };
       "bastion-dev" = {
-        hostname = config.secrets.ssh.bastion-dev;
+        hostname = secrets.ssh.bastion-dev;
         identityFile = "~/.ssh/pinnsg-ue1-dev-infrastructure-ssh-key.pub";
       };
       "bastion-data" = {
-        hostname = config.secrets.ssh.bastion-data;
+        hostname = secrets.ssh.bastion-data;
         identityFile = "~/.ssh/pinnsg-ue1-data-infrastructure-ssh-key.pub";
       };
       "bastion-prod" = {
-        hostname = config.secrets.ssh.bastion-prod;
+        hostname = secrets.ssh.bastion-prod;
         identityFile = "~/.ssh/pinnsg-ue1-prod-infrastructure-ssh-key.pub";
       };
     };

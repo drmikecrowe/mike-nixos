@@ -3,6 +3,7 @@
 , pkgs
 , config
 , hostname
+, nixpkgs
 , inputs
 , user
 , timezone
@@ -15,6 +16,7 @@
     ../modules/nixos
   ];
 
+  # Nicely reload system units when changing configs
   time.timeZone = timezone;
 
   # Select internationalisation properties.

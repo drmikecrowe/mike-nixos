@@ -1,6 +1,5 @@
 { lib
 , inputs
-, config
 , dotfiles
 , hosts
 , systems
@@ -25,9 +24,12 @@ let
       pkgs = import nixpkgs {
         inherit system;
         config = {
-          allowUnfree = true;
           allowBroken = true;
+          allowUnfree = true;
           allowUnsupportedSystem = true;
+          permittedInsecurePackages = [
+            "mailspring-1.11.0"
+          ];
         };
         overlays =
           [
@@ -74,7 +76,6 @@ let
     else
       home-manager.lib.homeManagerConfiguration
         {
-          inherit (inputs.config) secrets;
           inherit pkgs;
           extraSpecialArgs = extraArgs;
           modules = [

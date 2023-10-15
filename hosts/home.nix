@@ -22,6 +22,7 @@
     fd # find
     fish
     glab # gitlab cli
+    git-crypt
     gnumake
     home-manager
     htmlq
@@ -33,7 +34,6 @@
     nixfmt # Nix file formatter
     nmap
     nushell
-    pinentry
     ripgrep # grep
     rsync # Copy folders
     sd # sed

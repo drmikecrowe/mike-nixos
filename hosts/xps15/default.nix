@@ -15,5 +15,7 @@
       dark = true;
     };
     gtk.theme.name = pkgs.lib.mkDefault "Adwaita-dark";
+
   };
+
 }
