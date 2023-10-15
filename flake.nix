@@ -74,11 +74,11 @@
         isHardware = true;
       });
 
-      # homeConfigurations = import ./hosts (commonInherits
-      #   // {
-      #   isNixOS = false;
-      #   isHardware = false;
-      # });
+      homeConfigurations = import ./hosts (commonInherits
+        // {
+        isNixOS = false;
+        isHardware = false;
+      });
 
       formatter.${linuxSystem} = nixpkgs.legacyPackages.${linuxSystem}.nixpkgs-fmt;
 

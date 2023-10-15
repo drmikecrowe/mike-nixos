@@ -18,7 +18,7 @@ in
 
   powerManagement.cpuFreqGovernor = powerMode;
   services.auto-cpufreq.enable = true;
-  services.thermald.enable = false;
+  services.thermald.enable = true;
 
   # Fix unreadable tty under high dpi
   console = {
