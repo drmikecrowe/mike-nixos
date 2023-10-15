@@ -1,4 +1,4 @@
-{ osConfig
+{ custom
 , lib
 , pkgs
 , ...
@@ -17,7 +17,7 @@ in
     let
       gtkExtraConfig = {
         gtk-application-prefer-dark-theme =
-          if osConfig.theme.dark
+          if custom.theme.dark
           then "true"
           else "false";
       };

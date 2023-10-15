@@ -3,7 +3,6 @@
 , lib
 , ...
 }: {
-
   home = {
     packages = with pkgs; [ carapace ];
     file.".config/fish/setup-carapace.fish".text = ''

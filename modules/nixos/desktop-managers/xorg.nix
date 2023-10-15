@@ -21,14 +21,14 @@
   config =
     let
       gtkTheme = {
-        inherit (config.gtk.theme) name;
-        package = pkgs."${config.gtk.theme.package}";
+        inherit (config.custom.theme) name;
+        package = pkgs."${config.custom.theme.package}";
       };
     in
-    lib.mkIf config.gui.enable {
+    lib.mkIf config.custom.gui.enable {
       # Enable the X11 windowing system.
       services.xserver = {
-        inherit (config.gui) enable;
+        inherit (config.custom.gui) enable;
       };
 
       environment.systemPackages = with pkgs; [

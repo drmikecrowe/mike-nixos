@@ -3,7 +3,7 @@
 , lib
 , ...
 }: {
-  config = lib.mkIf (config.physical && pkgs.stdenv.isLinux) {
+  config = lib.mkIf pkgs.stdenv.isLinux {
     # Yubikey
     services.pcscd.enable = true;
     services.udev.packages = [ pkgs.yubikey-personalization ];

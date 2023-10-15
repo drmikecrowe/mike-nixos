@@ -1,4 +1,4 @@
-{ config
+{ custom
 , pkgs
 , lib
 , user
@@ -10,7 +10,7 @@
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.${user} = {
-      inherit (config.secrets.${user}) hashedPassword;
+      inherit (custom.secrets.${user}) hashedPassword;
       # Create a home directory for human user
       isNormalUser = true;
 

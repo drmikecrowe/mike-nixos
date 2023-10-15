@@ -3,7 +3,7 @@
 , lib
 , ...
 }: {
-  config = lib.mkIf config.gui.enable {
+  config = lib.mkIf config.custom.gui.enable {
     services.xserver = {
       libinput.mouse = {
         # Disable mouse acceleration

@@ -21,6 +21,9 @@ let
     ,
     }: isNixOS: isHardware:
     let
+      inherit (inputs) self;
+      inherit (self.nixosConfigurations.xps15.config) custom;
+      secrets = import ../secrets;
       pkgs = import nixpkgs {
         inherit system;
         config = {
@@ -40,7 +43,8 @@ let
       };
 
       extraArgs = {
-        inherit pkgs inputs isHardware user dotfiles timezone system stateVersion;
+        inherit (self.nixosConfigurations.xps15.config) custom;
+        inherit pkgs inputs isHardware user dotfiles timezone system stateVersion secrets;
         hostname = host;
       };
 
@@ -54,8 +58,12 @@ let
           specialArgs = extraArgs;
           modules =
             [
-              ../secrets
               ../modules/options.nix
+              (
+                { config, ... }: {
+                  custom.secrets = import ../secrets;
+                }
+              )
               ./configuration.nix
               ./${host}
               home-manager.nixosModules.home-manager
@@ -81,6 +89,10 @@ let
           modules = [
             ./home.nix
             ./${host}/home.nix
+            (_: {
+              home.username = user;
+              home.homeDirectory = "/home/${user}";
+            })
           ];
         };
 
@@ -99,10 +111,8 @@ builtins.listToAttrs (map
    }: {
     name =
       if isNixOS
-      then
-        host
-      else
-        user;
+      then host
+      else user;
     value = mkHost mInput isNixOS isHardware;
   })
   permutatedHosts)

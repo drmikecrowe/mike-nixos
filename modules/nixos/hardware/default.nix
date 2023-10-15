@@ -12,7 +12,7 @@
     ./yubikey.nix
   ];
 
-  config = lib.mkIf config.physical {
+  config = {
     hardware.enableRedistributableFirmware = true;
   };
 }

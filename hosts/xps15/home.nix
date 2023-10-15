@@ -35,6 +35,7 @@ in
       pinentry-qt
       slack
       teams-for-linux
+      vivaldi
       xdg-utils
       yubikey-manager
       yubikey-personalization-gui
@@ -52,6 +53,5 @@ in
       executable = true;
     };
     file.".config/discord/settings.json".text = builtins.readFile "${dotfiles}/discord/settings.json";
-
   };
 }

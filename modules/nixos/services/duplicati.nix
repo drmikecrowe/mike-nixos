@@ -3,20 +3,11 @@
 , lib
 , ...
 }: {
-  options = {
-    duplicati = {
-      enable = lib.mkEnableOption {
-        description = "Enable duplicati.";
-        default = false;
-      };
-    };
-  };
-
-  config = lib.mkIf config.duplicati.enable {
+  config = lib.mkIf config.custom.duplicati.enable {
     # Duplicati backup
     services.duplicati = {
       inherit user;
-      enable = true;
+      inherit (config.custom.duplicati) enable;
     };
   };
 }

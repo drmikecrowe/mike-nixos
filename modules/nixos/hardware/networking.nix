@@ -3,7 +3,7 @@
 , lib
 , ...
 }: {
-  config = lib.mkIf config.physical {
+  config = {
     # DNS service discovery
     services.avahi = {
       enable = true;

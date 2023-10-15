@@ -4,16 +4,7 @@
 , user
 , ...
 }: {
-  options = {
-    continue = {
-      enable = lib.mkEnableOption {
-        description = "Enable Continue.";
-        default = false;
-      };
-    };
-  };
-
-  config = lib.mkIf config.continue.enable {
+  config = lib.mkIf config.custom.continue.enable {
     systemd.user.services.continue-server = {
       description = "Continue Server Service";
       wantedBy = [ "multi-user.target" ];

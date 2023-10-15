@@ -13,7 +13,7 @@
     };
   };
 
-  config = lib.mkIf config.kde.enable {
+  config = lib.mkIf config.custom.kde.enable {
     home-manager.users.${user} = {
       home = {
         packages = with pkgs; [

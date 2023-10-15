@@ -3,7 +3,7 @@
 , lib
 , ...
 }: {
-  config = lib.mkIf (pkgs.stdenv.isLinux && config.gui.enable) {
+  config = lib.mkIf (pkgs.stdenv.isLinux && config.custom.gui.enable) {
     # Enable PipeWire
     security.rtkit.enable = true;
     services.pipewire = {
