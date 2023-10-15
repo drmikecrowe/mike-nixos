@@ -5,6 +5,9 @@
 , user
 , ...
 }: {
+  imports = [
+    ../modules/home
+  ];
   home.packages = with pkgs; [
     # chatgpt
     age # Encryption
@@ -30,6 +33,7 @@
     nixfmt # Nix file formatter
     nmap
     nushell
+    pinentry
     ripgrep # grep
     rsync # Copy folders
     sd # sed

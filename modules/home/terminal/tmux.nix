@@ -2,9 +2,10 @@
 , pkgs
 , lib
 , user
+, dotfiles
 , ...
 }: {
-  packages = with pkgs; [
+  home.packages = with pkgs; [
     tmux
     (pkgs.writeShellApplication {
       name = "pux";

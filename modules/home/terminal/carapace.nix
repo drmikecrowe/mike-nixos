@@ -3,23 +3,22 @@
 , lib
 , ...
 }: {
-  options.carapace.enable = lib.mkEnableOption "carapace Shell History.";
 
-  home = lib.mkIf config.carapace.enable {
+  home = {
     packages = with pkgs; [ carapace ];
     file.".config/fish/setup-carapace.fish".text = ''
       mkdir -p ~/.config/fish/completions
       carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)
     '';
   };
-  programs = lib.mkIf config.carapace.enable {
+  programs = {
     bash = {
       bashrcExtra = ''
         source <(carapace _carapace)
       '';
     };
     nushell = {
-      extraConfig = lib.mkIf config.nushell.enable ''
+      extraConfig = ''
         let carapace_completer = {|spans|
           carapace $spans.0 nushell $spans | from json
         }

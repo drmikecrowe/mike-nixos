@@ -3,7 +3,7 @@
 , ...
 }: {
   imports = [
-    ./graphical
+    #./graphical
     ./terminal
     ./user-services
   ];

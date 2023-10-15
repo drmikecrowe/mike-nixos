@@ -24,7 +24,7 @@ in
     in
     {
       enable = true;
-      theme = gtkTheme;
+      # theme = gtkTheme;
       gtk3.extraConfig = gtkExtraConfig;
       gtk4.extraConfig = gtkExtraConfig;
     };

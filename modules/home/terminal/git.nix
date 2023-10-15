@@ -1,6 +1,7 @@
 { config
 , pkgs
 , lib
+, secrets
 , ...
 }: {
   programs.git = {

@@ -10,7 +10,7 @@ let
 in
 {
   imports = [
-    inputs.nixos-hardware.nixosModules.dell-xps-15-9560-intel
+    inputs.nixos-hardware.nixosModules.dell-xps-15-9560
     inputs.impermanence.nixosModule
     ./boot.nix
     ./disks.nix
@@ -50,6 +50,7 @@ in
       package = config.boot.kernelPackages.nvidiaPackages.beta;
       prime = {
         sync.enable = true;
+        offload.enable = false;
 
         # Bus ID of the NVIDIA GPU. You can find it using lspci, either under 3D or VGA
         nvidiaBusId = "PCI:1:0:0";

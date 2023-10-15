@@ -2,6 +2,7 @@
 , inputs
 , pkgs
 , lib
+, dotfiles
 , ...
 }: {
   programs.neovim = {
@@ -38,7 +39,8 @@
     };
 
     file = {
-      ".config/lazygit/config.yml".source = ./files/lazygit.yml;
+      ".config/lazygit/config.yml".source = "${dotfiles}/nvim/lazygit.yml";
+      ".config/nvim/lua/astronvim/options.lua".source = "${dotfiles}/nvim/options.lua";
       ".config/nvim" = {
         recursive = true;
         source = pkgs.fetchFromGitHub {
@@ -50,7 +52,7 @@
       };
       ".config/nvim/lua/user/" = {
         recursive = true;
-        source = ./files/astronvim;
+        source = "${dotfiles}/nvim/astronvim";
       };
     };
 

@@ -42,9 +42,6 @@
     trash = lib.mkIf pkgs.stdenv.isLinux "${pkgs.trash-cli}/bin/trash-put";
     vbpf = "vim ~/.bash_profile";
     vbrc = "vim ~/.bashrc";
-  };
-  home.shellAliases = lib.mkIf config.gui.enable {
     pbcopy = "xclip -selection clipboard -in";
-    pbpaste = "xclip -selection clipboard -out";
   };
 }

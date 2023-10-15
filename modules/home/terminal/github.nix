@@ -4,13 +4,13 @@
 , user
 , ...
 }: {
-  programs.gh = lib.mkIf config.home-manager.users.${user}.programs.git.enable {
+  programs.gh = {
     enable = true;
     gitCredentialHelper.enable = true;
     settings.git_protocol = "https";
   };
 
-  programs.fish = lib.mkIf config.home-manager.users.${user}.programs.gh.enable {
+  programs.fish = {
     shellAbbrs = {
       ghr = "gh repo view -w";
       gha = "gh run list | head -1 | awk '{ print $(NF-2) }' | xargs gh run view";

@@ -1,5 +1,6 @@
 { lib
 , inputs
+, config
 , dotfiles
 , hosts
 , systems
@@ -73,10 +74,10 @@ let
     else
       home-manager.lib.homeManagerConfiguration
         {
+          inherit (inputs.config) secrets;
           inherit pkgs;
           extraSpecialArgs = extraArgs;
           modules = [
-            ../modules/options.nix
             ./home.nix
             ./${host}/home.nix
           ];
