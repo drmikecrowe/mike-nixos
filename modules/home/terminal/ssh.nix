@@ -56,6 +56,7 @@ in
   home.file = {
     ".ssh/Gitpod.pub".source = "${dotfiles}/ssh/Gitpod.pub";
     ".ssh/id_rsa.pub".source = "${dotfiles}/ssh/id_rsa.pub";
+    ".ssh/id_ed25519.pub".source = "${dotfiles}/ssh/id_ed25519.pub";
     ".ssh/id_rsa_drmikecrowe-github.pub".source = "${dotfiles}/ssh/id_rsa_drmikecrowe-github.pub";
     ".ssh/id_rsa_drmikecrowe.pub".source = "${dotfiles}/ssh/id_rsa_drmikecrowe.pub";
     ".ssh/id_rsa_drmikecrowe-ubuntu-rsa.pub".source = "${dotfiles}/ssh/id_rsa_drmikecrowe-ubuntu-rsa.pub";

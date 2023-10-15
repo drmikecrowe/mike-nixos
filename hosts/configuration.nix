@@ -41,6 +41,8 @@
     black # Python formatter
     curl
     file
+    fish
+    nushell
     git
     htop
     killall

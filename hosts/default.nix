@@ -97,7 +97,12 @@ builtins.listToAttrs (map
    , system
    , ...
    }: {
-    name = host;
+    name =
+      if isNixOS
+      then
+        host
+      else
+        user;
     value = mkHost mInput isNixOS isHardware;
   })
   permutatedHosts)

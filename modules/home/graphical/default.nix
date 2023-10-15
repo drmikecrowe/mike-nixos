@@ -4,7 +4,7 @@
 , ...
 }:
 let
-  defaultBrowser = "firefox.desktop";
+  defaultBrowser = "microsoft-edge.desktop";
   defaultEmail = "Mailspring.desktop";
 in
 {
