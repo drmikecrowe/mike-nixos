@@ -63,7 +63,6 @@
     unzip
     usbutils
     vim
-    vscode.fhs
     wget
     zip
   ];

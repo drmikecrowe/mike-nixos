@@ -11,6 +11,7 @@ in
   imports = [
     ./kitty.nix
     ./obsidian.nix
+    ./vscode
   ];
 
   gtk =
