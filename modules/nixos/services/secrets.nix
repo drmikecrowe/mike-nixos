@@ -1,11 +1,10 @@
 # Secrets management method taken from here:
 # https://xeiaso.net/blog/nixos-encrypted-secrets-2021-01-20
 # In my case, I pre-encrypt my secrets and commit them to git.
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }: {
   options = {
     secretsDirectory = lib.mkOption {
@@ -43,14 +42,14 @@
         };
       });
       description = "Set of secrets to decrypt to disk.";
-      default = {};
+      default = { };
     };
   };
 
   config = lib.mkIf pkgs.stdenv.isLinux {
     # Create a default directory to place secrets
 
-    systemd.tmpfiles.rules = ["d ${config.secretsDirectory} 0755 root wheel"];
+    systemd.tmpfiles.rules = [ "d ${config.secretsDirectory} 0755 root wheel" ];
 
     # Declare oneshot service to decrypt secret using SSH host key
     # - Requires that the secret is already encrypted for the host
@@ -58,24 +57,24 @@
 
     systemd.services =
       lib.mapAttrs'
-      (name: attrs: {
-        name = "${name}-secret";
-        value = {
-          description = "Decrypt secret for ${name}";
-          wantedBy = ["multi-user.target"];
-          serviceConfig.Type = "oneshot";
-          script = ''
-            ${pkgs.age}/bin/age --decrypt \
-              --identity ${config.identityFile} \
-              --output ${attrs.dest} \
-              ${attrs.source}
+        (name: attrs: {
+          name = "${name}-secret";
+          value = {
+            description = "Decrypt secret for ${name}";
+            wantedBy = [ "multi-user.target" ];
+            serviceConfig.Type = "oneshot";
+            script = ''
+              ${pkgs.age}/bin/age --decrypt \
+                --identity ${config.identityFile} \
+                --output ${attrs.dest} \
+                ${attrs.source}
 
-            chown '${attrs.owner}':'${attrs.group}' '${attrs.dest}'
-            chmod '${attrs.permissions}' '${attrs.dest}'
-          '';
-        };
-      })
-      config.secrets;
+              chown '${attrs.owner}':'${attrs.group}' '${attrs.dest}'
+              chmod '${attrs.permissions}' '${attrs.dest}'
+            '';
+          };
+        })
+        config.secrets;
 
     # Example declaration
     # config.secrets.my-secret = {

@@ -1,9 +1,9 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, inputs
+, lib
+, ...
 }: {
-  config = lib.mkIf config.physical {
+  config = {
     # DNS service discovery
     services.avahi = {
       enable = true;
@@ -17,6 +17,20 @@
       };
     };
 
-    networking.useDHCP = lib.mkDefault true;
+    # Network
+    networking = {
+      useDHCP = lib.mkDefault true;
+      extraHosts = builtins.readFile "${inputs.hosts}/hosts";
+      hosts = {
+        "192.168.1.107" = [
+          "sonarr.local"
+          "radarr.local"
+          "transfer.local"
+          "sabnzbd.local"
+          "crowenas.local"
+          "jackett.local"
+        ];
+      };
+    };
   };
 }

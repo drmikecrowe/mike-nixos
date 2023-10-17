@@ -1,0 +1,16 @@
+!*.tfvars
+!.env*
+!.github/
+!.gitignore
+"*.swp"
+".DS_Store"
+".cache/"
+".direnv/"
+".history"
+".idea/"
+".venv"
+".vscode/"
+"npm-debug.log"
+.target/
+.terraform/
+/Library/

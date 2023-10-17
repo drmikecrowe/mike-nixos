@@ -1,8 +1,8 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, user
+, ...
 }: {
   options = {
     flatpak = {
@@ -16,11 +16,11 @@
   config = lib.mkIf config.flatpak.enable {
     services.flatpak.enable = false;
 
-    home-manager.users.${config.user} = {
+    home-manager.users.${user} = {
       xdg = {
         systemDirs.data = [
           "/var/lib/flatpak/exports/share"
-          "/home/mcrowe/.local/share/flatpak/exports/share"
+          "/home/${user}/.local/share/flatpak/exports/share"
         ];
       };
     };

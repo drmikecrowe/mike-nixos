@@ -1,20 +1,15 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, user
+, lib
+, ...
 }: {
   imports = [
-    ./virtualization.nix
+    ./fonts.nix
     ./journald.nix
-    ./user.nix
     ./locale.nix
     ./nix.nix
+    ./user.nix
+    ./virtualization.nix
   ];
-
-  config = lib.mkIf pkgs.stdenv.isLinux {
-    # Pin a state version to prevent warnings
-    system.stateVersion =
-      config.home-manager.users.${config.user}.home.stateVersion;
-  };
 }

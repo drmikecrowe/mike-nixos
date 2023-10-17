@@ -1,37 +1,32 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, user
+, ...
 }: {
   config = {
-    virtualisation.docker = {
-      enable = true;
-      rootless = {
+    virtualisation = {
+      docker = {
         enable = true;
-        setSocketVariable = true;
-      };
-      storageDriver = "zfs";
-    };
-
-    virtualisation.libvirtd.enable = true;
-
-    home-manager.users.mcrowe = {
-      home.packages = with pkgs; [
-        virt-manager
-        docker-compose
-      ];
-      dconf.settings = {
-        "org/virt-manager/virt-manager/connections" = {
-          autoconnect = ["qemu:///system"];
-          uris = ["qemu:///system"];
+        rootless = {
+          enable = true;
+          setSocketVariable = true;
         };
+        storageDriver = "btrfs";
       };
+
+      libvirtd.enable = true;
     };
 
-    users.users.mcrowe.extraGroups = [
+    environment.systemPackages = with pkgs; [
+      virt-manager
+      docker-compose
+    ];
+
+    users.users.${user}.extraGroups = [
       "docker"
       "libvirtd"
     ];
+    users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
   };
 }

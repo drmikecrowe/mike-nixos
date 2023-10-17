@@ -5,4 +5,4 @@ set -euo pipefail
 statix check
 nix fmt ./flake.nix ./hosts ./modules ./templates
 git add --intent-to-add . 
-sudo nixos-rebuild switch --impure $@
+sudo nixos-rebuild switch $@
