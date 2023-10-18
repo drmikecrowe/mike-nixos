@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=ulauncher
+Exec=/home/mcrowe/.nix-profile/bin/ulauncher
+Terminal=false
+Type=Application
+Comment=ULauncher startup
+Categories=Office;

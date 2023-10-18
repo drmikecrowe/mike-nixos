@@ -32,6 +32,7 @@ in
       meld
       microsoft-edge
       obsidian
+      ulauncher
       pinentry-qt
       slack
       teams-for-linux
@@ -42,6 +43,8 @@ in
       yubioath-flutter
       zoom-us
     ];
+
+    file.".config/autostart/ulauncher-startup.desktop".source = "${dotfiles}/autostart/ulauncher-startup.desktop";
 
     file.".config/autostart/launch-copyq" = {
       text = ''

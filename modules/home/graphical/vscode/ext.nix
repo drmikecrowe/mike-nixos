@@ -97,12 +97,6 @@
       sha256 = "1dz5ry8y2z1s94vfhrrncjfnndclywr50lydci5ybky0n7cnqmg9";
     }
     {
-      name = "simple-react-snippets";
-      publisher = "burkeholland";
-      version = "1.2.7";
-      sha256 = "03gryblj2y4bww56b0ixcsvsmvi5wc4iag3gym5l02y8f83nplzc";
-    }
-    {
       name = "graphql-codegen-vscode";
       publisher = "capaj";
       version = "1.1.0";
@@ -144,12 +138,6 @@
     #   version = "0.1.25";
     #   sha256 = "0753hzwhbjg8714np7fyzkjqrky5ghb5gdk2lfj94zq80r4srxrh";
     # }
-    {
-      name = "vscode-myssql-client2";
-      publisher = "cweijan";
-      version = "6.7.8";
-      sha256 = "1il5ajp1aqixsyk19ynjrm9dv2mp44s0scrrdw1x53ad9jlcl0xn";
-    }
     {
       name = "dakara-foldplus";
       publisher = "dakara";
@@ -259,18 +247,6 @@
       sha256 = "1lqsljz7zrmwn7wgzw5qqkqv5vl8x397cas9xhq3g9y4q3m85zgy";
     }
     {
-      name = "todo-tree";
-      publisher = "Gruntfuggly";
-      version = "0.0.226";
-      sha256 = "0yrc9qbdk7zznd823bqs1g6n2i5xrda0f9a7349kknj9wp1mqgqn";
-    }
-    {
-      name = "vscode-git-cruise";
-      publisher = "GuodongSun";
-      version = "0.2.4";
-      sha256 = "1lim3wvvrwk7cmgsyd6krzvg2fgfspkha4qx2lns1swxyz27abr8";
-    }
-    {
       name = "editorenhancements";
       publisher = "gurayyarar";
       version = "1.0.1";
@@ -355,12 +331,6 @@
       sha256 = "17kda559kw9b4qk4y6whb4dpnihdalfb0ran5445ghh61hxjv8wg";
     }
     {
-      name = "vuetify-pug-snippet";
-      publisher = "lucaslpsan";
-      version = "0.6.0";
-      sha256 = "0kj7wnypflyn5b3v1kxmf7zgalpr9z76b69nrhsgfwrf61cfcm1l";
-    }
-    {
       name = "vscode-swissknife";
       publisher = "luisfontes19";
       version = "1.8.1";
@@ -371,12 +341,6 @@
       publisher = "lunaryorn";
       version = "0.4.0";
       sha256 = "06pdiazxl4xpql6xcmv1sz77i2dcj7mfjsfdxbsa5cky007sqifh";
-    }
-    {
-      name = "gitless";
-      publisher = "maattdd";
-      version = "11.7.2";
-      sha256 = "05zbxi1f1jb53ijnxrj7ixm8xfsxmh8hlb6rwxsfc7gs3hs9k1xd";
     }
     {
       name = "vscode-npm-explorer";
@@ -407,12 +371,6 @@
       publisher = "meganrogge";
       version = "0.6.1";
       sha256 = "168v08bpkw3wgy1x67z8vjsi5hrmmh16rj8kvkqd3zr63p76jjn3";
-    }
-    {
-      name = "git-graph";
-      publisher = "mhutchie";
-      version = "1.30.0";
-      sha256 = "000zhgzijf3h6abhv4p3cz99ykj6489wfn81j0s691prr8q9lxxh";
     }
     {
       name = "black-formatter";
@@ -499,12 +457,6 @@
       sha256 = "160blmm22j2dsr2ms4b33jvdqnh94hcakvcwhhsyjqxld2x951ri";
     }
     {
-      name = "vetur";
-      publisher = "octref";
-      version = "0.37.3";
-      sha256 = "110wn2cfmdd64ry34234d3z27ph2chlgd0c9d8c918vdwqnba66y";
-    }
-    {
       name = "vscode-jest";
       publisher = "Orta";
       version = "6.0.1";
@@ -523,22 +475,10 @@
       sha256 = "08rq5gppir6vpifl8n3yijs9xyf9zs2jw4gz6p4ss6pbsy8min3q";
     }
     {
-      name = "openapi-designer";
-      publisher = "philosowaffle";
-      version = "0.3.0";
-      sha256 = "04w0m59l0z8jx9566awnf68gf6m0fp8vxpcpbr2wvg2i3623jg58";
-    }
-    {
       name = "svelte-autoimport";
       publisher = "pivaszbs";
       version = "1.0.4";
       sha256 = "149as4m34appldccrzkvm63kbnsn9xc684j88b5favk6mih5kb1j";
-    }
-    {
-      name = "vscode-vue-pug-enhanced";
-      publisher = "quanzaiyu";
-      version = "1.1.17";
-      sha256 = "1xf8jc8v45317pfyw8pg7x3aphi5fs0dng2nch92pai37dw6z3k2";
     }
     {
       name = "sqlite-viewer";
@@ -647,12 +587,6 @@
       publisher = "Tyriar";
       version = "1.11.0";
       sha256 = "0c8y2b64gsfbwjy6yvzkz86vj9vqhsrf50ah0645yybc737hzzig";
-    }
-    {
-      name = "intellicode-api-usage-examples";
-      publisher = "VisualStudioExptTeam";
-      version = "0.2.8";
-      sha256 = "1l1wjzbl5jjniyiqzlj23i3sl2xy5jsx97wsj3sbb6py0pfi4w39";
     }
     {
       name = "vscodeintellicode";
