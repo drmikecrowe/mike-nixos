@@ -12,4 +12,7 @@
     ./user.nix
     ./virtualization.nix
   ];
+  programs.fish = {
+    enable = true;
+  };
 }

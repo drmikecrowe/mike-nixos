@@ -8,6 +8,8 @@
     # Allows us to declaritively set password
     users.mutableUsers = false;
 
+    users.defaultUserShell = pkgs.fish;
+
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.${user} = {
       inherit (custom.secrets.${user}) hashedPassword;

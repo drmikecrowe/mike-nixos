@@ -143,6 +143,10 @@
             email = "mike.crowe@mikkeltech.com";
             signingkey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDNCk0Q0fp4hHu8zU1Y5spTI2hZ60pYHQI92aOW09pUg5Gbh7XPO+mT/gPX00T9EX4IRWrNlfZj/zBWfVGmOoWXFdq9sV9C0INAGMldaaxF2RZ7xgqdb1h81UkmQmSasBU4qIJFNxIy7B2SPNZE89uIXSDBU71JwJfYOxxzNnKJjv84jJYhBADHiuV3JFuuxkxZo75wm9okKtRbbbvMj6Dt0GnsxzM9ZDFV2SaaFwTiSCYVmqmuJYKYGXNcMJIlQoT3c7mgDssflto+VJbnNGwXnxX13WmiE2/w83UjRSppvGGUnca0B4kCm+i+/vvV1Rvf3opIixghntReivQlE4P/NKTztEt6nHQ159UdQYDezumGnFO/uG+Q8wisy0Cg0eCEDbKO/kHAuyc5C1scVcXhftxgyEPDEMrLckFfebjhtP9z4courjK8/pirFyWXHhgezYYMBQ6LX3Ma+vNhkD97wvmbMRYEqXMfZodEJNygsoigZdr+jjRS/UUv445UXAGgamE85MLV/lVyWM1yGweY2PpEebKXg8oi3tYZAiB+iJsJxcLve0BFAavRF84cjvvTzkVrIgQRb6f2ErcE2J6OwPQQadGd5lC/HfyDl4DLWDIzEjLdNPMcJ9BWPNhjzoiLZOT3PQJv1HUaFCeGMbA8C7zy3+kxS+VnwPPjT58/Tw==";
           };
+          gpg = {
+            format = "ssh";
+            ssh = { program = "op-ssh-sign"; };
+          };
           core = { sshCommand = "ssh -i ~/.ssh/id_rsa_mikkel.pub"; };
         };
         condition = "hasconfig:remote.*.url:git@github.com:mikkeltech/*";
@@ -153,6 +157,10 @@
             name = "Mike Crowe";
             email = "mike.crowe@pinnsg.com";
             signingkey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCe2RcKDoix4So+hT8Mr6gpas/gLfYId7Ab6mXSswRz8x2Tzg1ynNyUPXKER0vpsoVLs/CmTc9b0nJM/o2xJzrVxKIN/8Z4jqbM2bDmUFO0Hy4bVJnQnyj3vhMEOQS4UjdGVHVsGkeA/4mGg3hvCOG7TzCdVUd4OhK/zA+3vANQFhAzk6g5d6Ae6sp7WPU2CrTjGOkXB6+jRaRIOHtosQF9dCOp4FxBhT9AJBjZOBxkjMA9imf8CcczRmRwjSGHLy1feBdJCzWC+SZqgn1xCv4I/DdOxXvh8E41ttIFp4J2JFyk4anwOMWZvrg08UiUUOhaqKMB3eTM41YuEW/ls5FID25f6Ex9iG5Gw1cV9h2kZiRxJgCktrw3qIruFuGvFEobKOQctoYPoMRuqb482KFMeUk17mB9O7I4t5GKyyXDi8HhHLdwoytGhCzAO7RkYHUUGywh48D2NMkjvgFLTagERqZ45YU9OwrDM1JVUMXLPPmZvnxD977TK6g5L5WWjpEftm1dEqAUXv/GMNJzjIvGJPLehARpdYErcbvVftOupay3TRjmRahvAvXJ3rX9Ce2pyrOXaB1A2qqRlpuCDpiCxVpRWC088Q/XQs4qugCmcHM3eX290W4LoqsJUeUNYOR5JAuk7iTJtZH38EC46oFitBsnLzW0/5YSNL/v300p8w==";
+          };
+          gpg = {
+            format = "ssh";
+            ssh = { program = "op-ssh-sign"; };
           };
           core = { sshCommand = "ssh -i ~/.ssh/id_rsa_pinnsg.pub"; };
         };

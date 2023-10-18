@@ -53,12 +53,12 @@
     pciutils
     pciutils
     poetry
-    python310Full
-    python310Packages.flake8 # Python linter
-    python310Packages.mypy # Python linter
-    python310Packages.pip
-    python310Packages.poetry-core
-    python310Packages.pynvim
+    python311Full
+    python311Packages.flake8 # Python linter
+    python311Packages.mypy # Python linter
+    python311Packages.pip
+    python311Packages.poetry-core
+    python311Packages.pynvim
     sysz
     unzip
     usbutils
