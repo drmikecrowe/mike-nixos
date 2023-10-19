@@ -1,0 +1,368 @@
+{
+    "[handlebars]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[markdown]": {
+        "editor.formatOnSave": false,
+        "editor.quickSuggestions": {
+            "comments": false,
+            "other": true,
+            "strings": true
+        }
+    },
+    "[nix]": {},
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnType": true
+    },
+    "[sql]": {
+        "editor.defaultFormatter": "AdamRybak.graycat-sql-formatter"
+    },
+    "[svelte]": {
+        "editor.defaultFormatter": "svelte.svelte-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[vue]": {
+        "editor.defaultFormatter": "Vue.volar",
+        "editor.formatOnSave": true
+    },
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "cSpell.enabledLanguageIds": [
+        "asciidoc",
+        "markdown",
+        "plaintext",
+        "text"
+    ],
+    "cSpell.patterns": [],
+    "codeium.enableConfig": {
+        "*": true,
+        "nix": true,
+        "nushell": true
+    },
+    "continue.serverUrl": "",
+    "continue.serverUrl2": "localhost:65433",
+    "databricks.lastActiveConnection": "Databricks Extension",
+    "debug.terminal.clearBeforeReusing": true,
+    "diffEditor.codeLens": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.accessibilitySupport": "off",
+    "editor.autoClosingBrackets": "never",
+    "editor.autoClosingDelete": "always",
+    "editor.autoClosingQuotes": "never",
+    "editor.cursorStyle": "line",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.detectIndentation": true,
+    "editor.fontLigatures": true,
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true,
+    "editor.inlineSuggest.enabled": true,
+    "editor.lineNumbers": "on",
+    "editor.minimap.enabled": false,
+    "editor.semanticTokenColorCustomizations": {
+        "enabled": true
+    },
+    "editor.suggest.insertMode": "replace",
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "on",
+    "editor.wordWrap": "off",
+    "emmet.includeLanguages": {
+        "vue": "html"
+    },
+    "eslint.alwaysShowStatus": true,
+    "eslint.format.enable": true,
+    "eslint.lintTask.enable": true,
+    "explorer.autoReveal": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+        "*.cts": "${capture}.typegen.ts",
+        "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+        "*.jsx": "${capture}.js",
+        "*.mts": "${capture}.typegen.ts",
+        "*.ts": "${capture}.js, ${capture}.typegen.ts",
+        "*.tsx": "${capture}.ts, ${capture}.typegen.ts",
+        "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml",
+        "tsconfig.json": "tsconfig.*.json"
+    },
+    "extensions.ignoreRecommendations": true,
+    "files.associations": {
+        "*.gs": "javascript",
+        "*.scss": "stylus",
+        "*.sql": "sql",
+        ".mjs": "javascript",
+        ".xonshrc": "xonsh",
+        ".xsh": "xonsh"
+    },
+    "files.autoSave": "onFocusChange",
+    "files.exclude": {
+        "**/*.js": {
+            "when": "$(basename).ts"
+        },
+        "**/*.map": true,
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.hg": true,
+        "**/.svn": true,
+        "**/CVS": true,
+        "**/__pycache__/**": true,
+        "**/node_modules/**": true,
+        ".direnv/**": true,
+        ".webpack": true,
+        "/**/.nuxt": true,
+        "/tmp/**": true
+    },
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.fetchOnPull": true,
+    "git.openRepositoryInParentFolders": "never",
+    "git.suggestSmartCommit": false,
+    "github.copilot.advanced": {
+        "authProvider": "github"
+    },
+    "github.copilot.enable": {
+        "*": true,
+        "markdown": false,
+        "plaintext": false,
+        "scminput": false
+    },
+    "html.autoClosingTags": false,
+    "javascript.autoClosingTags": false,
+    "javascript.preferences.importModuleSpecifier": "shortest",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "jest.autoRun": "off",
+    "jest.shell": "bash",
+    "jupyter.interactiveWindow.cellMarker.codeRegex": "^(#\\s*COMMAND\\s*[-]*|#\\s*%%|#\\s*\\<codecell\\>|#\\s*In\\[\\d*?\\]|#\\s*In\\[ \\])",
+    "liveServer.settings.NoBrowser": true,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "liveServer.settings.donotVerifyTags": true,
+    "local-history.exclude": [
+        "**/.config/**",
+        "**/.history/**",
+        "**/.vscode/**",
+        "**/node_modules/**",
+        "**/typings/**",
+        "**/out/**",
+        "**/Code/User/**"
+    ],
+    "markdown-preview-enhanced.previewTheme": "gothic.css",
+    "markdown-preview-enhanced.revealjsTheme": "black.css",
+    "mypy.enabled": false,
+    "nix.enableLanguageServer": true,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "notebook.formatOnSave.enabled": true,
+    "npm.exclude": "**/.direnv/**",
+    "npm.packageManager": "pnpm",
+    "prettier.printWidth": 132,
+    "prettier.semi": false,
+    "prettier.trailingComma": "all",
+    "python.analysis.extraPaths": [],
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.useLibraryCodeForTypes": true,
+    "python.formatting.provider": "black",
+    "python.languageServer": "Pylance",
+    "python.testing.unittestEnabled": true,
+    "rainbow_csv.autodetection_min_line_count": 5,
+    "redhat.telemetry.enabled": true,
+    "rst.preview.pythonPath": "/opt/homebrew/bin/python3",
+    "search.exclude": {
+        "**/*.js": {
+            "when": "$(basename).ts"
+        },
+        "**/*.map": true,
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.hg": true,
+        "**/.history/**": true,
+        "**/.svn": true,
+        "**/CVS": true,
+        "**/node_modules/**": true
+    },
+    "security.workspace.trust.untrustedFiles": "open",
+    "settingsSync.ignoredSettings": [
+        "terminal.integrated.fontFamily",
+        "terminal.integrated.fontSize",
+        "editor.fontFamily",
+        "editor.fontSize"
+    ],
+    "svelte.enable-ts-plugin": true,
+    "terminal.integrated.automationProfile.osx": {
+        "path": "/bin/zsh"
+    },
+    "terminal.integrated.defaultProfile.linux": "fish",
+    "terminal.integrated.defaultProfile.osx": "fish",
+    "terminal.integrated.fontFamily": "JetBrains Mono",
+    "terminal.integrated.inheritEnv": false,
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "icon": "terminal-bash",
+            "path": "bash"
+        },
+        "fish": {
+            "path": "fish"
+        },
+        "nushell": {
+            "path": "nu"
+        },
+        "pwsh": {
+            "icon": "terminal-powershell",
+            "path": "pwsh"
+        },
+        "tmux": {
+            "icon": "terminal-tmux",
+            "path": "tmux"
+        },
+        "zsh": {
+            "path": "zsh"
+        }
+    },
+    "terminal.integrated.profiles.osx": {
+        "bash": {
+            "args": [
+                "-l"
+            ],
+            "icon": "terminal-bash",
+            "path": "/usr/local/bin/bash"
+        },
+        "fish": {
+            "path": "/opt/homebrew/bin/fish"
+        },
+        "pwsh": {
+            "icon": "terminal-powershell",
+            "path": "pwsh"
+        },
+        "tmux": {
+            "icon": "terminal-tmux",
+            "path": "tmux"
+        },
+        "zsh": {
+            "args": [
+                "-l"
+            ],
+            "path": "zsh"
+        }
+    },
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "[ ]",
+        "[x]"
+    ],
+    "typescript.autoClosingTags": false,
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "typescriptHero.imports.insertSemicolons": false,
+    "typescriptHero.verbosity": "info",
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-c>": false,
+        "<C-d>": false,
+        "<C-h>": false,
+        "<C-k>": false,
+        "<C-n>": false,
+        "<C-s>": false,
+        "<C-u>": false,
+        "<C-v>": false,
+        "<C-w>": false,
+        "<C-x>": false
+    },
+    "vim.hlsearch": true,
+    "vim.ignorecase": false,
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "<C-n>"
+            ],
+            "commands": [
+                ":nohl"
+            ]
+        },
+        {
+            "before": [
+                "u"
+            ],
+            "commands": [
+                "undo"
+            ]
+        },
+        {
+            "before": [
+                "c-r"
+            ],
+            "commands": [
+                "redo"
+            ]
+        }
+    ],
+    "vim.overrideCopy": false,
+    "vim.startInInsertMode": true,
+    "vim.useCtrlKeys": false,
+    "vim.useSystemClipboard": true,
+    "vim.visualstar": true,
+    "volar.codeLens.pugTools": true,
+    "vscode-vue-pug-enhanced.useTab": true,
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "window.restoreWindows": "all",
+    "window.titleBarStyle": "custom",
+    "window.zoomLevel": 1,
+    "workbench.colorTheme": "Snazzy Light",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook",
+        "*.msg": "default"
+    },
+    "yaml.customTags": [
+        "!And",
+        "!And sequence",
+        "!If",
+        "!If sequence",
+        "!Not",
+        "!Not sequence",
+        "!Equals",
+        "!Equals sequence",
+        "!Or",
+        "!Or sequence",
+        "!FindInMap",
+        "!FindInMap sequence",
+        "!Base64",
+        "!Join",
+        "!Join sequence",
+        "!Cidr",
+        "!Ref",
+        "!Sub",
+        "!Sub sequence",
+        "!GetAtt",
+        "!GetAZs",
+        "!ImportValue",
+        "!ImportValue sequence",
+        "!Select",
+        "!Select sequence",
+        "!Split",
+        "!Split sequence"
+    ],
+    "yaml.format.singleQuote": true,
+    "yaml.validate": false
+}

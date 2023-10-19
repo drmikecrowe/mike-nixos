@@ -1,4 +1,8 @@
-{ lib, pkgs, user, ... }: {
+{ lib
+, pkgs
+, user
+, ...
+}: {
   options = {
     custom = {
       _1password = {
