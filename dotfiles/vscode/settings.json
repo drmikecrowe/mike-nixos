@@ -179,6 +179,10 @@
         "/home/mcrowe/.vscode/extensions/continue.continue-0.0.412-linux-x64",
         "/home/mcrowe/.vscode/extensions/Continue.continue"
     ],
+    "python.autoComplete.extraPaths": [
+        "/home/mcrowe/.vscode/extensions/continue.continue-0.0.412-linux-x64",
+        "/home/mcrowe/.vscode/extensions/Continue.continue"
+    ],
     "python.analysis.typeCheckingMode": "basic",
     "python.analysis.useLibraryCodeForTypes": true,
     "python.formatting.provider": "black",
@@ -367,9 +371,5 @@
         "!Split sequence"
     ],
     "yaml.format.singleQuote": true,
-    "yaml.validate": false,
-    "python.autoComplete.extraPaths": [
-        "/home/mcrowe/.vscode/extensions/continue.continue-0.0.412-linux-x64",
-        "/home/mcrowe/.vscode/extensions/Continue.continue"
-    ]
+    "yaml.validate": false
 }

@@ -1,5 +1,3 @@
 final: prev: {
-  custom = {
-    # TODO
-  };
+    aws-sso-cli = prev.callPackage ./aws-sso-cli.nix { };
 }

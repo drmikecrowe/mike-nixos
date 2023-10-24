@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=ulauncher
+Name=/etc/profiles/per-user/mcrowe/bin/ulauncher
 Exec=/home/mcrowe/.nix-profile/bin/ulauncher
 Terminal=false
 Type=Application

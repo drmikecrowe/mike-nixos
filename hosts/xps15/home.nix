@@ -36,6 +36,7 @@ in
       pinentry-qt
       slack
       teams-for-linux
+      vlc
       vivaldi
       xdg-utils
       yubikey-manager
