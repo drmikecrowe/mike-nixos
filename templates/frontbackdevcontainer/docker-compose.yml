@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+  backend:
+    build: .
+    image: backend:0.1
+    container_name: "backend"
+    hostname: "backend.local"
+    networks:
+      - "development_default"
+    ports:
+      - "3000:3000/tcp"
+    volumes:
+      - "$HOME/.aws:/root/.aws"
+      - "./.zshrc:/root/.zshrc"
+      - "./.bashrc:/root/.bashrc"
+      - "./backend:/workspace"
+    working_dir: "/workspace"
+  frontend:
+    build: .
+    image: frontend:0.1
+    container_name: "frontend"
+    hostname: "frontend.local"
+    networks:
+      - "development_default"
+    ports:
+      - "8080:8080/tcp"
+    volumes:
+      - "./.zshrc:/root/.zshrc"
+      - "./.bashrc:/root/.bashrc"
+      - "./frontend:/workspace"
+    working_dir: "/workspace"
+networks:
+  development_default:
+    external: true
+    name: "development_default"

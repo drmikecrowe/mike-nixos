@@ -45,7 +45,14 @@ in
       zoom-us
     ];
 
-    file.".config/autostart/ulauncher-startup.desktop".source = "${dotfiles}/autostart/ulauncher-startup.desktop";
+    file.".config/autostart/ulauncher-startup" = {
+      text = ''
+        #!/usr/bin/env bash
+
+        nohup ulauncher
+      '';
+      executable = true;
+    };
 
     file.".config/autostart/launch-copyq" = {
       text = ''

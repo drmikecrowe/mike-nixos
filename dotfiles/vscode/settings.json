@@ -22,7 +22,9 @@
             "strings": true
         }
     },
-    "[nix]": {},
+    "[nix]": {
+        "editor.defaultFormatter": "jnoortheen.nix-ide"
+    },
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter",
         "editor.formatOnType": true
@@ -177,11 +179,13 @@
     "prettier.trailingComma": "all",
     "python.analysis.extraPaths": [
         "/home/mcrowe/.vscode/extensions/continue.continue-0.0.412-linux-x64",
-        "/home/mcrowe/.vscode/extensions/Continue.continue"
+        "/home/mcrowe/.vscode/extensions/Continue.continue",
+        "/home/mcrowe/.vscode/extensions/continue.continue-0.1.33-linux-x64"
     ],
     "python.autoComplete.extraPaths": [
         "/home/mcrowe/.vscode/extensions/continue.continue-0.0.412-linux-x64",
-        "/home/mcrowe/.vscode/extensions/Continue.continue"
+        "/home/mcrowe/.vscode/extensions/Continue.continue",
+        "/home/mcrowe/.vscode/extensions/continue.continue-0.1.33-linux-x64"
     ],
     "python.analysis.typeCheckingMode": "basic",
     "python.analysis.useLibraryCodeForTypes": true,
@@ -217,7 +221,8 @@
     },
     "terminal.integrated.defaultProfile.linux": "fish",
     "terminal.integrated.defaultProfile.osx": "fish",
-    "terminal.integrated.fontFamily": "JetBrains Mono",
+    "editor.fontFamily": "FiraCode Nerd Font Ret",
+    "terminal.integrated.fontFamily": "FiraCode Nerd Font Ret",
     "terminal.integrated.inheritEnv": false,
     "terminal.integrated.profiles.linux": {
         "bash": {
@@ -371,6 +376,5 @@
         "!Split sequence"
     ],
     "yaml.format.singleQuote": true,
-    "yaml.validate": false,
-    "totalTypeScript.hideAllTips": false
+    "yaml.validate": false
 }

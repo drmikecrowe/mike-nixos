@@ -696,11 +696,5 @@
       version = "3.5.1";
       sha256 = "04b8hiha6z7w189lkx0lhy0sgldrfwx1yikl2463lkhhkm3f8av7";
     }
-    {
-      name = "previewjs";
-      publisher = "zenclabs";
-      version = "1.25.3";
-      sha256 = "113iwdq4hymsb6jwzrlzv6hmgwkjb3kyavcsa35m3a3f9hk8bygv";
-    }
   ];
 }

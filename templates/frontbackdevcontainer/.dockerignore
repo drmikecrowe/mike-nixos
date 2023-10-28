@@ -1,0 +1,13 @@
+.devcontainer/
+.git/
+.history/
+.pnpm-store/
+assets/
+reviews-api/
+reviews-ui/
+.dockerignore
+.gitignore
+.gitmodules
+docker-compose.yml
+Dockerfile
+README.md
