@@ -65,14 +65,14 @@ in
             "gnomeExtensions.bing-wallpaper-changer"
           ];
           favorite-apps = [
-            "brave.desktop"
+            "firefox.desktop"
             "code.desktop"
             "kitty-fish.desktop"
             "kitty-nushell.desktop"
           ];
         };
         "org/gnome/desktop/interface" = {
-          color-scheme = "prefer-dark";
+          # color-scheme = "prefer-dark";
           enable-hot-corners = true;
         };
         "org/gnome/desktop/wm/preferences" = { workspace-names = [ "Main" ]; };

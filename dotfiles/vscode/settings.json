@@ -376,5 +376,7 @@
         "!Split sequence"
     ],
     "yaml.format.singleQuote": true,
-    "yaml.validate": false
+    "yaml.validate": false,
+    "totalTypeScript.hideBasicTips": true,
+    "totalTypeScript.hideAllTips": true 
 }

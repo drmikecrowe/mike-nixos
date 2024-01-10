@@ -82,14 +82,21 @@
         colors = lib.mkOption {
           type = lib.types.attrs;
           description = "Base16 color scheme.";
-          default = (import ../../colorscheme/gruvbox).dark;
+          default = (import ../../colorscheme/gruvbox).light;
         };
         dark = lib.mkOption {
           type = lib.types.bool;
           description = "Enable dark mode.";
-          default = true;
+          default = false;
         };
       };
+      vivaldi = {
+        enable = lib.mkEnableOption {
+          description = "Enable vivaldi.";
+          default = false;
+        };
+      };
+
     };
   };
 }

@@ -4,8 +4,8 @@
 , ...
 }:
 let
-  defaultBrowser = "microsoft-edge.desktop";
-  defaultEmail = "Mailspring.desktop";
+  defaultBrowser = "firefox.desktop";
+  defaultEmail = "Wavebox.desktop";
 in
 {
   imports = [

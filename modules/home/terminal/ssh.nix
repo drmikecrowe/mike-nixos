@@ -40,6 +40,7 @@ in
       };
       "bastion-dev" = {
         hostname = secrets.ssh.bastion-dev;
+        forwardAgent = true;
         identityFile = "~/.ssh/pinnsg-ue1-dev-infrastructure-ssh-key.pub";
       };
       "bastion-data" = {

@@ -32,6 +32,8 @@ let
           allowUnsupportedSystem = true;
           permittedInsecurePackages = [
             "mailspring-1.11.0"
+            "electron-25.9.0"
+            "electron-19.1.9"
           ];
         };
         overlays =

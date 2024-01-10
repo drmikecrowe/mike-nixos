@@ -14,6 +14,4 @@ in
     keybindings = keys;
     extensions = with pkgs.vscode-extensions; pkgs.vscode-utils.extensionsFromVscodeMarketplace ext.extensions;
   };
-
-  home.file.".config/Code/User/settings.json".source = "${dotfiles}/vscode/settings.json";
 }

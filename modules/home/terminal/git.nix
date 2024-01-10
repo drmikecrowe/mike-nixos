@@ -113,6 +113,7 @@
       };
       credential.helper = "store --file ~/.git-credentials";
       pull.rebase = "false";
+      push.autoSetupRemote = "true";
       commit = {
         gpgsign = true;
       };

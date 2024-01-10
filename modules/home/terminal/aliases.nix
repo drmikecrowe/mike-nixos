@@ -43,5 +43,6 @@
     vbpf = "vim ~/.bash_profile";
     vbrc = "vim ~/.bashrc";
     pbcopy = "xclip -selection clipboard -in";
+    aws-sso-dev-console = "aws-sso --sso pinnacle console --role arn:aws:iam::159437095010:role/AWSAdministratorAccess";
   };
 }

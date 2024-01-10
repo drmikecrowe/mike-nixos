@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ inputs, pkgs, ... }: {
   imports = [ ./hardware.nix ];
 
   config = {
@@ -11,11 +11,14 @@
       discord.enable = true;
       duplicati.enable = true;
       theme = {
-        colors = (import ../../colorscheme/gruvbox).dark;
-        dark = true;
+        colors = (import ../../colorscheme/gruvbox).light;
+        dark = false;
       };
     };
-    gtk.theme.name = pkgs.lib.mkDefault "Adwaita-dark";
+    gtk.theme.name = pkgs.lib.mkDefault "Adwaita";
+    environment.systemPackages = [
+      inputs.devenv.packages.${pkgs.system}.devenv
+    ];
   };
 
 }

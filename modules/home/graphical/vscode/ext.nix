@@ -133,22 +133,10 @@
       sha256 = "024ac7g3ll7banr44z3abffxzsr655yyqhaf6vy152nvyzwrcy21";
     }
     {
-      name = "codeium";
-      publisher = "Codeium";
-      version = "1.3.105";
-      sha256 = "0vcljmm7xpvpmf6n1qbpf74hf2hwkinhb22rk234z1qm5jifsv69";
-    }
-    {
       name = "disableligatures";
       publisher = "CoenraadS";
       version = "0.0.10";
       sha256 = "090wg4lin4y06nhg45p9mjsqwfa21bdgafj57swh5z6fpv3pqxx2";
-    }
-    {
-      name = "continue";
-      publisher = "Continue";
-      version = "0.1.28";
-      sha256 = "1i610v66db961dqjpk7r3issq1148fv36l8yl7csdga0xaj474r4";
     }
     {
       name = "dakara-foldplus";

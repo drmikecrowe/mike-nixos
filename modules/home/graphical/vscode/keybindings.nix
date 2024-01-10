@@ -167,4 +167,8 @@
     key = "ctrl+k s";
     command = "-workbench.action.files.saveWithoutFormatting";
   }
+  {
+    key = "ctrl+shift+x";
+    command = "eslint.executeAutofix";
+  }
 ]

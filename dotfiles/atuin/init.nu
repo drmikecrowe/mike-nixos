@@ -35,18 +35,6 @@ def _atuin_search_cmd [...flags: string] {
     ] | str join "\n"
 }
 
-$env.config = ($env | default {} config).config
-$env.config = ($env.config | default {} hooks)
-$env.config = (
-    $env.config | upsert hooks (
-        $env.config.hooks
-        | upsert pre_execution (
-            $env.config.hooks | get -i pre_execution | default [] | append $_atuin_pre_execution)
-        | upsert pre_prompt (
-            $env.config.hooks | get -i pre_prompt | default [] | append $_atuin_pre_prompt)
-    )
-)
-
 $env.config = (
     $env.config | upsert keybindings (
         $env.config.keybindings
@@ -72,3 +60,16 @@ $env.config = (
         }
     )
 )
+
+$env.config = ($env | default {} config).config
+$env.config = ($env.config | default {} hooks)
+$env.config = (
+    $env.config | upsert hooks (
+        $env.config.hooks
+        | upsert pre_execution (
+            $env.config.hooks | get -i pre_execution | default [] | append $_atuin_pre_execution)
+        | upsert pre_prompt (
+            $env.config.hooks | get -i pre_prompt | default [] | append $_atuin_pre_prompt)
+    )
+)
+

@@ -8,7 +8,7 @@
       name = "rsyncFolder";
       text = ''
         mkdir -p "$2"
-        rsync -avrmR --exclude='.history' --exclude='node_modules/' --exclude='.tmp/' --exclude='.git/' --exclude='.webpack/' --exclude='.serverless/' --exclude='coverage/' "$@"
+        rsync -avrmR --exclude='.esbuild' --exclude='.jest' --exclude='.history' --exclude='.pnpm-store' --exclude='node_modules/' --exclude='.tmp/' --exclude='.git/' --exclude='.webpack/' --exclude='.serverless/' --exclude='coverage/' "$@"
       '';
     })
     (pkgs.writeShellApplication {

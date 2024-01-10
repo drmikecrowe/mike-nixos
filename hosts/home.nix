@@ -12,16 +12,17 @@
     # chatgpt
     age # Encryption
     alejandra
-    atuin
     aws-sso-cli
     awscli2
     bc # Calculator
     chatblade
     deno
+    dua
     dig # DNS lookup
     fd # find
     fish
     glab # gitlab cli
+    gitlab-runner
     git-crypt
     gnumake
     home-manager
@@ -42,6 +43,8 @@
     tree # View directory hierarchy
     unzip # Extract zips
     vimv-rs # Batch rename files
+    xplr
+    xonsh
   ];
 
   home.file = {
@@ -51,15 +54,16 @@
   };
 
   programs = {
-    zoxide = {
-      enable = true; # Shortcut jump command
-    };
     atuin = {
       enable = true;
       enableBashIntegration = true;
       enableNushellIntegration = true;
       enableFishIntegration = true;
+      package = pkgs.atuin;
       flags = [ "--disable-up-arrow" ];
+    };
+    zoxide = {
+      enable = true; # Shortcut jump command
     };
     bat = {
       enable = true; # cat replacement

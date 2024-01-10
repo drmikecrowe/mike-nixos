@@ -13,46 +13,39 @@ in
 {
   home = {
     packages = with pkgs; [
-      # peek
+      peek
       appimage-run
       authy
       brave
       chatgpt-cli
+      codeium
+      bcompare
       copyq
+      dbeaver
       discord
       element-desktop
       firefox
       flameshot
+      gimp
       glxinfo
       gtk3
       gtk4
       kitty
       libreoffice
-      mailspring
       meld
-      microsoft-edge
+      albert
       obsidian
-      ulauncher
       pinentry-qt
       slack
       teams-for-linux
       vlc
-      vivaldi
+      wavebox
       xdg-utils
       yubikey-manager
       yubikey-personalization-gui
       yubioath-flutter
       zoom-us
     ];
-
-    file.".config/autostart/ulauncher-startup" = {
-      text = ''
-        #!/usr/bin/env bash
-
-        nohup ulauncher
-      '';
-      executable = true;
-    };
 
     file.".config/autostart/launch-copyq" = {
       text = ''

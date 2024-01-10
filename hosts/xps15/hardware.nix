@@ -10,7 +10,7 @@ let
 in
 {
   imports = [
-    inputs.nixos-hardware.nixosModules.dell-xps-15-9560
+    inputs.nixos-hardware.nixosModules.dell-xps-15-9560-nvidia
     inputs.impermanence.nixosModule
     ./boot.nix
     ./disks.nix
