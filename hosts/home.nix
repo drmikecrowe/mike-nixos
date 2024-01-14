@@ -9,20 +9,11 @@
     ../modules/home
   ];
   home.packages = with pkgs; [
-    # chatgpt
-    age # Encryption
     alejandra
-    aws-sso-cli
-    awscli2
-    bc # Calculator
-    chatblade
-    deno
     dua
     dig # DNS lookup
     fd # find
     fish
-    glab # gitlab cli
-    gitlab-runner
     git-crypt
     gnumake
     home-manager

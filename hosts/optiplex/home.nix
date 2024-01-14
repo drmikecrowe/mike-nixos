@@ -13,44 +13,13 @@ in
 {
   home = {
     packages = with pkgs; [
-      # chatgpt
-      aws-sso-cli
-      awscli2
-      deno
-      glab # gitlab cli
-      gitlab-runner
-      peek
-      appimage-run
       authy
-      brave
-      chatgpt-cli
-      codeium
-      bcompare
       copyq
-      dbeaver
-      discord
-      element-desktop
-      firefox
-      flameshot
-      gimp
-      glxinfo
-      gtk3
-      gtk4
       kitty
-      libreoffice
-      meld
       albert
-      obsidian
       pinentry-qt
-      slack
-      teams-for-linux
       vlc
-      wavebox
       xdg-utils
-      yubikey-manager
-      yubikey-personalization-gui
-      yubioath-flutter
-      zoom-us
     ];
 
     file.".config/autostart/launch-copyq" = {

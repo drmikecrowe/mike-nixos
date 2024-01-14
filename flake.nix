@@ -11,8 +11,7 @@
     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     "nixpkgs-update.cachix.org-1:6y6Z2JdoL3APdu6/+Iy8eZX2ajf09e4EE9SnxSML1W8="
-    "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
-"
+    "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
   ];
 
   inputs = {
@@ -52,6 +51,13 @@
       hosts = [
         {
           host = "xps15";
+          extraOverlays = [ ];
+          extraModules = [ ];
+          timezone = "America/New_York";
+          stateVersion = "22.05";
+        }
+        {
+          host = "optiplex";
           extraOverlays = [ ];
           extraModules = [ ];
           timezone = "America/New_York";
@@ -104,7 +110,9 @@
               statix
               nvd
               nix-prefetch-scripts
-              ssh-to-age
+              neovim
+              mc
+              ripgrep
             ];
           };
         });
