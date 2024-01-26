@@ -18,6 +18,7 @@ in
       authy
       brave
       chatgpt-cli
+      chromium
       codeium
       bcompare
       copyq

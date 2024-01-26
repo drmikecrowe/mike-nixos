@@ -100,7 +100,9 @@
 
     extraConfig = {
       init.defaultBranch = "main";
-      core = { editor = "nvim"; };
+      core = {
+        editor = "nvim";
+      };
       diff = { tool = "meld"; };
       difftool = {
         prompt = false;

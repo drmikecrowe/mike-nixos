@@ -6,15 +6,27 @@
   config = lib.mkIf (pkgs.stdenv.isLinux && config.custom.gui.enable) {
     # Enable PipeWire
     security.rtkit.enable = true;
-    services.pipewire = {
+    #    services.pipewire = {
+    #      enable = true;
+    #      alsa.enable = true;
+    #      alsa.support32Bit = true;
+    #      pulse.enable = true;
+    #      # If you want to use JACK applications, uncomment this
+    #      #jack.enable = true;
+    #    };
+    hardware.pulseaudio = {
       enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
+
+      # Pulse audio devices runs in user sessions
+      # The mpd (Music Player daemon) runs system-wide. Thus its necessary (untill userspace mpd) to communicate locally through TCP.
+      tcp.enable = true; # necessary to listen to non-systemwide (only root) mpd daemon, c.f. https://askubuntu.com/a/555484
+
+      # https://nixos.org/nixpkgs/manual/#sec-steam-play
+      support32Bit = true;
+      # https://nixos.wiki/wiki/Bluetooth
+      # "Only ... full ... has Bluetooth support"
+      package = pkgs.pulseaudioFull;
     };
-    hardware.pulseaudio.enable = false;
 
     # Provides audio source with background noise filtered
     programs.noisetorch.enable = true;

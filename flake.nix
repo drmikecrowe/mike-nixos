@@ -103,6 +103,7 @@
               shellcheck
               statix
               nvd
+              nix-prefetch
               nix-prefetch-scripts
               ssh-to-age
             ];

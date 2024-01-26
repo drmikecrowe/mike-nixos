@@ -20,12 +20,6 @@
           '';
         };
       };
-      carapace = {
-        enable = lib.mkEnableOption {
-          description = "carapace Shell History.";
-          default = false;
-        };
-      };
       secrets = lib.mkOption {
         type = lib.types.attrs;
         default = { };

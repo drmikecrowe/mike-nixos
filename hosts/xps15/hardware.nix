@@ -40,6 +40,8 @@ in
   };
 
   hardware = {
+    opengl.driSupport32Bit = true;
+
     cpu.intel.updateMicrocode = true;
 
     opengl = {

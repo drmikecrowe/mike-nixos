@@ -12,6 +12,7 @@
     # chatgpt
     age # Encryption
     alejandra
+    argc
     aws-sso-cli
     awscli2
     bc # Calculator
@@ -56,15 +57,12 @@
   programs = {
     atuin = {
       enable = true;
-      enableBashIntegration = true;
       enableNushellIntegration = true;
       enableFishIntegration = true;
       package = pkgs.atuin;
       flags = [ "--disable-up-arrow" ];
     };
-    zoxide = {
-      enable = true; # Shortcut jump command
-    };
+    zoxide.enable = true; # Shortcut jump command
     bat = {
       enable = true; # cat replacement
       config = {
@@ -75,32 +73,6 @@
     direnv = {
       enable = true;
       nix-direnv.enable = true;
-    };
-    fish.enable =
-      true; # Needed for LightDM to remember username (TODO: fix)
-    fish.functions = {
-      ping = {
-        description = "Improved ping";
-        argumentNames = "target";
-        body = "${pkgs.prettyping}/bin/prettyping --nolegend $target";
-      };
-    };
-    nushell = {
-      enable = true;
-      extraConfig = builtins.readFile "${dotfiles}/atuin/init.nu";
-    };
-    bash = {
-      enable = true;
-      historyControl = [ "ignoredups" "ignorespace" ];
-    };
-    starship = {
-      enableBashIntegration = true;
-    };
-    zoxide = {
-      enableBashIntegration = true;
-    };
-    fzf = {
-      enableBashIntegration = true;
     };
   };
 
