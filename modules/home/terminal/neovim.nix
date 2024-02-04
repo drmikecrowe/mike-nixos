@@ -1,9 +1,10 @@
-{ config
-, inputs
-, pkgs
-, lib
-, dotfiles
-, ...
+{
+  config,
+  inputs,
+  pkgs,
+  lib,
+  dotfiles,
+  ...
 }: {
   programs.neovim = {
     enable = true;
@@ -63,7 +64,7 @@
   };
 
   programs.fish = {
-    shellAliases = { vim = "nvim"; };
+    shellAliases = {vim = "nvim";};
     shellAbbrs = {
       v = lib.mkForce "nvim";
       vl = lib.mkForce "nvim -c 'normal! `0' -c 'bdelete 1'";

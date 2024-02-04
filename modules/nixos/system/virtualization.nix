@@ -1,8 +1,9 @@
-{ config
-, pkgs
-, lib
-, user
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  ...
 }: {
   config = {
     virtualisation = {
@@ -27,6 +28,6 @@
       "docker"
       "libvirtd"
     ];
-    users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
+    users.extraGroups.vboxusers.members = ["user-with-access-to-virtualbox"];
   };
 }

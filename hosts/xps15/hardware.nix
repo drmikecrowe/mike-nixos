@@ -1,14 +1,13 @@
-{ config
-, lib
-, inputs
-, pkgs
-, modulesPath
-, ...
-}:
-let
-  powerMode = "performance";
-in
 {
+  config,
+  lib,
+  inputs,
+  pkgs,
+  modulesPath,
+  ...
+}: let
+  powerMode = "performance";
+in {
   imports = [
     inputs.nixos-hardware.nixosModules.dell-xps-15-9560-nvidia
     inputs.impermanence.nixosModule
@@ -22,7 +21,7 @@ in
 
   # Fix unreadable tty under high dpi
   console = {
-    packages = [ pkgs.terminus_font ];
+    packages = [pkgs.terminus_font];
     font = "ter-124n";
   };
 
@@ -35,7 +34,7 @@ in
 
   services = {
     xserver = {
-      videoDrivers = [ "nvidia" ];
+      videoDrivers = ["nvidia"];
     };
   };
 

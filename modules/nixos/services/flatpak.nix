@@ -1,8 +1,9 @@
-{ config
-, pkgs
-, lib
-, user
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  ...
 }: {
   config = lib.mkIf config.custom.flatpak {
     services.flatpak.enable = true;

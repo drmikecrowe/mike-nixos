@@ -1,8 +1,9 @@
-{ config
-, pkgs
-, lib
-, user
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  ...
 }: {
   options = {
     kde = {
@@ -27,7 +28,7 @@
     services = {
       xserver = {
         desktopManager = {
-          plasma5 = { enable = true; };
+          plasma5 = {enable = true;};
         };
         displayManager = {
           lightdm = {

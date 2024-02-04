@@ -1,7 +1,8 @@
-{ config
-, lib
-, user
-, ...
+{
+  config,
+  lib,
+  user,
+  ...
 }: {
   options = {
     publicKey = lib.mkOption {
@@ -21,7 +22,7 @@
       enable = true;
     };
 
-    users.users.${user}.openssh.authorizedKeys.keys = [ config.publicKey ];
+    users.users.${user}.openssh.authorizedKeys.keys = [config.publicKey];
 
     # Implement a simple fail2ban service for sshd
     services.sshguard.enable = true;

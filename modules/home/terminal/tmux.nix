@@ -1,15 +1,16 @@
-{ config
-, pkgs
-, lib
-, user
-, dotfiles
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  dotfiles,
+  ...
 }: {
   home.packages = with pkgs; [
     tmux
     (pkgs.writeShellApplication {
       name = "pux";
-      runtimeInputs = [ pkgs.tmux ];
+      runtimeInputs = [pkgs.tmux];
       text = ''
         PRJ="$(zoxide query -i)"
         echo "Launching tmux for $PRJ"

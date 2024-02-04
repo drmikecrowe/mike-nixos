@@ -1,12 +1,11 @@
-{ lib
-, pkgs
-, user
-, ...
-}:
-let
-  mkOption = value: lib.mkEnableOption { default = value; };
-in
 {
+  lib,
+  pkgs,
+  user,
+  ...
+}: let
+  mkOption = value: lib.mkEnableOption {default = value;};
+in {
   options = {
     custom = {
       _1password = mkOption false;
@@ -35,7 +34,7 @@ in
       };
       secrets = lib.mkOption {
         type = lib.types.attrs;
-        default = { };
+        default = {};
       };
     };
   };

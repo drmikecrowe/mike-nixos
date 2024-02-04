@@ -1,15 +1,16 @@
-{ config
-, pkgs
-, lib
-, user
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  ...
 }: {
   programs = {
     bash = {
       enable = true;
-      historyControl = [ "ignoredups" "ignorespace" ];
+      historyControl = ["ignoredups" "ignorespace"];
       bashrcExtra = ''
-        
+
       '';
     };
     atuin = {

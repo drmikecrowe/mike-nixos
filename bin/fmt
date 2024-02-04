@@ -2,4 +2,5 @@
 
 set -euo pipefail
 
-nix fmt ./flake.nix ./hosts ./modules ./overlays ./templates
+alejandra *.nix modules/ packages/ hosts/ secrets/
+statix check

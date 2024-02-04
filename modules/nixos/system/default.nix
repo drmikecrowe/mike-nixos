@@ -1,8 +1,9 @@
-{ config
-, pkgs
-, user
-, lib
-, ...
+{
+  config,
+  pkgs,
+  user,
+  lib,
+  ...
 }: {
   imports = [
     ./fonts.nix

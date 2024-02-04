@@ -1,8 +1,9 @@
-{ config
-, pkgs
-, lib
-, user
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  ...
 }: {
   options = {
     gtk.theme = {
@@ -25,7 +26,7 @@
       xserver = {
         enable = true;
       };
-      dbus.packages = [ pkgs.dconf ];
+      dbus.packages = [pkgs.dconf];
     };
 
     # Required for setting GTK theme (for preferred-color-scheme in browser)

@@ -1,12 +1,15 @@
-{ config, pkgs, lib, user, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  ...
+}: {
   config = lib.mkIf config.custom.vivaldi {
-
-    environment.systemPackages = with pkgs;
-      [
-        vivaldi
-        vivaldi-ffmpeg-codecs
-      ];
+    environment.systemPackages = with pkgs; [
+      vivaldi
+      vivaldi-ffmpeg-codecs
+    ];
 
     nixpkgs.config = {
       vivaldi = {

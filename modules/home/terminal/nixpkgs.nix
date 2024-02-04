@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, dotfiles
-, ...
+{
+  config,
+  pkgs,
+  dotfiles,
+  ...
 }: {
   programs.fish = {
     shellAbbrs = {

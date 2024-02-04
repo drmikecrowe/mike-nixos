@@ -1,8 +1,9 @@
-{ pkgs
-, lib
-, custom
-, secrets
-, ...
+{
+  pkgs,
+  lib,
+  custom,
+  secrets,
+  ...
 }: {
   programs.git = {
     inherit (secrets.git.drmikecrowe) userName userEmail;
@@ -103,12 +104,12 @@
       core = {
         editor = "nvim";
       };
-      diff = { tool = "meld"; };
+      diff = {tool = "meld";};
       difftool = {
         prompt = false;
         cmd = "meld $LOCAL $REMOTE";
       };
-      merge = { tool = "meld"; };
+      merge = {tool = "meld";};
       mergetool = {
         cmd = "meld $LOCAL $MERGED $REMOTE";
         keepBackup = false;
@@ -131,7 +132,7 @@
           };
           gpg = {
             format = "ssh";
-            ssh = { program = "op-ssh-sign"; };
+            ssh = {program = "op-ssh-sign";};
           };
           core = {
             sshCommand = "ssh -i ~/.ssh/id_rsa_drmikecrowe-github.pub";
@@ -148,9 +149,9 @@
           };
           gpg = {
             format = "ssh";
-            ssh = { program = "op-ssh-sign"; };
+            ssh = {program = "op-ssh-sign";};
           };
-          core = { sshCommand = "ssh -i ~/.ssh/id_rsa_mikkel.pub"; };
+          core = {sshCommand = "ssh -i ~/.ssh/id_rsa_mikkel.pub";};
         };
         condition = "hasconfig:remote.*.url:git@github.com:mikkeltech/*";
       }
@@ -163,9 +164,9 @@
           };
           gpg = {
             format = "ssh";
-            ssh = { program = "op-ssh-sign"; };
+            ssh = {program = "op-ssh-sign";};
           };
-          core = { sshCommand = "ssh -i ~/.ssh/id_rsa_pinnsg.pub"; };
+          core = {sshCommand = "ssh -i ~/.ssh/id_rsa_pinnsg.pub";};
         };
         condition = "hasconfig:remote.*.url:git@gitlab.com:pinnsg/*";
       }
@@ -173,5 +174,5 @@
   };
 
   # Required for fish commands
-  home.packages = with pkgs; [ fish fzf bat ];
+  home.packages = with pkgs; [fish fzf bat];
 }

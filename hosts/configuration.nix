@@ -1,15 +1,16 @@
-{ dotfiles
-, lib
-, pkgs
-, config
-, hostname
-, nixpkgs
-, inputs
-, user
-, timezone
-, system
-, stateVersion
-, ...
+{
+  dotfiles,
+  lib,
+  pkgs,
+  config,
+  hostname,
+  nixpkgs,
+  inputs,
+  user,
+  timezone,
+  system,
+  stateVersion,
+  ...
 }: {
   imports = [
     ../modules/common
@@ -26,7 +27,7 @@
 
   # Fix unreadable tty under high dpi
   console = {
-    packages = [ pkgs.terminus_font ];
+    packages = [pkgs.terminus_font];
     font = "ter-124n";
   };
 
@@ -36,7 +37,7 @@
 
   environment.localBinInPath = true;
 
-  environment.defaultPackages = [ ];
+  environment.defaultPackages = [];
 
   xdg.portal = {
     enable = true;

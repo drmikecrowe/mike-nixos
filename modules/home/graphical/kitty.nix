@@ -1,11 +1,12 @@
-{ custom
-, lib
-, pkgs
-, ...
+{
+  custom,
+  lib,
+  pkgs,
+  ...
 }: {
   programs.kitty = lib.mkIf custom.gui {
     enable = true;
-    environment = { };
+    environment = {};
     extraConfig = "";
     font.size = 12;
     font.name = "FiraCode";

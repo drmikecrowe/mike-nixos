@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }: {
   programs.starship = {
     enable = true;
@@ -39,7 +40,7 @@
         truncate_to_repo = true;
         truncation_length = 100;
       };
-      git_branch = { format = "[$symbol$branch]($style)"; };
+      git_branch = {format = "[$symbol$branch]($style)";};
       git_commit = {
         format = "( @ [$hash]($style) )";
         only_detached = false;
@@ -72,7 +73,7 @@
       package = {
         format = "via [🎁 $version](208 bold) ";
       };
-      python = { format = "[\${version}\\(\${virtualenv}\\)]($style)"; };
+      python = {format = "[\${version}\\(\${virtualenv}\\)]($style)";};
       shell = {
         fish_indicator = "󰈺 ";
         powershell_indicator = "_";

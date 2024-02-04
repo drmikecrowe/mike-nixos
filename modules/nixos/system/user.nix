@@ -1,8 +1,9 @@
-{ custom
-, pkgs
-, lib
-, user
-, ...
+{
+  custom,
+  pkgs,
+  lib,
+  user,
+  ...
 }: {
   config = lib.mkIf pkgs.stdenv.isLinux {
     # Allows us to declaritively set password

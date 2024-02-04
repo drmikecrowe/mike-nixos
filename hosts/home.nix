@@ -1,9 +1,10 @@
-{ config
-, dotfiles
-, pkgs
-, stateVersion
-, user
-, ...
+{
+  config,
+  dotfiles,
+  pkgs,
+  stateVersion,
+  user,
+  ...
 }: {
   imports = [
     ../modules/home
@@ -22,7 +23,7 @@
       enableNushellIntegration = true;
       enableFishIntegration = true;
       package = pkgs.atuin;
-      flags = [ "--disable-up-arrow" ];
+      flags = ["--disable-up-arrow"];
     };
     bat = {
       enable = true; # cat replacement
@@ -46,7 +47,6 @@
     package = pkgs.libsecret;
     enable = true;
   };
-
 
   home.stateVersion = stateVersion;
 }

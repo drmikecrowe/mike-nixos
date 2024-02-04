@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{lib, ...}: {
   imports = [
     ./budgie.nix
     ./gnome.nix

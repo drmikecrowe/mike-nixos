@@ -1,22 +1,22 @@
 # ce6e212e09fc551e6ed1c784353bd748c6d0733d
 # https://github.com/sigoden/argc-completions.git
-{ pkgs
-, lib
-, stdenv
-, fetchFromGitHub
-, installShellFiles
-, runtimeShell
-, enableShells ? [ "fish" ]
-,
+{
+  pkgs,
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  installShellFiles,
+  runtimeShell,
+  enableShells ? ["fish" "bash" "zsh"],
 }:
 stdenv.mkDerivation rec {
   pname = "argc-completions";
   version = "2023-12-29";
   rev = "ce6e212e09fc551e6ed1c784353bd748c6d0733d";
   sha256 = "sha256-wHeHa8TXpcexICe/abV9a5zN+1/QzZXQhGsFIgdAf0o=";
-  phases = [ 
+  phases = [
     "unpackPhase"
-    "installPhase" 
+    "installPhase"
     "postInstall"
   ];
 
@@ -50,15 +50,15 @@ stdenv.mkDerivation rec {
     SHELL_INITS="$out/shell-inits"
     mkdir -p $SHELL_INITS
     cd $out
-    
+
     for shell in bash zsh ps1 fish nu elv xsh tcsh; do
       bash $out/scripts/display-config.sh $shell > $SHELL_INITS/argc.$shell
       chmod +x $SHELL_INITS/argc.$shell
     done
-    
+
     for shell in ${lib.escapeShellArgs enableShells}; do
       echo "Installing shell completions for $shell via $SHELL_INITS/argc.$shell"
-      installShellCompletion --name argc-completions --$shell <(cat $SHELL_INITS/argc.$shell) 
+      installShellCompletion --name argc-completions --$shell <(cat $SHELL_INITS/argc.$shell)
     done
 
     cat <<SCRIPT > $out/bin/argc-completions-folder

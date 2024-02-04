@@ -1,8 +1,9 @@
-{ config
-, pkgs
-, lib
-, user
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  ...
 }: {
   config = lib.mkIf config.custom.gnome {
     home-manager.users.${user} = {
@@ -61,7 +62,7 @@
           # color-scheme = "prefer-dark";
           enable-hot-corners = true;
         };
-        "org/gnome/desktop/wm/preferences" = { workspace-names = [ "Main" ]; };
+        "org/gnome/desktop/wm/preferences" = {workspace-names = ["Main"];};
         "org/gnome/shell/extensions/vitals" = {
           show-storage = false;
           show-voltage = true;
@@ -89,12 +90,12 @@
         };
       };
 
-      gnome = { gnome-keyring = { enable = true; }; };
+      gnome = {gnome-keyring = {enable = true;};};
     };
 
-    environment.systemPackages = with pkgs; [ gnome.gnome-tweaks ];
+    environment.systemPackages = with pkgs; [gnome.gnome-tweaks];
 
-    services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+    services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 
     security.pam.services.lightdm.enableGnomeKeyring = true;
 

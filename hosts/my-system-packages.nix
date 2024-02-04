@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   config = {
     environment.systemPackages = with pkgs; [
       albert
@@ -51,5 +51,4 @@
       zoom-us
     ];
   };
-
 }

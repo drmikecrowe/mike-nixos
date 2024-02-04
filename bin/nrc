@@ -2,8 +2,7 @@
 
 set -euo pipefail
 
-#statix check
-nix fmt ./flake.nix ./hosts ./modules ./templates --quiet
+bin/fmt
 git add --intent-to-add . 
 set +e
 touch /tmp/build-error

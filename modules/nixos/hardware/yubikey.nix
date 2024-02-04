@@ -1,12 +1,13 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }: {
   config = lib.mkIf pkgs.stdenv.isLinux {
     # Yubikey
     services.pcscd.enable = true;
-    services.udev.packages = [ pkgs.yubikey-personalization ];
+    services.udev.packages = [pkgs.yubikey-personalization];
     security.pam.u2f = {
       enable = true;
       cue = true;
@@ -20,7 +21,7 @@
       enable = true;
       # debug = true;
       mode = "challenge-response";
-      id = [ "19883829" ];
+      id = ["19883829"];
     };
     security.polkit.enable = true;
     security.polkit.debug = true;

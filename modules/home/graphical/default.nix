@@ -1,13 +1,12 @@
-{ custom
-, lib
-, pkgs
-, ...
-}:
-let
+{
+  custom,
+  lib,
+  pkgs,
+  ...
+}: let
   defaultBrowser = "firefox.desktop";
   defaultEmail = "Wavebox.desktop";
-in
-{
+in {
   imports = [
     ./kitty.nix
     ./obsidian.nix
@@ -51,13 +50,13 @@ in
     mimeApps = {
       enable = true;
       defaultApplications = {
-        "x-scheme-handler/http" = [ defaultBrowser ];
-        "application/xhtml+xml" = [ defaultBrowser ];
-        "text/html" = [ defaultBrowser ];
-        "x-scheme-handler/https" = [ defaultBrowser ];
-        "image/gif" = [ defaultBrowser ];
-        "image/png" = [ defaultBrowser ];
-        "image/webp" = [ defaultBrowser ];
+        "x-scheme-handler/http" = [defaultBrowser];
+        "application/xhtml+xml" = [defaultBrowser];
+        "text/html" = [defaultBrowser];
+        "x-scheme-handler/https" = [defaultBrowser];
+        "image/gif" = [defaultBrowser];
+        "image/png" = [defaultBrowser];
+        "image/webp" = [defaultBrowser];
       };
       associations.added = {
         "x-scheme-handler/mailto" = defaultEmail;
@@ -67,8 +66,8 @@ in
     configFile."mimeapps.list".force = true;
 
     mimeApps.defaultApplications = {
-      "text/plain" = [ "nvim.desktop" ];
-      "text/markdown" = [ "nvim.desktop" ];
+      "text/plain" = ["nvim.desktop"];
+      "text/markdown" = ["nvim.desktop"];
     };
 
     desktopEntries = {
@@ -77,7 +76,7 @@ in
         genericName = "Terminal emulator";
         exec = "kitty fish -li";
         icon = "fish";
-        categories = [ "System" "TerminalEmulator" "Utility" ];
+        categories = ["System" "TerminalEmulator" "Utility"];
         type = "Application";
         terminal = false;
       };
@@ -86,7 +85,7 @@ in
         genericName = "Terminal emulator";
         exec = "kitty nu -li";
         icon = "nushell";
-        categories = [ "System" "TerminalEmulator" "Utility" ];
+        categories = ["System" "TerminalEmulator" "Utility"];
         type = "Application";
         terminal = false;
       };

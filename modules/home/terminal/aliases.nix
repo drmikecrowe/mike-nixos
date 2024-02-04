@@ -1,8 +1,9 @@
-{ config
-, pkgs
-, lib
-, options
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  options,
+  ...
 }: {
   home.shellAliases = {
     ".." = "cd ..";

@@ -1,8 +1,9 @@
-{ config
-, pkgs
-, lib
-, user
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  ...
 }: {
   # Packages used in abbreviations and aliases
   home.packages = with pkgs; [
@@ -17,7 +18,6 @@
   home.sessionVariables.fish_greeting = "";
 
   programs = {
-
     fzf.enableFishIntegration = true;
     starship.enableFishIntegration = true;
     zoxide.enableFishIntegration = true;
@@ -57,5 +57,4 @@
       shellInit = "";
     };
   };
-
 }

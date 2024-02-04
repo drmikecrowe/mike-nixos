@@ -1,9 +1,10 @@
-{ config
-, pkgs
-, lib
-, user
-, dotfiles
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  dotfiles,
+  ...
 }: {
   programs = {
     nushell = {

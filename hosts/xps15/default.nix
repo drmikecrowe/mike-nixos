@@ -1,4 +1,8 @@
-{ inputs, pkgs, ... }: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware.nix
     ./xps15-system-packages.nix
@@ -25,5 +29,4 @@
       };
     };
   };
-
 }

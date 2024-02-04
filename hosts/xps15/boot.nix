@@ -1,10 +1,11 @@
-{ pkgs
-, lib
-, ...
+{
+  pkgs,
+  lib,
+  ...
 }: {
   boot = {
     swraid.enable = false;
-    kernelModules = [ "kvm-intel" "acpi_call" ];
+    kernelModules = ["kvm-intel" "acpi_call"];
     initrd = {
       availableKernelModules = [
         "xhci_pci"
