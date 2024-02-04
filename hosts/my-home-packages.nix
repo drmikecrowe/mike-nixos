@@ -4,9 +4,9 @@
 {
   home.packages = with pkgs; [
     # chatgpt
-    age # Encryption
     alejandra
     argc
+    argc-completions
     aws-sso-cli
     awscli2
     bc # Calculator
@@ -43,8 +43,5 @@
     xonsh
     xplr
     yq
-  ] ++
-  (with pkgs.custom; [
-    # argc-completions
-  ]);
+  ];
 }

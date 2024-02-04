@@ -96,19 +96,19 @@
         {
           default = pkgs.mkShell {
             name = "flakeShell";
-            buildInputs = with pkgs; [
-              git
-              git-crypt
-              stylua
-              nixfmt
-              shfmt
-              shellcheck
-              statix
-              nvd
-              nix-prefetch
-              nix-prefetch-scripts
-              ssh-to-age
-            ];
+            buildInputs = with pkgs;
+              [
+                git
+                git-crypt
+                stylua
+                alejandra
+                shfmt
+                shellcheck
+                statix
+                nvd
+                nix-prefetch
+                nix-prefetch-scripts
+              ];
           };
         });
 

@@ -5,7 +5,8 @@
 , stdenv
 , fetchFromGitHub
 , installShellFiles
-, enableShells ? [ "bash" "zsh" "fish" ]
+, runtimeShell
+, enableShells ? [ "fish" ]
 ,
 }:
 stdenv.mkDerivation rec {
@@ -13,6 +14,11 @@ stdenv.mkDerivation rec {
   version = "2023-12-29";
   rev = "ce6e212e09fc551e6ed1c784353bd748c6d0733d";
   sha256 = "sha256-wHeHa8TXpcexICe/abV9a5zN+1/QzZXQhGsFIgdAf0o=";
+  phases = [ 
+    "unpackPhase"
+    "installPhase" 
+    "postInstall"
+  ];
 
   src = fetchFromGitHub {
     owner = "sigoden";
@@ -30,26 +36,38 @@ stdenv.mkDerivation rec {
     installShellFiles
   ];
 
-  dontConfigure = true;
-  dontBuild = true;
-
   installPhase = ''
-    mkdir -p $out
+    mkdir -p $out/bin
     cp -- Argcfile.sh "$out"
     cp -r -- completions "$out"
     cp -r -- scripts "$out"
     cp -r -- src "$out"
     cp -r -- utils "$out"
-    pushd $out
     sed 's/^main.*@.*/_setup_script \$1/' $out/scripts/setup-shell.sh > $out/scripts/display-config.sh
-    mkdir -p $HOME/.config/argc-completions;
-    for shell in bash zsh powershell fish nushell elvish xonsh tcsh; do
-      bash $out/scripts/display-config.sh $shell > $HOME/.config/argc-completions/argc.$shell.sh
+  '';
+
+  postInstall = ''
+    SHELL_INITS="$out/shell-inits"
+    mkdir -p $SHELL_INITS
+    cd $out
+    
+    for shell in bash zsh ps1 fish nu elv xsh tcsh; do
+      bash $out/scripts/display-config.sh $shell > $SHELL_INITS/argc.$shell
+      chmod +x $SHELL_INITS/argc.$shell
     done
+    
     for shell in ${lib.escapeShellArgs enableShells}; do
-      installShellCompletion --$shell $HOME/.config/argc-completions/argc.$shell.sh
+      echo "Installing shell completions for $shell via $SHELL_INITS/argc.$shell"
+      installShellCompletion --name argc-completions --$shell <(cat $SHELL_INITS/argc.$shell) 
     done
-    popd
+
+    cat <<SCRIPT > $out/bin/argc-completions-folder
+    #!${runtimeShell}
+    # Run this script to find the argc-completions shared folder where all the shell
+    # integration scripts are living.
+    echo $SHELL_INITS
+    SCRIPT
+    chmod +x $out/bin/argc-completions-folder
   '';
 
   meta = with lib; {
