@@ -14,6 +14,7 @@
   imports = [
     ../modules/common
     ../modules/nixos
+    ./my-system-packages.nix
   ];
 
   # Nicely reload system units when changing configs
@@ -35,45 +36,13 @@
 
   environment.localBinInPath = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    black # Python formatter
-    curl
-    file
-    fish
-    nushell
-    git
-    htop
-    killall
-    lm_sensors
-    nodePackages.pyright # Python language server
-    nodejs_18
-    parted
-    pciutils
-    pciutils
-    poetry
-    python311Full
-    python311Packages.flake8 # Python linter
-    python311Packages.mypy # Python linter
-    python311Packages.pip
-    python311Packages.poetry-core
-    python311Packages.pynvim
-    sysz
-    unzip
-    usbutils
-    vim
-    wget
-    zip
-  ];
-
   environment.defaultPackages = [ ];
 
   xdg.portal = {
     enable = true;
     wlr.enable = true;
     # gtk portal needed to make gtk apps happy
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   security = {
@@ -86,14 +55,6 @@
         value = "8192";
       }
     ];
-  };
-
-  programs = {
-    tmux = {
-      enable = true;
-      clock24 = true;
-    };
-    dconf.enable = true;
   };
 
   # Needed for nix-* commands to use the system's nixpkgs

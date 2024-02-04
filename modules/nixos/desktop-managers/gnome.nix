@@ -3,31 +3,17 @@
 , lib
 , user
 , ...
-}:
-let
-  gtkTheme = {
-    inherit (config.gtk.theme) name;
-    package = pkgs."${config.gtk.theme.package}";
-  };
-in
-{
-  options = {
-    gnome = {
-      enable = lib.mkEnableOption {
-        description = "Enable Gnome.";
-        default = false;
-      };
-    };
-  };
-
-  config = lib.mkIf config.gnome.enable {
+}: {
+  config = lib.mkIf config.custom.gnome {
     home-manager.users.${user} = {
       home = {
         packages = with pkgs; [
           dconf
           gnome.gnome-themes-extra
+          gnome.libsoup
           gnomeExtensions.appindicator
           gnomeExtensions.auto-activities
+          gnomeExtensions.bing-wallpaper-changer
           gnomeExtensions.custom-hot-corners-extended
           gnomeExtensions.dock-from-dash
           gnomeExtensions.quick-settings-audio-panel
@@ -35,10 +21,10 @@ in
           gnomeExtensions.quick-touchpad-toggle
           gnomeExtensions.systemd-manager
           gnomeExtensions.tactile
+          gnomeExtensions.user-themes
           gnomeExtensions.vitals
           gnomeExtensions.weather-or-not
-          gnomeExtensions.bing-wallpaper-changer
-          gnome.libsoup
+          palenight-theme
         ];
       };
 
@@ -54,7 +40,6 @@ in
             "custom-hot-corners-extended@G-dH.github.com"
             "dock-from-dash@fthx"
             "drive-menu@gnome-shell-extensions.gcampax.github.com"
-            # "gnomeExtensions.top-bar-organizer"
             "native-window-placement@gnome-shell-extensions.gcampax.github.com"
             "quick-settings-audio-panel@rayzeq.github.io"
             "quick-settings-tweaks@qwreey"
@@ -67,9 +52,10 @@ in
           favorite-apps = [
             "firefox.desktop"
             "code.desktop"
-            "kitty-fish.desktop"
-            "kitty-nushell.desktop"
           ];
+          "org/gnome/shell/extensions/user-theme" = {
+            name = "palenight";
+          };
         };
         "org/gnome/desktop/interface" = {
           # color-scheme = "prefer-dark";

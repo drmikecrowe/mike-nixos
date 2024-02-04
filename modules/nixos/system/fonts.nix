@@ -7,7 +7,8 @@ let
   fontName = "FiraCode";
 in
 {
-  config = lib.mkIf (config.custom.gui.enable && pkgs.stdenv.isLinux) {
+  config = lib.mkIf (config.custom.gui && pkgs.stdenv.isLinux) {
+    fonts.fontDir.enable = true;
     fonts.packages = with pkgs; [
       noto-fonts
       noto-fonts-cjk

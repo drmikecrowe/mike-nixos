@@ -1,7 +1,7 @@
 { config, ... }: {
   config = {
     services.xserver = {
-      layout = "us";
+      xkb.layout = "us";
 
       # Keyboard responsiveness
       autoRepeatDelay = 250;

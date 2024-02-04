@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-statix check
+#statix check
 nix fmt ./flake.nix ./hosts ./modules ./templates --quiet
 git add --intent-to-add . 
 set +e

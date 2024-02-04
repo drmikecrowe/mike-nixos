@@ -38,7 +38,7 @@
     maxCacheTtl = 34560000; # Can never reset
     maxCacheTtlSsh = 34560000; # Can never reset
     pinentryFlavor =
-      if custom.gui.enable
+      if custom.gui
       then "qt"
       else "tty";
   };

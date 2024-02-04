@@ -7,45 +7,7 @@
 }: {
   imports = [
     ../modules/home
-  ];
-  home.packages = with pkgs; [
-    # chatgpt
-    age # Encryption
-    alejandra
-    argc
-    aws-sso-cli
-    awscli2
-    bc # Calculator
-    chatblade
-    deno
-    dua
-    dig # DNS lookup
-    fd # find
-    fish
-    glab # gitlab cli
-    gitlab-runner
-    git-crypt
-    gnumake
-    home-manager
-    htmlq
-    htop # Show system processes
-    inetutils # Includes telnet, whois
-    jq # JSON manipulation
-    mc
-    nil # Nix language server
-    nixfmt # Nix file formatter
-    nmap
-    nushell
-    ripgrep # grep
-    rsync # Copy folders
-    sd # sed
-    shell_gpt
-    tealdeer # Cheatsheets
-    tree # View directory hierarchy
-    unzip # Extract zips
-    vimv-rs # Batch rename files
-    xplr
-    xonsh
+    ./my-home-packages.nix
   ];
 
   home.file = {
@@ -62,7 +24,6 @@
       package = pkgs.atuin;
       flags = [ "--disable-up-arrow" ];
     };
-    zoxide.enable = true; # Shortcut jump command
     bat = {
       enable = true; # cat replacement
       config = {
@@ -74,7 +35,18 @@
       enable = true;
       nix-direnv.enable = true;
     };
+    tmux = {
+      enable = true;
+      clock24 = true;
+    };
+    zoxide.enable = true; # Shortcut jump command
   };
+
+  services.pass-secret-service = {
+    package = pkgs.libsecret;
+    enable = true;
+  };
+
 
   home.stateVersion = stateVersion;
 }

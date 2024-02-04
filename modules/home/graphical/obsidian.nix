@@ -4,7 +4,7 @@
 , user
 , ...
 }: {
-  home = lib.mkIf custom.obsidian.enable {
+  home = lib.mkIf custom.obsidian {
     packages = with pkgs; [ obsidian ];
   };
 }

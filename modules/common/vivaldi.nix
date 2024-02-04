@@ -1,13 +1,6 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, user, ... }: {
 
-  config = lib.mkIf config.custom.vivaldi.enable {
-
-    environment.etc = {
-      "1password/custom_allowed_browsers".text = ''
-        vivaldi-bin
-        wavebox
-      '';
-    };
+  config = lib.mkIf config.custom.vivaldi {
 
     environment.systemPackages = with pkgs;
       [

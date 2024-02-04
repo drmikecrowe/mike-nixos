@@ -11,52 +11,21 @@ let
   autostartPrograms = [ "org.flameshot.Flameshot" ];
 in
 {
-  home = {
-    packages = with pkgs; [
-      peek
-      appimage-run
-      authy
-      brave
-      chatgpt-cli
-      chromium
-      codeium
-      bcompare
-      copyq
-      dbeaver
-      discord
-      element-desktop
-      firefox
-      flameshot
-      gimp
-      glxinfo
-      gtk3
-      gtk4
-      kitty
-      libreoffice
-      meld
-      albert
-      obsidian
-      pinentry-qt
-      slack
-      teams-for-linux
-      vlc
-      wavebox
-      xdg-utils
-      yubikey-manager
-      yubikey-personalization-gui
-      yubioath-flutter
-      zoom-us
-    ];
+  imports = [
+    ./xps15-home-packages.nix
+  ];
 
+  home = {
     file.".config/autostart/launch-copyq" = {
       text = ''
         #!/usr/bin/env bash
 
-        export QT_QPA_PLATFORM=xcb
+        if [ "$XDG_SESSION_TYPE" == "wayland" ]; then 
+          export QT_QPA_PLATFORM=xcb
+        fi
         nohup copyq --start-server hide > /tmp/copyq.log 2>&1 &
       '';
       executable = true;
     };
-    file.".config/discord/settings.json".text = builtins.readFile "${dotfiles}/discord/settings.json";
   };
 }

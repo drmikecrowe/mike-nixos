@@ -18,18 +18,12 @@ in
 
   powerManagement.cpuFreqGovernor = powerMode;
   services.auto-cpufreq.enable = true;
-  services.thermald.enable = true;
+  services.thermald.enable = false;
 
   # Fix unreadable tty under high dpi
   console = {
     packages = [ pkgs.terminus_font ];
     font = "ter-124n";
-  };
-
-  services = {
-    xserver = {
-      videoDrivers = [ "nvidia" ];
-    };
   };
 
   # Network
@@ -39,14 +33,19 @@ in
     hostId = "c904de5f";
   };
 
-  hardware = {
-    opengl.driSupport32Bit = true;
+  services = {
+    xserver = {
+      videoDrivers = [ "nvidia" ];
+    };
+  };
 
+  hardware = {
     cpu.intel.updateMicrocode = true;
 
     opengl = {
       enable = true;
       driSupport = true;
+      driSupport32Bit = true;
     };
 
     nvidia = {

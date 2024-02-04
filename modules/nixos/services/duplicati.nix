@@ -3,11 +3,11 @@
 , lib
 , ...
 }: {
-  config = lib.mkIf config.custom.duplicati.enable {
+  config = lib.mkIf config.custom.duplicati {
     # Duplicati backup
     services.duplicati = {
       inherit user;
-      inherit (config.custom.duplicati) enable;
+      enable = true;
     };
   };
 }

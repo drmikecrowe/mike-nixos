@@ -1,3 +1,6 @@
 final: prev: {
-    aws-sso-cli = prev.callPackage ./aws-sso-cli.nix { };
+  custom = {
+    # aws-sso-cli = prev.callPackage ./aws-sso-cli.nix { };
+    # argc-completions = prev.callPackage ./argc-completions.nix { };
+  };
 }

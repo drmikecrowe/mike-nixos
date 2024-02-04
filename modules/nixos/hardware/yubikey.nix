@@ -24,6 +24,7 @@
     };
     security.polkit.enable = true;
     security.polkit.debug = true;
+
     security.polkit.extraConfig = ''
       polkit.addRule(function(action, subject) {
           polkit.log("action=" + action);

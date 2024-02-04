@@ -1,24 +1,29 @@
 { inputs, pkgs, ... }: {
-  imports = [ ./hardware.nix ];
+  imports = [
+    ./hardware.nix
+    ./xps15-system-packages.nix
+  ];
 
   config = {
     custom = {
-      gui.enable = true;
-      continue.enable = true;
-      kde.enable = true;
-      kitty.enable = true;
-      _1password.enable = true;
-      discord.enable = true;
-      duplicati.enable = true;
+      _1password = true;
+      budgie = false;
+      continue = true;
+      discord = true;
+      duplicati = true;
+      flatpak = true;
+      gnome = false;
+      gui = true;
+      kde = true;
+      kitty = true;
+      obsidian = true;
+      vivaldi = true;
+
       theme = {
         colors = (import ../../colorscheme/gruvbox).light;
         dark = false;
       };
     };
-    gtk.theme.name = pkgs.lib.mkDefault "Adwaita";
-    environment.systemPackages = [
-      inputs.devenv.packages.${pkgs.system}.devenv
-    ];
   };
 
 }
