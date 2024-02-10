@@ -6,9 +6,8 @@
   ...
 }: {
   programs = {
-    bash = {
+    zsh = {
       enable = true;
-      historyControl = ["ignoredups" "ignorespace"];
     };
   };
 }

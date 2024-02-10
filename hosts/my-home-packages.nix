@@ -39,6 +39,6 @@
     vimv-rs # Batch rename files
     xonsh
     xplr
-    yq
+    yq-go
   ];
 }

@@ -29,7 +29,7 @@ stdenv.mkDerivation rec {
 
   runtimeDependencies = [
     pkgs.argc
-    pkgs.yq
+    pkgs.yq-go
   ];
 
   nativeBuildInputs = [
@@ -47,27 +47,37 @@ stdenv.mkDerivation rec {
   '';
 
   postInstall = ''
-    SHELL_INITS="$out/shell-inits"
-    mkdir -p $SHELL_INITS
     cd $out
 
-    for shell in bash zsh ps1 fish nu elv xsh tcsh; do
-      bash $out/scripts/display-config.sh $shell > $SHELL_INITS/argc.$shell
-      chmod +x $SHELL_INITS/argc.$shell
-    done
+    mkdir tmp
+
+    initialize() {
+      local shell="$1"
+      local ext="$2"
+      local cmd="''${3:-$shell}"
+      local output="argc-completions.$ext"
+      echo "#!/usr/bin/env $cmd" > "$out/tmp/$output"
+      set -x
+      bash "$out/scripts/display-config.sh" "$shell" | \
+        sed 's/\bls\b/$(which ls)/g' | \
+        sed 's@/.*/tmp/argc@/tmp/argc@g' | \
+        sed 's@argc --argc-completions nushell.*@argc --argc-completions nushell | tee /tmp/argc-completions.nu > /dev/null@g' | \
+        tee -a "$out/tmp/$output" > /dev/null
+      echo "Initialization for $shell is $out/bin/argc-completions.$shell"
+      install -Dm755 $out/tmp/$output $out/bin/$output
+    }
+
+    initialize bash bash
+    initialize zsh zsh
+    initialize fish fish
+    initialize nushell nu nu
+    initialize powershell ps1
+    initialize elvish elv
 
     for shell in ${lib.escapeShellArgs enableShells}; do
-      echo "Installing shell completions for $shell via $SHELL_INITS/argc.$shell"
-      installShellCompletion --name argc-completions --$shell <(cat $SHELL_INITS/argc.$shell)
+      echo "Installing shell completions for $shell from $out/bin/argc-completions.$shell"
+      installShellCompletion --$shell bin/argc-completions.$shell
     done
-
-    cat <<SCRIPT > $out/bin/argc-completions-folder
-    #!${runtimeShell}
-    # Run this script to find the argc-completions shared folder where all the shell
-    # integration scripts are living.
-    echo $SHELL_INITS
-    SCRIPT
-    chmod +x $out/bin/argc-completions-folder
   '';
 
   meta = with lib; {

@@ -18,13 +18,6 @@
   };
 
   programs = {
-    atuin = {
-      enable = true;
-      enableNushellIntegration = true;
-      enableFishIntegration = true;
-      package = pkgs.atuin;
-      flags = ["--disable-up-arrow"];
-    };
     bat = {
       enable = true; # cat replacement
       config = {
@@ -32,15 +25,10 @@
         pager = "less -R"; # Don't auto-exit if one screen
       };
     };
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-    };
     tmux = {
       enable = true;
       clock24 = true;
     };
-    zoxide.enable = true; # Shortcut jump command
   };
 
   services.pass-secret-service = {

@@ -5,7 +5,6 @@
   ...
 }: {
   programs.starship = {
-    enable = true;
     settings = {
       add_newline = true; # Don"t print new line at the start of the prompt
       format = lib.concatStrings [

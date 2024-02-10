@@ -39,10 +39,4 @@
       };
     };
   };
-
-  # Provides "command-not-found" options
-  programs.nix-index = {
-    enable = true;
-    enableFishIntegration = true;
-  };
 }

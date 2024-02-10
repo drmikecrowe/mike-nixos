@@ -18,10 +18,6 @@
   home.sessionVariables.fish_greeting = "";
 
   programs = {
-    fzf.enableFishIntegration = true;
-    starship.enableFishIntegration = true;
-    zoxide.enableFishIntegration = true;
-
     fish = {
       enable = true;
 
@@ -52,9 +48,6 @@
           set -gx PATH "/home/${user}/bin" $PATH
         end
       '';
-      loginShellInit = "";
-
-      shellInit = "";
     };
   };
 }

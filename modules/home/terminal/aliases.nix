@@ -25,7 +25,7 @@
     l = "eza -l --classify";
     la = "ls -lAF";
     ll = "eza --long --header";
-    ls = "eza --classify";
+    sl = "eza --classify";
     lsd = "ls -lF | grep --color=never '^d'";
     md = "mkdir -p";
     nixdevnode = "nix flake init --refresh --template github:drmikecrowe/mike-nixos#typescript";
