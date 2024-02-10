@@ -17,9 +17,10 @@
       flags = ["--disable-up-arrow"];
     };
     direnv = {
+      enable = true;
       nix-direnv.enable = true;
       enableBashIntegration = true;
-      enableFishIntegration = true;
+      # enableFishIntegration = true;
       enableNushellIntegration = true;
       enableZshIntegration = true;
     };

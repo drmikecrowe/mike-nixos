@@ -11,6 +11,7 @@
     deno
     dig # DNS lookup
     dua
+    eza
     fd # find
     fish
     git-crypt

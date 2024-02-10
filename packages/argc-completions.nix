@@ -7,7 +7,6 @@
   fetchFromGitHub,
   installShellFiles,
   runtimeShell,
-  enableShells ? ["fish" "bash" "zsh"],
 }:
 stdenv.mkDerivation rec {
   pname = "argc-completions";
@@ -57,9 +56,8 @@ stdenv.mkDerivation rec {
       local cmd="''${3:-$shell}"
       local output="argc-completions.$ext"
       echo "#!/usr/bin/env $cmd" > "$out/tmp/$output"
-      set -x
       bash "$out/scripts/display-config.sh" "$shell" | \
-        sed 's/\bls\b/$(which ls)/g' | \
+        sed 's@\bls\b@/run/current-system/sw/bin/ls@g' | \
         sed 's@/.*/tmp/argc@/tmp/argc@g' | \
         sed 's@argc --argc-completions nushell.*@argc --argc-completions nushell | tee /tmp/argc-completions.nu > /dev/null@g' | \
         tee -a "$out/tmp/$output" > /dev/null
@@ -67,6 +65,7 @@ stdenv.mkDerivation rec {
       install -Dm755 $out/tmp/$output $out/bin/$output
     }
 
+    cd $out
     initialize bash bash
     initialize zsh zsh
     initialize fish fish
@@ -74,10 +73,8 @@ stdenv.mkDerivation rec {
     initialize powershell ps1
     initialize elvish elv
 
-    for shell in ${lib.escapeShellArgs enableShells}; do
-      echo "Installing shell completions for $shell from $out/bin/argc-completions.$shell"
-      installShellCompletion --$shell bin/argc-completions.$shell
-    done
+    cd bin
+    installShellCompletion argc-completions.{ba,fi,z}sh
   '';
 
   meta = with lib; {

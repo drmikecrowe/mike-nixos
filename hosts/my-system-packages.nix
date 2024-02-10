@@ -17,6 +17,7 @@
       flameshot
       gimp
       git
+      grc
       gtk3
       gtk4
       htop
