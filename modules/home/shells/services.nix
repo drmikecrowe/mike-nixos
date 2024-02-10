@@ -30,13 +30,13 @@
       enableFishIntegration = true;
       enableZshIntegration = true;
     };
-    keychain = {
-      enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableNushellIntegration = true;
-      enableZshIntegration = true;
-    };
+    # keychain = {
+    #   enable = true;
+    #   enableBashIntegration = true;
+    #   enableFishIntegration = true;
+    #   enableNushellIntegration = true;
+    #   enableZshIntegration = true;
+    # };
     # Provides "command-not-found" options
     nix-index = {
       enable = true;
