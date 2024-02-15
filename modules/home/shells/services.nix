@@ -7,6 +7,28 @@
   ...
 }: {
   programs = {
+    bash.initExtra = ''
+      if [[ $TERM != "dumb" ]]; then
+        source ${pkgs.argc-completions}/bin/argc-completions.bash
+      fi
+    '';
+
+    fish.interactiveShellInit = ''
+      if test "$TERM" != "dumb"
+        source ${pkgs.argc-completions}/bin/argc-completions.fish
+      end
+    '';
+
+    zsh.initExtra = ''
+      if [[ $TERM != "dumb" ]]; then
+        source ${pkgs.argc-completions}/bin/argc-completions.zsh
+      fi
+    '';
+
+    nushell.extraConfig = ''
+      source ${pkgs.argc-completions}/bin/argc-completions.nu
+    '';
+
     atuin = {
       enable = true;
       enableBashIntegration = true;

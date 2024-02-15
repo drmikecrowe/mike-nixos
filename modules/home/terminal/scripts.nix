@@ -15,10 +15,11 @@
       '';
     })
     (pkgs.writeShellApplication {
-      name = "mkcd";
+      name = "archive";
       text = ''
-        [ -n "$1" ] && mkdir -p "$1"
-        cd "$1"
+        set -e
+        tar -czf "$1".tbz2 "$1"
+        rm -rf "$1"
       '';
     })
   ];

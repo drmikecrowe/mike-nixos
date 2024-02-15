@@ -59,8 +59,20 @@ stdenv.mkDerivation rec {
       bash "$out/scripts/display-config.sh" "$shell" | \
         sed 's@\bls\b@/run/current-system/sw/bin/ls@g' | \
         sed 's@/.*/tmp/argc@/tmp/argc@g' | \
-        sed 's@argc --argc-completions nushell.*@argc --argc-completions nushell | tee /tmp/argc-completions.nu > /dev/null@g' | \
         tee -a "$out/tmp/$output" > /dev/null
+      if [[ $ext == nu ]]; then
+        sed -i '/argc --argc-completions nushell/{N;d;}' $out/tmp/$output
+        echo 'def _argc_completer [args: list<string>] {' >> $out/tmp/$output
+        echo '    argc --argc-compgen nushell "" $args' >> $out/tmp/$output
+        echo '        | split row "\n" | range 0..-2' >> $out/tmp/$output
+        echo '        | each { |line| $line | split column "\t" value description } | flatten' >> $out/tmp/$output
+        echo '}' >> $out/tmp/$output
+        echo 'let external_completer = {|spans|' >> $out/tmp/$output
+        echo '    _argc_completer $spans' >> $out/tmp/$output
+        echo '}' >> $out/tmp/$output
+        echo '$env.config.completions.external.enable = true' >> $out/tmp/$output
+        echo '$env.config.completions.external.completer = $external_completer' >> $out/tmp/$output
+      fi
       echo "Initialization for $shell is $out/bin/argc-completions.$shell"
       install -Dm755 $out/tmp/$output $out/bin/$output
     }
@@ -72,9 +84,6 @@ stdenv.mkDerivation rec {
     initialize nushell nu nu
     initialize powershell ps1
     initialize elvish elv
-
-    cd bin
-    installShellCompletion argc-completions.{ba,fi,z}sh
   '';
 
   meta = with lib; {

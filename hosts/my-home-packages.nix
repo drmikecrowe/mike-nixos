@@ -4,19 +4,19 @@
     alejandra
     argc
     argc-completions
+    atool
     aws-sso-cli
     awscli2
     bc # Calculator
-    chatblade
     deno
     dig # DNS lookup
     dua
     eza
     fd # find
-    fish
     git-crypt
     gitlab-runner
     glab # gitlab cli
+    glow # markdown preview cli
     gnumake
     home-manager
     htmlq
@@ -24,10 +24,10 @@
     inetutils # Includes telnet, whois
     jq # JSON manipulation
     mc
+    miller # csv from the cli
     nil # Nix language server
-    nixfmt # Nix file formatter
+    nixd
     nmap
-    nnn
     nushell
     ripgrep # grep
     rsync # Copy folders
@@ -39,7 +39,6 @@
     vifm
     vimv-rs # Batch rename files
     xonsh
-    xplr
     yq-go
   ];
 }

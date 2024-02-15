@@ -13,7 +13,6 @@
           enable = true;
           setSocketVariable = true;
         };
-        storageDriver = "btrfs";
       };
 
       libvirtd.enable = true;

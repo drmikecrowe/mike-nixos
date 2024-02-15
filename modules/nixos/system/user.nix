@@ -8,8 +8,7 @@
   config = lib.mkIf pkgs.stdenv.isLinux {
     # Allows us to declaritively set password
     users.mutableUsers = false;
-
-    users.defaultUserShell = pkgs.fish;
+    users.defaultUserShell = pkgs.bash;
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.${user} = {

@@ -4,4 +4,8 @@ set -euo pipefail
 
 bin/fmt
 git add --intent-to-add . 
-sudo nixos-rebuild switch $@
+if [[ $HOSTNAME == "xps15" ]]; then 
+  sudo nixos-rebuild switch $@
+else
+  home-manager switch -b bak-$(date +%Y%m%d%H%M) $@
+fi
