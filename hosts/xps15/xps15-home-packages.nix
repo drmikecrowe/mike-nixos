@@ -9,15 +9,17 @@
       dbeaver
       element-desktop
       etcher
-      evolution
+      betterbird
       firefox
       flameshot
+      gcc13
       gimp
       glxinfo
       gtk3
       gtk4
       imagemagick
       libreoffice
+      libsForQt5.kgpg
       meld
       peek
       qcad

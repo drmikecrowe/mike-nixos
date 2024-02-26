@@ -2,7 +2,6 @@
   config,
   dotfiles,
   pkgs,
-  stateVersion,
   user,
   ...
 }: {
@@ -35,6 +34,4 @@
     package = pkgs.libsecret;
     enable = true;
   };
-
-  home.stateVersion = stateVersion;
 }

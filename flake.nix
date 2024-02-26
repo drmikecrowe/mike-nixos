@@ -34,6 +34,9 @@
       url = "github:StevenBlack/hosts";
       flake = false;
     };
+
+    nix-snapd.url = "github:io12/nix-snapd";
+    nix-snapd.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ {
@@ -42,6 +45,7 @@
     home-manager,
     nixos-hardware,
     impermanence,
+    nix-snapd,
     ...
   }: let
     user = "mcrowe";

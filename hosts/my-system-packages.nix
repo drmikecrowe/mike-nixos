@@ -10,6 +10,7 @@
       htop
       killall
       lm_sensors
+      home-manager
       nodejs_18
       parted
       pciutils

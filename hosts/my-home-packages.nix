@@ -18,17 +18,18 @@
     glab # gitlab cli
     glow # markdown preview cli
     gnumake
-    home-manager
     htmlq
     htop # Show system processes
     inetutils # Includes telnet, whois
     jq # JSON manipulation
+    lunarvim
     mc
     miller # csv from the cli
     nil # Nix language server
     nixd
     nmap
     nushell
+    ouch
     ripgrep # grep
     rsync # Copy folders
     sd # sed

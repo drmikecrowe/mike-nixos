@@ -71,12 +71,12 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = extraArgs;
-              home-manager.users.${user} = {
-                imports = [
-                  ./home.nix
-                  ./${host}/home.nix
-                ];
-              };
+              home-manager.users.${user}.home.stateVersion = stateVersion;
+            }
+
+            inputs.nix-snapd.nixosModules.default
+            {
+              services.snap.enable = true;
             }
           ]
           ++ extraSpecialModules;
@@ -92,6 +92,7 @@
           (_: {
             home.username = user;
             home.homeDirectory = "/home/${user}";
+            home.stateVersion = stateVersion;
           })
         ];
       };

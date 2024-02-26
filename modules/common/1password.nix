@@ -20,9 +20,13 @@
     };
 
     environment.etc = {
-      "1password/custom_allowed_browsers".text = ''
-        vivaldi-bin
-      '';
+      "1password/custom_allowed_browsers" = {
+        text = ''
+          vivaldi-bin
+          wavebox
+        '';
+        mode = "0755";
+      };
     };
   };
 }

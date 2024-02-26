@@ -31,15 +31,32 @@ in {
       package = pkgs.numix-cursor-theme;
     };
 
+    gtk2.extraConfig = ''
+      gtk-enable-animations=1
+      gtk-primary-button-warps-slider=0
+      gtk-toolbar-style=3
+      gtk-menu-images=1
+      gtk-button-images=1
+      gtk-cursor-theme-size=24
+      gtk-font-name="NotoSans NF Med,  11"
+      gtk-theme-name="palenight"
+      gtk-cursor-theme-name="breeze_cursors"
+      gtk-icon-theme-name="breeze-dark"
+    '';
+
     gtk3.extraConfig = {
       Settings = ''
         gtk-application-prefer-dark-theme=1
+        gtk-cursor-theme-name="breeze_cursors"
+        gtk-icon-theme-name="breeze-dark"
       '';
     };
 
     gtk4.extraConfig = {
       Settings = ''
         gtk-application-prefer-dark-theme=1
+        gtk-cursor-theme-name="breeze_cursors"
+        gtk-icon-theme-name="breeze-dark"
       '';
     };
   };

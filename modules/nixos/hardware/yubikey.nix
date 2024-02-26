@@ -21,7 +21,8 @@
       enable = true;
       # debug = true;
       mode = "challenge-response";
-      id = ["19883829"];
+      id = [
+      "19883829" "25079218"];
     };
     security.polkit.enable = true;
     security.polkit.debug = true;

@@ -1,0 +1,6 @@
+{
+  "npm.packageManager": "yarn",
+  "easynpm.packageManager": "yarn",
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+}

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+bin/fmt
+git add --intent-to-add . 
+home-manager switch -b bak-$(date +%Y%m%d%H%M) $@
