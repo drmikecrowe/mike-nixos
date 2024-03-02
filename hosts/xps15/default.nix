@@ -12,18 +12,19 @@
 
   config = {
     custom = {
+      # Always defaulted on this machine
       _1password = true;
-      budgie = true;
       continue = true;
       discord = true;
       duplicati = true;
       flatpak = true;
-      gnome = false;
       gui = true;
-      kde = false;
       kitty = true;
       obsidian = true;
       vivaldi = true;
+
+      # Window Manager: awesome, budgie, kde, gnome
+      gnome = true;
 
       theme = {
         colors = (import ../../colorscheme/gruvbox).light;

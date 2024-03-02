@@ -9,6 +9,7 @@
     ./obsidian.nix
     ./gtk.nix
     ./vscode
+    ./wezterm.nix
   ];
 
   gtk = {

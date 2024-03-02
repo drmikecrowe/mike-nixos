@@ -2,6 +2,9 @@
 
 set -euo pipefail
 
+python bin/dconf.py
 bin/fmt
 git add --intent-to-add .
-sudo nixos-rebuild switch "$@"
+branch_name=$(git rev-parse --abbrev-ref HEAD)
+PROFILE="-p $branch_name"
+sudo nixos-rebuild switch $PROFILE "$@"
