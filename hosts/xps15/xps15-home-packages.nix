@@ -30,6 +30,11 @@
       yubikey-personalization-gui
       yubioath-flutter
       zoom-us
+
+      # shell themes
+      zuki-themes
+      arc-theme
+      gnomeExtensions.gtk3-theme-switcher
     ];
   };
 }

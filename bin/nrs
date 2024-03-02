@@ -2,11 +2,9 @@
 
 set -euo pipefail
 
+python bin/dconf.py
 bin/fmt
 git add --intent-to-add .
 branch_name=$(git rev-parse --abbrev-ref HEAD)
-PROFILE=
-if [[ "$branch_name" != "main" ]]; then
-    PROFILE="-p $branch_name"
-fi
+PROFILE="-p $branch_name"
 sudo nixos-rebuild switch $PROFILE "$@"

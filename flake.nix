@@ -21,8 +21,8 @@
 
     home-manager.url = "github:nix-community/home-manager/master";
     nixos-generators.url = "github:nix-community/nixos-generators";
-    nixos-hardware.url = "github:drmikecrowe/nixos-hardware";
-    # nixos-hardware.url = "github:NixOS/nixos-hardware";
+    # nixos-hardware.url = "github:drmikecrowe/nixos-hardware";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
     impermanence.url = "github:nix-community/impermanence/master";
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
     devenv.url = "github:cachix/devenv/latest";
