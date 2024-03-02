@@ -11,7 +11,6 @@
 in {
   config = {
     boot = {
-      kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
       kernelParams = ["nohibernate"];
       supportedFilesystems = ["zfs"];
       zfs.devNodes = "/dev/disk/by-partlabel";

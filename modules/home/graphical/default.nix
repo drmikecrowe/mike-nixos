@@ -3,10 +3,7 @@
   lib,
   pkgs,
   ...
-}: let
-  defaultBrowser = "firefox.desktop";
-  defaultEmail = "Wavebox.desktop";
-in {
+}: {
   imports = [
     ./kitty.nix
     ./obsidian.nix

@@ -5,18 +5,20 @@
 }: {
   imports = [
     ./hardware.nix
+    ./options/nvidia.nix
+    # ./options/kernel.nix # zfs kernel packages if nvidia not selected
     ./xps15-system-packages.nix
   ];
 
   config = {
     custom = {
       _1password = true;
-      budgie = false;
+      budgie = true;
       continue = true;
       discord = true;
       duplicati = true;
       flatpak = true;
-      gnome = true;
+      gnome = false;
       gui = true;
       kde = false;
       kitty = true;
