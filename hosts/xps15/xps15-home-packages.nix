@@ -25,6 +25,7 @@
       qcad
       teams-for-linux
       wavebox
+      wezterm
       yubikey-manager
       yubikey-personalization-gui
       yubioath-flutter

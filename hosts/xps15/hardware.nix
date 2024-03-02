@@ -9,8 +9,8 @@
   powerMode = "performance";
 in {
   imports = [
-    # inputs.nixos-hardware.nixosModules.dell-xps-15-9560
-    inputs.nixos-hardware.nixosModules.dell-xps-15-9560-nvidia
+    inputs.nixos-hardware.nixosModules.dell-xps-15-9560
+    # inputs.nixos-hardware.nixosModules.dell-xps-15-9560-nvidia
     inputs.impermanence.nixosModule
     ./boot.nix
     ./disks.nix
@@ -46,19 +46,5 @@ in {
       driSupport = true;
       driSupport32Bit = true;
     };
-
-    bumblebee.enable = lib.mkDefault true;
-    bumblebee.pmMethod = lib.mkDefault "none";
-
-    # nvidia = {
-    #   prime.offload.enable = true;
-    #   nvidiaSettings = true;
-    #   open = true;
-    #   powerManagement.enable = false;
-    #   powerManagement.finegrained = false;
-    #   modesetting.enable = true;
-    #   # package = config.boot.kernelPackages.nvidiaPackages.legacy_390;
-    # };
   };
-  # inputs.nixpkgs.config.nvidia.acceptLicense = true;
 }
