@@ -28,6 +28,7 @@
         allowBroken = true;
         allowUnfree = true;
         allowUnsupportedSystem = true;
+        nvidia.acceptLicense = true;
         permittedInsecurePackages = [
           "mailspring-1.11.0"
           "electron-25.9.0"
@@ -71,7 +72,13 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = extraArgs;
-              home-manager.users.${user}.home.stateVersion = stateVersion;
+              home-manager.users.${user} = {
+                imports = [
+                  ./home.nix
+                  ./${host}/home.nix
+                ];
+                home.stateVersion = stateVersion;
+              };
             }
 
             inputs.nix-snapd.nixosModules.default

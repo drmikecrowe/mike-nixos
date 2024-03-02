@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+cat <<EOF
+_: {
+  gtk = {
+EOF
+
+bin/gtk-to-settings.py gtk2.extraConfig /home/mcrowe/.gtkrc-2.0.bak-202402260704
+bin/gtk-to-settings.py gtk3.extraConfig /home/mcrowe/.config/gtk-3.0/settings.ini.bak-202402260704
+bin/gtk-to-settings.py gtk4.extraConfig /home/mcrowe/.config/gtk-4.0/settings.ini.bak-202402260704
+
+cat <<EOF
+  };
+}
+EOF

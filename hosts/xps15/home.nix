@@ -24,7 +24,6 @@ in {
         fi
         nohup copyq --start-server hide > /tmp/copyq.log 2>&1 &
       '';
-      executable = true;
     };
   };
 }

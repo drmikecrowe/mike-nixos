@@ -4,15 +4,15 @@
       albert
       authy
       bcompare
+      betterbird
       codeium
       copyq
       dbeaver
+      dconf2nix
       element-desktop
       etcher
-      betterbird
       firefox
       flameshot
-      gcc13
       gimp
       glxinfo
       gtk3
@@ -23,6 +23,7 @@
       meld
       peek
       qcad
+      teams-for-linux
       wavebox
       yubikey-manager
       yubikey-personalization-gui

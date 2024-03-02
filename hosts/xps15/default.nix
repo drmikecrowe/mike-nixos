@@ -16,9 +16,9 @@
       discord = true;
       duplicati = true;
       flatpak = true;
-      gnome = false;
+      gnome = true;
       gui = true;
-      kde = true;
+      kde = false;
       kitty = true;
       obsidian = true;
       vivaldi = true;
