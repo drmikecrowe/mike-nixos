@@ -9,6 +9,7 @@ in {
   options = {
     custom = {
       _1password = mkOption false;
+      awesome = mkOption false;
       budgie = mkOption false;
       gui = mkOption false;
       kde = mkOption false;

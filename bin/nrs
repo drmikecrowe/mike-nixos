@@ -4,4 +4,9 @@ set -euo pipefail
 
 bin/fmt
 git add --intent-to-add .
-sudo nixos-rebuild switch "$@"
+branch_name=$(git rev-parse --abbrev-ref HEAD)
+PROFILE=
+if [[ "$branch_name" != "main" ]]; then
+    PROFILE="-p $branch_name"
+fi
+sudo nixos-rebuild switch $PROFILE "$@"
