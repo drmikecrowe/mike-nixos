@@ -1,8 +1,9 @@
-{ config
-, pkgs
-, lib
-, options
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  options,
+  ...
 }: {
   home.shellAliases = {
     ".." = "cd ..";
@@ -24,12 +25,13 @@
     l = "eza -l --classify";
     la = "ls -lAF";
     ll = "eza --long --header";
-    ls = "eza --classify";
+    sl = "eza --classify";
     lsd = "ls -lF | grep --color=never '^d'";
     md = "mkdir -p";
     nixdevnode = "nix flake init --refresh --template github:drmikecrowe/mike-nixos#typescript";
     nixdevpoetry = "nix flake init --refresh --template github:drmikecrowe/mike-nixos#poetry";
     nixdevpython = "nix flake init --refresh --template github:drmikecrowe/mike-nixos#python";
+    ping = "${pkgs.prettyping}/bin/prettyping --nolegend";
     psa = "ps aux | cut -b -180";
     psag = "ps aux | cut -b -180 | grep";
     psi = "ps h -eo pmem,comm | sort -nr | head";

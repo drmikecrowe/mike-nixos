@@ -1,19 +1,11 @@
-{ config
-, pkgs
-, lib
-, user
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  ...
 }: {
-  options = {
-    budgie = {
-      enable = lib.mkEnableOption {
-        description = "Enable Budgie.";
-        default = false;
-      };
-    };
-  };
-
-  config = lib.mkIf config.budgie.enable {
+  config = lib.mkIf config.custom.budgie {
     home-manager.users.${user} = {
       home = {
         packages = with pkgs; [
@@ -26,7 +18,7 @@
     # Configure keymap in X11
     services = {
       xserver = {
-        desktopManager = { budgie = { enable = true; }; };
+        desktopManager = {budgie = {enable = true;};};
       };
     };
   };

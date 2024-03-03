@@ -1,19 +1,11 @@
-{ config
-, pkgs
-, lib
-, user
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  ...
 }: {
-  options = {
-    kde = {
-      enable = lib.mkEnableOption {
-        description = "Enable kde.";
-        default = false;
-      };
-    };
-  };
-
-  config = lib.mkIf config.custom.kde.enable {
+  config = lib.mkIf config.custom.kde {
     home-manager.users.${user} = {
       home = {
         packages = with pkgs; [
@@ -27,7 +19,7 @@
     services = {
       xserver = {
         desktopManager = {
-          plasma5 = { enable = true; };
+          plasma5 = {enable = true;};
         };
         displayManager = {
           lightdm = {

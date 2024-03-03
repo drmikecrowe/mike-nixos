@@ -1,14 +1,13 @@
-{ config
-, lib
-, pkgs
-, ...
-}:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   kibibyte = 1024;
   mibibyte = 1024 * kibibyte;
   gibibyte = 1024 * mibibyte;
-in
-{
+in {
   config = lib.mkMerge [
     {
       nix = {
@@ -26,7 +25,7 @@ in
 
         settings = {
           max-jobs = lib.mkDefault 12;
-          trusted-users = lib.mkDefault [ "root" "@wheel" ];
+          trusted-users = lib.mkDefault ["root" "@wheel"];
           min-free = lib.mkDefault (5 * gibibyte);
           max-free = lib.mkDefault (25 * gibibyte);
           # Add community Cachix to binary cache
@@ -34,7 +33,7 @@ in
           builders-use-substitutes = true;
           substituters =
             lib.mkIf (!pkgs.stdenv.isDarwin)
-              [ "https://nix-community.cachix.org" ];
+            ["https://nix-community.cachix.org"];
           trusted-public-keys = lib.mkIf (!pkgs.stdenv.isDarwin) [
             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           ];
@@ -46,7 +45,7 @@ in
       };
     }
     {
-      systemd.timers.nix-gc.timerConfig = { WakeSystem = true; };
+      systemd.timers.nix-gc.timerConfig = {WakeSystem = true;};
       systemd.services.nix-gc.unitConfig.ConditionACPower = true;
     }
   ];

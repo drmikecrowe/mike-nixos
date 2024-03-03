@@ -1,7 +1,8 @@
-{ custom
-, pkgs
-, lib
-, ...
+{
+  custom,
+  pkgs,
+  lib,
+  ...
 }: {
   programs = {
     gpg.enable = true;
@@ -10,7 +11,7 @@
       # https://github.com/drduh/config/blob/master/gpg.conf
       cert-digest-algo = "SHA512";
       charset = "utf-8";
-      default-preference-list = [ "SHA512" "SHA384" "SHA256" "AES256" "AES192" "AES" "ZLIB" "BZIP2" "ZIP" "Uncompressed" ];
+      default-preference-list = ["SHA512" "SHA384" "SHA256" "AES256" "AES192" "AES" "ZLIB" "BZIP2" "ZIP" "Uncompressed"];
       fixed-list-mode = true;
       keyid-format = "0xlong";
       list-options = "show-uid-validity";
@@ -18,9 +19,9 @@
       no-emit-version = true;
       no-greeting = true;
       no-symkey-cache = true;
-      personal-cipher-preferences = [ "AES256" "AES192" "AES" ];
-      personal-compress-preferences = [ "ZLIB" "BZIP2" "ZIP" "Uncompressed" ];
-      personal-digest-preferences = [ "SHA512" "SHA384" "SHA256" ];
+      personal-cipher-preferences = ["AES256" "AES192" "AES"];
+      personal-compress-preferences = ["ZLIB" "BZIP2" "ZIP" "Uncompressed"];
+      personal-digest-preferences = ["SHA512" "SHA384" "SHA256"];
       require-cross-certification = true;
       s2k-cipher-algo = "AES256";
       s2k-digest-algo = "SHA512";
@@ -37,9 +38,9 @@
     defaultCacheTtlSsh = 86400; # Resets when used
     maxCacheTtl = 34560000; # Can never reset
     maxCacheTtlSsh = 34560000; # Can never reset
-    pinentryFlavor =
-      if custom.gui.enable
-      then "qt"
-      else "tty";
+    pinentryFlavor = "curses";
+    # if custom.gui
+    # then "qt"
+    # else "tty";
   };
 }

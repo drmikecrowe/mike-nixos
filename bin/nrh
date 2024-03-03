@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-set -euo pipefail
-
-statix check
-nix fmt ./flake.nix ./hosts ./modules ./templates
-git add --intent-to-add . 
-home-manager switch -b bak-$(date +%Y%m%d%H%M) $@

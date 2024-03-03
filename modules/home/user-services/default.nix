@@ -1,9 +1,6 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   imports = [
+    ./dconf.nix
     ./gnupg.nix
   ];
-  services.pass-secret-service = {
-    package = pkgs.libsecret;
-    enable = true;
-  };
 }

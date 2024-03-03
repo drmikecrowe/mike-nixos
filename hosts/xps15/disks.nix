@@ -1,5 +1,4 @@
-{ config, ... }:
-let
+{config, ...}: let
   HDD = "/dev/disk/by-id/nvme-Fanxiang_S500PRO_2TB_FXS500PRO231912172";
   SWAP = "/dev/disk/by-id/nvme-Fanxiang_S500PRO_2TB_FXS500PRO231912172-part4";
   EFI = "/dev/disk/by-id/nvme-Fanxiang_S500PRO_2TB_FXS500PRO231912172-part2";
@@ -7,20 +6,19 @@ let
   mkZfsMount = devicePath: {
     device = devicePath;
     fsType = "zfs";
-    options = [ "zfsutil" "X-mount.mkdir" ];
+    options = ["zfsutil" "X-mount.mkdir"];
   };
-in
-{
+in {
   config = {
     boot = {
       kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-      kernelParams = [ "nohibernate" ];
-      supportedFilesystems = [ "zfs" ];
+      kernelParams = ["nohibernate"];
+      supportedFilesystems = ["zfs"];
       zfs.devNodes = "/dev/disk/by-partlabel";
       loader.grub.zfsSupport = true;
     };
 
-    boot.loader.grub.devices = [ HDD ];
+    boot.loader.grub.devices = [HDD];
 
     swapDevices = [
       {
@@ -29,14 +27,14 @@ in
     ];
 
     fileSystems = {
-      "/" = mkZfsMount "rpool/nixos" // { neededForBoot = true; };
+      "/" = mkZfsMount "rpool/nixos" // {neededForBoot = true;};
       "/home" = mkZfsMount "rpool/nixos/home";
-      "/keep" = mkZfsMount "rpool/nixos/keep" // { neededForBoot = true; };
+      "/keep" = mkZfsMount "rpool/nixos/keep" // {neededForBoot = true;};
       "/nix" = mkZfsMount "rpool/nixos/nix";
       "/root" = mkZfsMount "rpool/nixos/root";
       "/usr" = mkZfsMount "rpool/nixos/usr";
       "/var" = mkZfsMount "rpool/nixos/var";
-      "/boot" = mkZfsMount "bpool/nixos/boot" // { neededForBoot = true; };
+      "/boot" = mkZfsMount "bpool/nixos/boot" // {neededForBoot = true;};
       "/boot/efis/efiboot0" = {
         device = EFI;
         fsType = "vfat";
@@ -44,7 +42,7 @@ in
       "/boot/efi" = {
         device = "/boot/efis/efiboot0";
         fsType = "none";
-        options = [ "bind" ];
+        options = ["bind"];
       };
     };
 
@@ -63,7 +61,7 @@ in
         "/etc/machine-id"
         {
           file = "/etc/nix/id_rsa";
-          parentDirectory = { mode = "u=rwx,g=rx,o=rx"; };
+          parentDirectory = {mode = "u=rwx,g=rx,o=rx";};
         }
         "/etc/ssh/ssh_host_ed25519_key"
         "/etc/ssh/ssh_host_ed25519_key.pub"

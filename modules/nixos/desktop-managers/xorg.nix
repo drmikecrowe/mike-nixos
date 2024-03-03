@@ -1,14 +1,16 @@
-{ config
-, pkgs
-, lib
-, user
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  ...
 }: {
   options = {
     gtk.theme = {
       name = lib.mkOption {
         type = lib.types.str;
         description = "Theme name for GTK applications";
+        default = "Adwaita";
       };
       package = lib.mkOption {
         type = lib.types.str;
@@ -18,28 +20,24 @@
     };
   };
 
-  config =
-    let
-      gtkTheme = {
-        inherit (config.custom.theme) name;
-        package = pkgs."${config.custom.theme.package}";
+  config = lib.mkIf config.custom.gui {
+    # Enable the X11 windowing system.
+    services = {
+      xserver = {
+        enable = true;
       };
-    in
-    lib.mkIf config.custom.gui.enable {
-      # Enable the X11 windowing system.
-      services.xserver = {
-        inherit (config.custom.gui) enable;
-      };
-
-      environment.systemPackages = with pkgs; [
-        etcher
-        xclip # Clipboard
-      ];
-
-      # Required for setting GTK theme (for preferred-color-scheme in browser)
-      services.dbus.packages = [ pkgs.dconf ];
-      programs.dconf.enable = true;
-
-      environment.sessionVariables = { GTK_THEME = config.gtk.theme.name; };
+      dbus.packages = [pkgs.dconf];
     };
+
+    # Required for setting GTK theme (for preferred-color-scheme in browser)
+    programs = {
+      dconf.enable = true;
+    };
+
+    environment = {
+      sessionVariables = {
+        GTK_THEME = config.gtk.theme.name;
+      };
+    };
+  };
 }

@@ -1,8 +1,9 @@
-{ buildGo121Module
-, fetchFromGitHub
-, lib
-, makeWrapper
-, xdg-utils
+{
+  buildGo121Module,
+  fetchFromGitHub,
+  lib,
+  makeWrapper,
+  xdg-utils,
 }:
 buildGo121Module rec {
   pname = "aws-sso-cli";
@@ -16,7 +17,7 @@ buildGo121Module rec {
   };
   vendorHash = "sha256-B7t1syBJjwaTM4Tgj/OhhmHJRAhJ/Ewg+g55AKpdj4c=";
 
-  nativeBuildInputs = [ makeWrapper ];
+  nativeBuildInputs = [makeWrapper];
 
   ldflags = [
     "-X main.Version=${version}"
@@ -25,7 +26,7 @@ buildGo121Module rec {
 
   postInstall = ''
     wrapProgram $out/bin/aws-sso \
-      --suffix PATH : ${lib.makeBinPath [ xdg-utils ]}
+      --suffix PATH : ${lib.makeBinPath [xdg-utils]}
   '';
 
   checkFlags = [
@@ -37,7 +38,7 @@ buildGo121Module rec {
     homepage = "https://github.com/synfinatic/aws-sso-cli";
     description = "AWS SSO CLI is a secure replacement for using the aws configure sso wizard";
     license = licenses.gpl3Plus;
-    maintainers = with maintainers; [ devusb ];
+    maintainers = with maintainers; [devusb];
     mainProgram = "aws-sso";
   };
 }

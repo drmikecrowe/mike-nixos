@@ -1,35 +1,34 @@
-{ config
-, lib
-, inputs
-, pkgs
-, modulesPath
-, ...
-}:
-let
-  powerMode = "performance";
-in
 {
+  config,
+  lib,
+  inputs,
+  pkgs,
+  modulesPath,
+  ...
+}: let
+  powerMode = "performance";
+in {
   imports = [
-    inputs.nixos-hardware.nixosModules.dell-xps-15-9560-nvidia
+    inputs.nixos-hardware.nixosModules.dell-xps-15-9560
+    # inputs.nixos-hardware.nixosModules.dell-xps-15-9560-nvidia
     inputs.impermanence.nixosModule
     ./boot.nix
     ./disks.nix
   ];
+  boot = {
+    extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
+  };
+  boot.blacklistedKernelModules = ["nouveau" "bbswitch"];
+  boot.kernelParams = ["acpi_rev_override=1"];
 
   powerManagement.cpuFreqGovernor = powerMode;
   services.auto-cpufreq.enable = true;
-  services.thermald.enable = true;
+  # services.thermald.enable = false;
 
   # Fix unreadable tty under high dpi
   console = {
-    packages = [ pkgs.terminus_font ];
+    packages = [pkgs.terminus_font];
     font = "ter-124n";
-  };
-
-  services = {
-    xserver = {
-      videoDrivers = [ "nvidia" ];
-    };
   };
 
   # Network
@@ -40,28 +39,12 @@ in
   };
 
   hardware = {
-    opengl.driSupport32Bit = true;
-
     cpu.intel.updateMicrocode = true;
 
     opengl = {
       enable = true;
       driSupport = true;
-    };
-
-    nvidia = {
-      modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
-      prime = {
-        sync.enable = true;
-        offload.enable = false;
-
-        # Bus ID of the NVIDIA GPU. You can find it using lspci, either under 3D or VGA
-        nvidiaBusId = "PCI:1:0:0";
-
-        # Bus ID of the Intel GPU. You can find it using lspci, either under 3D or VGA
-        intelBusId = "PCI:0:2:0";
-      };
+      driSupport32Bit = true;
     };
   };
 }

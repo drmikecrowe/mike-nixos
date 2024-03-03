@@ -8,6 +8,6 @@
   languages.python = {
     enable = true;
     version = "3.11.5";
-    # poetry.enable = true;
+    poetry.enable = true;
   };
 }

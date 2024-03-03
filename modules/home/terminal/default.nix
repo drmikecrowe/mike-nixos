@@ -1,4 +1,4 @@
-_: {
+{dotfiles, ...}: {
   imports = [
     ./aliases.nix
     ./fzf.nix

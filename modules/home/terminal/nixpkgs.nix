@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, dotfiles
-, ...
+{
+  config,
+  pkgs,
+  dotfiles,
+  ...
 }: {
   programs.fish = {
     shellAbbrs = {
@@ -37,11 +38,5 @@
         '';
       };
     };
-  };
-
-  # Provides "command-not-found" options
-  programs.nix-index = {
-    enable = true;
-    enableFishIntegration = true;
   };
 }

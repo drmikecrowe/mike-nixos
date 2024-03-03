@@ -1,14 +1,12 @@
-{ config
-, pkgs
-, lib
-, user
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  ...
 }: {
   # Packages used in abbreviations and aliases
   home.packages = with pkgs; [
-    curl
-    eza
-    grc
     fishPlugins.colored-man-pages
     fishPlugins.grc
     fishPlugins.plugin-git
@@ -17,21 +15,8 @@
   home.sessionVariables.fish_greeting = "";
 
   programs = {
-
-    fzf.enableFishIntegration = true;
-    starship.enableFishIntegration = true;
-    zoxide.enableFishIntegration = true;
-
     fish = {
       enable = true;
-
-      functions = {
-        ping = {
-          description = "Improved ping";
-          argumentNames = "target";
-          body = "${pkgs.prettyping}/bin/prettyping --nolegend $target";
-        };
-      };
 
       interactiveShellInit = ''
         fish_vi_key_bindings
@@ -52,10 +37,6 @@
           set -gx PATH "/home/${user}/bin" $PATH
         end
       '';
-      loginShellInit = "";
-
-      shellInit = "";
     };
   };
-
 }

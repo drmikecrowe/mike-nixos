@@ -1,6 +1,7 @@
-{ config
-, dotfiles
-, ...
+{
+  config,
+  dotfiles,
+  ...
 }: {
   imports = [
     ./graphical

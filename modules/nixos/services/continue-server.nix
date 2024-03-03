@@ -1,14 +1,15 @@
-{ config
-, pkgs
-, lib
-, user
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  ...
 }: {
-  config = lib.mkIf config.custom.continue.enable {
+  config = lib.mkIf config.custom.continue {
     systemd.user.services.continue-server = {
       description = "Continue Server Service";
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network.target" ];
+      wantedBy = ["multi-user.target"];
+      after = ["network.target"];
       serviceConfig = {
         Type = "simple";
         WorkingDirectory = "/home/${user}/Programming/Personal/continue";

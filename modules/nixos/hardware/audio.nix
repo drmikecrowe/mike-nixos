@@ -1,9 +1,10 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }: {
-  config = lib.mkIf (pkgs.stdenv.isLinux && config.custom.gui.enable) {
+  config = lib.mkIf (pkgs.stdenv.isLinux && config.custom.gui) {
     # Enable PipeWire
     security.rtkit.enable = true;
     #    services.pipewire = {

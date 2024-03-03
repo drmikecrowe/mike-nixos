@@ -1,8 +1,9 @@
-{ config
-, pkgs
-, lib
-, user
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  ...
 }: {
   config = {
     virtualisation = {
@@ -12,7 +13,6 @@
           enable = true;
           setSocketVariable = true;
         };
-        storageDriver = "btrfs";
       };
 
       libvirtd.enable = true;
@@ -27,6 +27,6 @@
       "docker"
       "libvirtd"
     ];
-    users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
+    users.extraGroups.vboxusers.members = ["user-with-access-to-virtualbox"];
   };
 }

@@ -1,17 +1,16 @@
-{ config
-, pkgs
-, lib
-, user
-, dotfiles
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  dotfiles,
+  ...
 }: {
+  home.file.".config/nushell/config.toml".source = "${dotfiles}/nushell/config.toml";
+  home.file.".config/nushell/conf.d".source = "${dotfiles}/nushell/conf.d";
   programs = {
     nushell = {
       enable = true;
-      extraConfig = builtins.readFile "${dotfiles}/atuin/init.nu";
     };
-    fzf.enableBashIntegration = true;
-    starship.enableBashIntegration = true;
-    zoxide.enableBashIntegration = true;
   };
 }

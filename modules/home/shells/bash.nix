@@ -1,23 +1,18 @@
-{ config
-, pkgs
-, lib
-, user
-, ...
-}: {
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  ...
+}: let
+  defaultShell = "fish";
+  defaultExec = "${pkgs.fish}/bin/fish";
+in {
   programs = {
     bash = {
       enable = true;
-      historyControl = [ "ignoredups" "ignorespace" ];
-      bashrcExtra = ''
-        
-      '';
+      enableCompletion = true;
+      historyControl = ["ignoredups" "ignorespace"];
     };
-    atuin = {
-      enable = true;
-      enableBashIntegration = true;
-    };
-    fzf.enableBashIntegration = true;
-    starship.enableBashIntegration = true;
-    zoxide.enableBashIntegration = true;
   };
 }

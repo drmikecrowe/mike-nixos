@@ -1,20 +1,12 @@
-{ config
-, pkgs
-, lib
-, user
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  ...
 }: {
-  options = {
-    flatpak = {
-      enable = lib.mkEnableOption {
-        description = "Enable Budgie.";
-        default = false;
-      };
-    };
-  };
-
-  config = lib.mkIf config.flatpak.enable {
-    services.flatpak.enable = false;
+  config = lib.mkIf config.custom.flatpak {
+    services.flatpak.enable = true;
 
     home-manager.users.${user} = {
       xdg = {
