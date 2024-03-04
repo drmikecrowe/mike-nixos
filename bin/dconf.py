@@ -1,6 +1,6 @@
-import subprocess
 import os
 import re
+import subprocess
 from textwrap import indent
 
 gtk = {
@@ -12,6 +12,23 @@ gtk = {
 todo = [
     "org/gnome",
 ]
+
+save_keys = [
+    "Connections",
+    "calendar",
+    "desktop/interface",
+    "desktop/peripherals/touchpad",
+    "desktop/wm/preferences",
+    "settings-daemon/plugins/color",
+    "settings-daemon/plugins/media-keys",
+    "settings-daemon/plugins/media-keys/custom-keybindings/custom0",
+    "settings-daemon/plugins/media-keys/custom-keybindings/custom1",
+    "settings-daemon/plugins/power",
+    "shell",
+    "shell/app-switcher",
+    "shell/extensions/appindicator",
+    "shell/weather",
+]
 remove = [
     "settings-daemon/plugins/xsettings",
     "shell/extensions/bingwallpaper",
@@ -22,17 +39,25 @@ remove = [
         ],
         "shell/weather": ["locations"],
     },
-    "*evolution",
-    "*epiphany",
-    "*Console",
-    "*Geary",
-    "*Totem",
-    "*evince",
-    "*desktop/notifications",
-    "software",
-    "*desktop/app-folders",
-    "*file-roller",
-    "*Weather",
+    # "*evolution",
+    # "*epiphany",
+    # "*Console",
+    # "*Geary",
+    # "*Totem",
+    # "*evince",
+    # "*desktop/notifications",
+    # "software",
+    # "*desktop/app-folders",
+    # "*file-roller",
+    # "*Weather",
+    # "control-center",
+    # "meld",
+    # "mutter",
+    # "nautilus/preferences",
+    # "shell/extensions/systemd-manager",
+    # "*nautilus",
+    # "desktop/input-sources",
+    # "*settings-daemon",
 ]
 
 
@@ -43,6 +68,9 @@ def sanitize_dconf(dconf) -> ConfigParser:
     ini = ConfigParser(interpolation=None)
     ini.read_string(dconf)
 
+    for todo in ini.sections():
+        if todo not in save_keys:
+            ini.remove_section(todo)
     for todo in remove:
         if isinstance(todo, dict):
             for section_name, keys in todo.items():

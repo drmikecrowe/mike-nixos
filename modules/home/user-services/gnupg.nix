@@ -38,7 +38,7 @@
     defaultCacheTtlSsh = 86400; # Resets when used
     maxCacheTtl = 34560000; # Can never reset
     maxCacheTtlSsh = 34560000; # Can never reset
-    pinentryFlavor = "curses";
+    pinentryFlavor = "qt";
     # if custom.gui
     # then "qt"
     # else "tty";
