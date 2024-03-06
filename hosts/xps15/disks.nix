@@ -16,10 +16,7 @@ in {
   config = {
     boot = {
       kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages.extend (self: super: {
-        nvidia_x11 =
-          if config.custom.nvidia
-          then super.nvidia_x11_legacy390
-          else super.nvidia_x11;
+        nvidia_x11 = super.nvidia_x11_legacy390;
       });
       kernelParams = ["nohibernate"];
       supportedFilesystems = ["zfs"];
