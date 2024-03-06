@@ -1,6 +1,6 @@
-import subprocess
 import os
 import re
+import subprocess
 from textwrap import indent
 
 gtk = {
@@ -12,6 +12,23 @@ gtk = {
 todo = [
     "org/gnome",
 ]
+
+save_keys = [
+    "Connections",
+    "calendar",
+    "desktop/interface",
+    "desktop/peripherals/touchpad",
+    "desktop/wm/preferences",
+    "settings-daemon/plugins/color",
+    "settings-daemon/plugins/media-keys",
+    "settings-daemon/plugins/media-keys/custom-keybindings/custom0",
+    "settings-daemon/plugins/media-keys/custom-keybindings/custom1",
+    "settings-daemon/plugins/power",
+    "shell",
+    "shell/app-switcher",
+    "shell/extensions/appindicator",
+    "shell/weather",
+]
 remove = [
     "settings-daemon/plugins/xsettings",
     "shell/extensions/bingwallpaper",
@@ -19,17 +36,28 @@ remove = [
         "shell": [
             "command-history",
             "app-picker-layout",
-        ]
+        ],
+        "shell/weather": ["locations"],
     },
-    "*evolution",
-    "*epiphany",
-    "*Console",
-    "*Geary",
-    "*Totem",
-    "*evince",
-    "*desktop/notifications",
-    "software",
-    "*desktop/app-folders",
+    # "*evolution",
+    # "*epiphany",
+    # "*Console",
+    # "*Geary",
+    # "*Totem",
+    # "*evince",
+    # "*desktop/notifications",
+    # "software",
+    # "*desktop/app-folders",
+    # "*file-roller",
+    # "*Weather",
+    # "control-center",
+    # "meld",
+    # "mutter",
+    # "nautilus/preferences",
+    # "shell/extensions/systemd-manager",
+    # "*nautilus",
+    # "desktop/input-sources",
+    # "*settings-daemon",
 ]
 
 
@@ -40,6 +68,9 @@ def sanitize_dconf(dconf) -> ConfigParser:
     ini = ConfigParser(interpolation=None)
     ini.read_string(dconf)
 
+    for todo in ini.sections():
+        if todo not in save_keys:
+            ini.remove_section(todo)
     for todo in remove:
         if isinstance(todo, dict):
             for section_name, keys in todo.items():
@@ -72,7 +103,7 @@ def sanitize_dconf(dconf) -> ConfigParser:
     return ini
 
 
-def convert_gtk_ini_to_nix(prefix, add_settings, gtk_ini_content):
+def convert_gtk_ini_to_nix(prefix, use_attributes, gtk_ini_content):
     # Parse the GTK INI content
     lines = gtk_ini_content.strip().split("\n")
     settings = []
@@ -87,17 +118,20 @@ def convert_gtk_ini_to_nix(prefix, add_settings, gtk_ini_content):
             formatted_value = value if value.startswith('"') else f'"{value}"'
             settings.append(f"{key}={formatted_value}")
 
-    if add_settings:
-        s = indent(chr(10).join(settings), 2 * "  ")
+    settings = sorted(list(set(settings)))
+    if use_attributes:
+        attributes = {
+            k.strip(): v.strip() for k, v in [line.split("=") for line in settings]
+        }
+        settings = [f"{k} = {v};" for k, v in attributes.items()]
+        s = indent("\n".join(settings), 2 * "  ")
         nix_config = f"""
 {prefix} = {{
-  Settings = ''
 {s}
-  '';
 }};
     """.strip()
     else:
-        s = indent(chr(10).join(settings), 1 * "  ")
+        s = indent("\n".join(settings), 1 * "  ")
         nix_config = f"""
 {prefix} = ''
 {s}

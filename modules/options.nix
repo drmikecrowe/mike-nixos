@@ -22,6 +22,7 @@ in {
       obsidian = mkOption false;
       slack = mkOption false;
       vivaldi = mkOption false;
+      nvidia = mkOption false;
 
       theme = {
         colors = lib.mkOption {

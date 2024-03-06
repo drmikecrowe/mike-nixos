@@ -8,6 +8,7 @@
     aws-sso-cli
     awscli2
     bc # Calculator
+    chatblade
     deno
     dig # DNS lookup
     dua

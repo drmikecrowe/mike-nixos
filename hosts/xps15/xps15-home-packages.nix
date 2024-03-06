@@ -15,6 +15,7 @@
       flameshot
       gimp
       glxinfo
+      gparted
       gtk3
       gtk4
       imagemagick

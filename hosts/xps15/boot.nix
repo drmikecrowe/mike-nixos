@@ -6,6 +6,10 @@
   boot = {
     swraid.enable = false;
     kernelModules = ["kvm-intel" "acpi_call"];
+
+    # Use latest released Linux kernel by default
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+
     initrd = {
       availableKernelModules = [
         "xhci_pci"
@@ -67,7 +71,4 @@
       efi.canTouchEfiVariables = false;
     };
   };
-
-  # Use latest released Linux kernel by default
-  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 }

@@ -1,4 +1,8 @@
-{config, ...}: let
+{
+  config,
+  custom,
+  ...
+}: let
   HDD = "/dev/disk/by-id/nvme-Fanxiang_S500PRO_2TB_FXS500PRO231912172";
   SWAP = "/dev/disk/by-id/nvme-Fanxiang_S500PRO_2TB_FXS500PRO231912172-part4";
   EFI = "/dev/disk/by-id/nvme-Fanxiang_S500PRO_2TB_FXS500PRO231912172-part2";
@@ -11,6 +15,12 @@
 in {
   config = {
     boot = {
+      kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages.extend (self: super: {
+        nvidia_x11 =
+          if config.custom.nvidia
+          then super.nvidia_x11_legacy390
+          else super.nvidia_x11;
+      });
       kernelParams = ["nohibernate"];
       supportedFilesystems = ["zfs"];
       zfs.devNodes = "/dev/disk/by-partlabel";
@@ -72,5 +82,6 @@ in {
     # Enable fstrim, which tracks free space on SSDs for garbage collection
     # More info: https://www.reddit.com/r/NixOS/comments/rbzhb1/if_you_have_a_ssd_dont_forget_to_enable_fstrim/
     services.fstrim.enable = true;
+    services.zfs.trim.enable = true;
   };
 }

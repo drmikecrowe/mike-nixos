@@ -22,6 +22,7 @@
       kitty = true;
       obsidian = true;
       vivaldi = true;
+      nvidia = true;
 
       # Window Manager: awesome, budgie, kde, gnome
       gnome = true;

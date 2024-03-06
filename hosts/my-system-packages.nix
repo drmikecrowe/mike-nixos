@@ -3,6 +3,7 @@
     environment.systemPackages = with pkgs; [
       appimage-run
       black # Python formatter
+      cryptsetup
       curl
       file
       git
@@ -14,6 +15,7 @@
       nodejs_18
       parted
       pciutils
+      pinentry-curses
       poetry
       python311Full
       python311Packages.flake8 # Python linter

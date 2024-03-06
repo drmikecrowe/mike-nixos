@@ -9,7 +9,6 @@
   powerMode = "performance";
 in {
   imports = [
-    # inputs.nixos-hardware.nixosModules.dell-xps-15-9560
     inputs.impermanence.nixosModule
     ./boot.nix
     ./disks.nix
