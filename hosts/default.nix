@@ -9,6 +9,7 @@
   user,
   nixpkgs,
   home-manager,
+  disko,
   ...
 }: let
   mkHost = {
@@ -45,7 +46,7 @@
 
     extraArgs = {
       inherit (self.nixosConfigurations.xps15.config) custom;
-      inherit pkgs inputs isHardware user dotfiles timezone system stateVersion secrets;
+      inherit pkgs inputs isHardware user dotfiles disko timezone system stateVersion secrets;
       hostname = host;
     };
 
