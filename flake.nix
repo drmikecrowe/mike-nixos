@@ -76,7 +76,7 @@
     commonInherits = {
       inherit (nixpkgs) lib;
       inherit inputs nixpkgs home-manager;
-      inherit user dotfiles hosts systems;
+      inherit user dotfiles disko hosts systems;
     };
   in {
     nixosConfigurations = import ./hosts (commonInherits

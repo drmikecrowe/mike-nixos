@@ -2,7 +2,8 @@
   disko,
   ...
 }: {
-  disko.nixosModules.disko.devices = {
+  # disko.nixosModules.disko.devices = {
+  disko.devices = {
     disk = {
       vdb = {
         type = "disk";
