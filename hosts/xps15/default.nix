@@ -7,6 +7,7 @@
     ./hardware.nix
     ./options/nvidia.nix
     # ./options/kernel.nix # zfs kernel packages if nvidia not selected
+    disko.nixosModules.disko
     ./xps15-system-packages.nix
   ];
 
