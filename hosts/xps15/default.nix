@@ -22,10 +22,10 @@
       kitty = true;
       obsidian = true;
       vivaldi = true;
-      nvidia = true;
 
       # Window Manager: awesome, budgie, kde, gnome
       gnome = true;
+      nvidia = true;
 
       theme = {
         colors = (import ../../colorscheme/gruvbox).light;

@@ -9,19 +9,20 @@
   powerMode = "performance";
 in {
   imports = [
-    inputs.impermanence.nixosModule
+    (modulesPath + "/installer/scan/not-detected.nix")
+    # inputs.impermanence.nixosModule
     ./boot.nix
-    ./disks.nix
+    ./btrfs-disko.nix
   ];
   powerManagement.cpuFreqGovernor = powerMode;
   services.auto-cpufreq.enable = true;
   # services.thermald.enable = false;
 
   # Fix unreadable tty under high dpi
-  console = {
-    packages = [pkgs.terminus_font];
-    font = "ter-124n";
-  };
+  # console = {
+  #   packages = [pkgs.terminus_font];
+  #   font = "ter-124n";
+  # };
 
   # Network
   networking = {
@@ -31,7 +32,7 @@ in {
   };
 
   hardware = {
-    cpu.intel.updateMicrocode = true;
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
     opengl = {
       enable = true;
