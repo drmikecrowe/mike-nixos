@@ -1,13 +1,15 @@
 {
   disko,
   ...
-}: {
-  # disko.nixosModules.disko.devices = {
+}: let
+  HDD = "/dev/disk/by-id/nvme-Fanxiang_S500PRO_2TB_FXS500PRO231912172";
+in {
+  boot.loader.grub.devices = [HDD];
   disko.devices = {
     disk = {
       vdb = {
         type = "disk";
-        device = "/dev/disk/by-id/nvme-Fanxiang_S500PRO_2TB_FXS500PRO231912172";
+        device = HDD;
         content = {
           type = "gpt";
           partitions = {
