@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 import subprocess
 from textwrap import indent
 
@@ -154,7 +155,7 @@ def main(section):
     )
 
 
-def save_gtk():
+def save_gtk(path):
     HOME = os.environ["HOME"]
     parts = ["""_: {\n    gtk = {"""]
     for file, params in gtk.items():
@@ -162,10 +163,14 @@ def save_gtk():
             nix_config = convert_gtk_ini_to_nix(params[0], params[1], f.read())
             parts.append(nix_config)
     parts.append("""  };\n}""")
-    open("modules/home/graphical/gtk.nix", "w").write("\n".join(parts))
+    open(path, "w").write("\n".join(parts))
 
 
 if __name__ == "__main__":
+    for fil in gtk.keys():
+        if not os.path.exists(fil):
+            sys.exit(0)
+    raise Exception("Fix me")
     for section in todo:
         main(section=section)
-    save_gtk()
+    save_gtk(sys.argv[1])

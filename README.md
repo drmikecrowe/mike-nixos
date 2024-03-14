@@ -22,3 +22,20 @@ projects:
 ```bash
 nix flake init --template github:drmikecrowe/mike-nixos#typescript
 ```
+
+```
+# THIS WIPES EVERYTHING
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko hosts/xps15/disks.nix
+
+# This mounts everything
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode mount hosts/xps15/disks.nix
+```
+
+```
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode mount hosts/xps15/disks.nix
+TMPDIR=/tmp nixos-install --no-root-passwd --impure --flake .#xps15
+```
+
+```
+sudo rsync -aHAXx --info=progress2 keep /mnt
+```

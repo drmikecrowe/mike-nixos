@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
+python bin/dconf.py home-manager/home/local/user/mcrowe/dconf.nix
 set -euo pipefail
-
-python bin/dconf.py
 bin/fmt
 git add --intent-to-add .
 branch_name=$(git rev-parse --abbrev-ref HEAD)

@@ -38,5 +38,32 @@
       ""
     ],
     "description": "Make an module"
+  },
+  "new-host-app": {
+    "prefix": "hostapp",
+    "body": [
+      "{config, lib, pkgs, ...}:",
+      "let",
+      "  cfg = config.host.application.$1;",
+      "in",
+      "  with lib;",
+      "{",
+      "  options = {",
+      "    host.application.$1 = {",
+      "      enable = mkOption {",
+      "        default = false;",
+      "        type = with types; bool;",
+      "        description = \"Enables $1\";",
+      "      };",
+      "    };",
+      "  };",
+      "",
+      "  config = mkIf cfg.enable {",
+      "    $END",
+      "  };",
+      "}",
+      ""
+    ],
+    "description": "new-host-app"
   }
 }

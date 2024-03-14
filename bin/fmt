@@ -2,5 +2,5 @@
 
 set -euo pipefail
 
-alejandra *.nix modules/ packages/ hosts/ secrets/
-statix check
+alejandra .
+# statix check

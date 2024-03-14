@@ -1,104 +1,54 @@
 {
-  description = "Mike's system configuration";
+  description = "drmikecrowe's system configuration";
 
-  nixConfig.extra-substituters = [
-    "https://cache.nixos.org/"
-    "https://nix-community.cachix.org"
-    "https://nixpkgs-update.cachix.org"
-    "https://devenv.cachix.org"
-  ];
-  nixConfig.extra-trusted-public-keys = [
-    "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    "nixpkgs-update.cachix.org-1:6y6Z2JdoL3APdu6/+Iy8eZX2ajf09e4EE9SnxSML1W8="
-    "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-  ];
-
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixos.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    home-manager.url = "github:nix-community/home-manager/master";
-    nixos-generators.url = "github:nix-community/nixos-generators";
-    # nixos-hardware.url = "github:drmikecrowe/nixos-hardware";
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
-    impermanence.url = "github:nix-community/impermanence/master";
-    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
-    devenv.url = "github:cachix/devenv/latest";
-    wallpapers = {
-      url = "gitlab:exorcist365/wallpapers";
-      flake = false;
-    };
-    hosts = {
-      url = "github:StevenBlack/hosts";
-      flake = false;
-    };
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nix-snapd.url = "github:io12/nix-snapd";
-    nix-snapd.inputs.nixpkgs.follows = "nixpkgs";
-  };
-
-  outputs = inputs @ {
+  outputs = {
     self,
     nixpkgs,
     home-manager,
-    nixos-hardware,
-    impermanence,
-    nix-snapd,
-    disko,
     ...
-  }: let
-    user = "mcrowe";
-
-    dotfiles = ./dotfiles;
-
-    linuxSystem = "x86_64-linux";
-
-    hosts = [
-      {
-        host = "xps15";
-        extraOverlays = [];
-        extraModules = [];
-        timezone = "America/New_York";
-        stateVersion = "22.05";
-      }
-    ];
-
-    systems = [
-      {system = linuxSystem;}
-    ];
-
-    forAllSystems = nixpkgs.lib.genAttrs [linuxSystem];
-
-    commonInherits = {
-      inherit (nixpkgs) lib;
-      inherit inputs nixpkgs home-manager;
-      inherit user dotfiles disko hosts systems;
+  } @ inputs: let
+    inherit (self) outputs;
+    stateVersion = "23.11"; # do not change
+    defaultSystem = "x86_64-linux";
+    systems = [defaultSystem];
+    libx = import ./lib {inherit inputs outputs systems stateVersion;};
+    mikeHome = {
+      org = "local";
+      role = "workstation";
+      hostname = "xps15";
+      username = "mcrowe";
+      desktop = "gnome";
     };
+    extraArgs =
+      mikeHome
+      // {
+        inherit systems;
+      };
   in {
-    nixosConfigurations = import ./hosts (commonInherits
-      // {
-        isNixOS = true;
-        isHardware = true;
-      });
+    nixosModules = import ./modules;
 
-    homeConfigurations = import ./hosts (commonInherits
-      // {
-        isNixOS = false;
-        isHardware = false;
-      });
+    homeConfigurations = {
+      "mcrowe_xps15" = libx.mkHome extraArgs;
+    };
 
-    formatter.${linuxSystem} = nixpkgs.legacyPackages.${linuxSystem}.nixpkgs-fmt;
+    nixosConfigurations = {
+      xps15 = libx.mkHost extraArgs;
+    };
 
-    # Development environments
-    devShells = forAllSystems (system: let
+    formatter = libx.forAllSystems (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
+      pkgs: pkgs.alejandra);
+
+    # Custom packages and modifications, exported as overlays
+    overlays = import ./overlays {inherit inputs;};
+
+    # Devshell for bootstrapping; acessible via 'nix develop' or 'nix-shell' (legacy)
+    devShells = libx.forAllSystems (system: let
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       default = pkgs.mkShell {
-        name = "flakeShell";
+        name = "flakeShell-${system}";
         buildInputs = with pkgs; [
           git
           git-crypt
@@ -110,6 +60,23 @@
           nvd
           nix-prefetch
           nix-prefetch-scripts
+          nix-tree
+          neovim
+          # vscodium-fhs
+          # nixd
+          ripgrep
+          docker-compose-language-service
+          dockerfile-language-server-nodejs
+          lazygit
+          nodePackages_latest.bash-language-server
+          nodePackages_latest.vscode-json-languageserver
+          yaml-language-server
+
+          shellcheck
+          shfmt
+
+          vimPlugins.nvim-treesitter.withAllGrammars
+          tree-sitter
         ];
       };
     });
@@ -133,5 +100,39 @@
         description = "Typescript template";
       };
     };
+  };
+
+  inputs = {
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:numtide/nixpkgs-unfree";
+    nixpkgs.follows = "nixpkgs-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    comma.url = "github:nix-community/comma";
+    home-manager.url = "github:nix-community/home-manager/master";
+    nixos-generators.url = "github:nix-community/nixos-generators";
+    # nixos-hardware.url = "github:drmikecrowe/nixos-hardware";
+    # nixos-hardware.url = "github:NixOS/nixos-hardware";
+    # impermanence.url = "github:nix-community/impermanence/master";
+    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
+    devenv.url = "github:cachix/devenv/latest";
+    wallpapers = {
+      url = "gitlab:exorcist365/wallpapers";
+      flake = false;
+    };
+    impermanence.url = "github:nix-community/impermanence/master";
+    nur.url = "github:nix-community/NUR";
+    nix-colors.url = "github:misterio77/nix-colors";
+    parts.url = "github:hercules-ci/flake-parts";
+    hosts = {
+      url = "github:StevenBlack/hosts";
+      flake = false;
+    };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-snapd.url = "github:io12/nix-snapd";
+    nix-snapd.inputs.nixpkgs.follows = "nixpkgs";
   };
 }
