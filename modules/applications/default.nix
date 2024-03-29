@@ -23,6 +23,7 @@
     ./usbutils.nix
     ./vivaldi.nix
     ./wget.nix
+    ./xonsh.nix
     ./xdg-utils.nix
     ./zip.nix
   ];

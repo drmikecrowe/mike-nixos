@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  outputs,
   pkgs,
   ...
 }: {
@@ -12,7 +13,21 @@
     ../common
   ];
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    # You can add overlays here
+    overlays = [
+      # Add overlays your own flake exports (from overlays and pkgs dir):
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      outputs.overlays.unstable-packages
+      # Add overlays exported from other flakes:
+    ];
+    # Configure your nixpkgs instance
+    config = {
+      # Disable if you don't want unfree packages
+      allowUnfree = true;
+    };
+  };
 
   host = {
     feature = {
@@ -47,7 +62,7 @@
       hostname = "xps15";
       hostId = "c904de5f";
     };
-    role = "laptop";
+    role = "hybrid";
     user = {
       mcrowe.enable = true;
       root.enable = true;

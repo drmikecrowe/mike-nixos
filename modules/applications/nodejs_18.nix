@@ -18,6 +18,9 @@ in
     };
 
     config = mkIf cfg.enable {
-      environment.systemPackages = with pkgs; [nodejs_18];
+      environment.systemPackages = with pkgs; [
+        nodejs_18
+        corepack
+      ];
     };
   }

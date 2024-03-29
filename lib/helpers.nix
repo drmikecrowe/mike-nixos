@@ -58,6 +58,7 @@
       modules = [
         ../secrets
         ../hosts/${hostname}
+        inputs.flatpaks.nixosModules.default
         inputs.home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;

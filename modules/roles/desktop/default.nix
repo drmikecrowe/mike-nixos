@@ -28,6 +28,9 @@ in
           };
           powermanagement.enable = mkDefault true;
           virtualization = {
+            flatpak = {
+              enable = mkDefault true;
+            };
             docker = {
               enable = mkDefault true;
             };

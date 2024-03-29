@@ -53,7 +53,6 @@ in
           tmux.enable = mkDefault true;
           tree.enable = mkDefault true;
           unzip.enable = mkDefault true;
-          xonsh.enable = mkDefault true;
           yazi.enable = mkDefault true;
           yq-go.enable = mkDefault true;
           zoxide.enable = mkDefault true;

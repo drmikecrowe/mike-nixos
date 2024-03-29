@@ -31,6 +31,18 @@ in
             enable = true;
             laptop = true;
           };
+          virtualization = {
+            flatpak = {
+              enable = mkDefault true;
+            };
+            docker = {
+              enable = mkDefault true;
+            };
+            virtd = {
+              client.enable = mkDefault true;
+              daemon.enable = mkDefault true;
+            };
+          };
         };
         filesystem = {
           swap = {

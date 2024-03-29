@@ -9,6 +9,7 @@ with lib; {
   home = {
     activation = {
       report-changes = ''
+        set -x
         PATH=$PATH:${lib.makeBinPath [pkgs.nvd pkgs.nix]}
         if [ ! -d /nix/var/nix/profiles/per-user/$USER ]; then
             if [ -d $HOME/.local/state/nix/profiles ] ; then

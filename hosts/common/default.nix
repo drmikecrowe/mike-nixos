@@ -59,6 +59,7 @@ with lib; {
       sysz.enable = mkDefault true;
       usbutils.enable = mkDefault true;
       vivaldi.enable = mkDefault true;
+      xonsh.enable = mkDefault true;
       wget.enable = mkDefault true;
       xdg-utils.enable = mkDefault true;
       zip.enable = mkDefault true;

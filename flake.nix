@@ -14,7 +14,7 @@
     libx = import ./lib {inherit inputs outputs systems stateVersion;};
     mikeHome = {
       org = "local";
-      role = "workstation";
+      role = "hybrid";
       hostname = "xps15";
       username = "mcrowe";
       desktop = "gnome";
@@ -104,6 +104,7 @@
 
   inputs = {
     # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
     nixpkgs.url = "github:numtide/nixpkgs-unfree";
     nixpkgs.follows = "nixpkgs-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -132,7 +133,7 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-snapd.url = "github:io12/nix-snapd";
-    nix-snapd.inputs.nixpkgs.follows = "nixpkgs";
+    # nix-snapd.url = "github:io12/nix-snapd";
+    # nix-snapd.inputs.nixpkgs.follows = "nixpkgs";
   };
 }

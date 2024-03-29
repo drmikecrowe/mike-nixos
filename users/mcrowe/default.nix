@@ -29,6 +29,15 @@ in
     };
 
     config = mkIf config.host.user.mcrowe.enable {
+      host = {
+        feature = {
+          virtualization = {
+            flatpak = {
+              enable = true;
+            };
+          };
+        };
+      };
       users.users.mcrowe = {
         inherit (secrets.mcrowe) hashedPassword;
         isNormalUser = true;

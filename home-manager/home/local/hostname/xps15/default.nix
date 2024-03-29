@@ -10,7 +10,7 @@ with lib; {
         albert.enable = mkDefault true;
         alejandra.enable = mkDefault true;
         atool.enable = mkDefault true;
-        authy.enable = mkDefault true;
+        authy.enable = mkDefault false; # TODO: I think this is broken
         aws-sso-cli.enable = mkDefault true;
         bc.enable = mkDefault true;
         bcompare.enable = mkDefault true;
@@ -46,7 +46,7 @@ with lib; {
         tealdeer.enable = mkDefault true;
         teams-for-linux.enable = mkDefault true;
         vscode.enable = mkDefault true;
-        wavebox.enable = mkDefault false; # TODO: getting download failure
+        wavebox.enable = mkDefault true;
         wezterm.enable = mkDefault true;
         yubikey-manager.enable = mkDefault true;
         yubikey-personalization-gui.enable = mkDefault true;
@@ -68,6 +68,9 @@ with lib; {
         };
         emulation = {
           windows.enable = mkDefault true;
+        };
+        virtualization = {
+          flatpak.enable = mkForce true;
         };
         gui = {
           enable = mkDefault true;

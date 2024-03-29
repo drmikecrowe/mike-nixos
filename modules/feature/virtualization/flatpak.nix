@@ -18,35 +18,14 @@ in
     };
 
     config = mkIf cfg.enable {
-      fileSystems = let
-        mkRoSymBind = path: {
-          device = path;
-          fsType = "fuse.bindfs";
-          options = ["ro" "resolve-symlinks" "x-gvfs-hide"];
+      services.flatpak = {
+        enable = true;
+        remotes = {
+          "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+          "flathub-beta" = "https://dl.flathub.org/beta-repo/flathub-beta.flatpakrepo";
         };
-        aggregatedFonts = pkgs.buildEnv {
-          name = "system-fonts";
-          paths = config.fonts.fonts;
-          pathsToLink = ["/share/fonts"];
-        };
-      in {
-        # Create an FHS mount to support flatpak host icons/fonts
-        #"/usr/share/icons" = mkRoSymBind (config.system.path + "/share/icons");
-        "/usr/share/fonts" = mkRoSymBind (aggregatedFonts + "/share/fonts");
+        packages = [
+        ];
       };
-
-      services.flatpak.enable = true;
-      system.fsPackages = [pkgs.bindfs];
-      xdg.portal.enable = true;
-
-      # TODO: I needed this before, do i now?
-      # home-manager.users.${user} = {
-      #   xdg = {
-      #     systemDirs.data = [
-      #       "/var/lib/flatpak/exports/share"
-      #       "/home/${user}/.local/share/flatpak/exports/share"
-      #     ];
-      #   };
-      # };
     };
   }

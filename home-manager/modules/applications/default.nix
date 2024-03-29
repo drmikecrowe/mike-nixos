@@ -47,7 +47,6 @@
     ./tmux.nix
     ./tree.nix
     ./unzip.nix
-    ./xonsh.nix
     ./yazi.nix
     ./yq-go.nix
     ./zoxide.nix
