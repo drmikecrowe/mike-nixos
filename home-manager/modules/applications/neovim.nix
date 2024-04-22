@@ -38,6 +38,7 @@ in
         nodePackages_latest.svelte-language-server
         nodePackages_latest.typescript-language-server
         nodePackages_latest.vscode-json-languageserver
+        nodePackages_latest.prettier
         tailwindcss-language-server
         terraform-lsp
         yaml-language-server

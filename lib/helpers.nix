@@ -5,7 +5,19 @@
   systems,
   stateVersion,
   ...
-}: {
+}: let
+  forAllSystems = inputs.nixpkgs.lib.genAttrs systems;
+  pkgsBySystem = forAllSystems (
+    system:
+      import inputs.nixpkgs {
+        inherit system;
+        config = import ./nix/config.nix;
+        # overlays = self.internal.overlays."${system}";
+      }
+  );
+in {
+  inherit forAllSystems;
+
   # Helper function for generating home-manager configs
   mkHome = {
     org,
@@ -58,6 +70,14 @@
       modules = [
         ../secrets
         ../hosts/${hostname}
+        # ({inputs, ...}: {
+        #   # Use the nixpkgs from the flake.
+        #   nixpkgs = {pkgs = pkgsBySystem."${platform}";};
+
+        #   # For compatibility with nix-shell, nix-build, etc.
+        #   environment.etc.nixpkgs.source = inputs.nixpkgs;
+        #   nix.nixPath = ["nixpkgs=/etc/nixpkgs"];
+        # })
         inputs.flatpaks.nixosModules.default
         inputs.home-manager.nixosModules.home-manager
         {
@@ -72,6 +92,4 @@
         }
       ];
     };
-
-  forAllSystems = inputs.nixpkgs.lib.genAttrs systems;
 }

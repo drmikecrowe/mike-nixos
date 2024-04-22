@@ -4,20 +4,20 @@
   pkgs,
   ...
 }: let
-  cfg = config.host.application.git;
+  cfg = config.host.home.applications.hifile;
 in
   with lib; {
     options = {
-      host.application.git = {
+      host.home.applications.hifile = {
         enable = mkOption {
-          default = true;
+          default = false;
           type = with types; bool;
-          description = "Enables git";
+          description = "Enables hifile";
         };
       };
     };
 
     config = mkIf cfg.enable {
-      environment.systemPackages = with pkgs; [git git-lfs];
+      home.packages = with pkgs; [hifile];
     };
   }

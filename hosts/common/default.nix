@@ -55,6 +55,7 @@ with lib; {
       pciutils.enable = mkDefault true;
       pinentry-curses.enable = mkDefault true;
       poetry.enable = mkDefault true;
+      publii.enable = mkDefault true;
       python311Full.enable = mkDefault true;
       sysz.enable = mkDefault true;
       usbutils.enable = mkDefault true;

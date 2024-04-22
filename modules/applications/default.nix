@@ -18,6 +18,7 @@
     ./pciutils.nix
     ./pinentry-curses.nix
     ./poetry.nix
+    ./publii.nix
     ./python311Full.nix
     ./sysz.nix
     ./usbutils.nix

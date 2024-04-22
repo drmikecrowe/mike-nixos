@@ -4,20 +4,20 @@
   pkgs,
   ...
 }: let
-  cfg = config.host.application.git;
+  cfg = config.host.application.publii;
 in
   with lib; {
     options = {
-      host.application.git = {
+      host.application.publii = {
         enable = mkOption {
           default = true;
           type = with types; bool;
-          description = "Enables git";
+          description = "Enables publii";
         };
       };
     };
 
     config = mkIf cfg.enable {
-      environment.systemPackages = with pkgs; [git git-lfs];
+      environment.systemPackages = with pkgs; [publii];
     };
   }

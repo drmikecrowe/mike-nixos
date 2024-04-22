@@ -24,6 +24,7 @@ with lib; {
         element-desktop.enable = mkDefault true;
         flameshot.enable = mkDefault true;
         gimp.enable = mkDefault true;
+        hifile.enable = mkDefault true;
         git-crypt.enable = mkDefault true;
         gitlab-runner.enable = mkDefault true;
         glab.enable = mkDefault true;

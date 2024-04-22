@@ -11,6 +11,7 @@
     ./flameshot.nix
     ./gimp.nix
     ./glxinfo.nix
+    ./hifile.nix
     ./kgpg.nix
     ./kitty.nix
     ./libreoffice.nix
