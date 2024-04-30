@@ -32,7 +32,7 @@ in
         lazygit
         luajitPackages.luacheck
         lua-language-server # lua lsp
-        # nixd: monitor github issue
+        nixd
         nodePackages_latest.bash-language-server
         nodePackages_latest.pyright # Python language server
         nodePackages_latest.svelte-language-server

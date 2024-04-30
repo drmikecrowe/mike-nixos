@@ -28,7 +28,8 @@
     sl = "eza --classify";
     lsd = "ls -lF | grep --color=never '^d'";
     md = "mkdir -p";
-    nixdevnode = "nix flake init --refresh --template github:drmikecrowe/mike-nixos#typescript";
+    nixflakereset = "rm .envrc .direnv/ node_modules/ flake.* -rf";
+    nixdevenvnode = "nix flake init --refresh --template github:drmikecrowe/mike-nixos#typescript";
     nixdevpoetry = "nix flake init --refresh --template github:drmikecrowe/mike-nixos#poetry";
     nixdevpython = "nix flake init --refresh --template github:drmikecrowe/mike-nixos#python";
     ping = "${pkgs.prettyping}/bin/prettyping --nolegend";

@@ -24,6 +24,7 @@ with lib; {
         element-desktop.enable = mkDefault true;
         flameshot.enable = mkDefault true;
         gimp.enable = mkDefault true;
+        gnupg.enable = mkDefault true;
         hifile.enable = mkDefault true;
         git-crypt.enable = mkDefault true;
         gitlab-runner.enable = mkDefault true;
@@ -37,7 +38,7 @@ with lib; {
         libreoffice.enable = mkDefault true;
         meld.enable = mkDefault true;
         miller.enable = mkDefault true;
-        nixd.enable = mkDefault false; #TODO monitor https://github.com/nix-community/nixd/issues/357
+        nixd.enable = mkDefault true;
         nmap.enable = mkDefault true;
         obsidian.enable = mkDefault true;
         peek.enable = mkDefault true;

@@ -14,6 +14,7 @@
     ./killall.nix
     ./lm_sensors.nix
     ./nodejs_18.nix
+    ./onedrive.nix
     ./parted.nix
     ./pciutils.nix
     ./pinentry-curses.nix

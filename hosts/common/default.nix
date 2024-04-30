@@ -35,6 +35,10 @@ with lib; {
     localBinInPath = true;
   };
 
+  systemd = {
+    extraConfig = "DefaultLimitNOFILE=4096:524288"; # defaults to 1024 if unset
+  };
+
   host = {
     application = {
       _1password.enable = mkDefault true;
@@ -51,6 +55,7 @@ with lib; {
       killall.enable = mkDefault true;
       lm_sensors.enable = mkDefault true;
       nodejs_18.enable = mkDefault true;
+      onedrive.enable = mkDefault true;
       parted.enable = mkDefault true;
       pciutils.enable = mkDefault true;
       pinentry-curses.enable = mkDefault true;
@@ -86,6 +91,18 @@ with lib; {
   security = {
     pam.loginLimits = [
       # Increase open file limit for sudoers
+      {
+        domain = "*";
+        item = "nofile";
+        type = "soft";
+        value = "4096";
+      }
+      {
+        domain = "*";
+        item = "nofile";
+        type = "hard";
+        value = "524288";
+      }
       {
         domain = "@wheel";
         item = "nofile";

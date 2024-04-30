@@ -71,6 +71,7 @@
           lazygit
           nodePackages_latest.bash-language-server
           nodePackages_latest.vscode-json-languageserver
+          nodePackages_latest.prettier
           yaml-language-server
 
           shellcheck
