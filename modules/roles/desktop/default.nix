@@ -50,7 +50,7 @@ in
         hardware = {
           bluetooth.enable = mkDefault true; # Most wireless cards have bluetooth radios
           printing.enable = mkDefault true; # If we don't have access to a physical printer we should be able to remotely print
-          sound.enable = mkDefault true; #
+          # sound.enable = mkDefault true; #
           yubikey.enable = mkDefault true; #
         };
         network = {};

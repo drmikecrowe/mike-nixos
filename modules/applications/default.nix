@@ -2,31 +2,8 @@
   imports = [
     ./_1password.nix
     ./appimage-run.nix
-    ./black.nix
-    ./cryptsetup.nix
-    ./curl.nix
     ./duplicati.nix
-    ./file.nix
-    ./firefox.nix
-    ./git.nix
-    ./grc.nix
-    ./htop.nix
-    ./killall.nix
-    ./lm_sensors.nix
-    ./nodejs_18.nix
-    ./onedrive.nix
-    ./parted.nix
-    ./pciutils.nix
-    ./pinentry-curses.nix
-    ./poetry.nix
-    ./publii.nix
-    ./python311Full.nix
-    ./sysz.nix
-    ./usbutils.nix
+    ./python.nix
     ./vivaldi.nix
-    ./wget.nix
-    ./xonsh.nix
-    ./xdg-utils.nix
-    ./zip.nix
   ];
 }

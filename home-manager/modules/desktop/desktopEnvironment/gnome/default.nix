@@ -30,7 +30,18 @@ in
         gnomeExtensions.vitals
         gnomeExtensions.weather-or-not
         palenight-theme
+        polkit_gnome # Used to bring up authentication dialogs
         zuki-themes
       ];
+      services = {
+        gnome-keyring = {
+          enable = true;
+          components = [
+            "pkcs11"
+            "secrets"
+            "ssh"
+          ];
+        };
+      };
     };
   }

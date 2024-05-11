@@ -13,6 +13,17 @@
     ../common
   ];
 
+  environment = {
+    systemPackages = with pkgs; [
+      # sst
+      onedrive
+      onedrivegui
+      publii
+      pulumi-bin
+      sysz
+    ];
+  };
+
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -34,7 +45,7 @@
       graphics = {
         enable = true;
         backend = "x";
-        desktopManager = "gnome";
+        desktopManager = "kde";
       };
     };
     filesystem = {
@@ -49,7 +60,7 @@
       gpu = "intel";
       # gpu = "hybrid-nvidia"; gpu = "nvidia";
       sound = {
-        server = "pulseaudio";
+        server = "pipewire";
       };
       yubikey = {
         ids = [

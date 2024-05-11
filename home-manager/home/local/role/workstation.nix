@@ -3,14 +3,10 @@
   lib,
   pkgs,
   ...
-}:
-with lib; {
-  imports = [
-  ];
-
+}: {
   xdg = {
     mimeApps = {
-      enable = mkDefault true;
+      enable = lib.mkDefault true;
     };
   };
 }

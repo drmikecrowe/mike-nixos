@@ -33,6 +33,50 @@ with lib; {
     defaultPackages = []; # Don't install any default programs, force everything
     enableAllTerminfo = mkDefault false;
     localBinInPath = true;
+    systemPackages = with pkgs; [
+      alejandra
+      black
+      cryptsetup
+      curl
+      deno
+      docker-compose-language-service
+      dockerfile-language-server-nodejs
+      file
+      firefox
+      git
+      git-crypt
+      grc
+      htop
+      killall
+      lazygit
+      lm_sensors
+      lua-language-server # lua lsp
+      luajitPackages.luacheck
+      neovim
+      nixd
+      nodePackages_latest.bash-language-server
+      nodePackages_latest.prettier
+      nodePackages_latest.pyright # Python language server
+      nodePackages_latest.svelte-language-server
+      nodePackages_latest.typescript-language-server
+      nodePackages_latest.vscode-json-languageserver
+      nvd
+      parted
+      pciutils
+      pinentry-curses
+      poetry
+      ripgrep
+      shellcheck
+      shfmt
+      stylua
+      tailwindcss-language-server
+      terraform-lsp
+      unzip
+      usbutils
+      wget
+      yaml-language-server
+      zip
+    ];
   };
 
   systemd = {
@@ -43,48 +87,25 @@ with lib; {
     application = {
       _1password.enable = mkDefault true;
       appimage-run.enable = mkDefault true;
-      black.enable = mkDefault true;
-      cryptsetup.enable = mkDefault true;
-      curl.enable = mkDefault true;
       duplicati.enable = mkDefault true;
-      file.enable = mkDefault true;
-      firefox.enable = mkDefault true;
-      git.enable = mkDefault true;
-      grc.enable = mkDefault true;
-      htop.enable = mkDefault true;
-      killall.enable = mkDefault true;
-      lm_sensors.enable = mkDefault true;
-      nodejs_18.enable = mkDefault true;
-      onedrive.enable = mkDefault true;
-      parted.enable = mkDefault true;
-      pciutils.enable = mkDefault true;
-      pinentry-curses.enable = mkDefault true;
-      poetry.enable = mkDefault true;
-      publii.enable = mkDefault true;
       python311Full.enable = mkDefault true;
-      sysz.enable = mkDefault true;
-      usbutils.enable = mkDefault true;
       vivaldi.enable = mkDefault true;
-      xonsh.enable = mkDefault true;
-      wget.enable = mkDefault true;
-      xdg-utils.enable = mkDefault true;
-      zip.enable = mkDefault true;
     };
     feature = {
       home-manager.enable = mkDefault true;
     };
   };
 
-  # TODO: Do I really need portals?
-  # xdg.portal = {
-  #   enable = true;
-  #   wlr.enable = true;
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    xdgOpenUsePortal = true;
 
-  #   configPackages = with pkgs; [
-  #     xdg-desktop-portal-wlr
-  #     xdg-desktop-portal-gtk
-  #   ];
-  # };
+    configPackages = with pkgs; [
+      xdg-desktop-portal-wlr
+      xdg-desktop-portal-gtk
+    ];
+  };
 
   hardware.enableRedistributableFirmware = mkDefault true;
 

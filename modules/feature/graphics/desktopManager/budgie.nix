@@ -4,22 +4,54 @@
   lib,
   user,
   ...
-}: {
-  config = lib.mkIf config.custom.budgie {
-    home-manager.users.${user} = {
-      home = {
-        packages = with pkgs; [
-          dconf
-          budgie.budgie-desktop-with-plugins
-        ];
-      };
+}:
+with lib; let
+  graphics = config.host.feature.graphics;
+in {
+  config = lib.mkIf (graphics.enable && graphics.desktopManager == "budgie") {
+    programs = {
+      seahorse.enable = mkDefault true;
     };
 
     # Configure keymap in X11
     services = {
       xserver = {
-        desktopManager = {budgie = {enable = true;};};
+        desktopManager = {
+          cinnamon = {
+            enable = true;
+          };
+        };
+        displayManager = {
+          lightdm = {
+            inherit (config.services.xserver) enable;
+            # background = config.wallpaper;
+
+            greeters = {
+              slick.enable = false;
+              enso = {
+                enable = true;
+                blur = true;
+              };
+            };
+
+            # Show default user
+            extraSeatDefaults = ''
+              greeter-hide-users = false
+            '';
+          };
+        };
       };
+      gnome = {gnome-keyring = {enable = true;};};
     };
+
+    environment.systemPackages = with pkgs; [
+      gparted
+      gtk3
+      gtk4
+    ];
+
+    services.udev.packages = with pkgs; [
+      gnome.gnome-settings-daemon
+    ];
   };
 }

@@ -9,65 +9,104 @@
   if-exists = f: builtins.pathExists f;
   existing-imports = imports: builtins.filter if-exists imports;
   inherit (specialArgs) role username desktopEnvironment;
-in
-  with lib; {
-    imports =
-      [
-        ./home-manager.nix
-        ./locale.nix
-        ./nix.nix
-      ]
-      ++ existing-imports [
-        ./role/${role}
-        ./role/${role}.nix
-      ];
-
+in {
+  config = {
     host = {
       home = {
         users = {
           enabled = [username];
         };
         applications = {
-          argc-completions.enable = mkDefault true;
-          atuin.enable = mkDefault true;
-          awscli2.enable = mkDefault true;
-          bash.enable = mkDefault true;
-          chatblade.enable = mkDefault true;
-          direnv.enable = mkDefault true;
-          dua.enable = mkDefault true;
-          eza.enable = mkDefault true;
-          fd.enable = mkDefault true;
-          fish.enable = mkDefault true;
-          github.enable = mkDefault true;
-          git.enable = mkDefault true;
-          gnumake.enable = mkDefault true;
-          htmlq.enable = mkDefault true;
-          htop.enable = mkDefault true;
-          jq.enable = mkDefault true;
-          mc.enable = mkDefault true;
-          neovim.enable = mkDefault true;
-          nushell.enable = mkDefault true;
-          ouch.enable = mkDefault true;
-          ripgrep.enable = mkDefault true;
-          rsync.enable = mkDefault true;
-          tmux.enable = mkDefault true;
-          tree.enable = mkDefault true;
-          unzip.enable = mkDefault true;
-          yazi.enable = mkDefault true;
-          yq-go.enable = mkDefault true;
-          zoxide.enable = mkDefault true;
-          zsh.enable = mkDefault true;
+          atuin.enable = lib.mkDefault true;
+          aws-sso-cli.enable = lib.mkDefault true;
+          bash.enable = lib.mkDefault true;
+          direnv.enable = lib.mkDefault true;
+          fish.enable = lib.mkDefault true;
+          git.enable = lib.mkDefault true;
+          github.enable = lib.mkDefault true;
+          gnupg.enable = lib.mkDefault true;
+          neovim.enable = lib.mkDefault true;
+          starship.enable = lib.mkDefault true;
+          tmux.enable = lib.mkDefault true;
+          vscode.enable = lib.mkDefault true;
+          wezterm.enable = lib.mkDefault true;
+          yazi.enable = lib.mkDefault true;
+          zoxide.enable = lib.mkDefault true;
+          zsh.enable = lib.mkDefault true;
         };
         feature = {
         };
       };
     };
-
     home = {
-      packages = with pkgs; (lib.optionals pkgs.stdenv.isLinux
-        [
-          psmisc
-          strace
-        ]);
+      packages = with pkgs; [
+        alejandra
+        atool
+        awscli2
+        bc
+        chatblade
+        codeium
+        copyq
+        dconf2nix
+        dig
+        dua
+        element-desktop
+        eza
+        fd
+        flameshot
+        gimp
+        git-crypt
+        gitlab-runner
+        glab
+        glow
+        glxinfo
+        gnumake
+        hifile
+        htmlq
+        htop
+        hunspell
+        hunspellDicts.en_US
+        imagemagick
+        inetutils
+        jq
+        libreoffice
+        mc
+        meld
+        miller
+        nixd
+        nmap
+        nushell
+        obsidian
+        onefetch
+        ouch
+        peek
+        psmisc
+        ripgrep
+        rsync
+        sd
+        strace
+        tealdeer
+        teams-for-linux
+        tree
+        unzip
+        wavebox
+        xdg-utils
+        yq-go
+        yubikey-manager
+        yubikey-personalization-gui
+        yubioath-flutter
+        zoom-us
+      ];
     };
-  }
+  };
+  imports =
+    [
+      ./home-manager.nix
+      ./locale.nix
+      ./nix.nix
+    ]
+    ++ existing-imports [
+      ./role/${role}
+      ./role/${role}.nix
+    ];
+}

@@ -1,31 +1,7 @@
 {dotfiles, ...}: {
   imports = [
-    ./albert.nix
-    ./authy.nix
-    ./bcompare.nix
-    ./betterbird.nix
-    ./copyq.nix
-    ./dbeaver.nix
-    ./dconf2nix.nix
-    ./element-desktop.nix
-    ./flameshot.nix
-    ./gimp.nix
-    ./glxinfo.nix
-    ./hifile.nix
-    ./kgpg.nix
     ./kitty.nix
-    ./libreoffice.nix
-    ./meld.nix
-    ./obsidian.nix
-    ./peek.nix
-    ./qcad.nix
-    ./teams-for-linux.nix
     ./vscode
-    ./wavebox.nix
     ./wezterm.nix
-    ./yubikey-manager.nix
-    ./yubikey-personalization-gui.nix
-    ./yubioath-flutter.nix
-    ./zoom-us.nix
   ];
 }

@@ -35,7 +35,7 @@ in
         hardware = {
           bluetooth.enable = mkDefault false;
           printing.enable = mkDefault false;
-          sound.enable = mkDefault false;
+          # sound.enable = mkDefault false;
           yubikey.enable = mkDefault false;
         };
         network = {};

@@ -16,7 +16,6 @@ in {
     ];
     programs = {
       dconf.enable = mkDefault true;
-      seahorse.enable = mkDefault true;
     };
 
     security = {
@@ -37,22 +36,23 @@ in {
         enable = mkDefault true;
       };
 
+      libinput = {
+        enable = true;
+        mouse = {
+          # Disable mouse acceleration
+          accelProfile = "flat";
+          accelSpeed = "1.5";
+        };
+        touchpad = mkDefault {
+          disableWhileTyping = true;
+          tapping = false;
+        };
+      };
+
       xserver = {
         enable = mkDefault true;
         desktopManager = {
           xterm.enable = mkDefault false;
-        };
-        libinput = {
-          enable = true;
-          mouse = {
-            # Disable mouse acceleration
-            accelProfile = "flat";
-            accelSpeed = "1.5";
-          };
-          touchpad = mkDefault {
-            disableWhileTyping = true;
-            tapping = false;
-          };
         };
         xkb.layout = mkDefault "us";
 

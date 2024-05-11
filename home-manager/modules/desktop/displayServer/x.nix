@@ -12,6 +12,7 @@ in {
     programs = {
       bash = {
         sessionVariables = {
+          #   QT_QPA_PLATFORM_PLUGIN_PATH = "${pkgs.kdePackages.qtbase.outPath}/lib/qt-6/plugins";
           # XINITRC = "$XDG_CONFIG_HOME/X11/xinitrc";
         };
       };

@@ -34,8 +34,7 @@ with lib; {
         description = "Declare the order of monitors in Window manager configurations";
       };
       desktopManager = mkOption {
-        type = types.enum ["gnome" null];
-        # type = types.enum ["awesome" "budgie" "gnome" "kde" null];
+        type = types.enum ["gnome" "kde" "kde6" "budgie" "cinnamon" "deepin" null];
         default = null;
         description = "Desktop Manager to use";
       };

@@ -1,54 +1,19 @@
 {dotfiles, ...}: {
   imports = [
-    ./alejandra.nix
-    ./argc-completions.nix
-    ./atool.nix
     ./atuin.nix
-    ./awscli2.nix
     ./aws-sso-cli.nix
     ./bash.nix
     ./bat.nix
-    ./bc.nix
-    ./chatblade.nix
-    ./codeium.nix
-    ./deno.nix
-    ./dig.nix
     ./direnv.nix
-    ./dua.nix
-    ./eza.nix
-    ./fd.nix
     ./fish.nix
-    ./git-crypt.nix
     ./github.nix
-    ./gitlab-runner.nix
     ./git.nix
-    ./glab.nix
-    ./glow.nix
-    ./gnumake.nix
     ./gnupg.nix
-    ./htmlq.nix
-    ./htop.nix
-    ./imagemagick.nix
-    ./inetutils.nix
-    ./jq.nix
-    ./mc.nix
-    ./miller.nix
     ./neovim.nix
-    ./nixd.nix
     ./nixpkgs.nix
-    ./nmap.nix
-    ./nushell.nix
-    ./ouch.nix
-    ./ripgrep.nix
-    ./rsync.nix
-    ./sd.nix
     ./starship.nix
-    ./tealdeer.nix
     ./tmux.nix
-    ./tree.nix
-    ./unzip.nix
     ./yazi.nix
-    ./yq-go.nix
     ./zoxide.nix
     ./zsh.nix
   ];

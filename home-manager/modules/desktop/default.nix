@@ -28,7 +28,7 @@ in
         };
 
         desktopEnvironment = mkOption {
-          type = types.enum ["gnome"];
+          type = types.enum ["gnome" "kde"];
           default = null;
           description = "Type of desktopEnvironment";
         };
@@ -39,20 +39,8 @@ in
       home = {
         packages = with pkgs; [
           polkit # Allows unprivileged processes to speak to privileged processes
-          polkit_gnome # Used to bring up authentication dialogs
           xdg-utils # Desktop integration
         ];
-      };
-
-      services = {
-        gnome-keyring = {
-          enable = true;
-          components = [
-            "pkcs11"
-            "secrets"
-            "ssh"
-          ];
-        };
       };
     };
   }

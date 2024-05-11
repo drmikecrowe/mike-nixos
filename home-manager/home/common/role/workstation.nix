@@ -3,19 +3,15 @@
   lib,
   pkgs,
   ...
-}:
-with lib; {
-  imports = [
-  ];
-
+}: {
   host = {
     home = {
       applications = {
       };
       feature = {
-        fonts.enable = mkDefault true;
-        mime.defaults.enable = mkDefault true;
-        theming.enable = mkDefault true;
+        fonts.enable = lib.mkDefault true;
+        mime.defaults.enable = lib.mkDefault true;
+        theming.enable = lib.mkDefault true;
       };
     };
   };

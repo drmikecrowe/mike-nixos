@@ -26,28 +26,6 @@ in
       };
 
       home.packages = with pkgs; [
-        # TODO: Make these a config set somehow
-        docker-compose-language-service
-        dockerfile-language-server-nodejs
-        lazygit
-        luajitPackages.luacheck
-        lua-language-server # lua lsp
-        nixd
-        nodePackages_latest.bash-language-server
-        nodePackages_latest.pyright # Python language server
-        nodePackages_latest.svelte-language-server
-        nodePackages_latest.typescript-language-server
-        nodePackages_latest.vscode-json-languageserver
-        nodePackages_latest.prettier
-        tailwindcss-language-server
-        terraform-lsp
-        yaml-language-server
-
-        shellcheck
-        shfmt
-        stylua
-        terraform-ls
-
         vimPlugins.nvim-treesitter.withAllGrammars
         tree-sitter
       ];

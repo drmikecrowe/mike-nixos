@@ -11,11 +11,11 @@
   modifications = _final: prev: {
     wavebox = prev.wavebox.overrideAttrs (_old: rec {
       pname = "wavebox";
-      version = "10.123.9-2";
+      version = "10.124.23-2";
       src = prev.fetchurl {
         url = "https://download.wavebox.app/stable/linux/tar/Wavebox_${version}.tar.gz";
         # sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-        sha256 = "sha256-TDTeSgdDOSIqivqRNHIVP0ESCS4b4V/tLXi7Gdgg6+w=";
+        sha256 = "sha256-8wLHYTo5BoVRiqaqIhhCc0M7k3IBAXRg3sjC20j5/SA=";
       };
     });
     openssh = prev.openssh.overrideAttrs (old: rec {

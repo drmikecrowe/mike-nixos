@@ -5,6 +5,18 @@
   ...
 }: let
   cfg = config.host.hardware.yubikey;
+  specificPkgs =
+    import (builtins.fetchTarball {
+      # URL to the tarball of the specific nixpkgs commit
+      # Choose the right version for pcsclite using https://lazamar.co.uk/nix-versions/?channel=nixpkgs-unstable&package=pcsclite
+      url = "https://github.com/NixOS/nixpkgs/archive/e89cf1c932006531f454de7d652163a9a5c86668.tar.gz";
+      sha256 = "sha256:09cbqscrvsd6p0q8rswwxy7pz1p1qbcc8cdkr6p6q8sx0la9r12c";
+    }) {
+      inherit (config.nixpkgs.hostPlatform) system;
+    };
+
+  # Use pcsclite from the specific nixpkgs version
+  pcsclite = specificPkgs.pcsclite;
 in
   with lib; {
     options = {
@@ -23,13 +35,14 @@ in
     };
 
     config = mkIf cfg.enable {
-      environment.systemPackages = with pkgs; [
+      environment.systemPackages = [
         #yubikey-manager
         #yubikey-manager-qt
-        yubikey-personalization
-        yubikey-personalization-gui
-        yubico-piv-tool
-        yubioath-flutter
+        pcsclite
+        pkgs.yubikey-personalization
+        pkgs.yubikey-personalization-gui
+        pkgs.yubico-piv-tool
+        pkgs.yubioath-flutter
       ];
 
       hardware.gpgSmartcards.enable = true;

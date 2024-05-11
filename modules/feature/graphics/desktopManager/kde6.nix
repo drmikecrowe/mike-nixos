@@ -7,13 +7,13 @@
 }: let
   graphics = config.host.feature.graphics;
 in {
-  config = lib.mkIf (graphics.enable && graphics.desktopManager == "kde") {
+  config = lib.mkIf (graphics.enable && graphics.desktopManager == "kde6") {
     # Configure keymap in X11
     services = {
+      desktopManager = {
+        plasma6 = {enable = true;};
+      };
       xserver = {
-        desktopManager = {
-          plasma5 = {enable = true;};
-        };
         displayManager = {
           lightdm = {
             inherit (config.services.xserver) enable;
@@ -38,9 +38,8 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-      # todo
-      libsForQt5.polkit-qt
-      libsForQt5.polkit-kde-agent
+      kdePackages.polkit-kde-agent-1
+      kdePackages.qt5compat
     ];
   };
 }

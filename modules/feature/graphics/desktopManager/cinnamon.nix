@@ -8,7 +8,7 @@
 with lib; let
   graphics = config.host.feature.graphics;
 in {
-  config = lib.mkIf (graphics.enable && graphics.desktopManager == "gnome") {
+  config = lib.mkIf (graphics.enable && graphics.desktopManager == "cinnamon") {
     programs = {
       seahorse.enable = mkDefault true;
     };
@@ -17,7 +17,7 @@ in {
     services = {
       xserver = {
         desktopManager = {
-          gnome = {
+          cinnamon = {
             enable = true;
           };
         };
@@ -48,12 +48,13 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-      gnome.gnome-tweaks
       gparted
       gtk3
       gtk4
     ];
 
-    services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
+    services.udev.packages = with pkgs; [
+      #gnome.gnome-settings-daemon
+    ];
   };
 }
