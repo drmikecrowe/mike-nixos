@@ -71,6 +71,7 @@
           RandomizedDelaySec = "15 seconds";
           OnUnitActiveSec = "5m";
           Unit = "mbfc-docker.service";
+          RemainAfterElapse = true;
         };
         # Install.WantedBy = ["timers.target"];
       };

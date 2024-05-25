@@ -37,7 +37,7 @@
     psag = "ps aux | cut -b -180 | grep";
     psi = "ps h -eo pmem,comm | sort -nr | head";
     rd = "rmdir";
-    ssh-ports-open = "nmap -T4 -F 192.168.0.10-254 --min-parallelism=20 -oG - | grep 22/open";
+    ssh-ports-open = "nmap -T4 -F 192.168.1.2-254 --min-parallelism=20 -oG - | grep 22/open";
     ta = "tmux attach -t";
     tkill = "tmux kill-session -t";
     tls = "tmux ls";

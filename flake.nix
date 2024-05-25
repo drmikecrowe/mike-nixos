@@ -5,13 +5,14 @@
     self,
     nixpkgs,
     home-manager,
+    nixos-hardware,
     ...
   } @ inputs: let
     inherit (self) outputs;
     stateVersion = "23.11"; # do not change
     defaultSystem = "x86_64-linux";
     systems = [defaultSystem];
-    libx = import ./lib {inherit inputs outputs systems stateVersion;};
+    libx = import ./lib {inherit inputs outputs systems stateVersion nixos-hardware home-manager;};
     mikeHome = {
       org = "local";
       role = "hybrid";
@@ -131,7 +132,7 @@
     home-manager.url = "github:nix-community/home-manager/master";
     nixos-generators.url = "github:nix-community/nixos-generators";
     # nixos-hardware.url = "github:drmikecrowe/nixos-hardware";
-    # nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
     # impermanence.url = "github:nix-community/impermanence/master";
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
     devenv.url = "github:cachix/devenv/latest";

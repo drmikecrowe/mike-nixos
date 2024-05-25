@@ -32,9 +32,6 @@ in
           graphics = {
             enable = mkDefault false; # Maybe if we were doing openCL
           };
-          powermanagement = {
-            enable = mkDefault true;
-          };
         };
         filesystem = {
           swap = {

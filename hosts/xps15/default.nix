@@ -1,5 +1,4 @@
 {
-  config,
   inputs,
   outputs,
   pkgs,
@@ -8,10 +7,14 @@
   imports = [
     inputs.disko.nixosModules.disko
     inputs.impermanence.nixosModule
+    inputs.nixos-hardware.nixosModules.dell-xps-15-9560
+    # inputs.nixos-hardware.nixosModules.dell-xps-15-9560-nvidia
     ./disks.nix
     ./hardware-configuration.nix
     ../common
   ];
+
+  nixpkgs.hostPlatform = "x86_64-linux";
 
   environment = {
     systemPackages = with pkgs; [
@@ -21,6 +24,7 @@
       publii
       pulumi-bin
       sysz
+      libsmbios
     ];
   };
 
@@ -56,11 +60,10 @@
       };
     };
     hardware = {
-      cpu = "intel";
-      gpu = "intel";
-      # gpu = "hybrid-nvidia"; gpu = "nvidia";
       sound = {
+        enable = true;
         server = "pipewire";
+        # server = "pulseaudio";
       };
       yubikey = {
         ids = [

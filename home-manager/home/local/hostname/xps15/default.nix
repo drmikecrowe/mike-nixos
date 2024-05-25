@@ -38,8 +38,12 @@
       packages = with pkgs; [
         bcompare
         betterbird
-        qcad
         dbeaver
+        jetbrains.idea-ultimate
+        jetbrains.jdk
+        qcad
+        sqlcmd
+        warp-terminal
       ];
     };
   };

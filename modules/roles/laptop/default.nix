@@ -27,10 +27,6 @@ in
             enable = mkDefault true; # We're working with a GUI here
             acceleration = mkDefault true; # Since we have a GUI, we want openGL
           };
-          powermanagement = {
-            enable = true;
-            laptop = true;
-          };
           virtualization = {
             flatpak = {
               enable = mkDefault true;

@@ -24,28 +24,34 @@ in {
   config = {
     environment = lib.mkIf cfg.enable {
       systemPackages = with pkgs; [
-        script_sound-tool
         pamixer # Audio control
         libcamera
       ];
     };
 
-    # sound = lib.mkMerge [
-    #   (lib.mkIf (cfg.enable && cfg.server == "pulseaudio") {
-    #     enable = true;
-    #   })
-    #
-    #   (lib.mkIf (cfg.enable && cfg.server == "pipewire") {
-    #     enable = false;
-    #   })
-    #
-    #   (lib.mkIf (! cfg.enable) {
-    #     enable = false;
-    #   })
-    # ];
+    sound = lib.mkMerge [
+      (lib.mkIf (cfg.enable && cfg.server == "pulseaudio") {
+        enable = true;
+      })
+
+      (lib.mkIf (cfg.enable && cfg.server == "pipewire") {
+        enable = false;
+      })
+
+      (lib.mkIf (! cfg.enable) {
+        enable = false;
+      })
+    ];
 
     hardware.pulseaudio = lib.mkIf (cfg.enable && cfg.server == "pulseaudio") {
       enable = true;
+      tcp.enable = true; # necessary to listen to non-systemwide (only root) mpd daemon, c.f. https://askubuntu.com/a/555484
+
+      # https://nixos.org/nixpkgs/manual/#sec-steam-play
+      support32Bit = true;
+      # https://nixos.wiki/wiki/Bluetooth
+      # "Only ... full ... has Bluetooth support"
+      package = pkgs.pulseaudioFull;
     };
 
     services.pipewire = lib.mkIf (cfg.enable && cfg.server == "pipewire") {
