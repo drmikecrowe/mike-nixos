@@ -49,10 +49,12 @@ with lib; {
       htop
       killall
       lazygit
+      libnfs
       lm_sensors
       lua-language-server # lua lsp
       luajitPackages.luacheck
       neovim
+      nfs-utils
       nixd
       nodePackages_latest.bash-language-server
       nodePackages_latest.prettier
@@ -65,6 +67,7 @@ with lib; {
       pciutils
       pinentry-curses
       poetry
+      prettyping
       ripgrep
       shellcheck
       shfmt
@@ -140,6 +143,9 @@ with lib; {
     sudo.wheelNeedsPassword = mkDefault false;
   };
 
-  services.fstrim.enable = mkDefault true;
+  services = {
+    fstrim.enable = mkDefault true;
+  };
+
   users.mutableUsers = mkDefault false;
 }

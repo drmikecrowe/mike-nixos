@@ -81,6 +81,7 @@ stdenv.mkDerivation rec {
     initialize bash bash
     initialize zsh zsh
     initialize fish fish
+    initialize xonsh xsh
     initialize nushell nu nu
     initialize powershell ps1
     initialize elvish elv

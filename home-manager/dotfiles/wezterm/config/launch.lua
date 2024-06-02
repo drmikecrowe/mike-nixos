@@ -16,7 +16,7 @@ elseif platform.is_mac then
       { label = 'Zsh', args = { 'zsh' } },
    }
 elseif platform.is_linux then
-   options.default_prog = { 'fish' }
+   options.default_prog = { 'xonsh' }
    options.launch_menu = {
       { label = 'Bash', args = { 'bash' } },
       { label = 'Fish', args = { 'fish' } },

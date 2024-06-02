@@ -22,10 +22,6 @@ in
     config = mkIf cfg.enable {
       home = {
         packages = with pkgs; [wezterm];
-        file.".config/wezterm" = {
-          source = "${dotfiles}/wezterm";
-          recursive = true;
-        };
       };
     };
   }

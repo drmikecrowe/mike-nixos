@@ -1,11 +1,9 @@
 {
   inputs,
   lib,
-  outputs,
   pkgs,
   ...
-}:
-with lib; {
+}: {
   environment = {
     systemPackages = with pkgs; [
       git
@@ -15,25 +13,25 @@ with lib; {
 
   nix = {
     gc = {
-      automatic = mkDefault true;
-      dates = mkDefault "19:00";
-      persistent = mkDefault true;
-      options = mkDefault "--delete-older-than 10d";
+      automatic = lib.mkDefault true;
+      dates = lib.mkDefault "19:00";
+      persistent = lib.mkDefault true;
+      options = lib.mkDefault "--delete-older-than 10d";
     };
 
     settings = {
-      accept-flake-config = true;
-      auto-optimise-store = mkDefault true;
-      experimental-features = ["nix-command" "flakes" "repl-flake"];
+      accept-flake-config = lib.mkDefault true;
+      auto-optimise-store = lib.mkDefault true;
+      experimental-features = lib.mkDefault ["nix-command" "flakes" "repl-flake"];
       # show more log lines for failed builds
-      log-lines = 30;
+      log-lines = lib.mkDefault 30;
       # Free up to 10GiB whenever there is less than 5GB left.
       # this setting is in bytes, so we multiply with 1024 thrice
-      min-free = mkDefault "${toString (5 * 1024 * 1024 * 1024)}";
-      max-free = mkDefault "${toString (10 * 1024 * 1024 * 1024)}";
-      max-jobs = mkDefault "auto";
-      trusted-users = ["root" "@wheel"];
-      warn-dirty = false;
+      min-free = lib.mkDefault "${toString (5 * 1024 * 1024 * 1024)}";
+      max-free = lib.mkDefault "${toString (10 * 1024 * 1024 * 1024)}";
+      max-jobs = lib.mkDefault "auto";
+      trusted-users = lib.mkDefault ["root" "@wheel"];
+      warn-dirty = lib.mkDefault false;
     };
 
     package = pkgs.nixFlakes;
@@ -46,18 +44,24 @@ with lib; {
       shellInit = ''
         alias nix_package_size="nix path-info --size --human-readable --recursive /run/current-system | cut -d - -f 2- | sort"
       '';
+      blesh.enable = true;
     };
   };
 
   system = {
-    activationScripts.report-changes = ''
-      PATH=$PATH:${lib.makeBinPath [pkgs.nvd pkgs.nix]}
-      SECOND="$(ls -dv /nix/var/nix/profiles/system-profiles/*-*-link | tail -2)"
-      nvd diff $SECOND
-      mkdir -p /var/log/activations
-      nvd diff $SECOND > /var/log/activations/$(date +'%Y%m%d%H%M%S')-$(ls -dv /nix/var/nix/profiles/system-profiles/*-*-link | tail -1 | cut -d '-' -f 2)-$(readlink $(ls -dv /nix/var/nix/profiles/system-*-link | tail -1) | cut -d - -f 4-).log
-    '';
-    autoUpgrade.enable = mkDefault false;
-    stateVersion = mkDefault "23.11";
+    activationScripts = {
+      binbash = {
+        deps = ["binsh"];
+        text = ''
+          ln -sf /bin/sh /bin/bash
+        '';
+      };
+      report-changes = ''
+        PATH=$PATH:${lib.makeBinPath [pkgs.nvd pkgs.nix pkgs.python311Full]}
+        python /home/mcrowe/bin/report-changes.py
+      '';
+    };
+    autoUpgrade.enable = lib.mkDefault false;
+    stateVersion = lib.mkDefault "23.11";
   };
 }

@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-python bin/dconf.py home-manager/home/local/user/mcrowe/dconf.nix
+# python bin/dconf.py home-manager/home/local/user/mcrowe/dconf.nix
 set -euo pipefail
 bin/fmt
 git add --intent-to-add .
 branch_name=$(git rev-parse --abbrev-ref HEAD)
 PROFILE="-p $branch_name"
-sudo mkdir -p /build && sudo mount --bind /home/build /build
+# sudo mkdir -p /build && sudo mount --bind /home/build /build
 sudo nixos-rebuild switch $PROFILE "$@"
-sudo umount /build
+# sudo umount /build || true

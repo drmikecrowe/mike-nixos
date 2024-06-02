@@ -2,7 +2,7 @@ local wezterm = require('wezterm')
 local gpu_adapters = require('utils.gpu_adapter')
 
 
-local color_scheme = 'Github Dark (Gogh)' 
+local color_scheme = 'Banana Blueberry' 
 local colors = wezterm.color.get_builtin_schemes()[color_scheme]
 
 return {
@@ -18,15 +18,15 @@ return {
 
    -- background
    background = {
-      {
-         source = { File = wezterm.GLOBAL.background },
-         attachment = { Parallax = 0.1 }
-      },
+      -- {
+      --    source = { File = wezterm.GLOBAL.background },
+      --    attachment = { Parallax = 0.1 }
+      -- },
       {
          source = { Color = colors.background },
          height = '100%',
          width = '100%',
-         opacity = 0.85,
+         -- opacity = 0.85,
       },
    },
 

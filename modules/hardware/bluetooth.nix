@@ -21,18 +21,18 @@ in
       #boot.kernelParams = ["btusb"];
       hardware.bluetooth = {
         enable = true;
-        package = pkgs.bluez5-experimental;
+        # package = pkgs.bluez5-experimental;
         #hsphfpd.enable = true;
         powerOnBoot = true;
-        disabledPlugins = ["sap"];
-        settings = {
-          General = {
-            JustWorksRepairing = "always";
-            MultiProfile = "multiple";
-          };
-        };
+        # disabledPlugins = ["sap"];
+        # settings = {
+        #   General = {
+        #     JustWorksRepairing = "always";
+        #     MultiProfile = "multiple";
+        #   };
+        # };
       };
 
-      services.blueman.enable = true;
+      # services.blueman.enable = true;
     };
   }

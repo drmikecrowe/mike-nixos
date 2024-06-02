@@ -35,5 +35,9 @@ in
           openFirewall = true;
         };
       };
+
+      # system.nssDatabases.hosts = mkForce [
+      #   "mymachines mdns4_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] files myhostname dns"
+      # ];
     };
   }

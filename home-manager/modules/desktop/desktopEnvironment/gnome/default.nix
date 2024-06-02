@@ -32,6 +32,8 @@ in
         palenight-theme
         polkit_gnome # Used to bring up authentication dialogs
         zuki-themes
+        numix-cursor-theme
+        material-cursors
       ];
       services = {
         gnome-keyring = {
