@@ -14,7 +14,6 @@
       "quiet"
       "acpi_rev_override=1"
     ];
-    extraModulePackages = lib.mkDefault [pkgs.linuxPackages.nvidia_x11_legacy390];
 
     # TODO: test if this fixes the issue
     blacklistedKernelModules = [
@@ -34,6 +33,4 @@
       ];
     };
   };
-
-  nixpkgs.config.nvidia.acceptLicense = true;
 }

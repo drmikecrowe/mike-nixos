@@ -21,23 +21,27 @@
     ];
   };
 in {
-  imports = [
-    inputs.disko.nixosModules.disko
-    inputs.impermanence.nixosModule
-    inputs.nixos-hardware.nixosModules.dell-xps-15-9560
-    {
-      nixpkgs.overlays = [
-        # Add overlays your own flake exports (from overlays and pkgs dir):
-        outputs.overlays.additions
-        outputs.overlays.modifications
-        # Add overlays exported from other flakes:
-      ];
-    }
-    # inputs.nixos-hardware.nixosModules.dell-xps-15-9560-nvidia
-    ./disks.nix
-    ./hardware-configuration.nix
-    ../common
-  ];
+  imports =
+    [
+      inputs.disko.nixosModules.disko
+      inputs.impermanence.nixosModule
+      {
+        nixpkgs.overlays = [
+          # Add overlays your own flake exports (from overlays and pkgs dir):
+          outputs.overlays.additions
+          outputs.overlays.modifications
+          # Add overlays exported from other flakes:
+        ];
+      }
+      ./disks.nix
+      ./hardware-configuration.nix
+      ../common
+    ]
+    ++ [
+      inputs.nixos-hardware.nixosModules.dell-xps-15-9560
+      # inputs.nixos-hardware.nixosModules.dell-xps-15-9560-nvidia
+      # ./nvidia.nix
+    ];
 
   environment = {
     systemPackages = with pkgs; [
@@ -117,39 +121,17 @@ in {
   services = {
     rpcbind.enable = true; # needed for NFS
 
-    # resolved = {
-    #   enable = true;
-    #   extraConfig = ''
-    #     MulticastDNS=yes
-    #     DNSStubListenerExtra=172.17.0.1
-    #   '';
-    #   dnssec = "true";
-    #   fallbackDns = ["1.1.1.1" "8.8.8.8"];
-    #   dnsovertls = "true";
-    # };
+    resolved = {
+      enable = true;
+      extraConfig = ''
+        MulticastDNS=yes
+        DNSStubListenerExtra=172.17.0.1
+      '';
+      dnssec = "true";
+      fallbackDns = ["1.1.1.1" "8.8.8.8"];
+      dnsovertls = "true";
+    };
   };
-
-  # systemd = {
-  #   mounts = [
-  #     {
-  #       type = "nfs";
-  #       mountConfig = {
-  #         Options = "rw,noatime,defaults";
-  #       };
-  #       what = "nas.local:/export/books";
-  #       where = "/mnt/books";
-  #     }
-  #   ];
-  # };
-
-  # security.wrappers = {
-  #   "mount.cifs" = {
-  #     source = "${pkgs.cifs-utils}/bin/mount.cifs";
-  #     owner = "root";
-  #     group = "root";
-  #     setuid = true;
-  #   };
-  # };
 
   fileSystems = {
     "/mnt/books" = mkMountPoint "books";
