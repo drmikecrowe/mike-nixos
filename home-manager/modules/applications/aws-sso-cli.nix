@@ -73,13 +73,10 @@ in
                 echo "Unable to assume a role while AWS_PROFILE is set"
                 return 1
             end
-            set -x
             eval $(${pkgs.aws-sso-cli}/bin/.aws-sso-wrapped $_args eval -p $argv[1])
             if [ "$AWS_SSO_PROFILE" != "$1" ]
-                set +x
                 return 1
             end
-            set +x
           end
 
           function __aws_sso_profile_complete

@@ -7,7 +7,7 @@
   home = {
     activation = {
       report-changes = ''
-        PATH=$PATH:${lib.makeBinPath [pkgs.nvd pkgs.nix pkgs.python311Full]}
+        PATH=$PATH:${lib.makeBinPath [pkgs.nvd pkgs.nix pkgs.python3Full]}
         python /home/mcrowe/bin/report-changes.py
       '';
     };

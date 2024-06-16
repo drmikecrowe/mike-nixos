@@ -5,7 +5,7 @@
   ...
 }: let
   cfg10 = config.host.application.python310Full;
-  cfg11 = config.host.application.python311Full;
+  cfg11 = config.host.application.python3Full;
   cfg12 = config.host.application.python312Full;
 in
   with lib; {
@@ -18,11 +18,11 @@ in
             description = "Enables python310Full";
           };
         };
-        python311Full = {
+        python3Full = {
           enable = mkOption {
             default = false;
             type = with types; bool;
-            description = "Enables python311Full";
+            description = "Enables python3Full";
           };
         };
         python312Full = {
@@ -50,7 +50,7 @@ in
       })
       (mkIf cfg11.enable {
         environment.systemPackages = with pkgs; [
-          python311Full
+          python3Full
           python311Packages.flake8
           python311Packages.mypy
           python311Packages.pip

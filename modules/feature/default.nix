@@ -1,5 +1,4 @@
-{lib, ...}:
-with lib; {
+_: {
   imports = [
     ./boot
     ./graphics

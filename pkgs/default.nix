@@ -3,5 +3,5 @@
 {pkgs}: {
   argc-completions = pkgs.callPackage ./argc-completions.nix {};
   # sst = pkgs.callPackage ./sst.nix {};
-  xonsh = pkgs.callPackage ./xonsh.nix {};
+  xonsh-unwrapped = pkgs.callPackage ./xonsh.nix {};
 }

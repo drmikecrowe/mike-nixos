@@ -6,7 +6,18 @@
   stateVersion,
   ...
 }: let
+  forAllSystems = inputs.nixpkgs.lib.genAttrs systems;
+  pkgsBySystem = forAllSystems (
+    system:
+      import inputs.nixpkgs {
+        inherit system;
+        # config = import ../nix/config.nix;
+        # overlays = self.internal.overlays."${system}";
+      }
+  );
 in {
+  inherit forAllSystems;
+
   # Helper function for generating home-manager configs
   mkHome = {
     org,

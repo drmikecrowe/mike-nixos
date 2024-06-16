@@ -34,17 +34,5 @@
         };
       };
     };
-    home = {
-      packages = with pkgs; [
-        bcompare
-        betterbird
-        dbeaver
-        jetbrains.idea-ultimate
-        jetbrains.jdk
-        qcad
-        sqlcmd
-        warp-terminal
-      ];
-    };
   };
 }

@@ -70,7 +70,7 @@
           docker-compose-language-service
           dockerfile-language-server-nodejs
           lazygit
-          nodePackages_latest.bash-language-server
+          bash-language-server
           nodePackages_latest.vscode-json-languageserver
           nodePackages_latest.prettier
           yaml-language-server

@@ -20,28 +20,32 @@
         bcompare
         betterbird
         copyq
-        dbeaver
+        corepack
+        dbeaver-bin
         dconf2nix
         element-desktop
         flameshot
         gimp
         glxinfo
         hifile
+        jetbrains.idea-ultimate
+        jetbrains.jdk
         kupfer
         libreoffice
         libsForQt5.kgpg
         meld
+        nodejs_20
         obsidian
         peek
         qcad
+        sqlcmd
         teams-for-linux
+        warp-terminal
         wavebox
         yubikey-manager
         yubikey-personalization-gui
         yubioath-flutter
         zoom-us
-        nodejs_20
-        corepack
       ];
       file = {
         ".rgignore".text = builtins.readFile "${dotfiles}/ignore.txt";

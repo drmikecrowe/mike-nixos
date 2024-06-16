@@ -43,7 +43,7 @@ in
         };
 
         # superior power management
-        auto-cpufreq.enable = true;
+        # auto-cpufreq.enable = true;
         #power-profiles-daemon.enable = !config.host.features.powermanagement.laptop.enable;
 
         logind = {

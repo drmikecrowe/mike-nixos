@@ -4,8 +4,7 @@
   lib,
   pkgs,
   ...
-}:
-with lib; {
+}: {
   imports =
     [
       ./locale.nix
@@ -16,26 +15,27 @@ with lib; {
 
   boot = {
     initrd = {
-      compressor = mkDefault "zstd";
-      compressorArgs = mkDefault ["-19"];
+      compressor = lib.mkDefault "zstd";
+      compressorArgs = lib.mkDefault ["-19"];
 
       systemd = {
-        strip = mkDefault true; # Saves considerable space in initrd
+        strip = lib.mkDefault true; # Saves considerable space in initrd
       };
     };
     kernel.sysctl = {
-      "vm.dirty_ratio" = mkDefault 6; # sync disk when buffer reach 6% of memory
+      "vm.dirty_ratio" = lib.mkDefault 6; # sync disk when buffer reach 6% of memory
     };
-    kernelPackages = pkgs.linuxPackages_latest; # Latest kernel
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest; # Latest kernel
   };
 
   environment = {
     defaultPackages = []; # Don't install any default programs, force everything
-    enableAllTerminfo = mkDefault false;
+    enableAllTerminfo = lib.mkDefault false;
     localBinInPath = true;
     systemPackages = with pkgs; [
       alejandra
       black
+      chezmoi
       cryptsetup
       curl
       deno
@@ -56,9 +56,10 @@ with lib; {
       neovim
       nfs-utils
       nixd
-      nodePackages_latest.bash-language-server
+      nodejs_20
+      bash-language-server
       nodePackages_latest.prettier
-      nodePackages_latest.pyright # Python language server
+      pyright # Python language server
       nodePackages_latest.svelte-language-server
       nodePackages_latest.typescript-language-server
       nodePackages_latest.vscode-json-languageserver
@@ -88,14 +89,15 @@ with lib; {
 
   host = {
     application = {
-      _1password.enable = mkDefault true;
-      appimage-run.enable = mkDefault true;
-      duplicati.enable = mkDefault true;
-      python311Full.enable = mkDefault true;
-      vivaldi.enable = mkDefault true;
+      _1password.enable = lib.mkDefault true;
+      appimage-run.enable = lib.mkDefault true;
+      duplicati.enable = lib.mkDefault true;
+      python3Full.enable = lib.mkDefault true;
+      vivaldi.enable = lib.mkDefault true;
+      xonsh.enable = lib.mkDefault true;
     };
     feature = {
-      home-manager.enable = mkDefault true;
+      home-manager.enable = lib.mkDefault true;
     };
   };
 
@@ -110,7 +112,7 @@ with lib; {
     ];
   };
 
-  hardware.enableRedistributableFirmware = mkDefault true;
+  hardware.enableRedistributableFirmware = lib.mkDefault true;
 
   security = {
     pam.loginLimits = [
@@ -140,12 +142,12 @@ with lib; {
         value = "1048576";
       }
     ];
-    sudo.wheelNeedsPassword = mkDefault false;
+    sudo.wheelNeedsPassword = lib.mkDefault false;
   };
 
   services = {
-    fstrim.enable = mkDefault true;
+    fstrim.enable = lib.mkDefault true;
   };
 
-  users.mutableUsers = mkDefault false;
+  users.mutableUsers = lib.mkDefault false;
 }
