@@ -1,0 +1,142 @@
+Index: kernel/common/inc/nv-mm.h
+===================================================================
+--- kernel.orig/common/inc/nv-mm.h
++++ kernel/common/inc/nv-mm.h
+@@ -23,6 +23,7 @@
+ #ifndef __NV_MM_H__
+ #define __NV_MM_H__
+ 
++#include <linux/version.h>
+ #include "conftest.h"
+ 
+ #if !defined(NV_VM_FAULT_T_IS_PRESENT)
+@@ -47,7 +48,27 @@ typedef int vm_fault_t;
+  *
+  */
+ 
+-#if defined(NV_GET_USER_PAGES_HAS_TASK_STRUCT)
++// Rel. commit. "mm/gup: remove unused vmas parameter from get_user_pages()" (Lorenzo Stoakes, 14 May 2023)
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 5, 0)
++#include <linux/mm.h>
++
++static inline long NV_GET_USER_PAGES(unsigned long start,
++                                     unsigned long nr_pages,
++                                     int write,
++                                     int force,
++                                     struct page **pages,
++                                     struct vm_area_struct **vmas)
++{
++    unsigned int flags = 0;
++
++    if (write)
++        flags |= FOLL_WRITE;
++    if (force)
++        flags |= FOLL_FORCE;
++
++    return get_user_pages(start, nr_pages, flags, pages);
++}
++#elif defined(NV_GET_USER_PAGES_HAS_TASK_STRUCT)
+     #if defined(NV_GET_USER_PAGES_HAS_WRITE_AND_FORCE_ARGS)
+         #define NV_GET_USER_PAGES(start, nr_pages, write, force, pages, vmas) \
+             get_user_pages(current, current->mm, start, nr_pages, write, force, pages, vmas)
+@@ -130,7 +151,27 @@ typedef int vm_fault_t;
+  *
+  */
+ 
+-#if defined(NV_GET_USER_PAGES_REMOTE_PRESENT)
++// Rel. commit. "mm/gup: remove unused vmas parameter from get_user_pages_remote()" (Lorenzo Stoakes, 14 May 2023)
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 5, 0)
++static inline long NV_GET_USER_PAGES_REMOTE(struct task_struct *tsk,
++                                            struct mm_struct *mm,
++                                            unsigned long start,
++                                            unsigned long nr_pages,
++                                            int write,
++                                            int force,
++                                            struct page **pages,
++                                            struct vm_area_struct **vmas)
++{
++    unsigned int flags = 0;
++
++    if (write)
++        flags |= FOLL_WRITE;
++    if (force)
++        flags |= FOLL_FORCE;
++
++    return get_user_pages_remote(mm, start, nr_pages, flags, pages, NULL);
++}
++#elif defined(NV_GET_USER_PAGES_REMOTE_PRESENT)
+     #if defined(NV_GET_USER_PAGES_REMOTE_HAS_WRITE_AND_FORCE_ARGS)
+         #define NV_GET_USER_PAGES_REMOTE    get_user_pages_remote
+     #else
+Index: kernel/nvidia/nv-mmap.c
+===================================================================
+--- kernel.orig/nvidia/nv-mmap.c
++++ kernel/nvidia/nv-mmap.c
+@@ -471,7 +471,7 @@ int nvidia_mmap_helper(
+             }
+         }
+ 
+-        vma->vm_flags |= VM_IO;
++        vm_flags_set(vma, VM_IO);
+     }
+     else
+     {
+@@ -533,15 +533,15 @@ int nvidia_mmap_helper(
+ 
+         NV_PRINT_AT(NV_DBG_MEMINFO, at);
+ 
+-        vma->vm_flags |= (VM_IO | VM_LOCKED | VM_RESERVED);
+-        vma->vm_flags |= (VM_DONTEXPAND | VM_DONTDUMP);
++        vm_flags_set(vma, (VM_IO | VM_LOCKED | VM_RESERVED));
++        vm_flags_set(vma, (VM_DONTEXPAND | VM_DONTDUMP));
+     }
+ 
+     if ((prot & NV_PROTECT_WRITEABLE) == 0)
+     {
+         vma->vm_page_prot = NV_PGPROT_READ_ONLY(vma->vm_page_prot);
+-        vma->vm_flags &= ~VM_WRITE;
+-        vma->vm_flags &= ~VM_MAYWRITE;
++        vm_flags_clear(vma, VM_WRITE);
++        vm_flags_clear(vma, VM_MAYWRITE);
+     }
+ 
+     vma->vm_ops = &nv_vm_ops;
+Index: kernel/nvidia-uvm/uvm8.c
+===================================================================
+--- kernel.orig/nvidia-uvm/uvm8.c
++++ kernel/nvidia-uvm/uvm8.c
+@@ -658,7 +658,7 @@ static int uvm_mmap(struct file *filp, s
+     // Using VM_DONTCOPY would be nice, but madvise(MADV_DOFORK) can reset that
+     // so we have to handle vm_open on fork anyway. We could disable MADV_DOFORK
+     // with VM_IO, but that causes other mapping issues.
+-    vma->vm_flags |= VM_MIXEDMAP | VM_DONTEXPAND;
++    vm_flags_set(vma, VM_MIXEDMAP | VM_DONTEXPAND);
+ 
+     vma->vm_ops = &uvm_vm_ops_managed;
+ 
+Index: kernel/nvidia-drm/nvidia-drm-drv.c
+===================================================================
+--- kernel.orig/nvidia-drm/nvidia-drm-drv.c
++++ kernel/nvidia-drm/nvidia-drm-drv.c
+@@ -766,7 +766,9 @@ static void nv_drm_update_drm_driver_fea
+ 
+     nv_drm_driver.dumb_create      = nv_drm_dumb_create;
+     nv_drm_driver.dumb_map_offset  = nv_drm_dumb_map_offset;
++#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 5, 0)
+     nv_drm_driver.dumb_destroy     = nv_drm_dumb_destroy;
++#endif
+ 
+ #if defined(NV_DRM_DRIVER_HAS_GEM_PRIME_CALLBACKS)
+     nv_drm_driver.gem_vm_ops       = &nv_drm_gem_vma_ops;
+Index: kernel/nvidia-drm/nvidia-drm-fb.c
+===================================================================
+--- kernel.orig/nvidia-drm/nvidia-drm-fb.c
++++ kernel/nvidia-drm/nvidia-drm-fb.c
+@@ -31,6 +31,7 @@
+ #include "nvidia-drm-gem.h"
+ 
+ #include <drm/drm_crtc_helper.h>
++#include <drm/drm_modeset_helper.h>
+ 
+ static void nv_drm_framebuffer_destroy(struct drm_framebuffer *fb)
+ {

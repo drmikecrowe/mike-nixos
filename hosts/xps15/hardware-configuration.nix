@@ -17,6 +17,7 @@
 
     # TODO: test if this fixes the issue
     blacklistedKernelModules = [
+      "nouveau"
       "snd-intel-dspcfg"
     ];
 

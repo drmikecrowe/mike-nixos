@@ -23,13 +23,5 @@ in
           "ext4"
         ];
       };
-
-      # fileSystems = {
-      #   "/".options = ["subvol=root" "compress=zstd" "noatime"];
-      #   "/home".options = ["subvol=home/active" "compress=zstd" "noatime"];
-      #   "/nix".options = ["subvol=nix" "compress=zstd" "noatime"];
-      #   "/var".options = ["subvol=var_local/active" "compress=zstd" "noatime"];
-      #   "/opt".options = ["subvol=var_log" "compress=zstd" "noatime"];
-      # };
     };
   }

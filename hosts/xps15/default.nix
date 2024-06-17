@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   outputs,
   pkgs,
@@ -21,27 +22,22 @@
     ];
   };
 in {
-  imports =
-    [
-      inputs.disko.nixosModules.disko
-      inputs.impermanence.nixosModule
-      {
-        nixpkgs.overlays = [
-          # Add overlays your own flake exports (from overlays and pkgs dir):
-          outputs.overlays.additions
-          outputs.overlays.modifications
-          # Add overlays exported from other flakes:
-        ];
-      }
-      ./disks.nix
-      ./hardware-configuration.nix
-      ../common
-    ]
-    ++ [
-      inputs.nixos-hardware.nixosModules.dell-xps-15-9560
-      # inputs.nixos-hardware.nixosModules.dell-xps-15-9560-nvidia
-      # ./nvidia.nix
-    ];
+  imports = [
+    inputs.disko.nixosModules.disko
+    inputs.impermanence.nixosModule
+    {
+      nixpkgs.overlays = [
+        # Add overlays your own flake exports (from overlays and pkgs dir):
+        outputs.overlays.additions
+        outputs.overlays.modifications
+        # Add overlays exported from other flakes:
+      ];
+    }
+    ./disks.nix
+    ./hardware-configuration.nix
+    ../common
+    ./nvidia/default.nix
+  ];
 
   environment = {
     systemPackages = with pkgs; [
@@ -85,6 +81,9 @@ in {
       };
     };
     filesystem = {
+      lvm = {
+        enable = true;
+      };
       swap = {
         enable = false;
         type = "partition";
