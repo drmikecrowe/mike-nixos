@@ -24,6 +24,7 @@ in {
     role,
     hostname,
     username,
+    nur,
     desktop,
     systems,
     platform ? "x86_64-linux",
@@ -51,6 +52,7 @@ in {
     role,
     hostname,
     username,
+    nur,
     desktop,
     systems,
     platform ? "x86_64-linux",
@@ -68,6 +70,7 @@ in {
       inherit specialArgs;
       # If the hostname starts with "iso-", generate an ISO image
       modules = [
+        nur.nixosModules.nur
         ../secrets
         ../hosts/${hostname}
         inputs.flatpaks.nixosModules.default

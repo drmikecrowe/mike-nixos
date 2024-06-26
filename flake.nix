@@ -6,6 +6,7 @@
     nixpkgs,
     home-manager,
     nixos-hardware,
+    nur,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -23,7 +24,7 @@
     extraArgs =
       mikeHome
       // {
-        inherit systems;
+        inherit systems nur;
       };
   in {
     nixosModules = import ./modules;
