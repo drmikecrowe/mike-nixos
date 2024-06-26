@@ -3,8 +3,7 @@
   lib,
   pkgs,
   ...
-}:
-with lib; {
+}: {
   imports = [
     ./backend
     ./desktopManager
@@ -13,28 +12,28 @@ with lib; {
 
   options = {
     host.feature.graphics = {
-      enable = mkOption {
+      enable = lib.mkOption {
         default = false;
-        type = with types; bool;
+        type = with lib.types; bool;
         description = "Enables Graphics Support";
       };
-      acceleration = mkOption {
+      acceleration = lib.mkOption {
         default = false;
-        type = with types; bool;
+        type = with lib.types; bool;
         description = "Enables graphics acceleration";
       };
-      backend = mkOption {
-        type = types.enum ["x" "wayland" null];
+      backend = lib.mkOption {
+        type = lib.types.enum ["x" "wayland" null];
         default = null;
         description = "Backend of displayManager";
       };
-      monitors = mkOption {
-        type = with types; listOf str;
+      monitors = lib.mkOption {
+        type = with lib.types; listOf str;
         default = [];
         description = "Declare the order of monitors in Window manager configurations";
       };
-      desktopManager = mkOption {
-        type = types.enum ["gnome" "kde" "kde6" "budgie" "cinnamon" "deepin" null];
+      desktopManager = lib.mkOption {
+        type = lib.types.enum ["gnome" "kde" "kde6" "budgie" "cinnamon" "deepin" null];
         default = null;
         description = "Desktop Manager to use";
       };
@@ -43,10 +42,8 @@ with lib; {
 
   config = {
     hardware = {
-      opengl = mkIf ((config.host.feature.graphics.enable) && (config.host.feature.graphics.acceleration)) {
+      graphics = lib.mkIf ((config.host.feature.graphics.enable) && (config.host.feature.graphics.acceleration)) {
         enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
       };
     };
   };

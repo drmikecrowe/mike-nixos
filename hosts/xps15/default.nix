@@ -42,16 +42,14 @@ in {
   environment = {
     systemPackages = with pkgs; [
       # sst
+      carapace
+      cifs-utils
+      libsmbios
       onedrive
       onedrivegui
       publii
       pulumi-bin
       sysz
-      cifs-utils
-      libsmbios
-      argc
-      argc-completions
-      carapace
     ];
   };
 
