@@ -1,28 +1,40 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: let
   cfg = config.host.home.applications.zsh;
-in
-  with lib; {
-    options = {
-      host.home.applications.zsh = {
-        enable = mkOption {
-          default = true;
-          type = with types; bool;
-          description = "Enables zsh";
-        };
+in {
+  options = {
+    host.home.applications.zsh = {
+      enable = lib.mkOption {
+        default = true;
+        type = lib.types.bool;
+        description = "Enables zsh";
       };
     };
+  };
 
-    config = mkIf cfg.enable {
-      programs = {
-        zsh = {
-          enable = true;
-          enableCompletion = true;
-        };
+  config = lib.mkIf cfg.enable {
+    programs.zsh = {
+      enable = true;
+      enableCompletion = true;
+      autosuggestion.enable = true;
+      oh-my-zsh = {
+        enable = true;
+        theme = "sorin";
+        plugins = [
+          "git"
+          "sudo"
+          "1password"
+          "aws"
+          "direnv"
+          "poetry"
+          "pipenv"
+          "zoxide"
+          # more coming
+        ];
       };
     };
-  }
+  };
+}

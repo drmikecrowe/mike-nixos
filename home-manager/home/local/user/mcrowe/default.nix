@@ -8,7 +8,6 @@
     ./aliases.nix
     ./git.nix
     ./gtk.nix
-    # ./dconf.nix
     ./scripts.nix
     ./ssh.nix
   ];
@@ -54,21 +53,23 @@
       };
     };
 
-    systemd.user.services.mbfc-docker = {
-      Unit = {
-        Description = "build data for mbfc extension";
+    systemd.user = {
+      services.mbfc-docker = {
+        Unit = {
+          Description = "build data for mbfc extension";
+        };
+        Service = {
+          Type = "oneshot";
+          ExecStart = ''
+            ${pkgs.docker}/bin/docker run --env-file /home/mcrowe/Programming/Personal/mbfc/mbfc-mirror-docker/.env --rm mbfc:latest
+          '';
+        };
       };
-      Service = {
-        Type = "oneshot";
-        ExecStart = ''
-          ${pkgs.docker}/bin/docker run --env-file /home/mcrowe/Programming/Personal/mbfc/mbfc-mirror-docker/.env --rm mbfc:latest
-        '';
-      };
-    };
 
-    systemd.user.timers = {
-      mbfc-docker = {
-        Unit.Description = "Build data for mbfc extension";
+      timers.mbfc-docker = {
+        Unit = {
+          Description = "Build data for mbfc extension";
+        };
         Timer = {
           OnCalendar = "daily";
           Persistent = true;
@@ -77,7 +78,6 @@
           Unit = "mbfc-docker.service";
           RemainAfterElapse = true;
         };
-        # Install.WantedBy = ["timers.target"];
       };
     };
   };
