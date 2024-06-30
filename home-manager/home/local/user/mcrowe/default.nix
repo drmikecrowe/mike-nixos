@@ -9,7 +9,6 @@
     ./git.nix
     ./gtk.nix
     ./scripts.nix
-    ./ssh.nix
   ];
 
   config = {

@@ -15,12 +15,11 @@
       };
     });
     # openssh = prev.openssh.overrideAttrs (old: rec {
-    #   patches = (old.patches or []) ++ [../patches/openssh.patch];
-    #   doCheck = false;
+    #   postPatch = ''
+    #     sed -i 's/1/0/' $(grep '#define SSHCONF_CHECKPERM' * -rl)
+    #     grep SSHCONF_CHECKPERM . -r
+    #   '';
     # });
-    #   services.thermald.package = final: prev: prev.thermald.overrideAttrs (old: {
-    #     patches = (old.patches or []) ++ [../patches/thermald-422.patch];
-    #   });
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
