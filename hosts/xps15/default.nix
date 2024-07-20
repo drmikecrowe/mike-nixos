@@ -124,9 +124,9 @@ in {
         MulticastDNS=yes
         DNSStubListenerExtra=172.17.0.1
       '';
-      dnssec = "true";
       fallbackDns = ["1.1.1.1" "8.8.8.8"];
-      dnsovertls = "true";
+      # dnssec = "true";
+      # dnsovertls = "true";
     };
   };
 

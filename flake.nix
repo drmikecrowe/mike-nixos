@@ -80,6 +80,8 @@
           shfmt
 
           vimPlugins.nvim-treesitter.withAllGrammars
+          vimPlugins.nvim-fzf-commands
+          vimPlugins.nvim-fzf
           tree-sitter
         ];
       };

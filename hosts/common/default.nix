@@ -83,6 +83,14 @@
     ];
   };
 
+  programs.nh = {
+    enable = true;
+    clean = {
+      enable = true;
+      extraArgs = "--keep-since 4d --keep 3";
+    };
+  };
+
   systemd = {
     extraConfig = "DefaultLimitNOFILE=4096:524288"; # defaults to 1024 if unset
   };
