@@ -49,6 +49,7 @@
       htop
       killall
       lazygit
+      libgit2
       libnfs
       lm_sensors
       lua-language-server # lua lsp
