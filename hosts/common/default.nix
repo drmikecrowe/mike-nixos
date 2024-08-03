@@ -49,10 +49,11 @@
       htop
       killall
       lazygit
-      libgit2
       libnfs
       lm_sensors
+      lua5_1
       lua-language-server # lua lsp
+      luajitPackages.luarocks
       luajitPackages.luacheck
       neovim
       nfs-utils

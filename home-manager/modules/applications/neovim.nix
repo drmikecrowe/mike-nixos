@@ -28,6 +28,7 @@ in
       home.packages = with pkgs; [
         vimPlugins.nvim-treesitter.withAllGrammars
         tree-sitter
+        libgit2
       ];
 
       programs.git.extraConfig.core.editor = "nvim";
