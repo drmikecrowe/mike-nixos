@@ -5,9 +5,9 @@
   ...
 }: let
   inherit (lib) mkIf;
-  cfg = config.programs.lsp;
+  cfg = config.host.home.applications.lsp;
 in {
-  options.programs.lsp = let
+  options.host.home.applications.lsp = let
     inherit (lib) mkEnableOption mkOption types;
 
     mkOnOff = description: default:
@@ -74,6 +74,7 @@ in {
           tree-sitter
           git
           curl
+          libgit2
           gnutar
           gnumake
           trashy
@@ -100,6 +101,7 @@ in {
         lua = with pkgs; [
           lua-language-server
           stylua
+          selene
         ];
         nix = with pkgs; [
           nixd
@@ -113,6 +115,7 @@ in {
         ];
         python = with pkgs; [
           black
+          ruff
           ruff-lsp
           python3Packages.debugpy
           poetry
@@ -134,6 +137,7 @@ in {
           lldb
         ];
         tf = with pkgs; [
+          cuelsp
           terraform
           terraform-ls
           tflint

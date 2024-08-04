@@ -26,6 +26,7 @@ in {
           github.enable = lib.mkDefault true;
           gnupg.enable = lib.mkDefault true;
           neovim.enable = lib.mkDefault true;
+          lsp.enable = lib.mkDefault true;
           starship.enable = lib.mkDefault true;
           tmux.enable = lib.mkDefault true;
           vscode.enable = lib.mkDefault true;

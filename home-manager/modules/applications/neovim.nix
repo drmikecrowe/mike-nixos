@@ -53,13 +53,6 @@ in {
         ];
       };
 
-      lsp = {
-        enable = lib.mkDefault true;
-
-        web.deno = true;
-        terraform.enable = true;
-      };
-
       git.extraConfig.core.editor = "nvim";
 
       fish = {
