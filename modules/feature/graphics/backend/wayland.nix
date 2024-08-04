@@ -14,7 +14,6 @@ in {
 
     environment.systemPackages = with pkgs; [
       pinentry-qt
-      xclip
     ];
     programs = {
       dconf.enable = mkDefault true;

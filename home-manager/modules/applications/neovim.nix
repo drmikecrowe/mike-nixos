@@ -1,50 +1,68 @@
 {
   config,
   lib,
-  dotfiles,
   pkgs,
   ...
 }: let
   cfg = config.host.home.applications.neovim;
-in
-  with lib; {
-    options = {
-      host.home.applications.neovim = {
-        enable = mkOption {
-          default = false;
-          type = with types; bool;
-          description = "Enables neovim";
-        };
+in {
+  options = {
+    host.home.applications.neovim = {
+      enable = lib.mkOption {
+        default = false;
+        type = with lib.types; bool;
+        description = "Enables neovim";
       };
     };
+  };
 
-    config = mkIf cfg.enable {
-      programs.neovim = {
+  # THANKS TO https://github.com/redxtech/nixfiles/blob/451a94eeffd53de7e695cb525f6b1fb88e2279b8/modules/home-manager/cli/neovim.nix#L20
+  config = lib.mkIf cfg.enable {
+    programs = {
+      neovim = {
         enable = true;
+
+        # package = pkgs.neovim-nightly;
+
+        withNodeJs = true;
+        withPython3 = true;
+
+        defaultEditor = true;
+        viAlias = true;
         vimAlias = true;
-        package = pkgs.neovim-unwrapped;
+        vimdiffAlias = true;
+
+        extraPackages = with pkgs; [
+          nil
+
+          # for nix-reaver
+          nurl
+
+          # for fugit2
+          libgit2
+          gpgme
+          lua5_1
+          lua51Packages.luarocks
+        ];
+
+        extraWrapperArgs = [
+          "--prefix"
+          "LD_LIBRARY_PATH"
+          ":"
+          "${lib.makeLibraryPath [pkgs.libgit2 pkgs.sqlite]}"
+        ];
       };
 
-      home.packages = with pkgs; [
-        vimPlugins.nvim-treesitter.withAllGrammars
-        tree-sitter
-        libgit2
-      ];
+      lsp = {
+        enable = lib.mkDefault true;
 
-      programs.git.extraConfig.core.editor = "nvim";
-
-      home = {
-        shellAliases = {
-          lg = "lazygit";
-        };
-
-        sessionVariables = {
-          EDITOR = "nvim";
-          MANPAGER = "nvim +Man!";
-        };
+        web.deno = true;
+        terraform.enable = true;
       };
 
-      programs.fish = {
+      git.extraConfig.core.editor = "nvim";
+
+      fish = {
         shellAliases = {vim = "nvim";};
         shellAbbrs = {
           v = lib.mkForce "nvim";
@@ -52,9 +70,17 @@ in
           vll = "nvim -c 'Telescope oldfiles'";
         };
       };
-
-      programs.kitty.settings.scrollback_pager =
-        lib.mkForce ''
-          ${pkgs.neovim}/bin/nvim -c 'setlocal nonumber nolist showtabline=0 foldcolumn=0|Man!' -c "autocmd VimEnter * normal G" -'';
     };
-  }
+
+    home = {
+      shellAliases = {
+        lg = "lazygit";
+      };
+
+      sessionVariables = {
+        EDITOR = "nvim";
+        MANPAGER = "nvim +Man!";
+      };
+    };
+  };
+}

@@ -9,6 +9,7 @@
     ./github.nix
     ./git.nix
     ./gnupg.nix
+    ./lsp.nix
     ./neovim.nix
     ./nixpkgs.nix
     ./starship.nix

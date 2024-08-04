@@ -60,7 +60,6 @@ in {
         glab
         glow
         glxinfo
-        gnumake
         hifile
         htmlq
         htop

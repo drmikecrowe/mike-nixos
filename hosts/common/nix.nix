@@ -40,6 +40,12 @@
   };
 
   programs = {
+    nix-ld = {
+      enable = lib.mkDefault true;
+      # for fugit2
+      libraries = with pkgs; [libgit2];
+    };
+
     bash = {
       shellInit = ''
         alias nix_package_size="nix path-info --size --human-readable --recursive /run/current-system | cut -d - -f 2- | sort"

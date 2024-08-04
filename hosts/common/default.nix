@@ -33,17 +33,9 @@
     enableAllTerminfo = lib.mkDefault false;
     localBinInPath = true;
     systemPackages = with pkgs; [
-      alejandra
-      black
       chezmoi
       cryptsetup
-      curl
-      deno
-      docker-compose-language-service
-      dockerfile-language-server-nodejs
       file
-      firefox
-      git
       git-crypt
       grc
       htop
@@ -51,36 +43,17 @@
       lazygit
       libnfs
       lm_sensors
-      lua5_1
-      lua-language-server # lua lsp
-      luajitPackages.luarocks
-      luajitPackages.luacheck
-      neovim
       nfs-utils
-      nixd
-      nodejs_20
-      bash-language-server
-      nodePackages_latest.prettier
-      pyright # Python language server
-      nodePackages_latest.svelte-language-server
-      nodePackages_latest.typescript-language-server
-      nodePackages_latest.vscode-json-languageserver
+      nurl
       nvd
       parted
       pciutils
       pinentry-curses
-      poetry
       prettyping
       ripgrep
-      shellcheck
-      shfmt
-      stylua
-      tailwindcss-language-server
-      terraform-lsp
       unzip
       usbutils
       wget
-      yaml-language-server
       zip
     ];
   };
