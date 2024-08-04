@@ -17,9 +17,6 @@
           theming = {
             enable = lib.mkDefault true;
           };
-          ssh = {
-            enable = lib.mkDefault true;
-          };
           emulation = {
             windows.enable = lib.mkDefault true;
           };

@@ -41,14 +41,11 @@ in {
 
   environment = {
     systemPackages = with pkgs; [
-      # sst
       carapace
       cifs-utils
       libsmbios
       onedrive
       onedrivegui
-      publii
-      pulumi-bin
       sysz
     ];
   };
@@ -89,11 +86,6 @@ in {
       };
     };
     hardware = {
-      sound = {
-        enable = true;
-        # server = "pipewire";
-        server = "pulseaudio";
-      };
       yubikey = {
         ids = [
           "19883829"

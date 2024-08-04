@@ -1,8 +1,5 @@
-# lifted from https://github.com/t184256/nix-configs/blob/bf08416f7be5511d920a43d9bf2562b05605b0a9/user/xonsh/default.nix
-# and https://github.com/NixOS/nixpkgs/pull/314728
 {
   lib,
-  callPackage,
   coreutils,
   fetchFromGitHub,
   git,
@@ -12,16 +9,15 @@
 }: let
   argset = {
     pname = "xonsh";
-    version = "0.16.0-unstable-2024-05-25";
+    version = "0.17.0";
     pyproject = true;
 
     # PyPI package ships incomplete tests
     src = fetchFromGitHub {
       owner = "xonsh";
       repo = "xonsh";
-      # rev = "refs/tags/${argset.version}";
-      rev = "1613914d507884487251ecafb55e281699931eb8";
-      hash = "sha256-CSElfkeQZi8o8H9WSZtCvzfk6qCSGEC9ctkI0sCBcSs=";
+      rev = "refs/tags/${argset.version}";
+      hash = "sha256-9sRY9aetWWXzCFfgdHCBCia48THIJcMxsYMnFR6Xa8A=";
     };
 
     nativeBuildInputs = with python3Packages; [
@@ -56,7 +52,7 @@
       "test_no_command_path_completion"
       "test_bsd_man_page_completions"
       "test_xonsh_activator"
-      "test_raise_subproc_error_with_show_traceback"
+
       # fails on non-interactive shells
       "test_capture_always"
       "test_casting"
@@ -65,12 +61,16 @@
       "test_man_completion"
       "test_vc_get_branch"
       "test_bash_and_is_alias_is_only_functional_alias"
+
       # flaky tests
       "test_script"
       "test_alias_stability"
       "test_alias_stability_exception"
       "test_complete_import"
       "test_subproc_output_format"
+
+      # https://github.com/xonsh/xonsh/issues/5569
+      "test_spec_modifier_alias_output_format"
     ];
 
     disabledTestPaths = [
@@ -78,10 +78,18 @@
       "tests/completers/test_command_completers.py"
       "tests/test_ptk_highlight.py"
       "tests/test_ptk_shell.py"
+      "tests/test_integrations.py"
+      "tests/test_xontribs.py"
       # fails on non-interactive shells
       "tests/prompt/test_gitstatus.py"
       "tests/completers/test_bash_completer.py"
+      "tests/completers/test_xompletions.py"
+      "tests/xoreutils/test_uname.py"
+      "tests/xoreutils/test_uptime.py"
     ];
+
+    # https://github.com/NixOS/nixpkgs/issues/248978
+    dontWrapPythonPrograms = true;
 
     env.LC_ALL = "en_US.UTF-8";
 
@@ -103,18 +111,18 @@
     passthru = {
       shellPath = "/bin/xonsh";
       python = python3Packages.python; # To the wrapper
-      wrapper = callPackage ./wrapper.nix {};
+      wrapper = throw "The top-level xonsh package is now wrapped. Use it directly.";
       updateScript = gitUpdater {};
     };
 
     meta = {
       homepage = "https://xon.sh/";
-      description = "A Python-ish, BASHwards-compatible shell";
+      description = "Python-ish, BASHwards-compatible shell";
       changelog = "https://github.com/xonsh/xonsh/raw/main/CHANGELOG.rst";
       license = with lib.licenses; [bsd3];
       mainProgram = "xonsh";
-      maintainers = with lib.maintainers; [AndersonTorres];
+      maintainers = with lib.maintainers; [samlukeyes123];
     };
   };
 in
-  python3Packages.buildPythonApplication argset
+  python3Packages.buildPythonPackage argset

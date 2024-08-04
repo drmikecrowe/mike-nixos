@@ -41,17 +41,17 @@ in {
 
     lua = mkLang "lua";
     nix = mkLang "nix";
-    rust = mkLang "rust";
     python = mkLang "python";
     shell = mkLang "shell";
     go = mkLang "go";
-    cpp = mkLang "cpp";
+    rust = mkLang "rust";
+    terraform = mkLang "terraform";
 
+    cpp = mkLangDisable "cpp";
     php = mkLangDisable "php";
     java = mkLangDisable "java";
     dotnet = mkLangDisable "dotnet";
     zig = mkLangDisable "zig";
-    terraform = mkLangDisable "terraform";
     haskell = mkLangDisable "haskell";
 
     yaml = {
@@ -64,17 +64,14 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs.neovim = {
-      extraLuaPackages = rocks: [rocks.jsregexp];
-
-      extraPackages = let
+    home = {
+      packages = let
         inherit (lib) optional optionals;
 
         default = with pkgs; [
           tree-sitter
-          git
+          # git
           curl
-          libgit2
           gnutar
           gnumake
           trashy

@@ -1,17 +1,26 @@
 # This file defines overlays
-{inputs, ...}: {
+{inputs, ...}: let
+  patch = pkg: patches:
+    pkg.overrideAttrs (oldAttrs: {
+      patches = (oldAttrs.patches or []) ++ patches;
+    });
+in rec {
   # This one brings our custom packages from the 'pkgs' directory
-  additions = final: _prev: import ../pkgs {pkgs = final;};
+  additions = final: _prev:
+    import ../pkgs {
+      inherit inputs;
+      pkgs = final;
+    };
 
   # This one contains whatever you want to overlay
   modifications = _final: prev: {
     wavebox = prev.wavebox.overrideAttrs (_old: rec {
       pname = "wavebox";
-      version = "10.124.23-2";
+      version = "10.127.7-2";
       src = prev.fetchurl {
         url = "https://download.wavebox.app/stable/linux/tar/Wavebox_${version}.tar.gz";
+        sha256 = "sha256-2KSn98+AH4Ul0cUUxpUcUTrqs/kLYcEOV+q2m7Pmo50=";
         # sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-        sha256 = "sha256-8wLHYTo5BoVRiqaqIhhCc0M7k3IBAXRg3sjC20j5/SA=";
       };
     });
     # openssh = prev.openssh.overrideAttrs (old: rec {

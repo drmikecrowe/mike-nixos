@@ -50,6 +50,7 @@ in {
         copyq
         dconf2nix
         dig
+        discord
         dua
         element-desktop
         eza

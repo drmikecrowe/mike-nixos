@@ -24,13 +24,12 @@ in {
 
         # package = pkgs.neovim-nightly;
 
-        withNodeJs = true;
-        withPython3 = true;
-
         defaultEditor = true;
         viAlias = true;
         vimAlias = true;
         vimdiffAlias = true;
+
+        extraLuaPackages = rocks: [rocks.jsregexp];
 
         extraPackages = with pkgs; [
           nil
@@ -38,19 +37,17 @@ in {
           # for nix-reaver
           nurl
 
-          # for fugit2
-          libgit2
           gpgme
           lua5_1
           lua51Packages.luarocks
         ];
 
-        extraWrapperArgs = [
-          "--prefix"
-          "LD_LIBRARY_PATH"
-          ":"
-          "${lib.makeLibraryPath [pkgs.libgit2 pkgs.sqlite]}"
-        ];
+        # extraWrapperArgs = [
+        #   "--prefix"
+        #   "LD_LIBRARY_PATH"
+        #   ":"
+        #   "${lib.makeLibraryPath [pkgs.libgit2 pkgs.sqlite]}"
+        # ];
       };
 
       git.extraConfig.core.editor = "nvim";

@@ -5,7 +5,8 @@ set -euo pipefail
 bin/fmt
 git add --intent-to-add .
 branch_name=$(git rev-parse --abbrev-ref HEAD)
+PROFILE="-p $branch_name"
 sudo mkdir -p /build && sudo mount --bind /home/build /build
 # sudo nixos-rebuild switch $PROFILE "$@"
-nh os switch .
+nh os test . -- --show-trace
 sudo umount /build || true

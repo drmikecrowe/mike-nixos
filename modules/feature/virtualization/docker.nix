@@ -45,6 +45,11 @@ in {
         rootless = {
           enable = true;
           setSocketVariable = true;
+          daemon = {
+            settings = {
+              dns = ["1.1.1.1"];
+            };
+          };
         };
         logDriver = "local";
         storageDriver = docker_storage_driver;

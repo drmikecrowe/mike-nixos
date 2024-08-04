@@ -1,19 +1,17 @@
 {
   description = "drmikecrowe's system configuration";
 
-  outputs = {
+  outputs = inputs @ {
     self,
+    flake-utils,
     nixpkgs,
     home-manager,
     nixos-hardware,
     nur,
     ...
-  } @ inputs: let
+  }: let
     inherit (self) outputs;
     stateVersion = "23.11"; # do not change
-    defaultSystem = "x86_64-linux";
-    systems = [defaultSystem];
-    libx = import ./lib {inherit inputs outputs systems stateVersion nixos-hardware home-manager;};
     mikeHome = {
       org = "local";
       role = "hybrid";
@@ -24,9 +22,27 @@
     extraArgs =
       mikeHome
       // {
-        inherit systems nur;
+        inherit nur;
       };
+
+    forAllSystems = nixpkgs.lib.genAttrs flake-utils.lib.defaultSystems;
+    libx = import ./lib {inherit inputs outputs stateVersion nixos-hardware home-manager;};
   in {
+    packages = forAllSystems (
+      system: let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+        import ./pkgs {inherit inputs pkgs;}
+    );
+
+    devShells = forAllSystems (
+      system: let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+        import ./shell.nix {inherit pkgs;}
+    );
+
+    overlays = import ./overlays {inherit inputs;};
     nixosModules = import ./modules;
 
     homeConfigurations = {
@@ -37,69 +53,19 @@
       xps15 = libx.mkHost extraArgs;
     };
 
-    formatter = libx.forAllSystems (system: let
-      pkgs2 = nixpkgs.legacyPackages.${system};
-    in
-      pkgs: pkgs2.alejandra);
-
-    # Custom packages and modifications, exported as overlays
-    overlays = import ./overlays {inherit inputs;};
-
-    # Devshell for bootstrapping; acessible via 'nix develop' or 'nix-shell' (legacy)
-    devShells = libx.forAllSystems (system: let
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      default = pkgs.mkShell {
-        name = "flakeShell-${system}";
-        buildInputs = with pkgs; [
-          git
-          git-crypt
-          stylua
-          alejandra
-          shfmt
-          shellcheck
-          statix
-          nvd
-          nix-prefetch
-          nix-prefetch-scripts
-          nix-tree
-          nixd
-          neovim
-          # vscodium-fhs
-          # nixd
-          ripgrep
-          docker-compose-language-service
-          dockerfile-language-server-nodejs
-          lazygit
-          bash-language-server
-          nodePackages_latest.vscode-json-languageserver
-          nodePackages_latest.prettier
-          yaml-language-server
-
-          shellcheck
-          shfmt
-
-          vimPlugins.nvim-treesitter.withAllGrammars
-          vimPlugins.nvim-fzf-commands
-          vimPlugins.nvim-fzf
-          tree-sitter
-        ];
-      };
-    });
-
     templates = rec {
       default = basic;
       basic = {
         path = ./templates/basic;
         description = "Basic program template";
       };
-      poetry = {
-        path = ./templates/poetry;
-        description = "Poetry template";
-      };
       python = {
         path = ./templates/python;
         description = "Legacy Python template";
+      };
+      poetry = {
+        path = ./templates/poetry;
+        description = "Poetry template";
       };
       typescript = {
         path = ./templates/typescript;
@@ -135,6 +101,7 @@
       follows = "nixpkgs-unstable";
     };
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
 
     comma.url = "github:nix-community/comma";
     home-manager.url = "github:nix-community/home-manager/master";

@@ -6,7 +6,7 @@
 }: {
   environment = {
     systemPackages = with pkgs; [
-      git
+      # git
       nvd
     ];
   };
@@ -40,12 +40,6 @@
   };
 
   programs = {
-    nix-ld = {
-      enable = lib.mkDefault true;
-      # for fugit2
-      libraries = with pkgs; [libgit2];
-    };
-
     bash = {
       shellInit = ''
         alias nix_package_size="nix path-info --size --human-readable --recursive /run/current-system | cut -d - -f 2- | sort"
@@ -55,18 +49,6 @@
   };
 
   system = {
-    activationScripts = {
-      binbash = {
-        deps = ["binsh"];
-        text = ''
-          ln -sf /bin/sh /bin/bash
-        '';
-      };
-      report-changes = ''
-        PATH=$PATH:${lib.makeBinPath [pkgs.nvd pkgs.nix pkgs.python3Full]}
-        python /home/mcrowe/bin/report-changes.py
-      '';
-    };
     autoUpgrade.enable = lib.mkDefault false;
     stateVersion = lib.mkDefault "23.11";
   };

@@ -29,20 +29,6 @@ in {
       ];
     };
 
-    sound = lib.mkMerge [
-      (lib.mkIf (cfg.enable && cfg.server == "pulseaudio") {
-        enable = true;
-      })
-
-      (lib.mkIf (cfg.enable && cfg.server == "pipewire") {
-        enable = false;
-      })
-
-      (lib.mkIf (! cfg.enable) {
-        enable = false;
-      })
-    ];
-
     hardware.pulseaudio = lib.mkIf (cfg.enable && cfg.server == "pulseaudio") {
       enable = true;
       tcp.enable = true; # necessary to listen to non-systemwide (only root) mpd daemon, c.f. https://askubuntu.com/a/555484

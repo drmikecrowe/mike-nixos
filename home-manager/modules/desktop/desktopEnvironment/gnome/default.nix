@@ -11,7 +11,7 @@ in
       home.packages = with pkgs; [
         dconf
         arc-theme
-        gnome.gnome-themes-extra
+        gnome-themes-extra
         gnome.libsoup
         gnomeExtensions.appindicator
         gnomeExtensions.auto-activities
