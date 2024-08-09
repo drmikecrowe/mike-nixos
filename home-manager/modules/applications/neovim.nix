@@ -32,22 +32,17 @@ in {
         extraLuaPackages = rocks: [rocks.jsregexp];
 
         extraPackages = with pkgs; [
-          nil
-
           # for nix-reaver
           nurl
-
           gpgme
-          lua5_1
-          lua51Packages.luarocks
         ];
 
-        # extraWrapperArgs = [
-        #   "--prefix"
-        #   "LD_LIBRARY_PATH"
-        #   ":"
-        #   "${lib.makeLibraryPath [pkgs.libgit2 pkgs.sqlite]}"
-        # ];
+        extraWrapperArgs = [
+          "--prefix"
+          "LD_LIBRARY_PATH"
+          ":"
+          "${lib.makeLibraryPath [pkgs.libgit2 pkgs.sqlite pkgs.gpgme]}"
+        ];
       };
 
       git.extraConfig.core.editor = "nvim";
@@ -69,7 +64,7 @@ in {
 
       sessionVariables = {
         EDITOR = "nvim";
-        MANPAGER = "nvim +Man!";
+        MANPAGER = "NVIM_MAN=1 nvim +Man!";
       };
     };
   };

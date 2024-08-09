@@ -41,7 +41,6 @@ in {
 
   environment = {
     systemPackages = with pkgs; [
-      carapace
       cifs-utils
       libsmbios
       onedrive
@@ -104,6 +103,7 @@ in {
       root.enable = true;
     };
   };
+
   passthru = {
   };
 

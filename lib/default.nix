@@ -11,6 +11,7 @@
     role,
     hostname,
     username,
+    nur,
     desktop,
   }: let
     dotfiles = ../home-manager/dotfiles;
@@ -18,7 +19,7 @@
       inherit (inputs.nixpkgs) lib;
     };
     specialArgs = {
-      inherit inputs outputs org role hostname username desktop stateVersion dotfiles;
+      inherit inputs outputs org role hostname username desktop stateVersion dotfiles nur;
       inherit (secrets.config.host) secrets;
     };
   in

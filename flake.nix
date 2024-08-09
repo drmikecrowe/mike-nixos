@@ -45,9 +45,9 @@
     overlays = import ./overlays {inherit inputs;};
     nixosModules = import ./modules;
 
-    homeConfigurations = {
-      "mcrowe_xps15" = libx.mkHome extraArgs;
-    };
+    # homeConfigurations = {
+    #   "mcrowe_xps15" = libx.mkHome extraArgs;
+    # };
 
     nixosConfigurations = {
       xps15 = libx.mkHost extraArgs;
@@ -126,6 +126,10 @@
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    xontribs = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:drmikecrowe/nur-packages";
     };
     # nix-snapd.url = "github:io12/nix-snapd";
     # nix-snapd.inputs.nixpkgs.follows = "nixpkgs";

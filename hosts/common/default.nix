@@ -36,11 +36,12 @@
       chezmoi
       cryptsetup
       file
+      gcc
       git-crypt
       grc
       htop
       killall
-      lazygit
+      libgit2
       libnfs
       lm_sensors
       nfs-utils
@@ -58,11 +59,19 @@
     ];
   };
 
-  programs.nh = {
-    enable = true;
-    clean = {
+  programs = {
+    nix-ld = {
+      enable = lib.mkDefault true;
+      # for fugit2
+      libraries = with pkgs; [libgit2];
+    };
+
+    nh = {
       enable = true;
-      extraArgs = "--keep-since 4d --keep 3";
+      clean = {
+        enable = true;
+        extraArgs = "--keep-since 4d --keep 3";
+      };
     };
   };
 
@@ -75,6 +84,7 @@
       _1password.enable = lib.mkDefault true;
       appimage-run.enable = lib.mkDefault true;
       duplicati.enable = lib.mkDefault true;
+      lsp.enable = lib.mkDefault true;
       python3Full.enable = lib.mkDefault true;
       vivaldi.enable = lib.mkDefault true;
       xonsh.enable = lib.mkDefault true;

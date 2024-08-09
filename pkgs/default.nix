@@ -5,5 +5,5 @@
   pkgs,
 }: {
   # add more packages here
-  xonsh = pkgs.callPackage ./xonsh {};
+  # xonsh = pkgs.callPackage ./xonsh {};
 }

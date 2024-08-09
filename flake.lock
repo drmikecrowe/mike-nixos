@@ -871,7 +871,8 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "parts": "parts",
-        "wallpapers": "wallpapers"
+        "wallpapers": "wallpapers",
+        "xontribs": "xontribs"
       }
     },
     "rust-analyzer-src": {
@@ -1016,6 +1017,26 @@
         "owner": "exorcist365",
         "repo": "wallpapers",
         "type": "gitlab"
+      }
+    },
+    "xontribs": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1722286964,
+        "narHash": "sha256-xwgLUALQHf9xmt/TZ8DlfQGvi8ZJcdLCuPepHgMUeiA=",
+        "owner": "drmikecrowe",
+        "repo": "nur-packages",
+        "rev": "63d1081ba51e78401979d6b1abbfaa1315657de9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "drmikecrowe",
+        "repo": "nur-packages",
+        "type": "github"
       }
     }
   },

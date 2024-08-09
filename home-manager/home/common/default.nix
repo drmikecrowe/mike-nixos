@@ -20,13 +20,13 @@ in {
           atuin.enable = lib.mkDefault true;
           aws-sso-cli.enable = lib.mkDefault true;
           bash.enable = lib.mkDefault true;
+          carapace.enable = lib.mkDefault true;
           direnv.enable = lib.mkDefault true;
           fish.enable = lib.mkDefault true;
           git.enable = lib.mkDefault true;
           github.enable = lib.mkDefault true;
           gnupg.enable = lib.mkDefault true;
           neovim.enable = lib.mkDefault true;
-          lsp.enable = lib.mkDefault true;
           starship.enable = lib.mkDefault true;
           tmux.enable = lib.mkDefault true;
           vscode.enable = lib.mkDefault true;
@@ -36,6 +36,19 @@ in {
           zsh.enable = lib.mkDefault true;
         };
         feature = {
+        };
+      };
+    };
+    programs = {
+      lazygit = {
+        enable = true;
+        settings = {
+          gui.theme = {
+            lightTheme = true;
+            activeBorderColor = ["blue" "bold"];
+            inactiveBorderColor = ["black"];
+            selectedLineBgColor = ["default"];
+          };
         };
       };
     };

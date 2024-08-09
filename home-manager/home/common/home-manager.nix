@@ -12,15 +12,6 @@ with lib; {
     # file.".nixpkgs".source = inputs.nixpkgs;
     # sessionVariables."NIX_PATH" = "nixpkgs=$HOME/.nixpkgs\${NIX_PATH:+:}$NIX_PATH";
     activation = {
-      # link_libgit2 = ''
-      #   # Remove the existing symlink if it exists
-      #   if [ -L /usr/lib/libgit2.so ]; then
-      #       sudo rm /usr/lib/libgit2.so
-      #   fi
-      #
-      #   # Create a new symlink to the current version of libgit2
-      #   sudo ln -sf ${pkgs.libgit2.out}/lib/libgit2.so /usr/lib/libgit2.so
-      # '';
       profile_directories_state_create = ''
         if [ -d "$HOME"/.cache ]; then
             mkdir -p "$HOME"/.cache

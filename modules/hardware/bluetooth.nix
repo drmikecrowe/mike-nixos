@@ -31,6 +31,17 @@ in
         #     MultiProfile = "multiple";
         #   };
         # };
+        settings = {
+          General = {
+            Name = "xps15";
+            ControllerMode = "dual";
+            FastConnectable = "true";
+            Experimental = "true";
+            Enable = "Source,Sink,Media,Socket";
+            MultiProfile = "multiple";
+          };
+          LE = {EnableAdvMonInterleaveScan = "true";};
+        };
       };
 
       # services.blueman.enable = true;
