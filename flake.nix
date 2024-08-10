@@ -100,6 +100,7 @@
       url = "github:numtide/nixpkgs-unfree";
       follows = "nixpkgs-unstable";
     };
+    nixpkgs-SamLukeYes.url = "github:SamLukeYes/nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
 

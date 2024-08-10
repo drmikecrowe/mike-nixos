@@ -1,9 +1,9 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: let
+  inherit (config.nur.repos) xonsh-xontribs;
   cfg = config.host.application.xonsh;
 in {
   options = {
@@ -19,23 +19,20 @@ in {
   config = lib.mkIf (cfg.enable) {
     programs.xonsh = {
       enable = true;
-
-      package = pkgs.xonsh.overrideAttrs (oldAttrs: {
-        propagatedBuildInputs =
-          oldAttrs.propagatedBuildInputs
-          ++ (with config.nur.repos.xonsh-xontribs; [
-            xontrib-chatgpt
-            xontrib-clp
-            xontrib-direnv
-            xontrib-dot-dot
-            xontrib-gitinfo
-            xontrib-prompt-starship
-            xontrib-readable-traceback
-            xontrib-sh
-            xontrib-term-integrations
-            xontrib-zoxide
-          ]);
-      });
+      package = xonsh-xontribs.xonsh.override {
+        extraPackages = ps: (with xonsh-xontribs; [
+          xontrib-chatgpt
+          xontrib-clp
+          xontrib-direnv
+          xontrib-dot-dot
+          xontrib-gitinfo
+          xontrib-prompt-starship
+          xontrib-readable-traceback
+          xontrib-sh
+          xontrib-term-integrations
+          xontrib-zoxide
+        ]);
+      };
     };
   };
 }

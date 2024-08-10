@@ -1,6 +1,8 @@
 {
   inputs,
   lib,
+  config,
+  secrets,
   ...
 }: {
   nix = {
@@ -8,6 +10,7 @@
       auto-optimise-store = lib.mkDefault true;
       experimental-features = ["nix-command" "flakes" "repl-flake"];
       warn-dirty = lib.mkDefault false;
+      access-tokens = "github.com=${secrets.github.api-token}";
     };
 
     # package = pkgs.nixFlakes;

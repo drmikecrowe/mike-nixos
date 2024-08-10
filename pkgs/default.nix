@@ -4,6 +4,7 @@
   inputs,
   pkgs,
 }: {
+  # inherit (inputs.nixpkgs-SamLukeYes.legacyPackages.x86_64-linux) xonsh;
   # add more packages here
   # xonsh = pkgs.callPackage ./xonsh {};
 }
