@@ -12,6 +12,7 @@
     "https://nixpkgs-update.cachix.org"
     "https://nix-community.cachix.org"
     "https://devenv.cachix.org"
+    "https://xonsh-xontribs.cachix.org"
   ];
 
   extra-trusted-public-keys = [
@@ -20,5 +21,6 @@
     "nixpkgs-update.cachix.org-1:6y6Z2JdoL3APdu6/+Iy8eZX2ajf09e4EE9SnxSML1W8="
     "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
     "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
+    "xonsh-xontribs.cachix.org-1:LgP0Eb1miAJqjjhDvNafSrzBQ1HEtfNl39kKtgF5LBQ="
   ];
 }

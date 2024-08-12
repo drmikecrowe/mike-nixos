@@ -70,6 +70,9 @@ in {
     feature = {
       graphics = {
         enable = true;
+        # backend = "wayland";
+        # desktopManager = "kde6";
+        # displayManager.manager = "sddm";
         backend = "x";
         desktopManager = "kde";
       };

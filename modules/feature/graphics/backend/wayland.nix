@@ -18,15 +18,12 @@ in {
     programs = {
       dconf.enable = mkDefault true;
     };
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+    environment.sessionVariables.QT_QPA_PLATFORM = "xcb";
 
     security = mkIf (config.host.role != "kiosk") {
       pam = {
         services.gdm.enableGnomeKeyring = mkDefault true;
-        services.swaylock.text = mkDefault ''
-          # PAM configuration file for the swaylock screen locker. By default, it includes
-          # the 'login' configuration file (see /etc/pam.d/login)
-          auth include login
-        '';
       };
       polkit = {
         enable = mkDefault true;

@@ -14,37 +14,6 @@ in {
 
   # This one contains whatever you want to overlay
   modifications = _final: prev: {
-    # inherit (inputs.nixpkgs-SamLukeYes.legacyPackages.${prev.system}) xonsh;
-    #   xonsh = prev.xonsh.overrideAttrs (oldAttrs: {
-    #     passthru =
-    #       oldAttrs.passthru
-    #       ++ (with inputs.xontribs.legacyPackages.x86_64-linux; [
-    #         xontrib-chatgpt
-    #         xontrib-clp
-    #         xontrib-direnv
-    #         xontrib-dot-dot
-    #         xontrib-gitinfo
-    #         xontrib-prompt-starship
-    #         xontrib-readable-traceback
-    #         xontrib-sh
-    #         xontrib-term-integrations
-    #         xontrib-zoxide
-    #       ]);
-    #     disabledTestPaths = [
-    #       # fails on sandbox
-    #       "tests/completers/test_command_completers.py"
-    #       "tests/test_ptk_highlight.py"
-    #       "tests/test_ptk_shell.py"
-    #       "tests/test_integrations.py"
-    #       "tests/test_xontribs.py"
-    #       # fails on non-interactive shells
-    #       "tests/prompt/test_gitstatus.py"
-    #       "tests/completers/test_bash_completer.py"
-    #       "tests/completers/test_xompletions.py"
-    #       "tests/xoreutils/test_uname.py"
-    #       "tests/xoreutils/test_uptime.py"
-    #     ];
-    #   });
     # openssh = prev.openssh.overrideAttrs (old: rec {
     #   postPatch = ''
     #     sed -i 's/1/0/' $(grep '#define SSHCONF_CHECKPERM' * -rl)

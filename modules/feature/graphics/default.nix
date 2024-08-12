@@ -37,6 +37,29 @@
         default = null;
         description = "Desktop Manager to use";
       };
+      displayManager = {
+        autoLogin = {
+          enable = lib.mkOption {
+            default = false;
+            type = with lib.types; bool;
+            description = "Automatically log a user into a session";
+          };
+          user = lib.mkOption {
+            type = with lib.types; str;
+            description = "User to auto login";
+          };
+        };
+        manager = lib.mkOption {
+          type = lib.types.enum ["greetd" "gdm" "lightdm" "sddm" null];
+          default = "lightdm";
+          description = "Display Manager to use";
+        };
+        session = lib.mkOption {
+          type = lib.types.listOf lib.types.attrs;
+          default = [];
+          description = "Sessions that should be available to access via displayManager";
+        };
+      };
     };
   };
 

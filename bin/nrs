@@ -5,7 +5,7 @@ set -euo pipefail
 bin/fmt
 git add --intent-to-add .
 branch_name=$(git rev-parse --abbrev-ref HEAD)
-sudo mkdir -p /build && sudo mount --bind /home/build /build
+# sudo mkdir -p /build && sudo mount --bind /home/build /build
 # sudo nixos-rebuild switch $PROFILE "$@"
-nh os switch .
-sudo umount /build || true
+nh os switch . -- --show-trace --accept-flake-config
+# sudo umount /build || true

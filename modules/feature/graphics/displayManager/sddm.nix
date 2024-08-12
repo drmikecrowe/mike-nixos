@@ -6,7 +6,6 @@
 }:
 with lib; let
   graphics = config.host.feature.graphics;
-  displayManager = config.host.feature.displayManager.sddm;
   wayland =
     if (graphics.backend == "wayland")
     then true
@@ -14,12 +13,10 @@ with lib; let
 in {
   config = mkIf (graphics.enable && graphics.displayManager.manager == "sddm") {
     services = {
-      xserver = {
-        displayManager = {
-          sddm = {
-            enable = mkDefault true;
-            wayland.enable = mkDefault wayland;
-          };
+      displayManager = {
+        sddm = {
+          enable = mkDefault true;
+          wayland.enable = mkDefault wayland;
         };
       };
     };

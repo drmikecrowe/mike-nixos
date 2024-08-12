@@ -105,8 +105,6 @@
     ];
   };
 
-  hardware.enableRedistributableFirmware = lib.mkDefault true;
-
   security = {
     pam.loginLimits = [
       # Increase open file limit for sudoers

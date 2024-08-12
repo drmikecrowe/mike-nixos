@@ -21,8 +21,6 @@ in
       #boot.kernelParams = ["btusb"];
       hardware.bluetooth = {
         enable = true;
-        # package = pkgs.bluez5-experimental;
-        #hsphfpd.enable = true;
         powerOnBoot = true;
         # disabledPlugins = ["sap"];
         # settings = {
@@ -34,16 +32,9 @@ in
         settings = {
           General = {
             Name = "xps15";
-            ControllerMode = "dual";
-            FastConnectable = "true";
             Experimental = "true";
-            Enable = "Source,Sink,Media,Socket";
-            MultiProfile = "multiple";
           };
-          LE = {EnableAdvMonInterleaveScan = "true";};
         };
       };
-
-      # services.blueman.enable = true;
     };
   }

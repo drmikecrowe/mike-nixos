@@ -1,3 +1,4 @@
+# @type {config}
 {
   description = "drmikecrowe's system configuration";
 
@@ -75,32 +76,38 @@
   };
 
   nixConfig = {
+    allowBroken = true;
+    allowUnfree = true;
+    allowUnsupportedSystem = false;
+    permittedInsecurePackages = [
+    ];
+    experimental-features = ["nix-command" "flakes"];
     extra-substituters = [
-      "https://numtide.cachix.org"
       "https://cache.nixos.org/"
-      "https://nix-community.cachix.org"
+      "https://numtide.cachix.org"
       "https://nixpkgs-update.cachix.org"
+      "https://nix-community.cachix.org"
       "https://devenv.cachix.org"
       "https://xonsh-xontribs.cachix.org"
     ];
+
     extra-trusted-public-keys = [
-      "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "nixpkgs-update.cachix.org-1:6y6Z2JdoL3APdu6/+Iy8eZX2ajf09e4EE9SnxSML1W8="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+      "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
       "xonsh-xontribs.cachix.org-1:LgP0Eb1miAJqjjhDvNafSrzBQ1HEtfNl39kKtgF5LBQ="
     ];
   };
 
   inputs = {
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
     nixpkgs = {
       url = "github:numtide/nixpkgs-unfree";
       follows = "nixpkgs-unstable";
     };
-    nixpkgs-SamLukeYes.url = "github:SamLukeYes/nixpkgs";
+    # nixpkgs-SamLukeYes.url = "github:SamLukeYes/nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
 

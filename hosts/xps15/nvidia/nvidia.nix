@@ -1,5 +1,6 @@
 {
   inputs,
+  config,
   pkgs,
   lib,
   ...
@@ -15,34 +16,6 @@
       allowBroken = true;
       nvidia.acceptLicense = true;
     };
-    overlays = [
-      (final: prev: {
-        bumblebee = prev.bumblebee.override {
-          nvidia_x11 = pkgs.linuxKernel.packages.linux_6_1.nvidia_x11_legacy390;
-          extraNvidiaDeviceOptions = "BusID \"PCI:1:0:0\"";
-        };
-      })
-
-      (final: prev: let
-        xmodules = pkgs.lib.concatStringsSep "," (
-          map (x: "${x.out or x}/lib/xorg/modules") [
-            pkgs.xorg.xorgserver
-            pkgs.xorg.xf86inputmouse
-          ]
-        );
-      in {
-        bumblebee = prev.bumblebee.overrideAttrs (old: {
-          nativeBuildInputs =
-            old.nativeBuildInputs
-            ++ [
-              pkgs.xorg.xf86inputmouse
-            ];
-          CFLAGS = [
-            "-DX_MODULE_APPENDS=\\\"${xmodules}\\\""
-          ];
-        });
-      })
-    ];
   };
 
   environment = {
@@ -57,10 +30,8 @@
 
   services.xserver = {
     videoDrivers = [
-      "modesetting"
       "nvidiaLegacy390"
     ];
-    dpi = 180;
   };
 
   hardware = {
@@ -70,44 +41,24 @@
         enable = false;
         finegrained = false;
       };
-      open = true;
+      open = false;
       nvidiaSettings = true;
-      package = inputs.config.boot.kernelPackages.nvidiaPackages.legacy_390;
-
-      # bumblebee
+      package = config.boot.kernelPackages.nvidiaPackages.legacy_390;
       prime = {
-        sync.enable = false;
-        offload = {
-          enable = true;
-          enableOffloadCmd = true;
-        };
+        sync.enable = true;
+        offload.enable = false;
       };
-
-      # full prime
-      # prime = {
-      #   sync.enable = true;
-      #   offload = {
-      #     enable = false;
-      #     enableOffloadCmd = false;
-      #   };
-      # };
     };
-    bumblebee.enable = true;
   };
 
   specialisation = {
     on-the-go.configuration = {
       system.nixos.tags = ["on-the-go"];
-      hardware.nvidia = {
-        prime = {
-          offload = {
-            enable = lib.mkForce true;
-            enableOffloadCmd = lib.mkForce true;
-          };
-          sync = {
-            enable = lib.mkForce false;
-          };
-        };
+      services.xserver = {
+        videoDrivers = [
+          "intel"
+          "modesetting"
+        ];
       };
     };
   };

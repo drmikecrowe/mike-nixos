@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   inherit (config.nur.repos) xonsh-xontribs;
@@ -17,10 +18,12 @@ in {
   };
 
   config = lib.mkIf (cfg.enable) {
-    programs.xonsh = {
+    programs.xonsh = with xonsh-xontribs; {
       enable = true;
-      package = xonsh-xontribs.xonsh.override {
-        extraPackages = ps: (with xonsh-xontribs; [
+      package = xonsh-wrapped.override {
+        xonsh = xonsh;
+        extraPackages = ps: [
+          xonsh
           xontrib-chatgpt
           xontrib-clp
           xontrib-direnv
@@ -31,7 +34,7 @@ in {
           xontrib-sh
           xontrib-term-integrations
           xontrib-zoxide
-        ]);
+        ];
       };
     };
   };

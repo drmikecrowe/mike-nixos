@@ -2,6 +2,7 @@
   inputs,
   lib,
   pkgs,
+  username,
   ...
 }: {
   environment = {
@@ -11,6 +12,7 @@
     ];
   };
 
+  # @type {NixpkgsConfig}
   nix = {
     gc = {
       # automatic = lib.mkDefault true;
@@ -20,18 +22,27 @@
     };
 
     settings = {
-      accept-flake-config = lib.mkDefault true;
-      auto-optimise-store = lib.mkDefault true;
-      experimental-features = lib.mkDefault ["nix-command" "flakes" "repl-flake"];
-      # show more log lines for failed builds
-      log-lines = lib.mkDefault 30;
-      # Free up to 10GiB whenever there is less than 5GB left.
-      # this setting is in bytes, so we multiply with 1024 thrice
-      min-free = lib.mkDefault "${toString (5 * 1024 * 1024 * 1024)}";
-      max-free = lib.mkDefault "${toString (10 * 1024 * 1024 * 1024)}";
-      max-jobs = lib.mkDefault "auto";
-      trusted-users = lib.mkDefault ["root" "@wheel"];
-      warn-dirty = lib.mkDefault false;
+      trusted-users = lib.mkForce [
+        "root"
+        "@wheel"
+        username
+      ];
+      substituters = [
+        "https://cache.nixos.org/"
+        "https://numtide.cachix.org"
+        "https://nixpkgs-update.cachix.org"
+        "https://nix-community.cachix.org"
+        "https://devenv.cachix.org"
+        "https://xonsh-xontribs.cachix.org"
+      ];
+      trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "nixpkgs-update.cachix.org-1:6y6Z2JdoL3APdu6/+Iy8eZX2ajf09e4EE9SnxSML1W8="
+        "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+        "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
+        "xonsh-xontribs.cachix.org-1:LgP0Eb1miAJqjjhDvNafSrzBQ1HEtfNl39kKtgF5LBQ="
+      ];
     };
 
     package = pkgs.nixFlakes;

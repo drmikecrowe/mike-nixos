@@ -16,7 +16,7 @@ in {
         };
         displayManager = {
           lightdm = {
-            inherit (config.services.xserver) enable;
+            enable = graphics.enable && graphics.displayManager.manager == "lightdm";
             # background = config.wallpaper;
 
             # Make the login screen dark
